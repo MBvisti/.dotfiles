@@ -51,7 +51,7 @@ set backupdir=~/.config/nvim/backup//
 " PLUGINS
 "-----------------------------------------
 set rtp +=~/.vim
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'morhetz/gruvbox'
 Plug 'ajmwagar/vim-deus'
