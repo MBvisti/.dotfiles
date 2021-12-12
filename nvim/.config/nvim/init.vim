@@ -158,7 +158,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%/.git ls-files -oc --exclud
 " let g:netwr_banner = 0
 " let g:netrw_winsize=25
 
-" let g:ctrlp_use_catching = 0
+let g:ctrlp_use_catching = 0
 
 "-----------------------------------------
 " NERDTree

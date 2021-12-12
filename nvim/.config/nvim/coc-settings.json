@@ -1,28 +1,37 @@
 {
-    "eslint.packageManager": "npm",
-    "eslint.autoFixOnSave": true,
-    "eslint.codeAction.showDocumentation": {
-        "enable": true
-    },
-    "eslint.run": "onSave",
-    "prettier.tabWith": 4,
-    "prettier.useTabs": true,
-    "diagnostic.errorSign": "",
-    "diagnostic.warningSign": "",
-    "diagnostic.infoSign": "",
-    "diagnostic.checkCurrentLine": true,
-    "coc.preferences.formatOnSaveFileTypes": ["*"],
-    "languageserver": {
-        "golang": {
-            "command": "gopls",
-            "rootPatterns": ["go.mod"],
-            "filetypes": ["go"]
-        }
-    },
-    "list.sources.sumbols.excludes": [
-        "**/node_modules/**",
-        "**/node_modules/**/.*",
-        "**/node_modules/**/.*/**"
-    ],
-    "svelte.enable-ts-plugin": true
+	"eslint.packageManager": "yarn",
+	"eslint.autoFixOnSave": true,
+	"eslint.codeAction.showDocumentation": {
+		"enable": true
+	},
+	"eslint.run": "onSave",
+	"prettier.tabWith": 4,
+	"prettier.useTabs": true,
+	"diagnostic.errorSign": "🔥",
+	"diagnostic.warningSign": "⚠️",
+	"diagnostic.infoSign": "ℹ️",
+	"diagnostic.checkCurrentLine": true,
+	"coc.preferences.formatOnSaveFiletypes": [
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"typescriptreact",
+		"typescript.tsx",
+		"svelte",
+		"html",
+		"json"
+	],
+	"languageserver": {
+		"golang": {
+			"command": "gopls",
+			"rootPatterns": ["go.mod"],
+			"filetypes": ["go"]
+		}
+	},
+	"list.sources.sumbols.excludes": [
+		"**/node_modules/**",
+		"**/node_modules/**/.*",
+		"**/node_modules/**/.*/**"
+	],
+	"svelte.enable-ts-plugin": true
 }
