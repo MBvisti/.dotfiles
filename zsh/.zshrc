@@ -15,37 +15,20 @@ source $ZSH/oh-my-zsh.sh
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/go/bin
 
 # export PATH=$PATH:/usr/local/mysql/bin
 
-#export GOPATH=$HOME/golang
-#export GOROOT=/usr/local/go
-#export PATH=$PATH:$GOPATH/bin
-#export PATH=$PATH:$GOROOT/bin
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
-#export PYENV_ROOT="$HOME/.pyenv"
-#export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init --path)"
+export DEFAULT_USER="$(whoami)"
 
-#eval "$(pyenv init -)"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-#if command -v pyenv 1>/dev/null 2>&1; then
-#  eval "$(pyenv init -)"
-#fi
-
-#export NVM_DIR="$HOME/.nvm"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-#export DEFAULT_USER="$(whoami)"
-
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-#export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-
-#eval "$(pyenv virtualenv-init -)"
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 alias vim="nvim"
 alias vi="nvim"
-#eval "$(pyenv init -)"

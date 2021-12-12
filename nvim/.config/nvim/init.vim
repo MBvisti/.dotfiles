@@ -72,6 +72,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -79,10 +80,6 @@ call plug#end()
 " COLOR SCHEME
 "-----------------------------------------
 colorscheme deus
-"autocmd ColorScheme * highlight CocErrorFloat guifg=#ffffff
-"autocmd ColorScheme * highlight CocInfoFloat guifg=#ffffff
-"autocmd ColorScheme * highlight CocWarningFloat guifg=#ffffff
-"autocmd ColorScheme * highlight SignColumn guibg=#adadad
 
 "-----------------------------------------
 " TELESCOPE
@@ -154,17 +151,24 @@ endif
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%/.git ls-files -oc --exclude-standard']
 
 "-----------------------------------------
-" NETWR CONFIGS
+" NETWR CONFIGS - trying out NERDTree 
 "-----------------------------------------
-let g:netrw_browse_split = 3
-let g:netrw_liststyle = 3
-let g:netwr_banner = 0
-let g:netrw_winsize=25
+" let g:netrw_browse_split = 3
+" let g:netrw_liststyle = 3
+" let g:netwr_banner = 0
+" let g:netrw_winsize=25
 
-let g:ctrlp_use_catching = 0
+" let g:ctrlp_use_catching = 0
 
 "-----------------------------------------
-" VIM-GO CONFIGS
+" NERDTree
+"-----------------------------------------
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeShowHidden = 1
+
+"-----------------------------------------
+" Airline config
 "-----------------------------------------
 let g:airline_theme='deus'
 
