@@ -11,7 +11,6 @@ set number
 set cursorline
 set background=dark
 set title
-set statusline=%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)
 set makeprg=make
 set noswapfile
 set nobackup
