@@ -1,13 +1,12 @@
 "-----------------------------------------
 " GENERAL SETTINGS
 "-----------------------------------------
-set nocompatible
 set hidden
 set laststatus=2
 set wildmenu
 set colorcolumn=80
 set noerrorbells
-set relativenumber
+" set relativenumber
 set number
 set cursorline
 set background=dark
@@ -18,16 +17,16 @@ set noswapfile
 set nobackup
 filetype plugin indent on
 set autoindent
-set tabstop=4 
-set softtabstop=4
+" set tabstop=4 
+" set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
 set nowrap
-set mouse=a
+set mouse=nv
 set incsearch
-set splitright
-set ignorecase
+" set splitright
+" set ignorecase
 set wildmode=longest:full,full
 set smartcase
 set nohlsearch
@@ -37,12 +36,11 @@ set sidescrolloff=5
 syntax on
 set signcolumn=yes:2
 set confirm
-set exrc
 set spell
 set termguicolors
 set guicursor=
-set undofile
-set undodir=~/.vim/undodir
+" set undofile
+" set undodir=~/.vim/undodir
 set updatetime=300
 set redrawtime=10000
 set backupdir=~/.config/nvim/backup//
@@ -54,6 +52,7 @@ set rtp +=~/.vim
 call plug#begin('~/.config/nvim/plugged')
 
 " Plug 'morhetz/gruvbox'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ajmwagar/vim-deus'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -65,14 +64,17 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'preservim/nerdtree'
+" Plug 'preservim/nerdtree'
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
@@ -129,6 +131,13 @@ EOF
 " EOF
 
 "-----------------------------------------
+" LUA LINE
+"-----------------------------------------
+lua << END
+require'lualine'.setup()
+END
+
+"-----------------------------------------
 " KEY MAPPINGS
 "-----------------------------------------
 let mapleader = ' '
@@ -153,24 +162,24 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%/.git ls-files -oc --exclud
 "-----------------------------------------
 " NETWR CONFIGS - trying out NERDTree 
 "-----------------------------------------
-" let g:netrw_browse_split = 3
-" let g:netrw_liststyle = 3
-" let g:netwr_banner = 0
-" let g:netrw_winsize=25
+let g:netrw_browse_split = 3
+let g:netrw_liststyle = 3
+let g:netwr_banner = 0
+let g:netrw_winsize=25
 
 let g:ctrlp_use_catching = 0
 
 "-----------------------------------------
 " NERDTree
 "-----------------------------------------
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeShowHidden = 1
+" let NERDTreeMinimalUI = 1
+" let NERDTreeDirArrows = 1
+" let NERDTreeShowHidden = 1
 
 "-----------------------------------------
 " Airline config
 "-----------------------------------------
-let g:airline_theme='deus'
+" let g:airline_theme='deus'
 
 "-----------------------------------------
 " VIM-GO CONFIGS
