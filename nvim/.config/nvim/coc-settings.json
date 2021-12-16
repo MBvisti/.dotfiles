@@ -1,9 +1,19 @@
 {
-	"eslint.packageManager": "yarn",
+	"eslint.packageManager": ["yarn", "npm"],
 	"eslint.autoFixOnSave": true,
 	"eslint.codeAction.showDocumentation": {
 		"enable": true
 	},
+	"eslint.probe": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html",
+		"svelte",
+		"markdown"
+	],
+	"eslint.enable": true,
 	"eslint.run": "onSave",
 	"prettier.tabWith": 4,
 	"prettier.useTabs": true,
