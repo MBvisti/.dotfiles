@@ -63,14 +63,11 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update 
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'liuchengxu/vim-which-key'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-" Plug 'preservim/nerdtree'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'kyazdani42/nvim-web-devicons'
@@ -167,18 +164,6 @@ let g:netwr_banner = 0
 let g:netrw_winsize=25
 
 let g:ctrlp_use_catching = 0
-
-"-----------------------------------------
-" NERDTree
-"-----------------------------------------
-" let NERDTreeMinimalUI = 1
-" let NERDTreeDirArrows = 1
-" let NERDTreeShowHidden = 1
-
-"-----------------------------------------
-" Airline config
-"-----------------------------------------
-" let g:airline_theme='deus'
 
 "-----------------------------------------
 " VIM-GO CONFIGS
