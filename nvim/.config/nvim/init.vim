@@ -50,7 +50,6 @@ set backupdir=~/.config/nvim/backup//
 set rtp +=~/.vim
 call plug#begin('~/.config/nvim/plugged')
 
-" Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'ajmwagar/vim-deus'
 Plug 'jremmen/vim-ripgrep'
@@ -130,7 +129,47 @@ EOF
 " LUA LINE
 "-----------------------------------------
 lua << END
-require'lualine'.setup()
+local status, lualine = pcall(require, "lualine")
+if (not status) then return end
+
+lualine.setup {
+  options = {
+    icons_enabled = true,
+    section_separators = {left = '', right = ''},
+    component_separators = {left = '', right = ''},
+    disabled_filetypes = {}
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch'},
+    lualine_c = {{
+      'filename',
+      file_status = true, -- displays file status (readonly status, modified status)
+      path = 0 -- 0 = just filename, 1 = relative path, 2 = absolute path
+    }},
+    lualine_x = {
+      { 'diagnostics', sources = {"coc"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+      'encoding',
+      'filetype'
+    },
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {{
+      'filename',
+      file_status = true, -- displays file status (readonly status, modified status)
+      path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
+    }},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {'fugitive'}
+}
 END
 
 "-----------------------------------------
