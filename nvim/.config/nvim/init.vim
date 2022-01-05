@@ -25,7 +25,7 @@ set nowrap
 set mouse=nv
 set incsearch
 set splitright
-" set ignorecase
+set tw=80 " setting the text to 80 chars
 set wildmode=longest:full,full
 set smartcase
 set nohlsearch
@@ -77,6 +77,7 @@ Plug 'tpope/vim-commentary'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'rhysd/git-messenger.vim' " get commit msg in pop-up window
 
 call plug#end()
 
@@ -283,6 +284,14 @@ local on_attach = function(client, bufnr)
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
 end
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches

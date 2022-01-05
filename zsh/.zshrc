@@ -9,7 +9,16 @@ export ZSH="/Users/mbv/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git zsh-autosuggestions golang rust rustup postgres common-aliases alias-finder zsh-syntax-highlighting)
+plugins=(
+    git 
+    zsh-autosuggestions 
+    golang 
+    rust 
+    postgres 
+    common-aliases 
+    alias-finder 
+    zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
