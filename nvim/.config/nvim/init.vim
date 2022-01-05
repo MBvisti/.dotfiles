@@ -50,7 +50,8 @@ set rtp +=~/.vim
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'ajmwagar/vim-deus'
+" Plug 'ajmwagar/vim-deus'
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -82,7 +83,14 @@ call plug#end()
 "-----------------------------------------
 " COLOR SCHEME
 "-----------------------------------------
-colorscheme deus
+lua << EOF
+local catppuccin = require("catppuccin")
+
+-- configure it
+catppuccin.setup()
+EOF
+
+colorscheme catppuccin
 
 "-----------------------------------------
 " TELESCOPE
