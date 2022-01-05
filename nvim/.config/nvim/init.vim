@@ -16,8 +16,8 @@ set nobackup
 filetype plugin indent on
 set autoindent
 set completeopt=menu,menuone,noselect
-" set tabstop=4 
-" set softtabstop=4
+set tabstop=4 
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
@@ -35,11 +35,10 @@ set sidescrolloff=5
 syntax on
 set signcolumn=yes:2
 set confirm
-" set spell
 set termguicolors
 set guicursor=
-" set undofile
-" set undodir=~/.vim/undodir
+set undofile
+set undodir=~/.vim/undodir
 set updatetime=300
 set redrawtime=10000
 set backupdir=~/.config/nvim/backup//
