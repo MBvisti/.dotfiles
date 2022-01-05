@@ -24,7 +24,7 @@ set smartindent
 set nowrap
 set mouse=nv
 set incsearch
-" set splitright
+set splitright
 " set ignorecase
 set wildmode=longest:full,full
 set smartcase
@@ -35,7 +35,7 @@ set sidescrolloff=5
 syntax on
 set signcolumn=yes:2
 set confirm
-set spell
+" set spell
 set termguicolors
 set guicursor=
 " set undofile
@@ -124,7 +124,40 @@ EOF
 "-----------------------------------------
 " TREESITTER
 "-----------------------------------------
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {
+      "go", "lua", "bash", "css", "dockerfile", "gomod", "gowork", "html", 
+      "json", "javascript", "make", "markdown", "rust", "svelte", "tsx", 
+      "typescript", "yaml", "vim"
+  },
 
+  -- Install languages synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing
+  ignore_install = { "" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- list of language that will be disabled
+    disable = { "c" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+
+  indent = {
+    enable = true,
+  }
+}
+EOF
 "-----------------------------------------
 " LUA LINE
 "-----------------------------------------
@@ -216,15 +249,15 @@ let g:go_doc_popup_window = 0
 let g:go_jump_to_error = 0
 let g:go_fmt_command = "goimports"
 let g:go_auto_sameids = 0
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_generate_tags = 1
-let g:go_doc_keywordprg_enabled = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_fields = 1
+" let g:go_highlight_functions = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_extra_types = 1
+" let g:go_highlight_build_constraints = 1
+" let g:go_highlight_generate_tags = 1
+" let g:go_doc_keywordprg_enabled = 1
 
 
 "-----------------------------------------
@@ -297,7 +330,6 @@ for _, lsp in ipairs(servers) do
 end
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
 
 -- luasnip setup
 local luasnip = require 'luasnip'
