@@ -4,7 +4,7 @@
 set hidden
 set laststatus=2
 set wildmenu
-set colorcolumn=80
+set colorcolumn=90
 set noerrorbells
 set number
 set cursorline
@@ -71,13 +71,14 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update 
 Plug 'leafOfTree/vim-svelte-plugin'
 Plug 'liuchengxu/vim-which-key'
-Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter' " used to get icons based on changes
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'rhysd/git-messenger.vim' " get commit msg in pop-up window
+Plug 'akinsho/toggleterm.nvim'
 
 call plug#end()
 
@@ -383,4 +384,44 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+EOF
+
+"-----------------------------------------
+" TOGGLE TERM
+"-----------------------------------------
+lua << EOF
+local status_ok, toggleterm = pcall(require, "toggleterm")
+if not status_ok then
+    return
+end
+
+toggleterm.setup({
+    size = 60,
+    open_mapping = [[<c-t>]],
+    hide_numbers = true,
+    shade_filetypes = {},
+    shading_factor = 2,
+    start_in_insert = true,
+    insert_mappings = true,
+    direction = "vertical",
+    close_on_exit = true,
+    shell = vim.o.shell,
+    float_ops = {
+        border = "curved",
+        winblend = 0,
+        highlights = {
+            border = "Normal",
+            background = "Normal",
+        }
+    }
+})
+
+function _G.set_terminal_keymaps()
+    local opts = {noremap = true}
+    vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+end
+
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+local Terminal = require("toggleterm.terminal").Terminal
+
 EOF
