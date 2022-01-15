@@ -1,0 +1,10 @@
+require("settings")
+require("mappings")
+require("plugins/list")
+require("plugins/lualine")
+require("plugins/lsp")
+require("plugins/autocmp")
+require("plugins/toggleterm")
+require("plugins/treesitter")
+require("colors/colorscheme")
+
