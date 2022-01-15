@@ -13,7 +13,6 @@ set title
 set makeprg=make
 set noswapfile
 set nobackup
-filetype plugin indent on
 set autoindent
 set completeopt=menu,menuone,noselect
 set tabstop=4 
@@ -42,6 +41,7 @@ set undodir=~/.vim/undodir
 set updatetime=300
 set redrawtime=10000
 set backupdir=~/.config/nvim/backup//
+filetype plugin indent on
 
 "-----------------------------------------
 " PLUGINS
@@ -57,21 +57,50 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mbbill/undotree'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" nvim lsp client
 Plug 'neovim/nvim-lspconfig'
+
+" lsp completion source for nvim-cmp
 Plug 'hrsh7th/cmp-nvim-lsp'
+
+" other useful completion sources
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
+
 Plug 'hrsh7th/cmp-cmdline'
+
+" completion framework
 Plug 'hrsh7th/nvim-cmp'
-Plug 'L3MON4D3/LuaSnip'
-Plug 'saadparwaiz1/cmp_luasnip'
+
+" enables more features of rust analyzer
+Plug 'simrat39/rust-tools.nvim'
+
+" Snippet completion source for nvim-cmp
+Plug 'hrsh7th/cmp-vsnip'
+
+" Snippet engine
+Plug 'hrsh7th/vim-vsnip'
+
+" debugging
+Plug 'mfussenegger/nvim-dap'
 Plug 'nvim-lua/plenary.nvim'
+
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update 
+
 Plug 'leafOfTree/vim-svelte-plugin'
+
 Plug 'liuchengxu/vim-which-key'
-Plug 'airblade/vim-gitgutter' " used to get icons based on changes
+
+" needed for telescope to have Runnables/Debuggables
+Plug 'nvim-telescope/telescope-ui-select.nvim'
+
+" used to get icons based on changes
+Plug 'airblade/vim-gitgutter' 
+
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'nvim-lualine/lualine.nvim'
@@ -125,9 +154,15 @@ require('telescope').setup{
     fzy_native = {
         override_generic_sorter = false,
         override_file_sorter = true,
-    }
+    },
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
+    },
   }
 }
+require("telescope").load_extension("ui-select")
 EOF
 
 "-----------------------------------------
@@ -296,7 +331,8 @@ vim.diagnostic.config({
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tailwindcss', 'dockerls', 'tsserver', 'svelte', 'sqlls', 'eslint'}
+local servers = { 'gopls', 'tailwindcss', 'dockerls', 'tsserver', 'svelte', 
+'eslint', 'lua' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -307,11 +343,42 @@ for _, lsp in ipairs(servers) do
 end
 EOF
 
+" lua << EOF
+" local nvim_lsp = require('lspconfig')
+" local opts = {
+"     tools = { -- rust-tools options
+"         autoSetHints = true,
+"         hover_with_actions = true,
+"         inlay_hints = {},
+"     },
+
+"     -- all the opts to send to nvim-lspconfig
+"     -- these override the defaults set by rust-tools.nvim
+"     -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+"     server = {
+"         -- on_attach is a callback called when the language server attachs to the buffer
+"         -- on_attach = on_attach,
+"         settings = {
+"             -- to enable rust-analyzer settings visit:
+"             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+"             ["rust-analyzer"] = {
+"                 -- enable clippy on save
+"                 checkOnSave = {
+"                     command = "clippy"
+"                 },
+"             }
+"         }
+"     },
+" }
+" " require('rust-tools').setup(opts)
+" EOF
+
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> sd <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> di <cmd>lua vim.diagnostic.open_float()<CR>
 nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
@@ -328,7 +395,8 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'gopls', 'tailwindcss', 'dockerls', 'tsserver', 'svelte', 'sqlls', 'eslint' }
+local servers = { 'gopls', 'tailwindcss', 'dockerls', 'tsserver', 'svelte', 
+'rust_analyzer', 'eslint'  }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     -- on_attach = my_custom_on_attach,
@@ -336,59 +404,45 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- Set completeopt to have a better completion experience
-
--- luasnip setup
-local luasnip = require 'luasnip'
-
 -- nvim-cmp setup
-local cmp = require 'cmp'
-cmp.setup {
+local cmp = require'cmp'
+cmp.setup({
+  -- Enable LSP snippets
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+        vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   mapping = {
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-n>'] = cmp.mapping.select_next_item(),
+    -- Add tab support
+    ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+    ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
+    ['<CR>'] = cmp.mapping.confirm({
+      behavior = cmp.ConfirmBehavior.Insert,
       select = true,
-    },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
+    })
   },
+
+  -- Installed sources
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'luasnip' },
+    { name = 'vsnip' },
+    { name = 'path' },
+    { name = 'buffer' },
   },
-}
+})
 EOF
 
 "-----------------------------------------
 " TOGGLE TERM
 "-----------------------------------------
+" TODO: how to add a terminal as a tab
 lua << EOF
 local status_ok, toggleterm = pcall(require, "toggleterm")
 if not status_ok then
@@ -403,7 +457,7 @@ toggleterm.setup({
     shading_factor = 2,
     start_in_insert = true,
     insert_mappings = true,
-    direction = "vertical",
+    direction = "float",
     close_on_exit = true,
     shell = vim.o.shell,
     float_ops = {
