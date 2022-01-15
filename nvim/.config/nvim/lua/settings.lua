@@ -30,3 +30,4 @@ set.termguicolors = true
 set.undofile = true
 set.updatetime = 300
 set.redrawtime = 10000
+vim.cmd('filetype plugin indent on')

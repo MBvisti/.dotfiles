@@ -2,54 +2,59 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
-Plug 'kyazdani42/nvim-web-devicons'
--- Plug 'ajmwagar/vim-deus'
+--
+-- colorschema
 Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
-Plug 'jremmen/vim-ripgrep'
+
+-- for wokring with git
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mbbill/undotree'
-Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
+Plug 'airblade/vim-gitgutter' 
+Plug 'rhysd/git-messenger.vim' 
 
-Plug 'neovim/nvim-lspconfig'
-
-Plug 'hrsh7th/cmp-nvim-lsp'
-
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-
-Plug 'hrsh7th/cmp-cmdline'
-
-Plug 'hrsh7th/nvim-cmp'
-
-Plug 'simrat39/rust-tools.nvim'
-
-Plug 'hrsh7th/cmp-vsnip'
-
-Plug 'hrsh7th/vim-vsnip'
-
-Plug 'mfussenegger/nvim-dap'
+-- telescope
 Plug 'nvim-lua/plenary.nvim'
-
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
+Plug 'jremmen/vim-ripgrep'
 
+-- vim go
+Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
+
+-- lsp and auto complete
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+-- treesitter
 Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
 
+-- svelte
 Plug 'leafOfTree/vim-svelte-plugin'
 
+-- rust
+Plug 'rust-lang/rust.vim'
+
+-- debuggin
+Plug 'mfussenegger/nvim-dap'
+
+-- misc
 Plug 'liuchengxu/vim-which-key'
-
-Plug 'nvim-telescope/telescope-ui-select.nvim'
-
-Plug 'airblade/vim-gitgutter' 
-
+Plug 'mbbill/undotree'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+
+-- statusline
 Plug 'nvim-lualine/lualine.nvim'
 
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'rhysd/git-messenger.vim' 
+-- terminal
 Plug 'akinsho/toggleterm.nvim'
 
 vim.call('plug#end')

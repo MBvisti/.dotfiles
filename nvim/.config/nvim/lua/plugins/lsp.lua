@@ -9,10 +9,29 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings: not working, maybe switch entirely to .lua
-  -- local opts = { noremap=true, silent=true }
+  -- Mappings.
+  local opts = { noremap=true, silent=true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', 'di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  buf_set_keymap('n', 'sd', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+  buf_set_keymap('n', '<C-n>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  buf_set_keymap('n', '<C-p>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
 end
 
 vim.diagnostic.config({
@@ -23,15 +42,59 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-local servers = { 'gopls', 'tailwindcss', 'dockerls', 'tsserver', 'svelte', 
-'eslint', 'lua' }
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+require("lspconfig").gopls.setup{
+	cmd = { "gopls", "serve" },
+    on_attach = on_attach,
+    filetypes = { "go", "gomod", "gotmpl" },
+    flags = {
+      debounce_text_changes = 150,
+    },
+	settings = {
+		gopls = {
+			staticcheck = true,
+		},
+	},
+}
+
+require("lspconfig").tailwindcss.setup{
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
     }
-  }
-end
+}
+
+require("lspconfig").dockerls.setup{
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
+require("lspconfig").tsserver.setup{
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
+require("lspconfig").svelte.setup{
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
+require("lspconfig").eslint.setup{
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
+require("lspconfig").rust_analyzer.setup{
+    cmd = { "rustup", "run", "nightly", "rust-analyzer"},
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
