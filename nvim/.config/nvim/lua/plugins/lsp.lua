@@ -9,6 +9,17 @@ local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- use null-ls for formatting
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
+  if client.resolved_capabilities.document_formatting then
+      vim.cmd([[
+      augroup LspFormatting
+          autocmd! * <buffer>
+          autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+      augroup END
+      ]])
+  end
   -- Mappings.
   local opts = { noremap=true, silent=true }
 
@@ -98,3 +109,19 @@ require("lspconfig").rust_analyzer.setup{
       debounce_text_changes = 150,
     }
 }
+
+local null_ls = require("null-ls")
+local formatting = null_ls.builtins.formatting
+
+local sources = {
+    formatting.eslint,
+    formatting.prettier,
+    formatting.gofumpt,
+    formatting.rustywind,
+    formatting.rustfmt,
+}
+
+null_ls.setup({ 
+    sources = sources,
+    on_attach = on_attach,
+})

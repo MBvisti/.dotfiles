@@ -44,6 +44,12 @@ Plug 'rust-lang/rust.vim'
 -- debuggin
 Plug 'mfussenegger/nvim-dap'
 
+-- indent line
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+-- formatting
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 -- misc
 Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'

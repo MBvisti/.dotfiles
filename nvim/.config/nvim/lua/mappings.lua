@@ -38,14 +38,3 @@ vim.g.go_auto_sameids = 0
 -- git-gutter
 vim.g.gitgutter_async = 0
 
--- lsp mappings
-
--- map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
--- map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
--- map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
--- map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
--- map('n', 'sd', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
--- map('n', 'di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
--- map('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
--- map('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
--- map('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)

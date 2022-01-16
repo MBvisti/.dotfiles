@@ -6,5 +6,6 @@ require("plugins/lsp")
 require("plugins/autocmp")
 require("plugins/toggleterm")
 require("plugins/treesitter")
+require("plugins/indentline")
 require("colors/colorscheme")
 
