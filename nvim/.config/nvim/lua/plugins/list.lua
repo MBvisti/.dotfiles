@@ -4,7 +4,9 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
 --
 -- colorschema
-Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+-- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+-- Plug 'ellisonleao/gruvbox.nvim'
+Plug 'rebelot/kanagawa.nvim'
 
 -- for wokring with git
 Plug 'tpope/vim-fugitive'
@@ -31,6 +33,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'glepnir/lspsaga.nvim'
 
 -- treesitter
 Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})

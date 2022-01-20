@@ -1,5 +1,6 @@
 local set = vim.opt
 set.hidden = true
+set.hlsearch = false
 set.laststatus=2
 set.wildmenu = true
 set.colorcolumn = "90"
