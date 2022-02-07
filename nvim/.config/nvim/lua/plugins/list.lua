@@ -42,7 +42,8 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'leafOfTree/vim-svelte-plugin'
 
 -- rust
-Plug 'rust-lang/rust.vim'
+-- Plug 'rust-lang/rust.vim'
+Plug 'simrat39/rust-tools.nvim'
 
 -- debuggin
 Plug 'mfussenegger/nvim-dap'
