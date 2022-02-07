@@ -9,7 +9,7 @@ map('n', '<leader>j', ':wincmd j<CR>', opts)
 map('n', '<leader>k', ':wincmd k<CR>', opts)
 map('n', '<leader>l', ':wincmd :wincmd l<CR>', opts)
 
---Add leader shortcuts
+-- telescope
 vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>cb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })

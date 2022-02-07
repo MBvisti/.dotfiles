@@ -77,13 +77,13 @@ cmp.setup {
   },
 }
 
--- vim.diagnostic.config({
---   virtual_text = true,
---   signs = true,
---   underline = true,
---   update_in_insert = false,
---   severity_sort = false,
--- })
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = false,
+})
 
 lspconfig.gopls.setup{
 	cmd = { "gopls", "serve" },
@@ -119,6 +119,8 @@ lspconfig.dockerls.setup{
 lspconfig.tsserver.setup{
     on_attach = on_attach,
     capabilities = capabilities,
+    auto_inlay_hints = true,
+    inlay_hints_highlight = 'Comment',
     flags = {
       debounce_text_changes = 150,
     }
@@ -149,26 +151,3 @@ lspconfig.rust_analyzer.setup{
     }
 }
 
--- local null_ls = require("null-ls")
--- local formatting = null_ls.builtins.formatting
-
--- local sources = {
---     formatting.eslint,
---     formatting.prettier,
---     formatting.gofumpt,
---     formatting.rustywind,
---     formatting.rustfmt,
--- }
-
---   -- Installed sources
---   sources = {
---     { name = 'nvim_lsp' },
---     { name = 'vsnip' },
---     { name = 'path' },
---     { name = 'buffer' },
---   },
-
--- null_ls.setup({ 
---     sources = sources,
---     on_attach = on_attach,
--- })
