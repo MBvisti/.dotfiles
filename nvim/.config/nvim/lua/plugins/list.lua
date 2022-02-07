@@ -63,6 +63,9 @@ Plug 'nvim-lualine/lualine.nvim'
 -- terminal
 Plug 'akinsho/toggleterm.nvim'
 
+-- vimwiki
+Plug 'vimwiki/vimwiki'
+
 -- misc
 Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'

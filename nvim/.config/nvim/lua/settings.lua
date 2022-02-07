@@ -32,6 +32,8 @@ set.undofile = true
 set.updatetime = 300
 set.redrawtime = 10000
 vim.cmd('filetype plugin indent on')
+vim.cmd('filetype plugin on')
+vim.cmd('set nocompatible')
 set.signcolumn = "yes:2"
 
 -- Highlight on yank
