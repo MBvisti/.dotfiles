@@ -21,6 +21,9 @@ vim.g.netrw_liststyle = 3
 vim.g.netwr_banner = 0
 vim.g.netrw_winsize= 25
 
+-- nvim tree
+map('n', '<leader>nt', '<cmd>NvimTreeToggle<cr>', opts)
+
 -- ctrlp 
 vim.g.ctrlp_use_catching = 0
 
