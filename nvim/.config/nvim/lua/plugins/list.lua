@@ -26,17 +26,17 @@ Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
 -- lsp and auto complete
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
--- Plug 'glepnir/lspsaga.nvim'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'L3MON4D3/LuaSnip' -- Snippets plugin
 
 -- treesitter
 Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 -- svelte
 Plug 'leafOfTree/vim-svelte-plugin'

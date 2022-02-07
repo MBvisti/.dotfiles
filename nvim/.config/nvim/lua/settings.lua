@@ -33,3 +33,12 @@ set.updatetime = 300
 set.redrawtime = 10000
 vim.cmd('filetype plugin indent on')
 set.signcolumn = "yes:2"
+
+-- Highlight on yank
+vim.cmd [[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]]
+
