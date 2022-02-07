@@ -161,6 +161,9 @@ require('rust-tools').setup({
         -- on_attach is a callback called when the language server attachs to the buffer
         capabilities = capabilities,
         on_attach = on_attach,
+        flags = {
+            debounce_text_changes = 150,
+        },
         settings = {
             -- to enable rust-analyzer settings visit:
             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
@@ -173,13 +176,4 @@ require('rust-tools').setup({
         }
     },
 })
-
--- lspconfig.rust_analyzer.setup{
---     cmd = { "rustup", "run", "nightly", "rust-analyzer"},
---     capabilities = capabilities,
---     on_attach = on_attach,
---     flags = {
---       debounce_text_changes = 150,
---     }
--- }
 
