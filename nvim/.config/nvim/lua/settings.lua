@@ -25,15 +25,14 @@ set.smartcase = true
 set.fileencoding = "utf-8"
 set.scrolloff = 12
 set.sidescrolloff = 5
-syntax=on
 set.confirm = true
 set.termguicolors = true
 set.undofile = true
 set.updatetime = 300
 set.redrawtime = 10000
+set.syntax = "on"
 vim.cmd('filetype plugin indent on')
 vim.cmd('filetype plugin on')
-vim.cmd('set nocompatible')
 set.signcolumn = "yes:2"
 
 -- Highlight on yank
