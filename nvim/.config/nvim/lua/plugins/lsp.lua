@@ -102,6 +102,7 @@ lspconfig.gopls.setup{
 
 lspconfig.tailwindcss.setup{
     on_attach = on_attach,
+    -- filetypes = { "html", "htmldjango" },
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
@@ -135,6 +136,22 @@ lspconfig.svelte.setup{
 }
 
 lspconfig.eslint.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
+lspconfig.pyright.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
+lspconfig.html.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
