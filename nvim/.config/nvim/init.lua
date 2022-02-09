@@ -8,6 +8,6 @@ require("plugins/treesitter")
 require("plugins/indentline")
 require("plugins/telescope_configuration")
 -- require("plugins/lspsaga")
-require("plugins/nvimtree")
+-- require("plugins/nvimtree")
 require("colors/colorscheme")
 

@@ -4,10 +4,10 @@ local opts  = { noremap = true, silent = true }
 vim.g.mapleader = ' '
 
 -- window management
-map('n', '<leader>h', ':wincmd h<CR>', opts)
-map('n', '<leader>j', ':wincmd j<CR>', opts)
-map('n', '<leader>k', ':wincmd k<CR>', opts)
-map('n', '<leader>l', ':wincmd :wincmd l<CR>', opts)
+map('n', '<leader>h', ':wincmd h<CR>', opts) -- move cursor to window left
+map('n', '<leader>j', ':wincmd j<CR>', opts) -- move cursor to window below 
+map('n', '<leader>k', ':wincmd k<CR>', opts) -- move cursor to window above 
+map('n', '<leader>l', ':wincmd l<CR>', opts) -- move cursor to window right
 
 -- telescope
 vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
@@ -20,6 +20,9 @@ vim.api.nvim_set_keymap('n', '<leader>fg', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>so', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>?', [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>td', [[<cmd>lua require('telescope.builtin').diagnostics()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>si', [[<cmd>lua require('telescope.builtin').lsp_implementations()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>ca', [[<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>]], { noremap = true, silent = true })
 
 -- netwr
 vim.g.netrw_browse_split = 3
