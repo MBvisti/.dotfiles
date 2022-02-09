@@ -43,3 +43,6 @@ vim.cmd [[
   augroup end
 ]]
 
+vim.cmd [[
+    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+]]

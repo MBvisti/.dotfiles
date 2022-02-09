@@ -55,7 +55,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 
 -- file navigation
-Plug 'kyazdani42/nvim-tree.lua'
+-- Plug 'kyazdani42/nvim-tree.lua'
 
 -- statusline
 Plug 'nvim-lualine/lualine.nvim'
@@ -72,6 +72,7 @@ Plug 'mbbill/undotree'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'kosayoda/nvim-lightbulb'
 
 
 vim.call('plug#end')
