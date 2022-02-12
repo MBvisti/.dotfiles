@@ -42,7 +42,6 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'leafOfTree/vim-svelte-plugin'
 
 -- rust
--- Plug 'rust-lang/rust.vim'
 Plug 'simrat39/rust-tools.nvim'
 
 -- debuggin
@@ -65,6 +64,9 @@ Plug 'akinsho/toggleterm.nvim'
 
 -- vimwiki
 Plug 'vimwiki/vimwiki'
+
+-- dadbod
+Plug 'tpope/vim-dadbod'
 
 -- misc
 Plug 'liuchengxu/vim-which-key'
