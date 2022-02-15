@@ -46,3 +46,8 @@ vim.cmd [[
 vim.cmd [[
     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 ]]
+
+vim.cmd [[
+    let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+    au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+]]

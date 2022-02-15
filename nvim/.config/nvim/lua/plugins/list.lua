@@ -65,9 +65,6 @@ Plug 'akinsho/toggleterm.nvim'
 -- vimwiki
 Plug 'vimwiki/vimwiki'
 
--- dadbod
-Plug 'tpope/vim-dadbod'
-
 -- misc
 Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
