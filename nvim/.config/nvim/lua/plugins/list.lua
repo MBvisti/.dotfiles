@@ -2,7 +2,6 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
---
 -- colorschema
 -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
 -- Plug 'ellisonleao/gruvbox.nvim'
@@ -72,6 +71,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'kosayoda/nvim-lightbulb'
-
+Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
 
 vim.call('plug#end')
