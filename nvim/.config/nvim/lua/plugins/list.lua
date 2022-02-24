@@ -50,7 +50,7 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- formatting
-Plug 'jose-elias-alvarez/null-ls.nvim'
+-- Plug 'jose-elias-alvarez/null-ls.nvim'
 
 -- file navigation
 -- Plug 'kyazdani42/nvim-tree.lua'

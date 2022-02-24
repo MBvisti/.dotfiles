@@ -36,10 +36,10 @@ set.sidescrolloff = 5
 set.confirm = true
 set.termguicolors = true
 set.undofile = true
-set.undodir = "~/.vim/undodir"
+-- set.undodir = "~/.vim/undodir"
 set.updatetime = 300
 set.redrawtime = 10000
-set.backupdir = "~/.config/nvim/backup//"
+-- set.backupdir = "~/.config/nvim/backup/"
 set.syntax = "on"
 vim.cmd('filetype plugin indent on')
 vim.cmd('filetype plugin on')
