@@ -18,6 +18,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
+-- Plug ('junegunn/fzf', { ['do'] = 'fzf#install()' })
 Plug 'jremmen/vim-ripgrep'
 
 -- vim go
@@ -72,5 +73,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'kosayoda/nvim-lightbulb'
 Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
+Plug 'gennaro-tedesco/nvim-jqx'
 
 vim.call('plug#end')
