@@ -88,7 +88,6 @@ plugins=(
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,39 +116,49 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="~/Neovim/nvim.appimage"
+# alias vi="~/Neovim/nvim.appimage"
+alias vi="nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PATH="$HOME/.pyenv/bin:$PATH"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Go related
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:/home/mbv/go/bin
 
-source $HOME/.cargo/env
+# Ubuntu setup
+# export PATH=$PATH:/Users/mbv/go
+# export PATH=$PATH:/home/mbv/go/bin
+
+# Mac setup
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+
+#source $HOME/.cargo/env
 
 # rust analyzer
-export PATH=$PATH:/usr/local/bin
+#export PATH=$PATH:/usr/local/bin
 
 # postman
-export PATH=$PATH:/usr/bin/Postman
+#export PATH=$PATH:/usr/bin/Postman
 
 # solar
-export PATH=$PATH:/home/mbv/.local/share/gem/ruby/3.0.3/bin
+#export PATH=$PATH:/home/mbv/.local/share/gem/ruby/3.0.3/bin
 
 # asdf
-. $HOME/.asdf/asdf.sh
+#. $HOME/.asdf/asdf.sh
 # append completions to fpath
-fpath=(${ASDF_DIR}/completions $fpath)
+# fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
