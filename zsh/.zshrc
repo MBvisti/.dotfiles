@@ -122,12 +122,6 @@ alias vi="/usr/local/bin/nvim.appimage"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-#export PATH="$HOME/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-
-# eval "$(pyenv init -)"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -139,9 +133,6 @@ export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
-# export PATH=$PATH:/Users/mbv/go
-# export PATH=$PATH:/home/mbv/go/bin
-
 ## Mac setup
 # export PATH=$PATH:/usr/local/go/bin
 # export GOPATH=$HOME/golang
@@ -149,21 +140,12 @@ export PATH=$PATH:$GOPATH/bin
 # export PATH=$PATH:$GOPATH/bin
 # export PATH=$PATH:$GOROOT/bin
 
-#source $HOME/.cargo/env
+source $HOME/.cargo/env
 
 # rust analyzer
-#export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/usr/local/bin
 
 # postman
 #export PATH=$PATH:/usr/bin/Postman
 
-# solar
-#export PATH=$PATH:/home/mbv/.local/share/gem/ruby/3.0.3/bin
-
-# asdf
-#. $HOME/.asdf/asdf.sh
-# append completions to fpath
-# fpath=(${ASDF_DIR}/completions $fpath)
-# initialise completions with ZSH's compinit
-# autoload -Uz compinit && compinit
 eval "$(pyenv init -)"
