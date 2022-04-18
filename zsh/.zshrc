@@ -116,14 +116,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias vi="~/Neovim/nvim.appimage"
-alias vi="nvim"
+alias vi="/usr/local/bin/nvim.appimage"
+# alias vi="nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #export PATH="$HOME/.pyenv/bin:$PATH"
-#eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 #eval "$(pyenv virtualenv-init -)"
 
 # eval "$(pyenv init -)"
@@ -133,17 +133,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Go related
+## Ubuntu setup
+export GOPATH=/home/mbv/golang
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOPATH/bin
 
-# Ubuntu setup
 # export PATH=$PATH:/Users/mbv/go
 # export PATH=$PATH:/home/mbv/go/bin
 
-# Mac setup
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/golang
-export GOROOT=/usr/local/go
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+## Mac setup
+# export PATH=$PATH:/usr/local/go/bin
+# export GOPATH=$HOME/golang
+# export GOROOT=/usr/local/go
+# export PATH=$PATH:$GOPATH/bin
+# export PATH=$PATH:$GOROOT/bin
 
 #source $HOME/.cargo/env
 
@@ -161,4 +165,5 @@ export PATH=$PATH:$GOROOT/bin
 # append completions to fpath
 # fpath=(${ASDF_DIR}/completions $fpath)
 # initialise completions with ZSH's compinit
-autoload -Uz compinit && compinit
+# autoload -Uz compinit && compinit
+eval "$(pyenv init -)"
