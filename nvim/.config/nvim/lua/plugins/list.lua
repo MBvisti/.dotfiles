@@ -4,8 +4,9 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 
 -- colorschema
 -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
--- Plug 'ellisonleao/gruvbox.nvim'
-Plug 'rebelot/kanagawa.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
+-- Plug 'rebelot/kanagawa.nvim'
+-- Plug 'morhetz/gruvbox'
 
 -- for working with git
 Plug 'tpope/vim-fugitive'

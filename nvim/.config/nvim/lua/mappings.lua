@@ -31,7 +31,7 @@ vim.g.netwr_banner = 0
 vim.g.netrw_winsize= 25
 
 -- nvim tree
-map('n', '<leader>nt', '<cmd>NvimTreeToggle<cr>', opts)
+-- map('n', '<leader>nt', '<cmd>NvimTreeToggle<cr>', opts)
 
 -- ctrlp 
 vim.g.ctrlp_use_catching = 0
@@ -50,3 +50,5 @@ vim.g.go_auto_sameids = 0
 -- git-gutter
 vim.g.gitgutter_async = 0
 
+-- Vimwiki
+vim.api.nvim_set_keymap('n', '<leader>cc', [[<Plug>VimwikiToggleListItem]], { noremap = true, silent = true})
