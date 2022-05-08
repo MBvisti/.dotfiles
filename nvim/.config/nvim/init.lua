@@ -7,7 +7,6 @@ require("plugins/toggleterm")
 require("plugins/treesitter")
 require("plugins/indentline")
 require("plugins/telescope_configuration")
--- require("plugins/lspsaga")
--- require("plugins/nvimtree")
+require("plugins/dressing")
 require("colors/colorscheme")
 
