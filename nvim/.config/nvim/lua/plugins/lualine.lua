@@ -1,11 +1,13 @@
 local status, lualine = pcall(require, "lualine")
+
 if (not status) then return end
 
 lualine.setup {
   options = {
     icons_enabled = true,
-    section_separators = {left = '', right = ''},
-    component_separators = {left = '', right = ''},
+    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '' },
+    options = { theme  = "gruvbox" },
     disabled_filetypes = {}
   },
   sections = {
@@ -17,7 +19,7 @@ lualine.setup {
       path = 0 -- 0 = just filename, 1 = relative path, 2 = absolute path
     }},
     lualine_x = {
-      { 'diagnostics', sources = {"coc"}, symbols = {error = ' ', warn = ' ', info = ' ', hint = ' '} },
+      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = 'E', warn = 'W', info = 'I', hint = 'H'}, },
       'encoding',
       'filetype'
     },
@@ -37,5 +39,5 @@ lualine.setup {
     lualine_z = {}
   },
   tabline = {},
-  extensions = {'fugitive'}
+  extensions = {'fugitive', "fzf", "quickfix", "toggleterm"}
 }

@@ -149,4 +149,6 @@ export PATH=$PATH:/usr/local/bin
 # postman
 #export PATH=$PATH:/usr/bin/Postman
 
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"

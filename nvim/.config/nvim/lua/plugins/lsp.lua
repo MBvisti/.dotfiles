@@ -165,6 +165,13 @@ lspconfig.html.setup{
       debounce_text_changes = 150,
     }
 }
+lspconfig.graphql.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
 
 -- rust config
 require('rust-tools').setup({
