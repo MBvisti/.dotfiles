@@ -1,0 +1,12 @@
+require("settings")
+require("mappings")
+require("plugins/list")
+require("plugins/lualine")
+require("plugins/lsp")
+require("plugins/toggleterm")
+require("plugins/treesitter")
+require("plugins/indentline")
+require("plugins/telescope_configuration")
+require("plugins/dressing")
+require("colors/colorscheme")
+
