@@ -53,7 +53,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 -- Plug 'jose-elias-alvarez/null-ls.nvim'
 
 -- file navigation
--- Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons'
 
 -- statusline
 Plug 'nvim-lualine/lualine.nvim'
@@ -64,11 +65,14 @@ Plug 'akinsho/toggleterm.nvim'
 -- vimwiki
 Plug 'vimwiki/vimwiki'
 
+-- dadbod for database interaction
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
+
 -- misc
 Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
 -- Plug 'xiyaowong/nvim-transparent'
-Plug 'kyazdani42/nvim-web-devicons'
 -- Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'

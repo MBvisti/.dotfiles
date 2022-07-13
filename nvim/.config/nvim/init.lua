@@ -9,4 +9,4 @@ require("plugins/indentline")
 require("plugins/telescope_configuration")
 require("plugins/dressing")
 require("colors/colorscheme")
-
+require("plugins/nvimtree")
