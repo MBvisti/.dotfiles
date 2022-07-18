@@ -74,7 +74,8 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
 -- Plug 'xiyaowong/nvim-transparent'
 -- Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-surround'
+-- Plug 'tpope/vim-surround'
+Plug "kylechui/nvim-surround"
 Plug 'tpope/vim-commentary'
 Plug 'kosayoda/nvim-lightbulb'
 Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
