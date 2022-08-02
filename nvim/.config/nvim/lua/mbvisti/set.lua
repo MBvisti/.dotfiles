@@ -1,0 +1,94 @@
+local global_opt = vim.opt -- setting options on the global space
+
+global_opt.nu = true
+global_opt.relativenumber = true
+
+global_opt.tabstop = 4 
+global_opt.softtabstop = 4
+global_opt.shiftwidth = 4
+global_opt.expandtab = true
+global_opt.hlsearch = false
+global_opt.incsearch = true
+
+global_opt.smartindent = true
+
+global_opt.wrap = false
+
+vim.g.mapleader = ' '
+
+-- netwr
+vim.g.netrw_browse_split = 0
+vim.g.netrw_liststyle = 3
+vim.g.netwr_banner = 0
+vim.g.netrw_winsize= 25
+
+-- vim-go
+vim.g.go_diagnostics_enabled = 0
+vim.g.go_metalinter_enabled = 0
+vim.g.go_def_mapping_enabled = 0
+vim.g.go_gopls_enabled = 1
+vim.g.go_code_completion_enabled = 0
+vim.g.go_doc_popup_window = 0
+vim.g.go_jump_to_error = 0
+vim.g.go_fmt_command = "goimports"
+vim.g.go_auto_sameids = 0
+
+-- git-gutter
+vim.g.gitgutter_async = 0
+
+-- ctrlp 
+vim.g.ctrlp_use_catching = 0
+
+-- set.wildmode = "longest:full,full"
+-- set.hidden = true
+-- set.hlsearch = false
+-- set.laststatus = 2
+-- set.wildmenu = true
+-- set.colorcolumn = "90"
+-- set.number = true
+-- set.encoding = "utf-8"
+-- set.cursorline = true
+-- set.errorbells = false
+-- set.background = "dark"
+-- set.title = true
+-- set.makeprg = "make"
+-- set.autoindent = true
+-- set.completeopt = "menu,menuone,noselect"
+-- set.expandtab = true
+-- set.smartindent = true
+-- set.mouse = "nv"
+-- set.incsearch = true
+-- set.splitright = true
+-- set.tw = 120
+-- set.smartcase = true
+-- set.fileencoding = "utf-8"
+-- set.scrolloff = 12
+-- set.sidescrolloff = 5
+-- set.confirm = true
+-- set.termguicolors = true
+-- set.undofile = true
+-- -- set.undodir = "~/.vim/undodir"
+-- set.updatetime = 300
+-- set.redrawtime = 10000
+-- -- set.backupdir = "~/.config/nvim/backup/"
+-- set.syntax = "on"
+-- vim.cmd('filetype plugin indent on')
+-- vim.cmd('filetype plugin on')
+-- set.signcolumn = "yes:2"
+
+-- Highlight on yank
+vim.cmd [[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]]
+
+-- vim.cmd [[
+--     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+-- ]]
+
+-- vim.cmd [[
+--     let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+--     au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+-- ]]

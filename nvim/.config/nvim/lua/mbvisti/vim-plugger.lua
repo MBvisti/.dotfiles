@@ -53,8 +53,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 -- Plug 'jose-elias-alvarez/null-ls.nvim'
 
 -- file navigation
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'kyazdani42/nvim-web-devicons'
+-- Plug 'kyazdani42/nvim-tree.lua'
+-- Plug 'kyazdani42/nvim-web-devicons'
 
 -- statusline
 Plug 'nvim-lualine/lualine.nvim'
@@ -81,5 +81,4 @@ Plug 'kosayoda/nvim-lightbulb'
 Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
 Plug 'gennaro-tedesco/nvim-jqx'
 Plug 'stevearc/dressing.nvim'
-
 vim.call('plug#end')

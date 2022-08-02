@@ -1,13 +1,15 @@
 local map = vim.api.nvim_set_keymap
 local opts  = { noremap = true, silent = true }
-
-vim.g.mapleader = ' '
+local nnoremap = require("mbvisti.keymap").nnoremap
 
 -- window management
-map('n', '<leader>h', ':wincmd h<CR>', opts) -- move cursor to window left
-map('n', '<leader>j', ':wincmd j<CR>', opts) -- move cursor to window below 
-map('n', '<leader>k', ':wincmd k<CR>', opts) -- move cursor to window above 
-map('n', '<leader>l', ':wincmd l<CR>', opts) -- move cursor to window right
+nnoremap('<leader>h', ':wincmd h<CR>') -- move cursor to window left
+nnoremap('<leader>j', ':wincmd j<CR>') -- move cursor to window below 
+nnoremap('<leader>k', ':wincmd k<CR>') -- move cursor to window above 
+nnoremap('<leader>l', ':wincmd l<CR>') -- move cursor to window right
+
+-- netwr mappings
+nnoremap('<leader>pq', '<cmd>Ex<CR>') -- move cursor to window right
 
 -- telescope
 vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
@@ -24,32 +26,6 @@ vim.api.nvim_set_keymap('n', '<leader>si', [[<cmd>lua require('telescope.builtin
 vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
 -- code actions removed from telescope in #1866 so using built-in
 vim.api.nvim_set_keymap('n', '<leader>ca', [[<cmd>lua vim.lsp.buf.code_action()<CR>]], { noremap = true, silent = true })
-
--- netwr
-vim.g.netrw_browse_split = 0
-vim.g.netrw_liststyle = 3
-vim.g.netwr_banner = 0
-vim.g.netrw_winsize= 25
-
--- nvim tree
-map('n', '<leader>nt', '<cmd>NvimTreeToggle<cr>', opts)
-
--- ctrlp 
-vim.g.ctrlp_use_catching = 0
-
--- vim-go
-vim.g.go_diagnostics_enabled = 0
-vim.g.go_metalinter_enabled = 0
-vim.g.go_def_mapping_enabled = 0
-vim.g.go_gopls_enabled = 1
-vim.g.go_code_completion_enabled = 0
-vim.g.go_doc_popup_window = 0
-vim.g.go_jump_to_error = 0
-vim.g.go_fmt_command = "goimports"
-vim.g.go_auto_sameids = 0
-
--- git-gutter
-vim.g.gitgutter_async = 0
 
 -- Vimwiki
 vim.api.nvim_set_keymap('n', '<leader>cc', [[<Plug>VimwikiToggleListItem]], { noremap = true, silent = true})
