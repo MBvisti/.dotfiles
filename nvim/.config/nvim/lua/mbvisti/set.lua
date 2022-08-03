@@ -1,3 +1,4 @@
+-- global settings
 local global_opt = vim.opt -- setting options on the global space
 
 global_opt.nu = true
@@ -14,6 +15,26 @@ global_opt.smartindent = true
 
 global_opt.wrap = false
 
+global_opt.scrolloff = 12
+global_opt.sidescrolloff = 5
+
+global_opt.signcolumn = "auto"
+
+global_opt.wildmenu = true
+global_opt.wildmode = "longest:full,full"
+
+global_opt.errorbells = false
+
+global_opt.updatetime = 300
+global_opt.redrawtime = 10000
+
+global_opt.swapfile = false
+
+global_opt.syntax = "on"
+
+global_opt.fileencoding = "utf-8"
+
+-- set leader key
 vim.g.mapleader = ' '
 
 -- netwr
@@ -39,16 +60,13 @@ vim.g.gitgutter_async = 0
 -- ctrlp 
 vim.g.ctrlp_use_catching = 0
 
--- set.wildmode = "longest:full,full"
 -- set.hidden = true
 -- set.hlsearch = false
 -- set.laststatus = 2
--- set.wildmenu = true
 -- set.colorcolumn = "90"
 -- set.number = true
 -- set.encoding = "utf-8"
 -- set.cursorline = true
--- set.errorbells = false
 -- set.background = "dark"
 -- set.title = true
 -- set.makeprg = "make"
@@ -61,8 +79,6 @@ vim.g.ctrlp_use_catching = 0
 -- set.splitright = true
 -- set.tw = 120
 -- set.smartcase = true
--- set.fileencoding = "utf-8"
--- set.scrolloff = 12
 -- set.sidescrolloff = 5
 -- set.confirm = true
 -- set.termguicolors = true
@@ -71,12 +87,8 @@ vim.g.ctrlp_use_catching = 0
 -- set.updatetime = 300
 -- set.redrawtime = 10000
 -- -- set.backupdir = "~/.config/nvim/backup/"
--- set.syntax = "on"
--- vim.cmd('filetype plugin indent on')
--- vim.cmd('filetype plugin on')
--- set.signcolumn = "yes:2"
 
--- Highlight on yank
+-- highlight on yank
 vim.cmd [[
   augroup YankHighlight
     autocmd!
@@ -84,11 +96,16 @@ vim.cmd [[
   augroup end
 ]]
 
--- vim.cmd [[
---     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
--- ]]
+-- light build
+vim.cmd [[
+    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+]]
 
--- vim.cmd [[
---     let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
---     au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
--- ]]
+vim.cmd [[
+    let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+    au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+]]
+
+-- vimwiki
+vim.cmd('filetype plugin on')
+-- vim.cmd('filetype plugin indent on')
