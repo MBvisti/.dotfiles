@@ -8,6 +8,13 @@ nnoremap('<leader>j', ':wincmd j<CR>') -- move cursor to window below
 nnoremap('<leader>k', ':wincmd k<CR>') -- move cursor to window above 
 nnoremap('<leader>l', ':wincmd l<CR>') -- move cursor to window right
 
+-- tab manangement
+nnoremap('<leader>th', ':tabnext<CR>')   -- select next tab
+nnoremap('<leader>tk', ':tabprev<CR>')   -- select previous tab
+nnoremap('<leader>tt', ':tabnew<CR>')    -- create new tab
+nnoremap('<leader>tc', ':tabclose<CR>')  -- close tab
+
+
 -- netwr mappings
 nnoremap('<leader>pq', '<cmd>Ex<CR>') -- move cursor to window right
 

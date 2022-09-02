@@ -45,7 +45,7 @@ require('dressing').setup({
     enabled = true,
 
     -- Priority list of preferred vim.select implementations
-    backend = { "telescope", "fzf_lua", "fzf", "builtin", "nui" },
+    backend = { "telescope", "fzf", "builtin", "fzf_lua",  "nui"},
 
     -- Options for telescope selector
     -- These are passed into the telescope picker directly. Can be used like:

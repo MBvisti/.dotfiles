@@ -34,13 +34,17 @@ global_opt.syntax = "on"
 
 global_opt.fileencoding = "utf-8"
 
+global_opt.conceallevel = 0 -- makes it so I can see everything in markdown
+
+global_opt.mouse = "nv"
+
 -- set leader key
 vim.g.mapleader = ' '
 
 -- netwr
 vim.g.netrw_browse_split = 0
 vim.g.netrw_liststyle = 3
-vim.g.netwr_banner = 0
+vim.g.netrw_banner = 0
 vim.g.netrw_winsize= 25
 
 -- vim-go
@@ -53,6 +57,9 @@ vim.g.go_doc_popup_window = 0
 vim.g.go_jump_to_error = 0
 vim.g.go_fmt_command = "goimports"
 vim.g.go_auto_sameids = 0
+
+-- php-actor
+-- vim.g.phpactorPhpBin = "/usr/local/php/bin/php"
 
 -- git-gutter
 vim.g.gitgutter_async = 0

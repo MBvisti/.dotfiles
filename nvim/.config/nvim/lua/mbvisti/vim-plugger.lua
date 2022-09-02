@@ -46,6 +46,9 @@ Plug 'simrat39/rust-tools.nvim'
 -- debuggin
 Plug 'mfussenegger/nvim-dap'
 
+-- phpactor
+Plug ('phpactor/phpactor', { ['for'] = 'php', ['tag'] = '*', ['do'] = 'composer install --no-dev -o'})
+
 -- indent line
 Plug 'lukas-reineke/indent-blankline.nvim'
 

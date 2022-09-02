@@ -24,6 +24,8 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ra', '<cmd>:RustHoverActions<CR>', opts)
 end
 
 -- Add additional capabilities supported by nvim-cmp
@@ -173,11 +175,18 @@ lspconfig.graphql.setup{
     }
 }
 
+lspconfig.phpactor.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
+}
+
 -- rust config
 require('rust-tools').setup({
     tools = { -- rust-tools options
         autoSetHints = true,
-        hover_with_actions = true,
         inlay_hints = {
             show_parameter_hints = false,
             parameter_hints_prefix = "",
