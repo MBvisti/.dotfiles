@@ -20,12 +20,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git 
     zsh-autosuggestions 
-    golang 
     rust 
-    postgres 
-    common-aliases 
+    # common-aliases 
     alias-finder 
-    zsh-syntax-highlighting
+    web-search
+    aws
+    tmux
+    zsh-z
 )
 
 # Set list of themes to pick from when loading at random
@@ -145,6 +146,10 @@ source $HOME/.cargo/env
 
 # rust analyzer
 export PATH=$PATH:/usr/local/bin
+
+# php
+# export PATH=$PATH:/usr/local/php/sbin
+alias php="/usr/local/php/bin/php"
 
 # postman
 #export PATH=$PATH:/usr/bin/Postman

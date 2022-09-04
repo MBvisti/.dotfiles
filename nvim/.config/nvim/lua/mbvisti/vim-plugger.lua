@@ -2,6 +2,9 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
+-- shaaaaades yo
+-- Plug 'sunjon/shade.nvim'
+
 -- colorschema
 -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
 -- Plug 'ellisonleao/gruvbox.nvim'
