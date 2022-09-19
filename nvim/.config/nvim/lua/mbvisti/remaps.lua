@@ -1,6 +1,7 @@
 local map = vim.api.nvim_set_keymap
 local opts  = { noremap = true, silent = true }
 local nnoremap = require("mbvisti.keymap").nnoremap
+local xnoremap = require("mbvisti.keymap").xnoremap
 
 -- window management
 nnoremap('<leader>h', ':wincmd h<CR>') -- move cursor to window left
@@ -36,3 +37,5 @@ vim.api.nvim_set_keymap('n', '<leader>ca', [[<cmd>lua vim.lsp.buf.code_action()<
 
 -- Vimwiki
 vim.api.nvim_set_keymap('n', '<leader>cc', [[<Plug>VimwikiToggleListItem]], { noremap = true, silent = true})
+
+xnoremap('<leader>p', '\'_dP')

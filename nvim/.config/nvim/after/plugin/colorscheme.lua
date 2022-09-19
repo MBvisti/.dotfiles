@@ -1,5 +1,6 @@
 vim.opt.background = "dark" -- or "light" for light mode
--- default options:
+
+-- === Kanagawa Colorscheme ===
 -- require('kanagawa').setup({
 --     undercurl = true,           -- enable undercurls
 --     commentStyle = { italic = true },
@@ -15,7 +16,15 @@ vim.opt.background = "dark" -- or "light" for light mode
 --     colors = {},
 --     overrides = {},
 -- })
--- Lua
 -- vim.cmd("colorscheme kanagawa")
 
-vim.cmd([[colorscheme gruvbox]])
+
+-- === Catppuccin Colorscheme ===
+vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+
+require("catppuccin").setup()
+
+vim.cmd [[colorscheme catppuccin]]
+
+-- === Gruuuuuuuuv Colorscheme ===
+-- vim.cmd([[colorscheme gruvbox]])

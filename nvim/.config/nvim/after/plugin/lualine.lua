@@ -7,7 +7,8 @@ lualine.setup {
     icons_enabled = true,
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
-    options = { theme  = "gruvbox" },
+    options = { theme  = "catppuccin" },
+    -- options = { theme  = "gruvbox" },
     disabled_filetypes = {}
   },
   sections = {

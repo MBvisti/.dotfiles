@@ -9,7 +9,11 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
 -- Plug 'ellisonleao/gruvbox.nvim'
 -- Plug 'rebelot/kanagawa.nvim'
-Plug 'morhetz/gruvbox'
+-- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
+Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+-- Plug 'morhetz/gruvbox'
+
+Plug 'ThePrimeagen/vim-be-good'
 
 -- for working with git
 Plug 'tpope/vim-fugitive'
@@ -50,7 +54,7 @@ Plug 'simrat39/rust-tools.nvim'
 Plug 'mfussenegger/nvim-dap'
 
 -- phpactor
-Plug ('phpactor/phpactor', { ['for'] = 'php', ['tag'] = '*', ['do'] = 'composer install --no-dev -o'})
+-- Plug ('phpactor/phpactor', { ['for'] = 'php', ['tag'] = '*', ['do'] = 'composer install --no-dev -o'})
 
 -- indent line
 Plug 'lukas-reineke/indent-blankline.nvim'
