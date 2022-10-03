@@ -117,8 +117,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="/usr/local/bin/nvim.appimage"
-alias nvim="/usr/local/bin/nvim.appimage"
+alias vi="/usr/local/bin/nvim-linux64/bin/nvim"
+alias nvim="/usr/local/bin/nvim-linux64/bin/nvim"
 # alias vi="nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -146,6 +146,7 @@ source $HOME/.cargo/env
 
 # rust analyzer
 export PATH=$PATH:/usr/local/bin
+# export PATH=$PATH:~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
 
 # php
 # export PATH=$PATH:/usr/local/php/sbin

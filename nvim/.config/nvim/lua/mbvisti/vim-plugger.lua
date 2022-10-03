@@ -13,6 +13,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
 -- Plug 'morhetz/gruvbox'
 
+Plug 'ja-ford/delaytrain.nvim'
 Plug 'ThePrimeagen/vim-be-good'
 
 -- for working with git

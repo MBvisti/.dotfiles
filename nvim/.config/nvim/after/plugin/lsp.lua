@@ -104,8 +104,8 @@ lspconfig.gopls.setup{
 
 lspconfig.tailwindcss.setup{
     on_attach = on_attach,
-    -- filetypes = { "html", "htmldjango" },
     capabilities = capabilities,
+    filetypes = { "django-html", "htmldjango", "gohtml","html", "markdown", "css", "less", "postcss", "sass", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte" },
     flags = {
       debounce_text_changes = 150,
     }
@@ -163,19 +163,12 @@ lspconfig.emmet_ls.setup{
 lspconfig.html.setup{
     on_attach = on_attach,
     capabilities = capabilities,
+    filetypes = {"html", "django"},
     flags = {
       debounce_text_changes = 150,
     }
 }
 lspconfig.graphql.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
-
-lspconfig.phpactor.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
