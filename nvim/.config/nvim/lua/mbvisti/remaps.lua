@@ -10,14 +10,14 @@ nnoremap('<leader>k', ':wincmd k<CR>') -- move cursor to window above
 nnoremap('<leader>l', ':wincmd l<CR>') -- move cursor to window right
 
 -- tab manangement
-nnoremap('<leader>th', ':tabnext<CR>')   -- select next tab
-nnoremap('<leader>tk', ':tabprev<CR>')   -- select previous tab
+nnoremap('<leader>tn', ':tabnext<CR>')   -- select next tab
+nnoremap('<leader>tp', ':tabprev<CR>')   -- select previous tab
 nnoremap('<leader>tt', ':tabnew<CR>')    -- create new tab
 nnoremap('<leader>tc', ':tabclose<CR>')  -- close tab
 
 
 -- netwr mappings
-nnoremap('<leader>pq', '<cmd>Ex<CR>') -- move cursor to window right
+nnoremap('<leader>pq', '<cmd>Ex<CR>') -- closes buffer and opens netwr
 
 -- telescope
 vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })

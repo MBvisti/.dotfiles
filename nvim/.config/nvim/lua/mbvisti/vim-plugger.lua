@@ -10,8 +10,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- Plug 'ellisonleao/gruvbox.nvim'
 -- Plug 'rebelot/kanagawa.nvim'
 -- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
-Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
--- Plug 'morhetz/gruvbox'
+-- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+Plug 'morhetz/gruvbox'
 
 Plug 'ja-ford/delaytrain.nvim'
 Plug 'ThePrimeagen/vim-be-good'
