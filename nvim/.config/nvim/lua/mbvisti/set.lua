@@ -13,6 +13,7 @@ global_opt.incsearch = true
 
 global_opt.smartindent = true
 
+vim.wo.colorcolumn = "120" -- setst the separator bar
 global_opt.wrap = false
 
 global_opt.scrolloff = 12
@@ -34,7 +35,7 @@ global_opt.syntax = "on"
 
 global_opt.fileencoding = "utf-8"
 
-global_opt.conceallevel = 0 -- makes it so I can see everything in markdown
+-- global_opt.conceallevel = 0 -- makes it so I can see everything in markdown
 
 global_opt.mouse = "nv"
 
