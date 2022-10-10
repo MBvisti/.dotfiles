@@ -4,6 +4,8 @@ local global_opt = vim.opt -- setting options on the global space
 global_opt.nu = true
 global_opt.relativenumber = true
 
+global_opt.spell = true
+global_opt.spelllang = "en_us"
 global_opt.tabstop = 4 
 global_opt.softtabstop = 4
 global_opt.shiftwidth = 4
@@ -13,7 +15,7 @@ global_opt.incsearch = true
 
 global_opt.smartindent = true
 
-vim.wo.colorcolumn = "120" -- setst the separator bar
+vim.wo.colorcolumn = "120" -- sets the separator bar
 global_opt.wrap = false
 
 global_opt.scrolloff = 12
@@ -104,7 +106,7 @@ vim.cmd [[
   augroup end
 ]]
 
--- light build
+-- lightbulb
 vim.cmd [[
     autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 ]]
