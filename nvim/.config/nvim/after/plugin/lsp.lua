@@ -129,14 +129,6 @@ lspconfig.tsserver.setup{
     }
 }
 
-lspconfig.svelte.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
-
 lspconfig.eslint.setup{
     on_attach = on_attach,
     capabilities = capabilities,

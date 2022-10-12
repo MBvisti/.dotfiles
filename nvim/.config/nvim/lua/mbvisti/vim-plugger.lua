@@ -46,7 +46,7 @@ Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 -- svelte
-Plug 'leafOfTree/vim-svelte-plugin'
+-- Plug 'leafOfTree/vim-svelte-plugin'
 
 -- rust
 Plug 'simrat39/rust-tools.nvim'
