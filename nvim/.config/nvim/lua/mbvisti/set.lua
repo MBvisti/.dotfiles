@@ -118,4 +118,5 @@ vim.cmd [[
 
 -- vimwiki
 vim.cmd('filetype plugin on')
+vim.cmd('syntax on')
 -- vim.cmd('filetype plugin indent on')

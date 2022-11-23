@@ -31,6 +31,9 @@ Plug 'jremmen/vim-ripgrep'
 -- vim go
 Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
+-- vim rails
+Plug 'tpope/vim-rails'
+
 -- lsp and auto complete
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'

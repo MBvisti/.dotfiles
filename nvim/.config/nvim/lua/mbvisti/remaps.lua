@@ -15,7 +15,6 @@ nnoremap('<leader>tp', ':tabprev<CR>')   -- select previous tab
 nnoremap('<leader>tt', ':tabnew<CR>')    -- create new tab
 nnoremap('<leader>tc', ':tabclose<CR>')  -- close tab
 
-
 -- netwr mappings
 nnoremap('<leader>pq', '<cmd>Ex<CR>') -- closes buffer and opens netwr
 
@@ -39,3 +38,5 @@ vim.api.nvim_set_keymap('n', '<leader>ca', [[<cmd>lua vim.lsp.buf.code_action()<
 vim.api.nvim_set_keymap('n', '<leader>cc', [[<Plug>VimwikiToggleListItem]], { noremap = true, silent = true})
 
 xnoremap('<leader>p', '\'_dP')
+
+nnoremap('<C-y>', "'<,'>w !xclip -selection clipboard<Cr><Cr>")

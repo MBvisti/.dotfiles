@@ -117,9 +117,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="/usr/local/bin/nvim-linux64/bin/nvim"
-alias nvim="/usr/local/bin/nvim-linux64/bin/nvim"
-# alias vi="nvim"
+alias vi="/usr/local/neovim/0_8_1/bin/nvim"
+alias nvim="/usr/local/neovim/0_8_1/bin/nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -158,6 +157,14 @@ alias php="/usr/local/php/bin/php"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+RUBY_ROOT=$HOME/ruby/3_1_2
+RUBY_BIN=$RUBY_ROOT/bin
+RUBY_INC=$RUBY_ROOT/include
+RUBY_LIB=$RUBY_ROOT/lib
+export PATH=$PATH:$RUBY_BIN
+export PATH=$PATH:$RUBY_INC
+export PATH=$PATH:$RUBY_LIB
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
