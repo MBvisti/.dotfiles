@@ -13,8 +13,8 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
 Plug 'morhetz/gruvbox'
 
-Plug 'ja-ford/delaytrain.nvim'
-Plug 'ThePrimeagen/vim-be-good'
+-- Plug 'ja-ford/delaytrain.nvim'
+-- Plug 'ThePrimeagen/vim-be-good'
 
 -- for working with git
 Plug 'tpope/vim-fugitive'
@@ -32,7 +32,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
 -- vim rails
-Plug 'tpope/vim-rails'
+-- Plug 'tpope/vim-rails'
 
 -- lsp and auto complete
 Plug 'neovim/nvim-lspconfig'
@@ -88,8 +88,8 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'mbbill/undotree'
 -- Plug 'xiyaowong/nvim-transparent'
 -- Plug 'ryanoasis/vim-devicons'
--- Plug 'tpope/vim-surround'
-Plug "kylechui/nvim-surround"
+Plug 'tpope/vim-surround'
+-- Plug "kylechui/nvim-surround"
 Plug 'tpope/vim-commentary'
 Plug 'kosayoda/nvim-lightbulb'
 Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })

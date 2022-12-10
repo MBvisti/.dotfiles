@@ -105,7 +105,7 @@ lspconfig.gopls.setup{
 lspconfig.tailwindcss.setup{
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "django-html", "htmldjango", "gohtml","html", "markdown", "css", "less", "postcss", "sass", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte" },
+    filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
     flags = {
       debounce_text_changes = 150,
     }
@@ -145,21 +145,24 @@ lspconfig.pyright.setup{
     }
 }
 
-lspconfig.emmet_ls.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
+-- lspconfig.emmet_ls.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+-- }
+
 lspconfig.html.setup{
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = {"html", "django"},
+    filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
     flags = {
       debounce_text_changes = 150,
     }
 }
+
 lspconfig.graphql.setup{
     on_attach = on_attach,
     capabilities = capabilities,
@@ -168,13 +171,25 @@ lspconfig.graphql.setup{
     }
 }
 
-lspconfig.solargraph.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
+-- lspconfig.solargraph.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+-- }
+
+-- lspconfig.sqlls.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = {"sql"},
+--     flags = {
+--       debounce_text_changes = 150,
+--     },
+--     root_dir = function(fname)    
+--         return vim.loop.cwd()
+--     end,
+-- }
 
 -- rust config
 require('rust-tools').setup({

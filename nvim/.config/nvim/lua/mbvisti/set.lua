@@ -58,8 +58,10 @@ vim.g.go_gopls_enabled = 1
 vim.g.go_code_completion_enabled = 0
 vim.g.go_doc_popup_window = 0
 vim.g.go_jump_to_error = 0
-vim.g.go_fmt_command = "goimports"
+-- vim.g.go_fmt_command = "goimports"
 vim.g.go_auto_sameids = 0
+vim.g.go_fmt_command="gopls"
+vim.g.go_gopls_gofumpt=1
 
 -- php-actor
 -- vim.g.phpactorPhpBin = "/usr/local/php/bin/php"

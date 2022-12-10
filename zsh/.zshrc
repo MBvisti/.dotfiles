@@ -166,5 +166,8 @@ export PATH=$PATH:$RUBY_BIN
 export PATH=$PATH:$RUBY_INC
 export PATH=$PATH:$RUBY_LIB
 
+HOMEBREW_PATH=/home/linuxbrew/.linuxbrew/bin
+export PATH=$PATH:$HOMEBREW_PATH
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
