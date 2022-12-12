@@ -1,31 +1,38 @@
 local lspconfig = require 'lspconfig'
+local vim_api = vim.api
+
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "sumneko_lua", "tailwindcss", "emmet_ls", "sqlls" }
+})
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(_, bufnr)
-  local opts = { noremap = true, silent = true }
+    local opts = { noremap = true, silent = true }
 
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'sd', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'sd', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl',
+        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
 
-  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ra', '<cmd>:RustHoverActions<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ra', '<cmd>:RustHoverActions<CR>', opts)
 end
 
 -- Add additional capabilities supported by nvim-cmp
@@ -33,50 +40,89 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- luasnip setup
-local luasnip = require 'luasnip'-- luasnip setup
+local luasnip = require 'luasnip' -- luasnip setup
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+    snippet = {
+        expand = function(args)
+            luasnip.lsp_expand(args.body)
+        end,
     },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
+    mapping = {
+        ['<C-p>'] = cmp.mapping.select_prev_item(),
+        ['<C-n>'] = cmp.mapping.select_next_item(),
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.close(),
+        ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+        },
+        ['<Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end,
+        ['<S-Tab>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end,
+    },
+    sources = {
+        { name = 'path' },
+        { name = 'nvim_lsp', keyword_length = 3 },
+        { name = 'buffer', keyword_length = 3 },
+        { name = 'luasnip', keyword_length = 2 },
+    },
+    window = {
+        documentation = cmp.config.window.bordered()
+    },
+    formatting = {
+        fields = { 'menu', 'abbr', 'kind' },
+        format = function(entry, item)
+            local menu_icon = {
+                nvim_lsp = 'λ',
+                luasnip = '⋗',
+                buffer = 'Ω',
+                path = '🖫',
+            }
+
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
+    },
+}
+
+lspconfig.sumneko_lua.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+
+lspconfig.gopls.setup {
+    cmd = { "gopls", "serve" },
+    capabilities = capabilities,
+    on_attach = on_attach,
+    filetypes = { "go", "gomod", "gotmpl" },
+    flags = {
+        debounce_text_changes = 100,
+    },
+    settings = {
+        gopls = {
+            staticcheck = true,
+        },
+    },
 }
 
 vim.diagnostic.config({
@@ -87,65 +133,59 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-lspconfig.gopls.setup{
-	cmd = { "gopls", "serve" },
-    capabilities = capabilities,
-    on_attach = on_attach,
-    filetypes = { "go", "gomod", "gotmpl" },
-    flags = {
-      debounce_text_changes = 150,
-    },
-	settings = {
-		gopls = {
-			staticcheck = true,
-		},
-	},
-}
-
 lspconfig.tailwindcss.setup{
     on_attach = on_attach,
     capabilities = capabilities,
     filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 100,
     }
 }
 
-lspconfig.dockerls.setup{
+-- lspconfig.dockerls.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+-- }
+
+-- lspconfig.tsserver.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     auto_inlay_hints = true,
+--     inlay_hints_highlight = 'Comment',
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+-- }
+
+-- lspconfig.eslint.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+-- }
+
+-- lspconfig.pyright.setup{
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = {
+--       debounce_text_changes = 150,
+--     }
+-- }
+
+lspconfig.emmet_ls.setup{
     on_attach = on_attach,
     capabilities = capabilities,
+    filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 100,
     }
 }
 
-lspconfig.tsserver.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    auto_inlay_hints = true,
-    inlay_hints_highlight = 'Comment',
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
-
-lspconfig.eslint.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
-
-lspconfig.pyright.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
-
--- lspconfig.emmet_ls.setup{
+-- lspconfig.html.setup{
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
@@ -154,24 +194,7 @@ lspconfig.pyright.setup{
 --     }
 -- }
 
-lspconfig.html.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
-
-lspconfig.graphql.setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    }
-}
-
--- lspconfig.solargraph.setup{
+-- lspconfig.graphql.setup{
 --     on_attach = on_attach,
 --     capabilities = capabilities,
 --     flags = {
@@ -179,49 +202,53 @@ lspconfig.graphql.setup{
 --     }
 -- }
 
--- lspconfig.sqlls.setup{
---     on_attach = on_attach,
---     capabilities = capabilities,
---     filetypes = {"sql"},
---     flags = {
---       debounce_text_changes = 150,
+-- -- lspconfig.solargraph.setup{
+-- --     on_attach = on_attach,
+-- --     capabilities = capabilities,
+-- --     flags = {
+-- --       debounce_text_changes = 150,
+-- --     }
+-- -- }
+
+lspconfig.sqlls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = {"sql"},
+    flags = {
+      debounce_text_changes = 100,
+    },
+}
+
+-- -- rust config
+-- require('rust-tools').setup({
+--     tools = { -- rust-tools options
+--         autoSetHints = true,
+--         inlay_hints = {
+--             show_parameter_hints = false,
+--             parameter_hints_prefix = "",
+--             other_hints_prefix = "",
+--         },
 --     },
---     root_dir = function(fname)    
---         return vim.loop.cwd()
---     end,
--- }
 
--- rust config
-require('rust-tools').setup({
-    tools = { -- rust-tools options
-        autoSetHints = true,
-        inlay_hints = {
-            show_parameter_hints = false,
-            parameter_hints_prefix = "",
-            other_hints_prefix = "",
-        },
-    },
-
-    -- all the opts to send to nvim-lspconfig
-    -- these override the defaults set by rust-tools.nvim
-    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
-    server = {
-        -- on_attach is a callback called when the language server attachs to the buffer
-        capabilities = capabilities,
-        on_attach = on_attach,
-        flags = {
-            debounce_text_changes = 150,
-        },
-        settings = {
-            -- to enable rust-analyzer settings visit:
-            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-            ["rust-analyzer"] = {
-                -- enable clippy on save
-                checkOnSave = {
-                    command = "clippy"
-                },
-            }
-        }
-    },
-})
-
+--     -- all the opts to send to nvim-lspconfig
+--     -- these override the defaults set by rust-tools.nvim
+--     -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+--     server = {
+--         -- on_attach is a callback called when the language server attachs to the buffer
+--         capabilities = capabilities,
+--         on_attach = on_attach,
+--         flags = {
+--             debounce_text_changes = 150,
+--         },
+--         settings = {
+--             -- to enable rust-analyzer settings visit:
+--             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+--             ["rust-analyzer"] = {
+--                 -- enable clippy on save
+--                 checkOnSave = {
+--                     command = "clippy"
+--                 },
+--             }
+--         }
+--     },
+-- })
