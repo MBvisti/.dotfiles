@@ -3,7 +3,7 @@ local vim_api = vim.api
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "tailwindcss", "emmet_ls", "sqlls" }
+    ensure_installed = { "sumneko_lua", "tailwindcss", "emmet_ls", "sqlls", "taplo", "jsonls", "marksman" }
 })
 
 -- Use an on_attach function to only map the following keys
@@ -105,9 +105,31 @@ cmp.setup {
     },
 }
 
+-- Getting my borders on
+vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
+vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
+
+local border = {
+    { "🭽", "FloatBorder" },
+    { "▔", "FloatBorder" },
+    { "🭾", "FloatBorder" },
+    { "▕", "FloatBorder" },
+    { "🭿", "FloatBorder" },
+    { "▁", "FloatBorder" },
+    { "🭼", "FloatBorder" },
+    { "▏", "FloatBorder" },
+}
+
+-- LSP settings (for overriding per client)
+local handlers = {
+    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     capabilities = capabilities,
+    handlers = handlers
 }
 
 lspconfig.gopls.setup {
@@ -123,23 +145,52 @@ lspconfig.gopls.setup {
             staticcheck = true,
         },
     },
+    handlers = handlers
 }
 
 vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = false,
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
 })
 
-lspconfig.tailwindcss.setup{
+lspconfig.tailwindcss.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
+    filetypes = { "htmldjango", "gohtml", "html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
     flags = {
-      debounce_text_changes = 100,
-    }
+        debounce_text_changes = 100,
+    },
+    handlers = handlers
+}
+
+lspconfig.taplo.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 100,
+    },
+    handlers = handlers
+}
+
+lspconfig.jsonls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 100,
+    },
+    handlers = handlers
+}
+
+lspconfig.marksman.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 100,
+    },
+    handlers = handlers
 }
 
 -- lspconfig.dockerls.setup{
@@ -176,13 +227,14 @@ lspconfig.tailwindcss.setup{
 --     }
 -- }
 
-lspconfig.emmet_ls.setup{
+lspconfig.emmet_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
+    filetypes = { "htmldjango", "gohtml", "html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
     flags = {
-      debounce_text_changes = 100,
-    }
+        debounce_text_changes = 100,
+    },
+    handlers = handlers
 }
 
 -- lspconfig.html.setup{
@@ -210,45 +262,47 @@ lspconfig.emmet_ls.setup{
 -- --     }
 -- -- }
 
-lspconfig.sqlls.setup{
+lspconfig.sqlls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = {"sql"},
+    filetypes = { "sql" },
     flags = {
-      debounce_text_changes = 100,
+        debounce_text_changes = 100,
     },
+    handlers = handlers
 }
 
--- -- rust config
--- require('rust-tools').setup({
---     tools = { -- rust-tools options
---         autoSetHints = true,
---         inlay_hints = {
---             show_parameter_hints = false,
---             parameter_hints_prefix = "",
---             other_hints_prefix = "",
---         },
---     },
+-- rust config
+require('rust-tools').setup({
+    tools = { -- rust-tools options
+        autoSetHints = true,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
+    },
 
---     -- all the opts to send to nvim-lspconfig
---     -- these override the defaults set by rust-tools.nvim
---     -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
---     server = {
---         -- on_attach is a callback called when the language server attachs to the buffer
---         capabilities = capabilities,
---         on_attach = on_attach,
---         flags = {
---             debounce_text_changes = 150,
---         },
---         settings = {
---             -- to enable rust-analyzer settings visit:
---             -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
---             ["rust-analyzer"] = {
---                 -- enable clippy on save
---                 checkOnSave = {
---                     command = "clippy"
---                 },
---             }
---         }
---     },
--- })
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
+    server = {
+        -- on_attach is a callback called when the language server attachs to the buffer
+        capabilities = capabilities,
+        on_attach = on_attach,
+        handlers = handlers,
+        flags = {
+            debounce_text_changes = 150,
+        },
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                },
+            }
+        }
+    },
+})

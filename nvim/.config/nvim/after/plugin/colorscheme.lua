@@ -28,3 +28,4 @@ vim.opt.background = "dark" -- or "light" for light mode
 
 -- === Gruuuuuuuuv Colorscheme ===
 vim.cmd([[colorscheme gruvbox]])
+vim.g.gruvbox_transparent_bg = 1

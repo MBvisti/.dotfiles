@@ -6,12 +6,15 @@ global_opt.relativenumber = true
 
 global_opt.spell = true
 global_opt.spelllang = "en_us"
-global_opt.tabstop = 4 
+global_opt.tabstop = 4
 global_opt.softtabstop = 4
 global_opt.shiftwidth = 4
 global_opt.expandtab = true
 global_opt.hlsearch = false
 global_opt.incsearch = true
+
+global_opt.encoding = "utf-8"
+global_opt.cursorline = true
 
 global_opt.smartindent = true
 
@@ -77,8 +80,6 @@ vim.g.ctrlp_use_catching = 0
 -- set.laststatus = 2
 -- set.colorcolumn = "90"
 -- set.number = true
--- set.encoding = "utf-8"
--- set.cursorline = true
 -- set.background = "dark"
 -- set.title = true
 -- set.makeprg = "make"
