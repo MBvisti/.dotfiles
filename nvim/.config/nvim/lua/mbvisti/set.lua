@@ -39,6 +39,14 @@ vim.opt.spelllang = "en_us"
 vim.opt.encoding = "utf-8"
 vim.opt.cursorline = true
 
+-- highlight on yank
+vim.cmd [[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]]
+
 -- OLD --
 --vim.opt.wildmenu = true
 --vim.opt.wildmode = "longest:full,full"
@@ -58,7 +66,7 @@ vim.opt.cursorline = true
 -- netwr
 --vim.g.netrw_browse_split = 0
 --vim.g.netrw_liststyle = 3
---vim.g.netrw_banner = 0
+vim.g.netrw_banner = 0
 vim.g.netrw_winsize= 25
 
 -- vim-go
@@ -80,25 +88,9 @@ vim.g.netrw_winsize= 25
 ---- ctrlp 
 --vim.g.ctrlp_use_catching = 0
 
----- highlight on yank
---vim.cmd [[
---  augroup YankHighlight
---    autocmd!
---    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
---  augroup end
---]]
 --
 ---- lightbulb
 --vim.cmd [[
 --    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
 --]]
 --
---vim.cmd [[
---    let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
---    au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
---]]
---
----- vimwiki
---vim.cmd('filetype plugin on')
---vim.cmd('syntax on')
----- vim.cmd('filetype plugin indent on')
