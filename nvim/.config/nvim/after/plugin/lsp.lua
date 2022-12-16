@@ -3,24 +3,33 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
 lsp.ensure_installed({
-	'tsserver',
-	'eslint',
-	'sumneko_lua',
-	'rust_analyzer',
-	'jsonls',
-	'html',
-	'marksman',
-	'tailwindcss',
-	'dockerls',
+    'tsserver',
+    'eslint',
+    'sumneko_lua',
+    'rust_analyzer',
+    'jsonls',
+    'html',
+    'marksman',
+    'tailwindcss',
+    'dockerls',
 })
 
 local cmp = require('cmp')
-local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-	['<C-y>'] = cmp.mapping.confirm({ select = true }),
-	['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+    ['<C-Space>'] = cmp.mapping.complete(),
+})
+
+lsp.set_preferences({
+    configure_diagnostics = false,
+    sign_icons = {}
+})
+
+lsp.setup_nvim_cmp({
+    mapping = cmp_mappings
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -42,6 +51,14 @@ lsp.on_attach(function(client, bufnr)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 
 end)
+
+vim.diagnostic.config({
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
+})
 
 lsp.setup()
 
@@ -196,14 +213,7 @@ lsp.setup()
 --    handlers = handlers
 --}
 --
---vim.diagnostic.config({
---    virtual_text = true,
---    signs = true,
---    underline = true,
---    update_in_insert = false,
---    severity_sort = false,
---})
---
+
 --lspconfig.tailwindcss.setup {
 --    on_attach = on_attach,
 --    capabilities = capabilities,
