@@ -1,3 +1,51 @@
+local lsp = require('lsp-zero')
+
+lsp.preset('recommended')
+
+lsp.ensure_installed({
+	'tsserver',
+	'eslint',
+	'sumneko_lua',
+	'rust_analyzer',
+	'jsonls',
+	'html',
+	'marksman',
+	'tailwindcss',
+	'dockerls',
+})
+
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_mappings = lsp.defaults.cmp_mappings({
+	['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+	['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+	['<C-y>'] = cmp.mapping.confirm({ select = true }),
+	['<C-Space>'] = cmp.mapping.complete(),
+})
+
+lsp.on_attach(function(client, bufnr)
+    local opts = { buffer = bufnr, remap = false }
+
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set("n", "ca", function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
+    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_next() end, opts)
+    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, opts)
+
+
+    -- vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    -- vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+
+end)
+
+lsp.setup()
+
+-- OLD --
 --local lspconfig = require 'lspconfig'
 --local vim_api = vim.api
 --

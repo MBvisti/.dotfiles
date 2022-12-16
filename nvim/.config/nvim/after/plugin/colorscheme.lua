@@ -1,3 +1,13 @@
+function ColorMyPencils(color)
+	color = color or "gruvbox"
+	vim.cmd.colorscheme(color)
+
+	vim.api.nvim_set_hl(0, "Normal", { bg = none })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = none })
+end
+ColorMyPencils()
+
+-- OLD --
 --vim.opt.background = "dark" -- or "light" for light mode
 
 -- === Kanagawa Colorscheme ===
@@ -16,16 +26,12 @@
 --     colors = {},
 --     overrides = {},
 -- })
--- vim.cmd("colorscheme kanagawa")
-
-
--- === Catppuccin Colorscheme ===
--- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
-
--- require("catppuccin").setup()
-
--- vim.cmd [[colorscheme catppuccin]]
 
 -- === Gruuuuuuuuv Colorscheme ===
 --vim.cmd([[colorscheme gruvbox]])
 --vim.g.gruvbox_transparent_bg = 1
+
+-- === Catppuccin Colorscheme ===
+-- require("catppuccin").setup()
+-- vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
+

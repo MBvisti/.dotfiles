@@ -5,26 +5,31 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- -- shaaaaades yo
 -- -- Plug 'sunjon/shade.nvim'
 
--- -- colorschema
--- -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
--- -- Plug 'ellisonleao/gruvbox.nvim'
--- -- Plug 'rebelot/kanagawa.nvim'
--- -- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
--- -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+-- colorschemas
+Plug 'ellisonleao/gruvbox.nvim'
+
+-- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+-- Plug 'rebelot/kanagawa.nvim'
+-- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
 -- Plug 'morhetz/gruvbox'
 
 -- -- Plug 'ja-ford/delaytrain.nvim'
 -- -- Plug 'ThePrimeagen/vim-be-good'
 
--- -- for working with git
--- Plug 'tpope/vim-fugitive'
+-- git
+Plug 'tpope/vim-fugitive'
+
 -- Plug 'ctrlpvim/ctrlp.vim'
 -- Plug 'airblade/vim-gitgutter' 
 -- Plug 'rhysd/git-messenger.vim' 
 
--- -- telescope
--- Plug 'nvim-lua/plenary.nvim'
--- Plug 'nvim-telescope/telescope.nvim'
+-- telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+-- undotree
+Plug 'mbbill/undotree'
+
 -- Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 -- Plug 'jremmen/vim-ripgrep'
 
@@ -34,7 +39,26 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- -- vim rails
 -- -- Plug 'tpope/vim-rails'
 
--- -- lsp and auto complete
+-- lsp and auto complete
+--  - lsp support
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+
+--  - autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-nvim-lua'
+
+-- - snippets
+Plug 'L3MON4D3/LuaSnip'
+Plug 'rafamadriz/friendly-snippets'
+
+Plug 'VonHeikemen/lsp-zero.nvim'
+
 -- Plug 'williamboman/mason.nvim'
 -- Plug 'williamboman/mason-lspconfig.nvim'
 
@@ -49,8 +73,12 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- Plug 'saadparwaiz1/cmp_luasnip'
 -- Plug 'L3MON4D3/LuaSnip' -- Snippets plugin
 
--- -- treesitter
--- Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+-- treesitter
+Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+
+-- harpoon
+Plug 'ThePrimeagen/harpoon'
+
 -- Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 -- -- svelte
