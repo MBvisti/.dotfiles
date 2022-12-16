@@ -47,6 +47,14 @@ vim.cmd [[
   augroup end
 ]]
 
+-- vimwiki
+vim.cmd [[
+    let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+    au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+]]
+vim.cmd('filetype plugin on')
+vim.cmd('syntax on')
+
 -- OLD --
 --vim.opt.wildmenu = true
 --vim.opt.wildmode = "longest:full,full"
@@ -88,7 +96,6 @@ vim.g.netrw_winsize= 25
 ---- ctrlp 
 --vim.g.ctrlp_use_catching = 0
 
---
 ---- lightbulb
 --vim.cmd [[
 --    autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
