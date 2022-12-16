@@ -2,102 +2,102 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
--- shaaaaades yo
--- Plug 'sunjon/shade.nvim'
+-- -- shaaaaades yo
+-- -- Plug 'sunjon/shade.nvim'
 
--- colorschema
--- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
--- Plug 'ellisonleao/gruvbox.nvim'
--- Plug 'rebelot/kanagawa.nvim'
--- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
--- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
-Plug 'morhetz/gruvbox'
+-- -- colorschema
+-- -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+-- -- Plug 'ellisonleao/gruvbox.nvim'
+-- -- Plug 'rebelot/kanagawa.nvim'
+-- -- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
+-- -- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+-- Plug 'morhetz/gruvbox'
 
--- Plug 'ja-ford/delaytrain.nvim'
--- Plug 'ThePrimeagen/vim-be-good'
+-- -- Plug 'ja-ford/delaytrain.nvim'
+-- -- Plug 'ThePrimeagen/vim-be-good'
 
--- for working with git
-Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'airblade/vim-gitgutter' 
-Plug 'rhysd/git-messenger.vim' 
+-- -- for working with git
+-- Plug 'tpope/vim-fugitive'
+-- Plug 'ctrlpvim/ctrlp.vim'
+-- Plug 'airblade/vim-gitgutter' 
+-- Plug 'rhysd/git-messenger.vim' 
 
--- telescope
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
-Plug 'jremmen/vim-ripgrep'
+-- -- telescope
+-- Plug 'nvim-lua/plenary.nvim'
+-- Plug 'nvim-telescope/telescope.nvim'
+-- Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
+-- Plug 'jremmen/vim-ripgrep'
 
--- vim go
-Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
+-- -- vim go
+-- Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
--- vim rails
--- Plug 'tpope/vim-rails'
+-- -- vim rails
+-- -- Plug 'tpope/vim-rails'
 
--- lsp and auto complete
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
+-- -- lsp and auto complete
+-- Plug 'williamboman/mason.nvim'
+-- Plug 'williamboman/mason-lspconfig.nvim'
 
-Plug 'neovim/nvim-lspconfig'
+-- Plug 'neovim/nvim-lspconfig'
 
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
+-- Plug 'hrsh7th/cmp-nvim-lsp'
+-- Plug 'hrsh7th/cmp-buffer'
+-- Plug 'hrsh7th/cmp-path'
+-- Plug 'hrsh7th/cmp-cmdline'
+-- Plug 'hrsh7th/nvim-cmp'
 
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'L3MON4D3/LuaSnip' -- Snippets plugin
+-- Plug 'saadparwaiz1/cmp_luasnip'
+-- Plug 'L3MON4D3/LuaSnip' -- Snippets plugin
 
--- treesitter
-Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+-- -- treesitter
+-- Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+-- Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
--- svelte
--- Plug 'leafOfTree/vim-svelte-plugin'
+-- -- svelte
+-- -- Plug 'leafOfTree/vim-svelte-plugin'
 
--- rust
-Plug 'simrat39/rust-tools.nvim'
+-- -- rust
+-- Plug 'simrat39/rust-tools.nvim'
 
--- debuggin
-Plug 'mfussenegger/nvim-dap'
+-- -- debuggin
+-- Plug 'mfussenegger/nvim-dap'
 
--- phpactor
--- Plug ('phpactor/phpactor', { ['for'] = 'php', ['tag'] = '*', ['do'] = 'composer install --no-dev -o'})
+-- -- phpactor
+-- -- Plug ('phpactor/phpactor', { ['for'] = 'php', ['tag'] = '*', ['do'] = 'composer install --no-dev -o'})
 
--- indent line
-Plug 'lukas-reineke/indent-blankline.nvim'
+-- -- indent line
+-- Plug 'lukas-reineke/indent-blankline.nvim'
 
--- formatting
--- Plug 'jose-elias-alvarez/null-ls.nvim'
+-- -- formatting
+-- -- Plug 'jose-elias-alvarez/null-ls.nvim'
 
--- file navigation
--- Plug 'kyazdani42/nvim-tree.lua'
--- Plug 'kyazdani42/nvim-web-devicons'
+-- -- file navigation
+-- -- Plug 'kyazdani42/nvim-tree.lua'
+-- -- Plug 'kyazdani42/nvim-web-devicons'
 
--- statusline
-Plug 'nvim-lualine/lualine.nvim'
+-- -- statusline
+-- Plug 'nvim-lualine/lualine.nvim'
 
--- terminal
-Plug 'akinsho/toggleterm.nvim'
+-- -- terminal
+-- Plug 'akinsho/toggleterm.nvim'
 
--- vimwiki
-Plug 'vimwiki/vimwiki'
+-- -- vimwiki
+-- Plug 'vimwiki/vimwiki'
 
--- dadbod for database interaction
-Plug 'tpope/vim-dadbod'
-Plug 'kristijanhusak/vim-dadbod-ui'
+-- -- dadbod for database interaction
+-- Plug 'tpope/vim-dadbod'
+-- Plug 'kristijanhusak/vim-dadbod-ui'
 
--- misc
-Plug 'liuchengxu/vim-which-key'
-Plug 'mbbill/undotree'
--- Plug 'xiyaowong/nvim-transparent'
--- Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-surround'
--- Plug "kylechui/nvim-surround"
-Plug 'tpope/vim-commentary'
-Plug 'kosayoda/nvim-lightbulb'
-Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
-Plug 'gennaro-tedesco/nvim-jqx'
-Plug 'stevearc/dressing.nvim'
+-- -- misc
+-- Plug 'liuchengxu/vim-which-key'
+-- Plug 'mbbill/undotree'
+-- -- Plug 'xiyaowong/nvim-transparent'
+-- -- Plug 'ryanoasis/vim-devicons'
+-- Plug 'tpope/vim-surround'
+-- -- Plug "kylechui/nvim-surround"
+-- Plug 'tpope/vim-commentary'
+-- Plug 'kosayoda/nvim-lightbulb'
+-- Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
+-- Plug 'gennaro-tedesco/nvim-jqx'
+-- Plug 'stevearc/dressing.nvim'
 vim.call('plug#end')

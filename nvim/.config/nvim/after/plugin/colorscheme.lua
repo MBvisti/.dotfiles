@@ -1,4 +1,4 @@
-vim.opt.background = "dark" -- or "light" for light mode
+--vim.opt.background = "dark" -- or "light" for light mode
 
 -- === Kanagawa Colorscheme ===
 -- require('kanagawa').setup({
@@ -27,5 +27,5 @@ vim.opt.background = "dark" -- or "light" for light mode
 -- vim.cmd [[colorscheme catppuccin]]
 
 -- === Gruuuuuuuuv Colorscheme ===
-vim.cmd([[colorscheme gruvbox]])
-vim.g.gruvbox_transparent_bg = 1
+--vim.cmd([[colorscheme gruvbox]])
+--vim.g.gruvbox_transparent_bg = 1
