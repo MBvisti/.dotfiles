@@ -18,9 +18,9 @@ Plug 'ellisonleao/gruvbox.nvim'
 
 -- git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 -- Plug 'ctrlpvim/ctrlp.vim'
--- Plug 'airblade/vim-gitgutter' 
 -- Plug 'rhysd/git-messenger.vim' 
 
 -- telescope
@@ -34,7 +34,7 @@ Plug 'mbbill/undotree'
 -- Plug 'jremmen/vim-ripgrep'
 
 -- -- vim go
--- Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
+Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
 -- -- vim rails
 -- -- Plug 'tpope/vim-rails'
@@ -61,11 +61,10 @@ Plug 'VonHeikemen/lsp-zero.nvim'
 
 -- treesitter
 Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 -- harpoon
 Plug 'ThePrimeagen/harpoon'
-
--- Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 -- -- rust
 -- Plug 'simrat39/rust-tools.nvim'
@@ -73,8 +72,8 @@ Plug 'ThePrimeagen/harpoon'
 -- -- debuggin
 -- Plug 'mfussenegger/nvim-dap'
 
--- -- indent line
--- Plug 'lukas-reineke/indent-blankline.nvim'
+-- indent line
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 -- -- formatting
 -- -- Plug 'jose-elias-alvarez/null-ls.nvim'

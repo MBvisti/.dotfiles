@@ -1,11 +1,11 @@
-function ColorMyPencils(color)
-	color = color or "gruvbox"
-	vim.cmd.colorscheme(color)
-
-	vim.api.nvim_set_hl(0, "Normal", { bg = none })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = none })
-end
-ColorMyPencils()
+--function ColorMyPencils(color)
+--	color = color or "gruvbox"
+--	vim.cmd.colorscheme(color)
+--
+--	vim.api.nvim_set_hl(0, "Normal", { bg = none })
+--	vim.api.nvim_set_hl(0, "NormalFloat", { bg = none })
+--end
+--ColorMyPencils()
 
 -- OLD --
 --vim.opt.background = "dark" -- or "light" for light mode
@@ -28,8 +28,8 @@ ColorMyPencils()
 -- })
 
 -- === Gruuuuuuuuv Colorscheme ===
---vim.cmd([[colorscheme gruvbox]])
---vim.g.gruvbox_transparent_bg = 1
+vim.cmd.colorscheme("gruvbox")
+-- vim.g.gruvbox_transparent_bg = 1
 
 -- === Catppuccin Colorscheme ===
 -- require("catppuccin").setup()
