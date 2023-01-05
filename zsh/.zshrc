@@ -117,8 +117,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="/usr/local/neovim/0_8_1/bin/nvim"
-alias nvim="/usr/local/neovim/0_8_1/bin/nvim"
+alias vi="/usr/local/neovim/0_8_2/bin/nvim"
+alias nvim="/usr/local/neovim/0_8_2/bin/nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

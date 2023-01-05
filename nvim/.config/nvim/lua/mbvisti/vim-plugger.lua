@@ -34,7 +34,8 @@ Plug 'mbbill/undotree'
 -- Plug 'jremmen/vim-ripgrep'
 
 -- -- vim go
-Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
+-- Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
+Plug 'ray-x/go.nvim'
 
 -- -- vim rails
 -- -- Plug 'tpope/vim-rails'

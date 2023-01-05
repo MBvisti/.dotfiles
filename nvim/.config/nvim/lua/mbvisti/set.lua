@@ -70,17 +70,17 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize= 25
 
 -- vim-go
-vim.g.go_diagnostics_enabled = 0
-vim.g.go_metalinter_enabled = 0
-vim.g.go_def_mapping_enabled = 0
-vim.g.go_gopls_enabled = 1
-vim.g.go_code_completion_enabled = 0
-vim.g.go_doc_popup_window = 0
-vim.g.go_jump_to_error = 0
--- vim.g.go_fmt_command = "goimports"
-vim.g.go_auto_sameids = 0
-vim.g.go_fmt_command="gopls"
-vim.g.go_gopls_gofumpt=1
+--vim.g.go_diagnostics_enabled = 0
+--vim.g.go_metalinter_enabled = 0
+--vim.g.go_def_mapping_enabled = 0
+--vim.g.go_gopls_enabled = 1
+--vim.g.go_code_completion_enabled = 0
+--vim.g.go_doc_popup_window = 0
+--vim.g.go_jump_to_error = 0
+---- vim.g.go_fmt_command = "goimports"
+--vim.g.go_auto_sameids = 0
+--vim.g.go_fmt_command="gopls"
+--vim.g.go_gopls_gofumpt=1
 
 ---- git-gutter
 --vim.g.gitgutter_async = 0
@@ -99,3 +99,4 @@ vim.cmd [[
 
 vim.cmd('filetype plugin on')
 vim.cmd('syntax on')
+vim.cmd('set nocompatible')
