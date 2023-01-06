@@ -28,8 +28,8 @@
 -- })
 
 -- === Gruuuuuuuuv Colorscheme ===
-vim.cmd.colorscheme("gruvbox")
--- vim.g.gruvbox_transparent_bg = 1
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
 
 -- === Catppuccin Colorscheme ===
 -- require("catppuccin").setup()

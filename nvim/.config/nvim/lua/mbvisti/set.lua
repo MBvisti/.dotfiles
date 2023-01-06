@@ -39,6 +39,8 @@ vim.opt.spelllang = "en_us"
 vim.opt.encoding = "utf-8"
 vim.opt.cursorline = true
 
+vim.opt.redrawtime = 10000
+
 -- highlight on yank
 vim.cmd [[
   augroup YankHighlight
@@ -51,7 +53,6 @@ vim.cmd [[
 --vim.opt.wildmenu = true
 --vim.opt.wildmode = "longest:full,full"
 --
---vim.opt.redrawtime = 10000
 --
 --vim.opt.syntax = "on"
 --
@@ -90,13 +91,19 @@ vim.g.netrw_winsize= 25
 
 -- vimwiki
 vim.cmd [[
+    set nocompatible 
+    filetype plugin on
+    syntax on
+    set runtimepath+='~/vimwiki'
+    let g:vimwiki_global_ext = 0
     let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-    au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
 ]]
+--au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+
 --vim.cmd [[
 --    let g:vimwiki_tag_format = {'pre': '\(^[ -]*tags\s*:.*\)\@<=', 'pre_mark': '', 'post_mark': '', 'sep': '>><<'}
 --]]
 
-vim.cmd('filetype plugin on')
-vim.cmd('syntax on')
-vim.cmd('set nocompatible')
+--vim.cmd('filetype plugin on')
+--vim.cmd('syntax on')
+--vim.cmd('set nocompatible')

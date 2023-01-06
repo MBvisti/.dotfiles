@@ -2,9 +2,6 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
--- -- shaaaaades yo
--- -- Plug 'sunjon/shade.nvim'
-
 -- colorschemas
 Plug 'ellisonleao/gruvbox.nvim'
 
@@ -13,7 +10,7 @@ Plug 'ellisonleao/gruvbox.nvim'
 -- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
 -- Plug 'morhetz/gruvbox'
 
--- -- Plug 'ja-ford/delaytrain.nvim'
+Plug 'ja-ford/delaytrain.nvim'
 -- -- Plug 'ThePrimeagen/vim-be-good'
 
 -- git
@@ -36,9 +33,6 @@ Plug 'mbbill/undotree'
 -- -- vim go
 -- Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 Plug 'ray-x/go.nvim'
-
--- -- vim rails
--- -- Plug 'tpope/vim-rails'
 
 -- lsp and auto complete
 --  - lsp support
@@ -83,9 +77,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
--- -- terminal
--- Plug 'akinsho/toggleterm.nvim'
-
 -- vimwiki
 Plug 'vimwiki/vimwiki'
 
@@ -99,5 +90,7 @@ Plug 'vimwiki/vimwiki'
 -- Plug 'kosayoda/nvim-lightbulb'
 -- Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
 -- Plug 'gennaro-tedesco/nvim-jqx'
--- Plug 'stevearc/dressing.nvim'
+
+-- UI stuff
+Plug 'stevearc/dressing.nvim'
 vim.call('plug#end')

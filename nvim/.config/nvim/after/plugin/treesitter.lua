@@ -2,7 +2,7 @@ require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { 
 	  "go", "bash", "css", "dockerfile", "gomod", "html", 
-	  "json", "javascript", "make", "markdown", "help", "lua", "rust",
+	  "json", "javascript", "make",  "help", "lua", "rust",
 	  "typescript", "yaml", "toml"
   },
 
@@ -11,7 +11,7 @@ require'nvim-treesitter.configs'.setup {
 
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+  auto_install = false,
 
   highlight = {
     -- `false` will disable the whole extension
