@@ -120,6 +120,9 @@ fi
 alias vi="/usr/local/neovim/0_8_2/bin/nvim"
 alias nvim="/usr/local/neovim/0_8_2/bin/nvim"
 
+# Obsidian
+alias obsidian="/usr/local/bin/obsidian.AppImage"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -144,12 +147,8 @@ export PATH=$PATH:$GOPATH/bin
 source $HOME/.cargo/env
 
 # rust analyzer
-export PATH=$PATH:/usr/local/bin
+#export PATH=$PATH:/usr/local/bin
 # export PATH=$PATH:~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
-
-# php
-# export PATH=$PATH:/usr/local/php/sbin
-alias php="/usr/local/php/bin/php"
 
 # postman
 #export PATH=$PATH:/usr/bin/Postman
@@ -157,17 +156,6 @@ alias php="/usr/local/php/bin/php"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-
-RUBY_ROOT=$HOME/ruby/3_1_2
-RUBY_BIN=$RUBY_ROOT/bin
-RUBY_INC=$RUBY_ROOT/include
-RUBY_LIB=$RUBY_ROOT/lib
-export PATH=$PATH:$RUBY_BIN
-export PATH=$PATH:$RUBY_INC
-export PATH=$PATH:$RUBY_LIB
-
-HOMEBREW_PATH=/home/linuxbrew/.linuxbrew/bin
-export PATH=$PATH:$HOMEBREW_PATH
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
