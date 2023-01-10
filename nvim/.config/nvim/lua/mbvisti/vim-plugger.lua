@@ -80,6 +80,9 @@ Plug 'kyazdani42/nvim-web-devicons'
 -- vimwiki
 Plug 'vimwiki/vimwiki'
 
+-- obsidian
+Plug ('epwalsh/obsidian.nvim', { ['tag'] = 'v1.*' })
+
 -- -- dadbod for database interaction
 -- Plug 'tpope/vim-dadbod'
 -- Plug 'kristijanhusak/vim-dadbod-ui'

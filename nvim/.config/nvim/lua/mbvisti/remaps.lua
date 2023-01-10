@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pq", vim.cmd.Ex)
 
+vim.keymap.set("n", "<leader>oi", "<cmd>:e /home/mbv/obsidian/mbv/index.md<CR>")
+
 -- move a selection up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
