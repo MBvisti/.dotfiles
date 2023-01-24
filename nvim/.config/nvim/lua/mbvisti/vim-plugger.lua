@@ -3,9 +3,10 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 -- colorschemas
-Plug 'ellisonleao/gruvbox.nvim'
+-- Plug 'ellisonleao/gruvbox.nvim'
 
--- Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
+Plug ('AlexvZyl/nordic.nvim', { ['branch'] = 'main' })
 -- Plug 'rebelot/kanagawa.nvim'
 -- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
 -- Plug 'morhetz/gruvbox'
@@ -16,6 +17,7 @@ Plug 'ja-ford/delaytrain.nvim'
 -- git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'sindrets/diffview.nvim'
 
 -- Plug 'ctrlpvim/ctrlp.vim'
 -- Plug 'rhysd/git-messenger.vim' 
@@ -61,8 +63,8 @@ Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 -- harpoon
 Plug 'ThePrimeagen/harpoon'
 
--- -- rust
--- Plug 'simrat39/rust-tools.nvim'
+-- rust
+Plug 'simrat39/rust-tools.nvim'
 
 -- -- debuggin
 -- Plug 'mfussenegger/nvim-dap'

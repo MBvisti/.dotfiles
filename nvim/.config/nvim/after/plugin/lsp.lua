@@ -9,7 +9,6 @@ lsp.ensure_installed({
     'rust_analyzer',
     'jsonls',
     'html',
-    --'marksman',
     'tailwindcss',
     'dockerls',
 })
@@ -347,23 +346,23 @@ lsp.setup()
 --    -- all the opts to send to nvim-lspconfig
 --    -- these override the defaults set by rust-tools.nvim
 --    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
---    server = {
---        -- on_attach is a callback called when the language server attachs to the buffer
---        capabilities = capabilities,
---        on_attach = on_attach,
---        handlers = handlers,
---        flags = {
---            debounce_text_changes = 150,
---        },
---        settings = {
---            -- to enable rust-analyzer settings visit:
---            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
---            ["rust-analyzer"] = {
---                -- enable clippy on save
---                checkOnSave = {
---                    command = "clippy"
---                },
---            }
---        }
---    },
+--    --server = {
+--    --    -- on_attach is a callback called when the language server attachs to the buffer
+--    --    capabilities = capabilities,
+--    --    on_attach = on_attach,
+--    --    handlers = handlers,
+--    --    flags = {
+--    --        debounce_text_changes = 150,
+--    --    },
+--    --    settings = {
+--    --        -- to enable rust-analyzer settings visit:
+--    --        -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+--    --        ["rust-analyzer"] = {
+--    --            -- enable clippy on save
+--    --            checkOnSave = {
+--    --                command = "clippy"
+--    --            },
+--    --        }
+--    --    }
+--    --},
 --})
