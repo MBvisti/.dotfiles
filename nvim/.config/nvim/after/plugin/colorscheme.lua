@@ -27,14 +27,18 @@
 --     overrides = {},
 -- })
 
+
 -- === Gruuuuuuuuv Colorscheme ===
----vim.o.background = "dark"
----vim.cmd([[colorscheme gruvbox]])
+vim.o.background = "dark"
+--vim.cmd([[colorscheme gruvbox]])
 
 -- === Catppuccin Colorscheme ===
 -- require("catppuccin").setup()
 -- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
--- vim.cmd([[colorscheme catppuccin-macchiato]])
+-- vim.cmd([[colorscheme catppuccin-mocha]])
 
 -- === nordic Colorscheme ===
 vim.cmd [[colorscheme nordic]]
+
+vim.cmd [[hi LineNr guifg=#D08770]]
+vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]

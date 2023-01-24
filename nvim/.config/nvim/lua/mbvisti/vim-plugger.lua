@@ -3,7 +3,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 -- colorschemas
--- Plug 'ellisonleao/gruvbox.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 
 Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
 Plug ('AlexvZyl/nordic.nvim', { ['branch'] = 'main' })
