@@ -153,6 +153,10 @@ pomodoro () {
 alias wo="pomodoro 'work'"
 alias br="pomodoro 'break'"
 
+# fly io setup
+export FLYCTL_INSTALL='/home/mbv/.fly'
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
 ## Mac setup
 # export PATH=$PATH:/usr/local/go/bin
 # export GOPATH=$HOME/golang

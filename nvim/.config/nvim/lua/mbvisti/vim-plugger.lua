@@ -7,6 +7,8 @@ Plug 'ellisonleao/gruvbox.nvim'
 
 Plug ('catppuccin/nvim', {['as'] = 'catppuccin'})
 Plug ('AlexvZyl/nordic.nvim', { ['branch'] = 'main' })
+Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/everforest'
 -- Plug 'rebelot/kanagawa.nvim'
 -- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
 -- Plug 'morhetz/gruvbox'

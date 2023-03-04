@@ -20,7 +20,7 @@
 --     typeStyle = {},
 --     variablebuiltinStyle = { italic = true },
 --     specialReturn = true,       -- special highlight for the return keyword
---     specialException = true,    -- special highlight for exception handling keywords 
+--     specialException = true,    -- special highlight for exception handling keywords
 --     transparent = false,        -- do not set background color
 --     dimInactive = true,        -- dim inactive window `:h hl-NormalNC`
 --     colors = {},
@@ -38,7 +38,25 @@ vim.o.background = "dark"
 -- vim.cmd([[colorscheme catppuccin-mocha]])
 
 -- === nordic Colorscheme ===
-vim.cmd [[colorscheme nordic]]
+--vim.cmd [[colorscheme nordic]]
+
+--vim.cmd [[hi LineNr guifg=#D08770]]
+--vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
+
+-- === Gruvbox Material Colorscheme ===
+vim.cmd [[
+    colorscheme gruvbox-material
+    let g:gruvbox_material_background = 'soft'
+]]
 
 vim.cmd [[hi LineNr guifg=#D08770]]
 vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
+
+-- === Everforest Colorscheme ===
+--vim.cmd [[
+--    colorscheme everforest
+--    let g:gruvbox_material_background = 'medium'
+--]]
+--
+--vim.cmd [[hi LineNr guifg=#9da9a0]]
+--vim.cmd [[hi CursorLineNr guifg=#e69875]]

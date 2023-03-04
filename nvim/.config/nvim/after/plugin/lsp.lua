@@ -5,7 +5,6 @@ lsp.preset('recommended')
 lsp.ensure_installed({
     'tsserver',
     'eslint',
-    'sumneko_lua',
     'rust_analyzer',
     'jsonls',
     'html',
@@ -16,11 +15,11 @@ lsp.ensure_installed({
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-})
+        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+    })
 
 lsp.set_preferences({
     configure_diagnostics = false,
@@ -28,7 +27,13 @@ lsp.set_preferences({
 })
 
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+    mapping = cmp_mappings,
+    sources = {
+        { name = 'path' },
+        { name = 'nvim_lsp', keyword_length = 1 },
+        { name = 'buffer',   keyword_length = 3 },
+        { name = 'luasnip',  keyword_length = 2 },
+    }
 })
 
 lsp.on_attach(function(_, _)
@@ -51,7 +56,6 @@ lsp.on_attach(function(_, _)
     --vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
     -- vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     -- vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-
 end)
 
 vim.diagnostic.config({
