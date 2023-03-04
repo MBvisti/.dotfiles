@@ -133,6 +133,7 @@ export NVM_DIR="$HOME/.nvm"
 # Go related
 ## Ubuntu setup
 export GOPATH=/home/mbv/golang
+export GOBIN=/home/mbv/golang/bin
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
