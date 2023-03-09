@@ -3,7 +3,8 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 -- letting AI into my code
-Plug ('github/copilot.vim', {['branch'] = 'release'})
+-- Plug ('github/copilot.vim', {['branch'] = 'release'})
+Plug 'zbirenbaum/copilot.lua'
 
 -- colorschemas
 Plug 'ellisonleao/gruvbox.nvim'
@@ -62,6 +63,7 @@ Plug 'VonHeikemen/lsp-zero.nvim'
 
 -- treesitter
 Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 -- harpoon

@@ -50,7 +50,7 @@ vim.cmd [[
 ]]
 
 -- github copilot
-vim.g.copilot_assume_mapped = true
+-- vim.g.copilot_assume_mapped = true
 
 -- OLD --
 --vim.opt.wildmenu = true
