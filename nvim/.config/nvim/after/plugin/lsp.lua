@@ -3,8 +3,8 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
 lsp.ensure_installed({
-    'tsserver',
-    'eslint',
+    --'tsserver',
+    --'eslint',
     'rust_analyzer',
     'jsonls',
     'html',
@@ -65,6 +65,16 @@ vim.diagnostic.config({
     update_in_insert = false,
     severity_sort = false,
 })
+
+--lsp.configure('rust_analyzer', {
+--  on_attach = function(client, bufnr)
+--  end,
+--  settings = {
+--    completions = {
+--      completeFunctionCalls = true
+--    }
+--  }
+--})
 
 lsp.setup()
 

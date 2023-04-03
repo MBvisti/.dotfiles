@@ -78,12 +78,16 @@ Plug 'simrat39/rust-tools.nvim'
 -- indent line
 Plug 'lukas-reineke/indent-blankline.nvim'
 
--- -- formatting
--- -- Plug 'jose-elias-alvarez/null-ls.nvim'
+-- formatting
+-- Plug 'jose-elias-alvarez/null-ls.nvim'
 
 -- statusline
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+-- Plug 'kyazdani42/nvim-web-devicons'
+
+-- trouble
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 -- vimwiki
 Plug 'vimwiki/vimwiki'
@@ -91,7 +95,7 @@ Plug 'vimwiki/vimwiki'
 -- obsidian
 Plug ('epwalsh/obsidian.nvim', { ['tag'] = 'v1.*' })
 
--- -- misc
+-- misc
 -- Plug 'tpope/vim-surround'
 -- Plug 'tpope/vim-commentary'
 -- Plug 'kosayoda/nvim-lightbulb'
