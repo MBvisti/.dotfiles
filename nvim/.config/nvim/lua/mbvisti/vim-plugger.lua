@@ -20,6 +20,8 @@ Plug 'sainnhe/everforest'
 Plug 'ja-ford/delaytrain.nvim'
 -- -- Plug 'ThePrimeagen/vim-be-good'
 
+Plug ("Cassin01/wf.nvim", { ['tag'] =  "*" })
+
 -- git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
