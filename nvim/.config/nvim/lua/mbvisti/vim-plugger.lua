@@ -2,6 +2,10 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
+-- letting AI into my code
+-- Plug ('github/copilot.vim', {['branch'] = 'release'})
+Plug 'zbirenbaum/copilot.lua'
+
 -- colorschemas
 Plug 'ellisonleao/gruvbox.nvim'
 
@@ -15,6 +19,8 @@ Plug 'sainnhe/everforest'
 
 Plug 'ja-ford/delaytrain.nvim'
 -- -- Plug 'ThePrimeagen/vim-be-good'
+
+Plug ("Cassin01/wf.nvim", { ['tag'] =  "*" })
 
 -- git
 Plug 'tpope/vim-fugitive'
@@ -34,12 +40,11 @@ Plug 'mbbill/undotree'
 -- Plug ('nvim-telescope/telescope-fzf-native.nvim', { ['do'] = 'make' })
 -- Plug 'jremmen/vim-ripgrep'
 
--- -- vim go
--- Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
+-- vim go
 Plug 'ray-x/go.nvim'
+-- Plug ('fatih/vim-go', { ['do'] = ':GoUpdateBinaries' })
 
 -- lsp and auto complete
---  - lsp support
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
@@ -60,6 +65,7 @@ Plug 'VonHeikemen/lsp-zero.nvim'
 
 -- treesitter
 Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 
 -- harpoon
@@ -74,12 +80,16 @@ Plug 'simrat39/rust-tools.nvim'
 -- indent line
 Plug 'lukas-reineke/indent-blankline.nvim'
 
--- -- formatting
--- -- Plug 'jose-elias-alvarez/null-ls.nvim'
+-- formatting
+-- Plug 'jose-elias-alvarez/null-ls.nvim'
 
 -- statusline
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+-- Plug 'kyazdani42/nvim-web-devicons'
+
+-- trouble
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 -- vimwiki
 Plug 'vimwiki/vimwiki'
@@ -87,17 +97,13 @@ Plug 'vimwiki/vimwiki'
 -- obsidian
 Plug ('epwalsh/obsidian.nvim', { ['tag'] = 'v1.*' })
 
--- -- dadbod for database interaction
--- Plug 'tpope/vim-dadbod'
--- Plug 'kristijanhusak/vim-dadbod-ui'
-
--- -- misc
+-- misc
 -- Plug 'tpope/vim-surround'
 -- Plug 'tpope/vim-commentary'
 -- Plug 'kosayoda/nvim-lightbulb'
--- Plug ('iamcco/markdown-preview.nvim', { ['do'] = 'cd app && yarn install'  })
 -- Plug 'gennaro-tedesco/nvim-jqx'
 
 -- UI stuff
 Plug 'stevearc/dressing.nvim'
+
 vim.call('plug#end')

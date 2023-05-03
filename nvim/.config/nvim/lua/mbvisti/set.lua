@@ -49,6 +49,9 @@ vim.cmd [[
   augroup end
 ]]
 
+-- github copilot
+-- vim.g.copilot_assume_mapped = true
+
 -- OLD --
 --vim.opt.wildmenu = true
 --vim.opt.wildmode = "longest:full,full"

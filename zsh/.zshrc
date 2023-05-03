@@ -117,8 +117,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="/usr/local/neovim/0_8_2/bin/nvim"
-alias nvim="/usr/local/neovim/0_8_2/bin/nvim"
+alias vi="/usr/local/neovim/0_9_0/bin/nvim"
+alias nvim="/usr/local/neovim/0_9_0/bin/nvim"
 
 # Obsidian
 alias obsidian="/usr/local/bin/obsidian.AppImage"
@@ -133,6 +133,7 @@ export NVM_DIR="$HOME/.nvm"
 # Go related
 ## Ubuntu setup
 export GOPATH=/home/mbv/golang
+export GOBIN=/home/mbv/golang/bin
 export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
