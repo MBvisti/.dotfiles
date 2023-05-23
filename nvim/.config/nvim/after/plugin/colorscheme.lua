@@ -11,41 +11,41 @@
 --vim.opt.background = "dark" -- or "light" for light mode
 
 -- === Kanagawa Colorscheme ===
--- require('kanagawa').setup({
---     undercurl = true,           -- enable undercurls
---     commentStyle = { italic = true },
---     functionStyle = {},
---     keywordStyle = { italic = true },
---     statementStyle = { bold = true },
---     typeStyle = {},
---     variablebuiltinStyle = { italic = true },
---     specialReturn = true,       -- special highlight for the return keyword
---     specialException = true,    -- special highlight for exception handling keywords
---     transparent = false,        -- do not set background color
---     dimInactive = true,        -- dim inactive window `:h hl-NormalNC`
---     colors = {},
---     overrides = {},
--- })
+--require('kanagawa').setup({
+--    undercurl = true,           -- enable undercurls
+--    commentStyle = { italic = true },
+--    functionStyle = {},
+--    keywordStyle = { italic = true },
+--    statementStyle = { bold = true },
+--    typeStyle = {},
+--    variablebuiltinStyle = { italic = true },
+--    specialReturn = true,       -- special highlight for the return keyword
+--    specialException = true,    -- special highlight for exception handling keywords
+--    transparent = false,        -- do not set background color
+--    dimInactive = true,        -- dim inactive window `:h hl-NormalNC`
+--    colors = {},
+--    overrides = {},
+--})
 
 
 -- === Gruuuuuuuuv Colorscheme ===
---vim.o.background = "dark"
---vim.cmd([[colorscheme gruvbox]])
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
 
 -- === Catppuccin Colorscheme ===
--- require("catppuccin").setup()
--- catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
--- vim.cmd([[colorscheme catppuccin-mocha]])
+--catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+--require("catppuccin").setup()
+--vim.cmd([[colorscheme catppuccin-mocha]])
 
 -- === nordic Colorscheme ===
-require('nordic').setup({
-    theme = "nordic",
-    transparent_bg = true,
-})
-vim.cmd [[colorscheme nordic]]
---
-vim.cmd [[hi LineNr guifg=#D08770]]
-vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
+--require('nordic').setup({
+--    theme = "nordic",
+--    transparent_bg = true,
+--})
+--vim.cmd [[colorscheme nordic]]
+----
+--vim.cmd [[hi LineNr guifg=#D08770]]
+--vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
 
 -- === Gruvbox Material Colorscheme ===
 --vim.cmd [[
