@@ -29,7 +29,7 @@
 
 
 -- === Gruuuuuuuuv Colorscheme ===
-vim.o.background = "dark"
+--vim.o.background = "dark"
 --vim.cmd([[colorscheme gruvbox]])
 
 -- === Catppuccin Colorscheme ===
@@ -38,19 +38,23 @@ vim.o.background = "dark"
 -- vim.cmd([[colorscheme catppuccin-mocha]])
 
 -- === nordic Colorscheme ===
---vim.cmd [[colorscheme nordic]]
-
---vim.cmd [[hi LineNr guifg=#D08770]]
---vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
-
--- === Gruvbox Material Colorscheme ===
-vim.cmd [[
-    colorscheme gruvbox-material
-    let g:gruvbox_material_background = 'soft'
-]]
-
+require('nordic').setup({
+    theme = "nordic",
+    transparent_bg = true,
+})
+vim.cmd [[colorscheme nordic]]
+--
 vim.cmd [[hi LineNr guifg=#D08770]]
 vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
+
+-- === Gruvbox Material Colorscheme ===
+--vim.cmd [[
+--    colorscheme gruvbox-material
+--    let g:gruvbox_material_background = 'soft'
+--]]
+--
+--vim.cmd [[hi LineNr guifg=#D08770]]
+--vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
 
 -- === Everforest Colorscheme ===
 --vim.cmd [[

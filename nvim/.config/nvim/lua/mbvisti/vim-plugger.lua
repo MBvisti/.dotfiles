@@ -17,10 +17,11 @@ Plug 'sainnhe/everforest'
 -- Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
 -- Plug 'morhetz/gruvbox'
 
+-- glaaaaance
+Plug 'dnlhc/glance.nvim'
+
 Plug 'ja-ford/delaytrain.nvim'
 -- -- Plug 'ThePrimeagen/vim-be-good'
-
-Plug ("Cassin01/wf.nvim", { ['tag'] =  "*" })
 
 -- git
 Plug 'tpope/vim-fugitive'

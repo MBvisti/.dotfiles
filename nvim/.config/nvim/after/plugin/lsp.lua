@@ -2,6 +2,7 @@ local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
 
+
 lsp.ensure_installed({
     'eslint',
     'rust_analyzer',
@@ -35,38 +36,102 @@ lsp.setup_nvim_cmp({
     }
 })
 
-lsp.on_attach(function(_, _)
+lsp.on_attach(function(_, bufnr)
     local opts = { noremap = true, silent = true }
 
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-    vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, opts)
-    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = bufnr })
+    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, { buffer = bufnr })
+    vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_prev() end, { buffer = bufnr })
+    vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_next() end, { buffer = bufnr })
+    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, { buffer = bufnr })
+    vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, { buffer = bufnr })
+    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, { buffer = bufnr })
 
-    vim.keymap.set('n', '<leader>gi', function() require('telescope.builtin').lsp_implementations() end, opts)
-    vim.keymap.set('n', '<leader>gr', function() require('telescope.builtin').lsp_references() end, opts)
+    vim.keymap.set('n', '<leader>gd', '<CMD>Glance definitions<CR>', { buffer = bufnr })
+    vim.keymap.set('n', '<leader>gr', '<CMD>Glance references<CR>', { buffer = bufnr })
+    vim.keymap.set('n', '<leader>gt', '<CMD>Glance type_definitions<CR>', { buffer = bufnr })
+    vim.keymap.set('n', '<leader>gi', '<CMD>Glance implementations<CR>', { buffer = bufnr })
+
+    vim.keymap.set('n', '<leader>ti', function() require('telescope.builtin').lsp_implementations() end, { buffer = bufnr })
+    vim.keymap.set('n', '<leader>tr', function() require('telescope.builtin').lsp_references() end, { buffer = bufnr })
 
     --vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
     -- vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     -- vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 end)
 
+--vim.diagnostic.config({
+--    virtual_text = true,
+--    signs = true,
+--    underline = true,
+--    update_in_insert = false,
+--    severity_sort = false,
+--})
+
 vim.diagnostic.config({
     virtual_text = true,
     signs = true,
+    update_in_insert = true,
     underline = true,
-    update_in_insert = false,
     severity_sort = false,
+    float = {
+        border = 'rounded',
+        source = 'always',
+        header = '',
+        prefix = '',
+    },
 })
+
+
+
+lsp.skip_server_setup({ 'rust_analyzer' })
 
 lsp.setup()
 
+require('lspconfig').yamlls.setup({
+    settings = {
+        yaml = { keyOrdering = false },
+    },
+})
+
+require('lspconfig').html.setup({
+    filetypes = { "html", "htmldjango" },
+})
+
+local rust_tools = require('rust-tools')
+
+--local opts = { noremap = true, silent = true }
+--
+rust_tools.setup({
+    server = {
+        on_attach = function(_, bufnr)
+            --vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = bufnr })
+            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, { buffer = bufnr })
+            vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { buffer = bufnr })
+            vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, { buffer = bufnr })
+            vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, { buffer = bufnr })
+            vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_prev() end, { buffer = bufnr })
+            vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_next() end, { buffer = bufnr })
+            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, { buffer = bufnr })
+            vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, { buffer = bufnr })
+            vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, { buffer = bufnr })
+
+            vim.keymap.set('n', '<leader>gd', '<CMD>Glance definitions<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<leader>gr', '<CMD>Glance references<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<leader>gt', '<CMD>Glance type_definitions<CR>', { buffer = bufnr })
+            vim.keymap.set('n', '<leader>gi', '<CMD>Glance implementations<CR>', { buffer = bufnr })
+
+            vim.keymap.set('n', '<leader>ti', function() require('telescope.builtin').lsp_implementations() end, { buffer = bufnr })
+            vim.keymap.set('n', '<leader>tr', function() require('telescope.builtin').lsp_references() end, { buffer = bufnr })
+        end
+    }
+})
+
+rust_tools.inlay_hints.enable()
 -- OLD --
 --local lspconfig = require 'lspconfig'
 --local vim_api = vim.api
