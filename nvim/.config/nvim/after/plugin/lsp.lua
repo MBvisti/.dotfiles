@@ -2,9 +2,7 @@ local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
 
-
 lsp.ensure_installed({
-    'eslint',
     'rust_analyzer',
     'jsonls',
     'html',
@@ -76,7 +74,7 @@ vim.diagnostic.config({
     signs = true,
     update_in_insert = true,
     underline = true,
-    severity_sort = false,
+    severity_sort = true,
     float = {
         border = 'rounded',
         source = 'always',
@@ -84,8 +82,6 @@ vim.diagnostic.config({
         prefix = '',
     },
 })
-
-
 
 lsp.skip_server_setup({ 'rust_analyzer' })
 

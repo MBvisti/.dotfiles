@@ -117,8 +117,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="/usr/local/neovim/0_9_0/bin/nvim"
-alias nvim="/usr/local/neovim/0_9_0/bin/nvim"
+alias vi="/usr/local/neovim/0_9_1/bin/nvim"
+alias nvim="/usr/local/neovim/0_9_1/bin/nvim"
 
 # Obsidian
 alias obsidian="/usr/local/bin/obsidian.AppImage"

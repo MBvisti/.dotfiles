@@ -20,7 +20,7 @@ Plug 'sainnhe/everforest'
 -- glaaaaance
 Plug 'dnlhc/glance.nvim'
 
-Plug 'ja-ford/delaytrain.nvim'
+--Plug 'ja-ford/delaytrain.nvim'
 -- -- Plug 'ThePrimeagen/vim-be-good'
 
 
@@ -67,6 +67,7 @@ Plug 'VonHeikemen/lsp-zero.nvim'
 
 -- treesitter
 Plug ('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate'})
+--Plug ('nvim-treesitter/nvim-treesitter', { ['commit'] = '23dfae4db84f71e2ddb56c024845b322035182ee'})
 Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 

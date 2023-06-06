@@ -41,6 +41,8 @@ vim.opt.cursorline = true
 
 vim.opt.redrawtime = 10000
 
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+
 -- highlight on yank
 vim.cmd [[
   augroup YankHighlight
