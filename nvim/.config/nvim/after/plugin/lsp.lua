@@ -94,7 +94,18 @@ require('lspconfig').yamlls.setup({
 })
 
 require('lspconfig').html.setup({
-    filetypes = { "html", "htmldjango" },
+    filetypes = { "html", "htmldjango", "php"},
+})
+
+require('lspconfig').marksman.setup({
+    filetypes = { "md", "markdown", "vimwiki"},
+})
+
+require('lspconfig').tailwindcss.setup ({
+    filetypes = { "htmldjango", "gohtml", "html", "php" },
+    flags = {
+        debounce_text_changes = 100,
+    },
 })
 
 local rust_tools = require('rust-tools')

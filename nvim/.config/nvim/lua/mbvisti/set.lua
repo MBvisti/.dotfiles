@@ -100,7 +100,6 @@ vim.cmd [[
     filetype plugin on
     syntax on
     set runtimepath+='~/vimwiki'
-    let g:vimwiki_global_ext = 0
     let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 ]]
 --au FileType vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab

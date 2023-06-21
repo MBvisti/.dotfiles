@@ -97,12 +97,9 @@ Plug 'folke/trouble.nvim'
 -- vimwiki
 Plug 'vimwiki/vimwiki'
 
--- obsidian
-Plug ('epwalsh/obsidian.nvim', { ['tag'] = 'v1.*' })
-
 -- misc
 -- Plug 'tpope/vim-surround'
--- Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 -- Plug 'kosayoda/nvim-lightbulb'
 -- Plug 'gennaro-tedesco/nvim-jqx'
 
