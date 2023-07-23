@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pq", vim.cmd.Ex)
 
 vim.keymap.set("n", "<leader>oi", "<cmd>:e /home/mbv/obsidian/mbv/index.md<CR>")

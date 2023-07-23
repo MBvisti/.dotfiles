@@ -1,21 +1,4 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
-end
-
-vim.opt.rtp:prepend(lazypath)
-
-vim.g.mapleader = " "
-
-require("lazy").setup({
+return {
     "ellisonleao/gruvbox.nvim",
     { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
     { "AlexvZyl/nordic.nvim", branch = 'main' },
@@ -55,10 +38,7 @@ require("lazy").setup({
 
     "VonHeikemen/lsp-zero.nvim",
 
-    {
-        "nvim-treesitter/nvim-treesitter",
-        cmd = "TSUpdate",
-    },
+    { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
     "nvim-treesitter/nvim-treesitter-context",
     "nvim-treesitter/nvim-treesitter-textobjects",
 
@@ -78,6 +58,4 @@ require("lazy").setup({
     "tpope/vim-commentary",
 
     "stevearc/dressing.nvim"
-})
-
-require("mbvisti")
+}
