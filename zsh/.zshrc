@@ -180,3 +180,6 @@ eval "$(pyenv init -)"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+# Created by `pipx` on 2023-06-27 09:06:38
+export PATH="$PATH:/home/mbv/.local/bin"
