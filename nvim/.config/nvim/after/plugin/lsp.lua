@@ -12,7 +12,7 @@ lsp.ensure_installed({
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
+Cmp_Mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
@@ -25,7 +25,7 @@ lsp.set_preferences({
 })
 
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings,
+    mapping = Cmp_Mappings,
     sources = {
         { name = 'path' },
         { name = 'nvim_lsp', keyword_length = 1 },
@@ -36,7 +36,7 @@ lsp.setup_nvim_cmp({
 
 local opts = { noremap = true, silent = true }
 
-lsp.on_attach(function(_, _)
+OnAttachGlobal = function(_, _)
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
@@ -59,7 +59,9 @@ lsp.on_attach(function(_, _)
     --vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
     -- vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     -- vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-end)
+end
+
+lsp.on_attach(OnAttachGlobal)
 
 --vim.diagnostic.config({
 --    virtual_text = true,
@@ -94,14 +96,19 @@ require('lspconfig').yamlls.setup({
 })
 
 require('lspconfig').html.setup({
-    filetypes = { "html", "htmldjango", "php"},
+    filetypes = { "html", "htmldjango", "php" },
 })
 
 require('lspconfig').marksman.setup({
-    filetypes = { "md", "markdown", "vimwiki"},
+    filetypes = { "md", "markdown", "vimwiki" },
 })
 
-require('lspconfig').tailwindcss.setup ({
+require('lspconfig').sqlls.setup({
+    cmd = { "sql-language-server", "up", "--method", "stdio" },
+    filetypes = { "sql", "psql" },
+})
+
+require('lspconfig').tailwindcss.setup({
     filetypes = { "htmldjango", "gohtml", "html", "php" },
     flags = {
         debounce_text_changes = 100,

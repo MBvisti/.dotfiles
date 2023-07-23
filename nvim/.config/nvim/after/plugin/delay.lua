@@ -6,3 +6,5 @@
 --        ['nvi'] = {'<Left>', '<Down>', '<Up>', '<Right>'},
 --    },
 --}
+
+require("hardtime").setup()

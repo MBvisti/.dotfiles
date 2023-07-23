@@ -16,7 +16,7 @@ require('copilot').setup({
     },
     suggestion = {
         enabled = true,
-        auto_trigger = true,
+        auto_trigger = false,
         debounce = 75,
         keymap = {
             accept = "<M-a>", -- means <Alt+a>
@@ -36,6 +36,7 @@ require('copilot').setup({
         hgcommit = false,
         svn = false,
         cvs = false,
+        vimwiki = false,
             ["."] = false,
     },
     copilot_node_command = 'node', -- Node.js version must be > 16.x

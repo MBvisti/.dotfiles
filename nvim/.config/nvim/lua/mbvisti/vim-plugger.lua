@@ -22,6 +22,10 @@ Plug 'dnlhc/glance.nvim'
 
 --Plug 'ja-ford/delaytrain.nvim'
 -- -- Plug 'ThePrimeagen/vim-be-good'
+Plug "m4xshen/hardtime.nvim"
+
+-- phpactor
+Plug 'gbprod/phpactor.nvim'
 
 
 -- git
