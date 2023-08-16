@@ -13,7 +13,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
+require("mbvisti")
 
 require("lazy").setup({
     "ellisonleao/gruvbox.nvim",
@@ -21,6 +21,7 @@ require("lazy").setup({
     { "AlexvZyl/nordic.nvim", branch = 'main' },
     "sainnhe/gruvbox-material",
     "sainnhe/everforest",
+    "rebelot/kanagawa.nvim",
 
     "dnlhc/glance.nvim",
 
@@ -77,7 +78,8 @@ require("lazy").setup({
 
     "tpope/vim-commentary",
 
-    "stevearc/dressing.nvim"
+    "stevearc/dressing.nvim",
+
+    "mhartington/formatter.nvim"
 })
 
-require("mbvisti")
