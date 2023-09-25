@@ -38,11 +38,22 @@ require("lazy").setup({
 
     "mbbill/undotree",
 
-    "ray-x/go.nvim",
+    {
+        "ray-x/go.nvim",
+        dependencies = { -- optional packages
+            "ray-x/guihua.lua",
+        },
+        config = function()
+            require("go").setup()
+        end,
+        event = { "CmdlineEnter" },
+        ft = { "go", 'gomod' },
+        build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+    },
 
-    "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
 
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-buffer",
@@ -80,6 +91,7 @@ require("lazy").setup({
 
     "stevearc/dressing.nvim",
 
-    "mhartington/formatter.nvim"
-})
+    "mhartington/formatter.nvim",
 
+    "NoahTheDuke/vim-just"
+})

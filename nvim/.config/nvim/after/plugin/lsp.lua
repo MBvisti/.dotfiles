@@ -4,13 +4,47 @@ lsp.preset('recommended')
 
 lsp.ensure_installed({
     'rust_analyzer',
+    'gopls',
+    'tailwindcss',
     'jsonls',
     'html',
-    'tailwindcss',
-    'dockerls',
+    'marksman'
 })
 
+-- Specify how the border looks like
+local border = {
+    { '┌', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '┐', 'FloatBorder' },
+    { '│', 'FloatBorder' },
+    { '┘', 'FloatBorder' },
+    { '─', 'FloatBorder' },
+    { '└', 'FloatBorder' },
+    { '│', 'FloatBorder' },
+}
+
+-- Add the border on hover and on signature help popup window
+local handlers = {
+    ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+    ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+}
+
+-- Add border to the diagnostic popup window
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
+    },
+    float = { border = border },
+})
+
+-- Add the border (handlers) to the lua language server
 local cmp = require('cmp')
+cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+})
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 Cmp_Mappings = lsp.defaults.cmp_mappings({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
@@ -64,26 +98,22 @@ end
 
 lsp.on_attach(OnAttachGlobal)
 
---vim.diagnostic.config({
---    virtual_text = true,
---    signs = true,
---    underline = true,
---    update_in_insert = false,
---    severity_sort = false,
---})
-
 vim.diagnostic.config({
-    virtual_text = true,
+    -- virtual_text = true,
     signs = true,
     update_in_insert = true,
     underline = true,
     severity_sort = true,
-    float = {
-        border = 'rounded',
-        source = 'always',
-        header = '',
-        prefix = '',
+    virtual_text = {
+        prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
     },
+    float = { border = border },
+    -- float = {
+    --     border = 'rounded',
+    --     source = 'always',
+    --     header = '',
+    --     prefix = '',
+    -- },
 })
 
 lsp.skip_server_setup({ 'rust_analyzer' })
