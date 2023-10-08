@@ -27,14 +27,33 @@ require("lazy").setup({
 
     "m4xshen/hardtime.nvim",
 
-    "gbprod/phpactor.nvim",
+    { 'onsails/lspkind.nvim' },
+
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({})
+        end,
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    },
 
     "tpope/vim-fugitive",
     "airblade/vim-gitgutter",
     "sindrets/diffview.nvim",
 
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.3',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
 
     "mbbill/undotree",
 
@@ -45,27 +64,19 @@ require("lazy").setup({
         },
         config = function()
             require("go").setup()
+            require("go.format").goimport()
         end,
         event = { "CmdlineEnter" },
         ft = { "go", 'gomod' },
         build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
 
+    "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "neovim/nvim-lspconfig",
-
     "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lua",
-
     "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
-
-    "VonHeikemen/lsp-zero.nvim",
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -78,7 +89,7 @@ require("lazy").setup({
 
     "simrat39/rust-tools.nvim",
 
-    "lukas-reineke/indent-blankline.nvim",
+    { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
     "nvim-lualine/lualine.nvim",
 
@@ -89,8 +100,10 @@ require("lazy").setup({
 
     "tpope/vim-commentary",
 
-    "stevearc/dressing.nvim",
-
+    {
+        'stevearc/dressing.nvim',
+        opts = {},
+    },
     "mhartington/formatter.nvim",
 
     "NoahTheDuke/vim-just"

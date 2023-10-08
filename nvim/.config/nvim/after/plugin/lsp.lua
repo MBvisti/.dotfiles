@@ -1,102 +1,172 @@
-local lsp = require('lsp-zero')
+local lspconfig = require('lspconfig')
+local lsp_defaults = lspconfig.util.default_config
 
-lsp.preset('recommended')
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lsp_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+)
 
-lsp.ensure_installed({
-    'rust_analyzer',
-    'gopls',
-    'tailwindcss',
-    'jsonls',
-    'html',
-    'marksman'
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
+
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
+        vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_prev() end, opts)
+        vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_next() end, opts)
+        vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+        vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, opts)
+        vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
+
+        vim.keymap.set('n', '<leader>gd', '<CMD>Glance definitions<CR>', opts)
+        vim.keymap.set('n', '<leader>gr', '<CMD>Glance references<CR>', opts)
+        vim.keymap.set('n', '<leader>gt', '<CMD>Glance type_definitions<CR>', opts)
+        vim.keymap.set('n', '<leader>gi', '<CMD>Glance implementations<CR>', opts)
+
+        vim.keymap.set('n', '<leader>ti', function() require('telescope.builtin').lsp_implementations() end, opts)
+        vim.keymap.set('n', '<leader>ttd', function() require('telescope.builtin').lsp_type_definitions() end, opts)
+        vim.keymap.set('n', '<leader>td', function() require('telescope.builtin').lsp_definitions() end, opts)
+        vim.keymap.set('n', '<leader>tr', function() require('telescope.builtin').lsp_references() end, opts)
+
+        --vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
+        -- vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+        -- vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+
+
+        -- lsp-zero defaults
+        -- vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        -- vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        -- vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        -- vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        -- vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        -- vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        -- vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+        -- vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        -- vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        -- vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+
+        -- vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+        -- vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
+        -- vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
+    end
 })
 
 -- Specify how the border looks like
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = none })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "white", bg = none })
+
 local border = {
-    { '┌', 'FloatBorder' },
-    { '─', 'FloatBorder' },
-    { '┐', 'FloatBorder' },
-    { '│', 'FloatBorder' },
-    { '┘', 'FloatBorder' },
-    { '─', 'FloatBorder' },
-    { '└', 'FloatBorder' },
-    { '│', 'FloatBorder' },
+    { "🭽", "FloatBorder" },
+    { "▔", "FloatBorder" },
+    { "🭾", "FloatBorder" },
+    { "▕", "FloatBorder" },
+    { "🭿", "FloatBorder" },
+    { "▁", "FloatBorder" },
+    { "🭼", "FloatBorder" },
+    { "▏", "FloatBorder" },
 }
 
 -- Add the border on hover and on signature help popup window
-local handlers = {
-    ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
-    ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
-}
+-- local handlers = {
+--     ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+--     ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+-- }
 
--- Add border to the diagnostic popup window
-vim.diagnostic.config({
-    virtual_text = {
-        prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
+-- To instead override globally
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+    opts = opts or {}
+    opts.border = opts.border or border
+    return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
+local default_setup = function(server)
+    lspconfig[server].setup({})
+end
+
+require('mason').setup({
+    ui = {
+        border = "rounded",
+    }
+})
+require('mason-lspconfig').setup({
+    ensure_installed = {},
+    handlers = {
+        default_setup,
+        yamlls = function()
+            require('lspconfig').yamlls.setup({
+                settings = {
+                    yaml = { keyOrdering = false },
+                },
+            })
+        end,
+        html = function()
+            require('lspconfig').html.setup({
+                filetypes = { "html", "htmldjango", "php" },
+            })
+        end,
+        marksman = function()
+            require('lspconfig').marksman.setup({
+                filetypes = { "md", "markdown", "vimwiki" },
+            })
+        end,
+        tailwindcss = function()
+            require('lspconfig').tailwindcss.setup({
+                filetypes = { "htmldjango", "gohtml", "html", "php" },
+                flags = {
+                    debounce_text_changes = 100,
+                },
+            })
+        end,
     },
-    float = { border = border },
 })
 
--- Add the border (handlers) to the lua language server
+-- lspkind.lua
+local lspkind = require("lspkind")
+-- lspkind.init()
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
 local cmp = require('cmp')
 cmp.setup({
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = "symbol_text",
+            max_width = 50,
+            symbol_map = { Copilot = "" },
+            ellipsis_char = '...',
+        })
+    },
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-})
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-Cmp_Mappings = lsp.defaults.cmp_mappings({
-    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<Enter>'] = cmp.mapping.confirm({ select = true }),
-})
+    mapping = cmp.mapping.preset.insert({
+        -- Enter key confirms completion item
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = false
+        }),
 
-lsp.set_preferences({
-    configure_diagnostics = false,
-    sign_icons = {}
-})
-
-lsp.setup_nvim_cmp({
-    mapping = Cmp_Mappings,
+        -- Ctrl + space triggers completion menu
+        ['<C-Space>'] = cmp.mapping.complete(),
+    }),
     sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp', keyword_length = 1 },
-        { name = 'luasnip',  keyword_length = 2 },
-        { name = 'buffer',   keyword_length = 3 },
-    }
+        { name = 'nvim_lsp', group_index = 2 },
+        { name = 'copilot',  group_index = 2 },
+        -- { name = 'luasnip',  keyword_length = 3 },
+    },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
 })
-
-local opts = { noremap = true, silent = true }
-
-OnAttachGlobal = function(_, _)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-    vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, opts)
-    vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
-
-    vim.keymap.set('n', '<leader>gd', '<CMD>Glance definitions<CR>', opts)
-    vim.keymap.set('n', '<leader>gr', '<CMD>Glance references<CR>', opts)
-    vim.keymap.set('n', '<leader>gt', '<CMD>Glance type_definitions<CR>', opts)
-    vim.keymap.set('n', '<leader>gi', '<CMD>Glance implementations<CR>', opts)
-
-    vim.keymap.set('n', '<leader>ti', function() require('telescope.builtin').lsp_implementations() end, opts)
-    vim.keymap.set('n', '<leader>tr', function() require('telescope.builtin').lsp_references() end, opts)
-
-    --vim.api.nvim_set_keymap('n', '<leader>sr', [[<cmd>lua require('telescope.builtin').lsp_references()<CR>]], { noremap = true, silent = true })
-    -- vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    -- vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-end
-
-lsp.on_attach(OnAttachGlobal)
 
 vim.diagnostic.config({
     -- virtual_text = true,
@@ -108,374 +178,52 @@ vim.diagnostic.config({
         prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
     },
     float = { border = border },
-    -- float = {
-    --     border = 'rounded',
-    --     source = 'always',
-    --     header = '',
-    --     prefix = '',
-    -- },
 })
 
-lsp.skip_server_setup({ 'rust_analyzer' })
-
-lsp.setup()
-
-require('lspconfig').yamlls.setup({
-    settings = {
-        yaml = { keyOrdering = false },
-    },
-})
-
-require('lspconfig').html.setup({
-    filetypes = { "html", "htmldjango", "php" },
-})
-
-require('lspconfig').marksman.setup({
-    filetypes = { "md", "markdown", "vimwiki" },
-})
-
-require('lspconfig').sqlls.setup({
-    cmd = { "sql-language-server", "up", "--method", "stdio" },
-    filetypes = { "sql", "psql" },
-})
-
-require('lspconfig').tailwindcss.setup({
-    filetypes = { "htmldjango", "gohtml", "html", "php" },
-    flags = {
-        debounce_text_changes = 100,
-    },
-})
-
-local rust_tools = require('rust-tools')
-
---local opts = { noremap = true, silent = true }
---
-rust_tools.setup({
-    server = {
-        on_attach = function(_, _)
-            --vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
-            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-            vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
-            vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
-            vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
-            vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_prev() end, opts)
-            vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_next() end, opts)
-            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-            vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, opts)
-            vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
-
-            vim.keymap.set('n', '<leader>gd', '<CMD>Glance definitions<CR>', opts)
-            vim.keymap.set('n', '<leader>gr', '<CMD>Glance references<CR>', opts)
-            vim.keymap.set('n', '<leader>gt', '<CMD>Glance type_definitions<CR>', opts)
-            vim.keymap.set('n', '<leader>gi', '<CMD>Glance implementations<CR>', opts)
-
-            vim.keymap.set('n', '<leader>ti', function() require('telescope.builtin').lsp_implementations() end, opts)
-            vim.keymap.set('n', '<leader>tr', function() require('telescope.builtin').lsp_references() end, opts)
-        end
-    }
-})
-
-rust_tools.inlay_hints.enable()
--- OLD --
---local lspconfig = require 'lspconfig'
---local vim_api = vim.api
---
---require("mason").setup()
---require("mason-lspconfig").setup({
---    ensure_installed = { "sumneko_lua", "tailwindcss", "emmet_ls", "sqlls", "taplo", "jsonls", "marksman" }
+--local cmp_select = { behavior = cmp.SelectBehavior.Select }
+--Cmp_Mappings = lsp.defaults.cmp_mappings({
+--    ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+--    ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+--    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+--    ['<C-Space>'] = cmp.mapping.complete(),
+--    ['<Enter>'] = cmp.mapping.confirm({ select = true }),
 --})
---
----- Use an on_attach function to only map the following keys
----- after the language server attaches to the current buffer
---local on_attach = function(_, bufnr)
---    local opts = { noremap = true, silent = true }
---
---    -- See `:help vim.lsp.*` for documentation on any of the below functions
---    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'di', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', 'sd', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
---    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl',
---        '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
---    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
---    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<C-n>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<C-p>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
---    vim_api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
---
---    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ra', '<cmd>:RustHoverActions<CR>', opts)
---end
---
----- Add additional capabilities supported by nvim-cmp
---local capabilities = vim.lsp.protocol.make_client_capabilities()
---capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
---
----- luasnip setup
---local luasnip = require 'luasnip' -- luasnip setup
---
----- nvim-cmp setup
---local cmp = require 'cmp'
---cmp.setup {
---    snippet = {
---        expand = function(args)
---            luasnip.lsp_expand(args.body)
---        end,
---    },
---    mapping = {
---        ['<C-p>'] = cmp.mapping.select_prev_item(),
---        ['<C-n>'] = cmp.mapping.select_next_item(),
---        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
---        ['<C-f>'] = cmp.mapping.scroll_docs(4),
---        ['<C-Space>'] = cmp.mapping.complete(),
---        ['<C-e>'] = cmp.mapping.close(),
---        ['<CR>'] = cmp.mapping.confirm {
---            behavior = cmp.ConfirmBehavior.Replace,
---            select = true,
---        },
---        ['<Tab>'] = function(fallback)
---            if cmp.visible() then
---                cmp.select_next_item()
---            elseif luasnip.expand_or_jumpable() then
---                luasnip.expand_or_jump()
---            else
---                fallback()
---            end
---        end,
---        ['<S-Tab>'] = function(fallback)
---            if cmp.visible() then
---                cmp.select_prev_item()
---            elseif luasnip.jumpable(-1) then
---                luasnip.jump(-1)
---            else
---                fallback()
---            end
---        end,
---    },
---    sources = {
---        { name = 'path' },
---        { name = 'nvim_lsp', keyword_length = 3 },
---        { name = 'buffer', keyword_length = 3 },
---        { name = 'luasnip', keyword_length = 2 },
---    },
---    window = {
---        documentation = cmp.config.window.bordered()
---    },
---    formatting = {
---        fields = { 'menu', 'abbr', 'kind' },
---        format = function(entry, item)
---            local menu_icon = {
---                nvim_lsp = 'λ',
---                luasnip = '⋗',
---                buffer = 'Ω',
---                path = '🖫',
---            }
---
---            item.menu = menu_icon[entry.source.name]
---            return item
---        end,
---    },
---}
---
----- Getting my borders on
---vim.cmd [[autocmd! ColorScheme * highlight NormalFloat guibg=#1f2335]]
---vim.cmd [[autocmd! ColorScheme * highlight FloatBorder guifg=white guibg=#1f2335]]
---
---local border = {
---    { "🭽", "FloatBorder" },
---    { "▔", "FloatBorder" },
---    { "🭾", "FloatBorder" },
---    { "▕", "FloatBorder" },
---    { "🭿", "FloatBorder" },
---    { "▁", "FloatBorder" },
---    { "🭼", "FloatBorder" },
---    { "▏", "FloatBorder" },
---}
---
----- LSP settings (for overriding per client)
---local handlers = {
---    ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
---    ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
---}
---
---lspconfig.sumneko_lua.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    handlers = handlers
---}
---
---lspconfig.gopls.setup {
---    cmd = { "gopls", "serve" },
---    capabilities = capabilities,
---    on_attach = on_attach,
---    filetypes = { "go", "gomod", "gotmpl" },
---    flags = {
---        debounce_text_changes = 100,
---    },
---    settings = {
---        gopls = {
---            staticcheck = true,
---        },
---    },
---    handlers = handlers
---}
---
 
---lspconfig.tailwindcss.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    filetypes = { "htmldjango", "gohtml", "html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
---    flags = {
---        debounce_text_changes = 100,
---    },
---    handlers = handlers
---}
---
---lspconfig.taplo.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    flags = {
---        debounce_text_changes = 100,
---    },
---    handlers = handlers
---}
---
---lspconfig.jsonls.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    flags = {
---        debounce_text_changes = 100,
---    },
---    handlers = handlers
---}
---
---lspconfig.marksman.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    flags = {
---        debounce_text_changes = 100,
---    },
---    handlers = handlers
---}
---
----- lspconfig.dockerls.setup{
-----     on_attach = on_attach,
-----     capabilities = capabilities,
-----     flags = {
-----       debounce_text_changes = 150,
-----     }
----- }
---
----- lspconfig.tsserver.setup{
-----     on_attach = on_attach,
-----     capabilities = capabilities,
-----     auto_inlay_hints = true,
-----     inlay_hints_highlight = 'Comment',
-----     flags = {
-----       debounce_text_changes = 150,
-----     }
----- }
---
----- lspconfig.eslint.setup{
-----     on_attach = on_attach,
-----     capabilities = capabilities,
-----     flags = {
-----       debounce_text_changes = 150,
-----     }
----- }
---
----- lspconfig.pyright.setup{
-----     on_attach = on_attach,
-----     capabilities = capabilities,
-----     flags = {
-----       debounce_text_changes = 150,
-----     }
----- }
---
---lspconfig.emmet_ls.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    filetypes = { "htmldjango", "gohtml", "html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
---    flags = {
---        debounce_text_changes = 100,
---    },
---    handlers = handlers
---}
---
----- lspconfig.html.setup{
-----     on_attach = on_attach,
-----     capabilities = capabilities,
-----     filetypes = { "htmldjango", "gohtml","html", "markdown", "css", "javascriptreact", "typescript", "typescriptreact" },
-----     flags = {
-----       debounce_text_changes = 150,
-----     }
----- }
---
----- lspconfig.graphql.setup{
-----     on_attach = on_attach,
-----     capabilities = capabilities,
-----     flags = {
-----       debounce_text_changes = 150,
-----     }
----- }
---
----- -- lspconfig.solargraph.setup{
----- --     on_attach = on_attach,
----- --     capabilities = capabilities,
----- --     flags = {
----- --       debounce_text_changes = 150,
----- --     }
----- -- }
---
---lspconfig.sqlls.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    filetypes = { "sql" },
---    flags = {
---        debounce_text_changes = 100,
---    },
---    handlers = handlers
---}
---
----- rust config
---require('rust-tools').setup({
---    tools = { -- rust-tools options
---        autoSetHints = true,
---        inlay_hints = {
---            show_parameter_hints = false,
---            parameter_hints_prefix = "",
---            other_hints_prefix = "",
---        },
---    },
---
---    -- all the opts to send to nvim-lspconfig
---    -- these override the defaults set by rust-tools.nvim
---    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
---    --server = {
---    --    -- on_attach is a callback called when the language server attachs to the buffer
---    --    capabilities = capabilities,
---    --    on_attach = on_attach,
---    --    handlers = handlers,
---    --    flags = {
---    --        debounce_text_changes = 150,
---    --    },
---    --    settings = {
---    --        -- to enable rust-analyzer settings visit:
---    --        -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
---    --        ["rust-analyzer"] = {
---    --            -- enable clippy on save
---    --            checkOnSave = {
---    --                command = "clippy"
---    --            },
---    --        }
---    --    }
---    --},
+--local rust_tools = require('rust-tools')
+
+----local opts = { noremap = true, silent = true }
+----
+--rust_tools.setup({
+--    server = {
+--        on_attach = function(_, _)
+--            --vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+--            vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+--            vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+--            vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+--            vim.keymap.set("n", "<leader>d", function() vim.diagnostic.open_float() end, opts)
+--            vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+--            vim.keymap.set("n", "<C-p>", function() vim.diagnostic.goto_prev() end, opts)
+--            vim.keymap.set("n", "<C-n>", function() vim.diagnostic.goto_next() end, opts)
+--            vim.keymap.set("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+--            vim.keymap.set("n", "<space>f", function() vim.lsp.buf.format() end, opts)
+--            vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end, opts)
+
+--            vim.keymap.set('n', '<leader>gd', '<CMD>Glance definitions<CR>', opts)
+--            vim.keymap.set('n', '<leader>gr', '<CMD>Glance references<CR>', opts)
+--            vim.keymap.set('n', '<leader>gt', '<CMD>Glance type_definitions<CR>', opts)
+--            vim.keymap.set('n', '<leader>gi', '<CMD>Glance implementations<CR>', opts)
+
+--            vim.keymap.set('n', '<leader>ti', function() require('telescope.builtin').lsp_implementations() end, opts)
+--            vim.keymap.set('n', '<leader>tr', function() require('telescope.builtin').lsp_references() end, opts)
+--        end
+--    }
 --})
+
+--rust_tools.inlay_hints.enable()
+--            vim.keymap.set('n', '<leader>ti', function() require('telescope.builtin').lsp_implementations() end, opts)
+--            vim.keymap.set('n', '<leader>tr', function() require('telescope.builtin').lsp_references() end, opts)
+--        end
+--    }
+--})
+
+--rust_tools.inlay_hints.enable()

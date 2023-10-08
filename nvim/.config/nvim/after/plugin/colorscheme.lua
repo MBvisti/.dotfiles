@@ -11,13 +11,13 @@
 --vim.opt.background = "dark" -- or "light" for light mode
 
 -- === Kanagawa Colorscheme ===
-require('kanagawa').setup()
+-- require('kanagawa').setup()
 
-vim.cmd [[colorscheme kanagawa-wave]]
+-- vim.cmd [[colorscheme kanagawa-wave]]
 
 -- === Gruuuuuuuuv Colorscheme ===
--- vim.o.background = "dark"
--- vim.cmd([[colorscheme gruvbox]])
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
 
 -- === Catppuccin Colorscheme ===
 --catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
