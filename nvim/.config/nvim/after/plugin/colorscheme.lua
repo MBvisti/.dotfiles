@@ -11,26 +11,13 @@
 --vim.opt.background = "dark" -- or "light" for light mode
 
 -- === Kanagawa Colorscheme ===
---require('kanagawa').setup({
---    undercurl = true,           -- enable undercurls
---    commentStyle = { italic = true },
---    functionStyle = {},
---    keywordStyle = { italic = true },
---    statementStyle = { bold = true },
---    typeStyle = {},
---    variablebuiltinStyle = { italic = true },
---    specialReturn = true,       -- special highlight for the return keyword
---    specialException = true,    -- special highlight for exception handling keywords
---    transparent = false,        -- do not set background color
---    dimInactive = true,        -- dim inactive window `:h hl-NormalNC`
---    colors = {},
---    overrides = {},
---})
+require('kanagawa').setup()
 
+vim.cmd [[colorscheme kanagawa-wave]]
 
 -- === Gruuuuuuuuv Colorscheme ===
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
+-- vim.o.background = "dark"
+-- vim.cmd([[colorscheme gruvbox]])
 
 -- === Catppuccin Colorscheme ===
 --catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
@@ -48,19 +35,19 @@ vim.cmd([[colorscheme gruvbox]])
 --vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
 
 -- === Gruvbox Material Colorscheme ===
---vim.cmd [[
---    colorscheme gruvbox-material
---    let g:gruvbox_material_background = 'soft'
---]]
---
---vim.cmd [[hi LineNr guifg=#D08770]]
---vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
+-- vim.cmd [[
+--     colorscheme gruvbox-material
+--     let g:gruvbox_material_background = 'soft'
+-- ]]
+
+-- vim.cmd [[hi LineNr guifg=#D08770]]
+-- vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
 
 -- === Everforest Colorscheme ===
---vim.cmd [[
---    colorscheme everforest
---    let g:gruvbox_material_background = 'medium'
---]]
---
---vim.cmd [[hi LineNr guifg=#9da9a0]]
---vim.cmd [[hi CursorLineNr guifg=#e69875]]
+-- vim.cmd [[
+--     colorscheme everforest
+--     let g:gruvbox_material_background = 'medium'
+-- ]]
+
+-- vim.cmd [[hi LineNr guifg=#9da9a0]]
+-- vim.cmd [[hi CursorLineNr guifg=#e69875]]

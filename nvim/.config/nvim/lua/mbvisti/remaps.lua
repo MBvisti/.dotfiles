@@ -48,10 +48,6 @@ vim.keymap.set("n", '<leader>j', ':wincmd j<CR>') -- move cursor to window below
 vim.keymap.set("n", '<leader>k', ':wincmd k<CR>') -- move cursor to window above
 vim.keymap.set("n", '<leader>l', ':wincmd l<CR>') -- move cursor to window right
 
--- OLD --
 
----- tab manangement
---nnoremap('<leader>tn', ':tabnext<CR>')   -- select next tab
---nnoremap('<leader>tp', ':tabprev<CR>')   -- select previous tab
---nnoremap('<leader>tt', ':tabnew<CR>')    -- create new tab
---nnoremap('<leader>tc', ':tabclose<CR>')  -- close tab
+-- thank theprimeagen later
+vim.keymap.set('n', '<leader>re', "oif err != nil {<CR>}<ESC>Oreturn err")
