@@ -16,8 +16,8 @@
 -- vim.cmd [[colorscheme kanagawa-wave]]
 
 -- === Gruuuuuuuuv Colorscheme ===
-vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
+-- vim.o.background = "dark"
+-- vim.cmd([[colorscheme gruvbox]])
 
 -- === Catppuccin Colorscheme ===
 --catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
@@ -35,10 +35,10 @@ vim.cmd([[colorscheme gruvbox]])
 --vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
 
 -- === Gruvbox Material Colorscheme ===
--- vim.cmd [[
---     colorscheme gruvbox-material
---     let g:gruvbox_material_background = 'soft'
--- ]]
+vim.cmd [[
+    colorscheme gruvbox-material
+    let g:gruvbox_material_background = 'medium'
+]]
 
 -- vim.cmd [[hi LineNr guifg=#D08770]]
 -- vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]

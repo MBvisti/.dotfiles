@@ -1,7 +1,7 @@
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = 'auto',
+        theme = 'gruvbox-material',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
@@ -18,8 +18,13 @@ require('lualine').setup {
         }
     },
     sections = {
+        -- lualine_a = { 'mode' },
+        -- lualine_b = { 'mode' },
         lualine_a = { 'mode' },
-        lualine_b = { 'filename' },
+        lualine_b = { {
+            'filename',
+            path = 3,
+        }},
         lualine_c = { 'branch', 'diff', 'diagnostics' },
         lualine_x = {
             { 'diagnostics', sources = { "nvim_lsp" },

@@ -34,15 +34,59 @@ require("lazy").setup({
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()
-            require("copilot").setup({})
+            require("copilot").setup({
+                panel = {
+                    enabled = false,
+                    auto_refresh = false,
+                    keymap = {
+                        jump_prev = "[[",
+                        jump_next = "]]",
+                        accept = "<CR>",
+                        refresh = "gr",
+                        open = "<M-a>"
+                    },
+                    layout = {
+                        position = "bottom", -- | top | left | right
+                        ratio = 0.4
+                    },
+                },
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = true,
+                    debounce = 75,
+                    keymap = {
+                        accept = "<M-CR>", -- means <Alt+a>
+                        accept_word = false,
+                        accept_line = false,
+                        next = "<M-]>",
+                        prev = "<M-[>",
+                        dismiss = "<C-]>",
+                    },
+                },
+                filetypes = {
+                    yaml = false,
+                    markdown = false,
+                    help = false,
+                    gitcommit = false,
+                    gitrebase = false,
+                    hgcommit = false,
+                    svn = false,
+                    cvs = false,
+                    vimwiki = false,
+                    ["."] = false,
+                },
+                copilot_node_command = 'node', -- Node.js version must be > 16.x
+                server_opts_overrides = {},
+
+            })
         end,
     },
-    {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-            require("copilot_cmp").setup()
-        end
-    },
+    -- {
+    --     "zbirenbaum/copilot-cmp",
+    --     config = function()
+    --         require("copilot_cmp").setup()
+    --     end
+    -- },
 
     "tpope/vim-fugitive",
     "airblade/vim-gitgutter",
@@ -61,10 +105,20 @@ require("lazy").setup({
         "ray-x/go.nvim",
         dependencies = { -- optional packages
             "ray-x/guihua.lua",
+            "neovim/nvim-lspconfig",
+            "nvim-treesitter/nvim-treesitter",
         },
         config = function()
             require("go").setup()
-            require("go.format").goimport()
+            local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                pattern = "*.go",
+                callback = function()
+                    require('go.format').goimport()
+                end,
+                group = format_sync_grp,
+            })
+            -- require("go.format").goimport()
         end,
         event = { "CmdlineEnter" },
         ft = { "go", 'gomod' },

@@ -123,12 +123,33 @@ require('mason-lspconfig').setup({
                 },
             })
         end,
+        gopls = function()
+            require('lspconfig').gopls.setup({
+                settings = {
+                    gopls = {
+                        completeUnimported = true,
+                        usePlaceholders = true,
+                        analyses = {
+                            unusedparams = true,
+                        },
+                        hints = {
+                            assignVariableTypes = true,
+                            compositeLiteralFields = true,
+                            compositeLiteralTypes = true,
+                            constantValues = true,
+                            functionTypeParameters = true,
+                            parameterNames = true,
+                            rangeVariableTypes = true,
+                        },
+                    }
+                },
+            })
+        end,
     },
 })
 
 -- lspkind.lua
 local lspkind = require("lspkind")
--- lspkind.init()
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
@@ -157,8 +178,8 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
     }),
     sources = {
-        { name = 'nvim_lsp', group_index = 2 },
         { name = 'copilot',  group_index = 2 },
+        { name = 'nvim_lsp', group_index = 2 },
         -- { name = 'luasnip',  keyword_length = 3 },
     },
     snippet = {
