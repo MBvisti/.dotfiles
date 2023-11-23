@@ -40,8 +40,8 @@ vim.cmd [[
     let g:gruvbox_material_background = 'medium'
 ]]
 
--- vim.cmd [[hi LineNr guifg=#D08770]]
--- vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
+vim.cmd [[hi LineNr guifg=#D08770]]
+vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
 
 -- === Everforest Colorscheme ===
 -- vim.cmd [[

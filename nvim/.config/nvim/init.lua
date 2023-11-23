@@ -16,12 +16,12 @@ vim.opt.rtp:prepend(lazypath)
 require("mbvisti")
 
 require("lazy").setup({
-    "ellisonleao/gruvbox.nvim",
-    { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
-    { "AlexvZyl/nordic.nvim", branch = 'main' },
+    -- "ellisonleao/gruvbox.nvim",
+    -- { "catppuccin/nvim",      name = "catppuccin", priority = 1000 },
+    -- { "AlexvZyl/nordic.nvim", branch = 'main' },
     "sainnhe/gruvbox-material",
-    "sainnhe/everforest",
-    "rebelot/kanagawa.nvim",
+    -- "sainnhe/everforest",
+    -- "rebelot/kanagawa.nvim",
 
     "dnlhc/glance.nvim",
 
@@ -52,7 +52,7 @@ require("lazy").setup({
                 },
                 suggestion = {
                     enabled = true,
-                    auto_trigger = true,
+                    auto_trigger = false,
                     debounce = 75,
                     keymap = {
                         accept = "<M-CR>", -- means <Alt+a>
@@ -81,12 +81,12 @@ require("lazy").setup({
             })
         end,
     },
-    -- {
-    --     "zbirenbaum/copilot-cmp",
-    --     config = function()
-    --         require("copilot_cmp").setup()
-    --     end
-    -- },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    },
 
     "tpope/vim-fugitive",
     "airblade/vim-gitgutter",
@@ -137,18 +137,18 @@ require("lazy").setup({
         cmd = "TSUpdate",
     },
     "nvim-treesitter/nvim-treesitter-context",
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    -- "nvim-treesitter/nvim-treesitter-textobjects",
 
-    "ThePrimeagen/harpoon",
+    -- "ThePrimeagen/harpoon",
 
-    "simrat39/rust-tools.nvim",
+    -- "simrat39/rust-tools.nvim",
 
     { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
     "nvim-lualine/lualine.nvim",
 
     "nvim-tree/nvim-web-devicons",
-    "folke/trouble.nvim",
+    -- "folke/trouble.nvim",
 
     "vimwiki/vimwiki",
 
@@ -160,5 +160,12 @@ require("lazy").setup({
     },
     "mhartington/formatter.nvim",
 
-    "NoahTheDuke/vim-just"
+    "NoahTheDuke/vim-just",
+
+    {
+        "vrischmann/tree-sitter-templ",
+        config = function()
+            require("tree-sitter-templ").setup({})
+        end
+    }
 })

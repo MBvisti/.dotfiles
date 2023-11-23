@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pq", vim.cmd.Ex)
 
-vim.keymap.set("n", "<leader>oi", "<cmd>:e /home/mbv/obsidian/mbv/index.md<CR>")
-
 -- move a selection up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -48,6 +46,15 @@ vim.keymap.set("n", '<leader>j', ':wincmd j<CR>') -- move cursor to window below
 vim.keymap.set("n", '<leader>k', ':wincmd k<CR>') -- move cursor to window above
 vim.keymap.set("n", '<leader>l', ':wincmd l<CR>') -- move cursor to window right
 
-
 -- thank theprimeagen later
 vim.keymap.set('n', '<leader>re', "oif err != nil {<CR>}<ESC>Oreturn err")
+
+-- diary shit
+vim.keymap.set("n", '<leader>md', '<cmd>VimwikiMakeDiaryNote<CR>')
+-- vim.keymap.set("n", '<leader>dtl', '<cmd>VimwikiGenerateTagLinks<CR>')
+-- vim.keymap.set("n", '<leader>dl', '<cmd>VimwikiDiaryGenerateLinks<CR>')
+
+-- diffview
+vim.keymap.set("n", '<leader>vf', '<cmd>DiffviewFileHistory %<CR>')
+vim.keymap.set("n", '<leader>vb', '<cmd>DiffviewFileHistory<CR>')
+vim.keymap.set("n", '<leader>vc', '<cmd>DiffviewClose<CR>')

@@ -37,7 +37,7 @@ vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 
 vim.opt.encoding = "utf-8"
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
 
 vim.opt.redrawtime = 10000
 

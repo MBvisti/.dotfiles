@@ -89,6 +89,12 @@ local default_setup = function(server)
     lspconfig[server].setup({})
 end
 
+vim.filetype.add({
+    extension = {
+        templ = "templ",
+    },
+})
+
 require('mason').setup({
     ui = {
         border = "rounded",
@@ -117,7 +123,20 @@ require('mason-lspconfig').setup({
         end,
         tailwindcss = function()
             require('lspconfig').tailwindcss.setup({
-                filetypes = { "htmldjango", "gohtml", "html", "php" },
+                filetypes = { "htmldjango", "gohtml", "html", "php", "templ" },
+                flags = {
+                    debounce_text_changes = 100,
+                },
+                init_options = {
+                    userLanguages = {
+                        templ = "html"
+                    }
+                }
+            })
+        end,
+        templ = function()
+            require('lspconfig').templ.setup({
+                filetypes = { "templ" },
                 flags = {
                     debounce_text_changes = 100,
                 },
