@@ -58,3 +58,6 @@ vim.keymap.set("n", '<leader>md', '<cmd>VimwikiMakeDiaryNote<CR>')
 vim.keymap.set("n", '<leader>vf', '<cmd>DiffviewFileHistory %<CR>')
 vim.keymap.set("n", '<leader>vb', '<cmd>DiffviewFileHistory<CR>')
 vim.keymap.set("n", '<leader>vc', '<cmd>DiffviewClose<CR>')
+
+-- zenmode
+vim.keymap.set("n", '<leader>zm', '<cmd>ZenMode<CR>')

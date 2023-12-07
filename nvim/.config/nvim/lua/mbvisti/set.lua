@@ -43,6 +43,8 @@ vim.opt.redrawtime = 10000
 
 vim.opt.completeopt = {'menu','menuone','noselect'}
 
+vim.opt.laststatus = 0
+
 -- highlight on yank
 vim.cmd [[
   augroup YankHighlight

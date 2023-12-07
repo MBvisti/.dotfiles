@@ -42,6 +42,7 @@ vim.cmd [[
 
 vim.cmd [[hi LineNr guifg=#D08770]]
 vim.cmd [[hi CursorLineNr guifg=#ECEFF4]]
+vim.cmd [[highlight CopilotSuggestion guifg=#a89984 ctermfg=8]]
 
 -- === Everforest Colorscheme ===
 -- vim.cmd [[

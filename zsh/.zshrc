@@ -171,8 +171,14 @@ source $HOME/.cargo/env
 #export PATH=$PATH:/usr/local/bin
 # export PATH=$PATH:~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
 
-# postman
-#export PATH=$PATH:/usr/bin/Postman
+# modualr & mojo
+export MODULAR_HOME="/home/mbv/.modular"
+export PATH="/home/mbv/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+
+# kotlin & java
+export PATH="/usr/local/kotlin/bin:$PATH"
+export PATH="/usr/local/jdk/bin:$PATH"
+alias kotlinc="/usr/local/kotlin/bin/kotlinc-native"
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"

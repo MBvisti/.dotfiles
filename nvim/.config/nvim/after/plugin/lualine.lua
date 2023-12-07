@@ -1,6 +1,6 @@
 require('lualine').setup {
     options = {
-        icons_enabled = true,
+        icons_enabled = false,
         theme = 'gruvbox-material',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
@@ -19,78 +19,34 @@ require('lualine').setup {
     },
     sections = {
         -- lualine_a = { 'mode' },
-        -- lualine_b = { 'mode' },
         lualine_a = { 'mode' },
-        lualine_b = { {
-            'filename',
-            path = 3,
-        }},
-        lualine_c = { 'branch', 'diff', 'diagnostics' },
-        lualine_x = {
-            { 'diagnostics', sources = { "nvim_lsp" },
-                symbols = { error = 'Error', warn = 'Warn', info = 'Info', hint = 'Hint' }, },
-            'encoding',
-            'filetype'
-        },
-        lualine_y = { 'progress' },
+        -- lualine_b = { {
+        --     'filename',
+        --     path = 3,
+        -- }},
+        lualine_b = {},
+        lualine_c = { 'branch', 'diff' },
+        -- lualine_x = {
+        --     { 'diagnostics', sources = { "nvim_lsp" },
+        --         symbols = { error = 'Error', warn = 'Warn', info = 'Info', hint = 'Hint' }, },
+        --     'encoding',
+        --     'filetype'
+        -- },
+        -- lualine_y = { 'progress' },
+        lualine_x = {},
+        lualine_y = { 'filename' },
         lualine_z = { 'location' }
     },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = { 'filename' },
-        lualine_x = { 'location' },
-        lualine_y = {},
-        lualine_z = {}
-    },
+    -- inactive_sections = {
+    --     lualine_a = {},
+    --     lualine_b = { 'branch' },
+    --     lualine_c = { 'filename' },
+    --     lualine_x = { 'location' },
+    --     lualine_y = {},
+    --     lualine_z = {}
+    -- },
     tabline = {},
     winbar = {},
     inactive_winbar = {},
     extensions = { 'fugitive', "fzf", "quickfix" }
 }
-
--- OLD --
---local status, lualine = pcall(require, "lualine")
---
---if (not status) then return end
---
---lualine.setup {
---  options = {
---    icons_enabled = true,
---    component_separators = { left = '', right = '' },
---    section_separators = { left = '', right = '' },
---    options = { theme  = "catppuccin" },
---    -- options = { theme  = "gruvbox" },
---    disabled_filetypes = {}
---  },
---  sections = {
---    lualine_a = {'mode'},
---    lualine_b = {'branch'},
---    lualine_c = {{
---      'filename',
---      file_status = true, -- displays file status (readonly status, modified status)
---      path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
---    }},
---    lualine_x = {
---      { 'diagnostics', sources = {"nvim_lsp"}, symbols = {error = 'Error', warn = 'Warn', info = 'Info', hint = 'Hint'}, },
---      'encoding',
---      'filetype'
---    },
---    lualine_y = {'progress'},
---    lualine_z = {'location'}
---  },
---  inactive_sections = {
---    lualine_a = {},
---    lualine_b = {},
---    lualine_c = {{
---      'filename',
---      file_status = true, -- displays file status (readonly status, modified status)
---      path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
---    }},
---    lualine_x = {'location'},
---    lualine_y = {},
---    lualine_z = {}
---  },
---  tabline = {},
---  extensions = {'fugitive', "fzf", "quickfix", "toggleterm"}
---}

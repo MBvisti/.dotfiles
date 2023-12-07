@@ -1,6 +1,15 @@
 local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
 
+local find_root = function(markers, file)
+  return vim.fs.dirname(
+    vim.fs.find(
+      markers,
+      { upward = true, path = vim.fn.fnamemodify(file, ":p:h") }
+    )[1]
+  )
+end
+
 lsp_defaults.capabilities = vim.tbl_deep_extend(
     'force',
     lsp_defaults.capabilities,
@@ -92,6 +101,8 @@ end
 vim.filetype.add({
     extension = {
         templ = "templ",
+        mojo = "mojo",
+        kotlin = "kt",
     },
 })
 
@@ -164,7 +175,26 @@ require('mason-lspconfig').setup({
                 },
             })
         end,
+        kotlin_language_server = function()
+            require('lspconfig').kotlin_language_server.setup({
+                filetypes = { "kotlin", "kt" },
+                root_dir = lspconfig.util.root_pattern({
+                    "settings.gradle",
+                    "settings.gradle.kts",
+                    "build.xml",
+                    "pom.xml",
+                    ".git",
+                }),
+            })
+        end,
     },
+})
+
+require('lspconfig').mojo.setup({
+    cmd = { 'mojo-lsp-server' },
+    filetypes = { 'mojo' },
+    -- root_dir = util.find_git_ancestor,
+    single_file_support = true,
 })
 
 -- lspkind.lua
