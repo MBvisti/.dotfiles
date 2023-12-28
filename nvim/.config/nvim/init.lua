@@ -119,6 +119,13 @@ require("lazy").setup({
 
     "nvim-lualine/lualine.nvim",
 
+    -- {
+        'stevearc/oil.nvim',
+    --     opts = {},
+    --     -- Optional dependencies
+    --     -- dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- },
+
     -- "nvim-tree/nvim-web-devicons",
     -- "folke/trouble.nvim",
 
