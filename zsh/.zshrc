@@ -120,9 +120,6 @@ fi
 alias vi="/usr/local/neovim/latest/bin/nvim"
 alias nvim="/usr/local/neovim/latest/bin/nvim"
 
-# Obsidian
-alias obsidian="/usr/local/bin/obsidian.AppImage"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -131,10 +128,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Go related
-## Ubuntu setup
+## linux setup
 export GOPATH=/home/mbv/golang
 export GOBIN=/home/mbv/golang/bin
-export GOROOT=/usr/local/go
+export GOROOT=/usr/local/go/latest
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
@@ -179,6 +176,18 @@ export PATH="/home/mbv/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 export PATH="/usr/local/kotlin/bin:$PATH"
 export PATH="/usr/local/jdk/bin:$PATH"
 alias kotlinc="/usr/local/kotlin/bin/kotlinc-native"
+
+# terraform
+export PATH="/usr/local/terraform/latest:$PATH"
+
+# pulumi
+export PATH="/usr/local/pulumi/latest:$PATH"
+
+# heroku
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# bazecor 
+alias dygma="/home/mbv/Dygma/Bazecor.AppImage"
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"

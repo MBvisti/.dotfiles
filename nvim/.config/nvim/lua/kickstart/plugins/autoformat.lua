@@ -60,6 +60,12 @@ return {
               return
             end
 
+            local ft = vim.bo.filetype
+
+            if ft == 'go' then
+              require('go.format').goimport()
+            end
+
             vim.lsp.buf.format {
               async = false,
               filter = function(c)

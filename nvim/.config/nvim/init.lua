@@ -1,5 +1,6 @@
 --[[
 
+
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -88,7 +89,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -124,7 +125,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',   opts = {} },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -225,6 +226,14 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
       },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch' },
+        lualine_c = { '' },
+        lualine_x = { { 'filename', path = 3 } },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' }
+      },
     },
   },
 
@@ -236,9 +245,6 @@ require('lazy').setup({
     main = 'ibl',
     opts = {},
   },
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -273,8 +279,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.autoformat',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
@@ -282,7 +287,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -326,10 +331,51 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.o.nu = true
+vim.o.relativenumber = true
+
+vim.o.expandtab = true
+vim.o.smartindent = true
+
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undodir = os.getenv("HOME") .. "/.neovim/undodir"
+vim.o.undofile = true
+
+vim.o.incsearch = true
+
+vim.o.scrolloff = 12
+vim.o.sidescrolloff = 5
+
+vim.o.colorcolumn = "120" -- sets the separator bar
+
+vim.o.errorbells = false
+
+vim.o.spell = true
+vim.o.spelllang = "en_us"
+
+vim.o.encoding = "utf-8"
+vim.o.cursorline = true
+
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+vim.g.wiki_root = "~/wiki"
+
+vim.cmd [[ 
+    let g:wiki_journal_index = {
+          \ 'link_text_parser': { b, d, p -> d },
+          \ 'link_url_parser': { b, d, p -> 'journal/' . d }
+          \}
+]]
+
+-- [[ New file types]]
+vim.filetype.add({ extension = { templ = "templ" } })
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
+vim.keymap.set("n", "<leader>pq", vim.cmd.Ex)
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
@@ -342,7 +388,69 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
+-- move a selection up and down
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- not sure
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+
+-- greatest remap ever
+vim.keymap.set("x", "<leader>p", "\"_dP")
+
+-- next greatest remap ever : asbjornHaland
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+Y")
+
+vim.keymap.set("n", "<leader>d", "\"_d")
+vim.keymap.set("v", "<leader>d", "\"_d")
+
+-- This is going to get me cancelled
+vim.keymap.set("i", "<C-c>", "<Esc>")
+
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<leader>f", function()
+  vim.lsp.buf.format()
+end)
+
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+
+vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- window management
+vim.keymap.set("n", '<leader>h', ':wincmd h<CR>') -- move cursor to window left
+vim.keymap.set("n", '<leader>j', ':wincmd j<CR>') -- move cursor to window below
+vim.keymap.set("n", '<leader>k', ':wincmd k<CR>') -- move cursor to window above
+vim.keymap.set("n", '<leader>l', ':wincmd l<CR>') -- move cursor to window right
+
+-- thank theprimeagen later
+vim.keymap.set('n', '<leader>re', "oif err != nil {<CR>}<ESC>Oreturn err")
+
+-- diary shit
+vim.keymap.set('n', '<leader>ww', vim.cmd.WikiIndex, { noremap = true, silent = true, desc = "Open Wiki"})
+vim.keymap.set('n', '<leader>mj', vim.cmd.WikiJournal, { noremap = true, silent = true, desc = "[M]ake [J]ournal"})
+vim.keymap.set('n', '<leader>ji', vim.cmd.WikiJournalIndex, { noremap = true, silent = true, desc = "Make [J]ournal [I]ndex"})
+
+-- diffview
+vim.keymap.set("n", '<leader>vf', '<cmd>DiffviewFileHistory %<CR>')
+vim.keymap.set("n", '<leader>vb', '<cmd>DiffviewFileHistory<CR>')
+vim.keymap.set("n", '<leader>vc', '<cmd>DiffviewClose<CR>')
+
+-- zenmode
+vim.keymap.set("n", '<leader>zm', '<cmd>ZenMode<CR>')
+
 -- [[ Highlight on yank ]]
+
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -422,16 +530,18 @@ local function telescope_live_grep_open_files()
     prompt_title = 'Live Grep in Open Files',
   }
 end
+-- vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
+-- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+-- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+-- vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+-- vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
+
 vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
-vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>gb', require('telescope.builtin').buffers, { desc = 'Get buffers' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').lsp_references, { desc = 'Search LSP references' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -439,7 +549,7 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'go', 'lua', 'rust', 'vimdoc', 'vim', 'bash', 'templ' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -587,12 +697,21 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  -- gopls = {},
+  gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+  -- html = { filetypes = { 'html', 'templ' } },
+  tailwindcss = {
+    filetypes = { "templ" },
+    init_options = { userLanguages = { templ = "html" } },
+  },
+  htmx = {
+    filetypes = { 'templ', 'html' }
+  },
+  emmet_ls = {
+    filetypes = { 'html', 'templ' }
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
