@@ -64,14 +64,14 @@ return {
 
             if ft == 'go' then
               require('go.format').goimport()
+            else
+              vim.lsp.buf.format {
+                async = false,
+                filter = function(c)
+                  return c.id == client.id
+                end,
+              }
             end
-
-            vim.lsp.buf.format {
-              async = false,
-              filter = function(c)
-                return c.id == client.id
-              end,
-            }
           end,
         })
       end,

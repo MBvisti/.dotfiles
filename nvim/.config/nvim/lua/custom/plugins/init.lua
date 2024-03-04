@@ -4,6 +4,7 @@
 -- See the kickstart.nvim README for more information
 return {
 	"github/copilot.vim",
+
 	-- lazy.nvim
 	{
 		"m4xshen/hardtime.nvim",
@@ -21,8 +22,8 @@ return {
 	},
 	"mbbill/undotree",
 
-	-- kanagawa.nvim
-	"vim-commentary",
+	{ 'numToStr/Comment.nvim', opts = {} },
+
 	{
 		"NoahTheDuke/vim-just",
 		ft = { "just" },
@@ -48,5 +49,17 @@ return {
 		event = { "CmdlineEnter" },
 		ft = { "go", 'gomod' },
 		build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-	}
+	},
+
+	{
+		"sainnhe/gruvbox-material",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			-- load the colorscheme here
+			vim.cmd([[colorscheme gruvbox-material]])
+		end,
+	},
+
+	'vimpostor/vim-tpipeline'
 }

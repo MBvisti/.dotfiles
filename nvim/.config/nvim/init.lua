@@ -1,6 +1,5 @@
 --[[
 
-
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -202,20 +201,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    lazy = false,
-    config = function()
-      require('onedark').setup {
-        -- Set a style preset. 'dark' is default.
-        style = 'dark', -- dark, darker, cool, deep, warm, warmer, light
-      }
-      require('onedark').load()
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -360,9 +345,13 @@ vim.o.cursorline = true
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 vim.g.wiki_root = "~/wiki"
+vim.o.guicursor = "a:blinkon0"
+vim.g.copilot_no_tab_map = true
 
-vim.cmd [[ 
-    let g:wiki_journal_index = {
+vim.g.tpipeline_autoembed = 0
+
+vim.cmd [[
+  let g:wiki_journal_index = {
           \ 'link_text_parser': { b, d, p -> d },
           \ 'link_url_parser': { b, d, p -> 'journal/' . d }
           \}
@@ -436,10 +425,11 @@ vim.keymap.set("n", '<leader>l', ':wincmd l<CR>') -- move cursor to window right
 -- thank theprimeagen later
 vim.keymap.set('n', '<leader>re', "oif err != nil {<CR>}<ESC>Oreturn err")
 
--- diary shit
-vim.keymap.set('n', '<leader>ww', vim.cmd.WikiIndex, { noremap = true, silent = true, desc = "Open Wiki"})
-vim.keymap.set('n', '<leader>mj', vim.cmd.WikiJournal, { noremap = true, silent = true, desc = "[M]ake [J]ournal"})
-vim.keymap.set('n', '<leader>ji', vim.cmd.WikiJournalIndex, { noremap = true, silent = true, desc = "Make [J]ournal [I]ndex"})
+-- wiki
+vim.keymap.set('n', '<leader>ww', vim.cmd.WikiIndex, { noremap = true, silent = true, desc = "Open Wiki" })
+vim.keymap.set('n', '<leader>mj', vim.cmd.WikiJournal, { noremap = true, silent = true, desc = "[M]ake [J]ournal" })
+vim.keymap.set('n', '<leader>ji', vim.cmd.WikiJournalIndex,
+  { noremap = true, silent = true, desc = "Make [J]ournal [I]ndex" })
 
 -- diffview
 vim.keymap.set("n", '<leader>vf', '<cmd>DiffviewFileHistory %<CR>')
@@ -448,6 +438,26 @@ vim.keymap.set("n", '<leader>vc', '<cmd>DiffviewClose<CR>')
 
 -- zenmode
 vim.keymap.set("n", '<leader>zm', '<cmd>ZenMode<CR>')
+
+-- fugitive
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+
+-- undo tree
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- copilot
+vim.keymap.set('i', "<M-CR>", "copilot#Accept('<CR>')", {
+  expr = true,
+  replace_keycodes = false
+})
+
+vim.keymap.set('i', "<M-]>", "<Plug>(copilot-next)")
+
+vim.keymap.set('i', "<M-[>", "<Plug>(copilot-previous)")
+
+vim.keymap.set('i', "<M-a>", "<Plug>(copilot-accept-word)")
+
+vim.keymap.set('i', "<M-/>", "<Plug>(copilot-suggest)")
 
 -- [[ Highlight on yank ]]
 
