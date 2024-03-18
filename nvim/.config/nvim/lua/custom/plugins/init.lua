@@ -35,9 +35,25 @@ return {
 	{
 		"folke/zen-mode.nvim",
 		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			window = {
+				-- width = 1.0, -- recording full screen
+				width = 55, -- recording shorts screen
+				options = {
+					signcolumn = "no", -- disable signcolumn
+					-- number = false, -- disable number column
+					-- relativenumber = false, -- disable relative numbers
+					-- cursorline = false, -- disable cursorline
+					-- cursorcolumn = false, -- disable cursor column
+					-- foldcolumn = "0", -- disable fold column
+					-- list = false, -- disable whitespace characters
+				},
+			},
+			plugins = {
+				twilight = { enabled = false },
+				kitty = {
+					enabled = true,
+				}
+			},
 		}
 	},
 	{
@@ -61,5 +77,40 @@ return {
 		end,
 	},
 
-	'vimpostor/vim-tpipeline'
+	-- comes statusline with tmux
+	-- 'vimpostor/vim-tpipeline',
+
+	{
+		'stevearc/oil.nvim',
+		opts = {
+			-- Set to false if you still want to use netrw.
+			default_file_explorer = false,
+		},
+	},
+	{
+		"kdheepak/lazygit.nvim",
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"mistricky/codesnap.nvim",
+		build = "make",
+		opts = {
+			mac_window_bar = false,    -- (Optional) MacOS style title bar switch
+			opacity = true,            -- (Optional) The code snap has some opacity by default, set it to false for 100% opacity
+			watermark = "@mbvisti",    -- (Optional) you can custom your own watermark, but if you don't like it, just set it to ""
+			preview_title = "mbv labs", -- (Optional) preview page title
+			editor_font_family = "CaskaydiaCove Nerd Font", -- (Optional) preview code font family
+			watermark_font_family = "Pacifico", -- (Optional) watermark font family
+		},
+	},
 }

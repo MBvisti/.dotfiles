@@ -459,6 +459,12 @@ vim.keymap.set('i', "<M-a>", "<Plug>(copilot-accept-word)")
 
 vim.keymap.set('i', "<M-/>", "<Plug>(copilot-suggest)")
 
+-- oil
+vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- lazygit
+vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "Open lazygit" })
+
 -- [[ Highlight on yank ]]
 
 -- See `:help vim.highlight.on_yank()`

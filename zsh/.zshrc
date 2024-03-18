@@ -172,10 +172,12 @@ source $HOME/.cargo/env
 export MODULAR_HOME="/home/mbv/.modular"
 export PATH="/home/mbv/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
-# kotlin & java
-export PATH="/usr/local/kotlin/bin:$PATH"
-export PATH="/usr/local/jdk/bin:$PATH"
-alias kotlinc="/usr/local/kotlin/bin/kotlinc-native"
+# kotlin & java & maven
+# export PATH="/usr/local/kotlin/bin:$PATH"
+# alias kotlinc="/usr/local/kotlin/bin/kotlinc-native"
+
+export PATH="/usr/local/java/jdk-11/bin:$PATH"
+export PATH="/usr/local/maven/apache-maven-3.6.3/bin:$PATH"
 
 # terraform
 export PATH="/usr/local/terraform/latest:$PATH"
@@ -188,6 +190,12 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # bazecor 
 alias dygma="/home/mbv/Dygma/Bazecor.AppImage"
+
+# lazy git
+export PATH="/usr/local/lazygit/latest:$PATH"
+
+# quarto
+export PATH="/usr/local/quarto/latest/bin/:$PATH"
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
