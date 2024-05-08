@@ -119,6 +119,8 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vi="/usr/local/neovim/latest/bin/nvim"
 alias nvim="/usr/local/neovim/latest/bin/nvim"
+alias nd="/usr/local/neovim/dev/bin/nvim"
+alias nvimdev="/usr/local/neovim/dev/bin/nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -186,7 +188,7 @@ export PATH="/usr/local/terraform/latest:$PATH"
 export PATH="/usr/local/pulumi/latest:$PATH"
 
 # heroku
-export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="/usr/local/heroku/bin:$PATH"
 
 # bazecor 
 alias dygma="/home/mbv/Dygma/Bazecor.AppImage"
@@ -197,9 +199,19 @@ export PATH="/usr/local/lazygit/latest:$PATH"
 # quarto
 export PATH="/usr/local/quarto/latest/bin/:$PATH"
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# zellij
+export PATH="/usr/local/zellij/:$PATH"
+
+# python
+export PATH="/usr/local/python/latest/bin:$PATH"
+alias python="/usr/local/python/latest/bin/python3"
+alias pip="/usr/local/python/latest/bin/pip3"
+
+# tailwind
+alias tailwind="/usr/local/tailwind/latest"
+
+# doctl
+export PATH="/usr/local/doctl/latest:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
