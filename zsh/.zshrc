@@ -213,6 +213,9 @@ alias tailwind="/usr/local/tailwind/latest"
 # doctl
 export PATH="/usr/local/doctl/latest:$PATH"
 
+# picom
+export PATH="/usr/local/picom/latest:$PATH"
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
