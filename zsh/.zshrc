@@ -216,6 +216,9 @@ export PATH="/usr/local/doctl/latest:$PATH"
 # picom
 export PATH="/usr/local/picom/latest:$PATH"
 
+# ollama
+export PATH="/usr/local/ollama/latest:$PATH"
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
