@@ -37,15 +37,13 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
--- not sure
--- vim.keymap.set("n", "J", "mzJ`z")
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
--- vim.keymap.set("n", "n", "nzzzv")
--- vim.keymap.set("n", "N", "Nzzzv")
-
 -- greatest remap ever, also not sure
 -- vim.keymap.set("x", "<leader>p", "\"_dP")
+
+vim.keymap.set("n", "<M-[>", "<c-w>5<")
+vim.keymap.set("n", "<M-]>", "<c-w>5>")
+vim.keymap.set("n", "<M-t>", "<c-W>+")
+vim.keymap.set("n", "<M-b>", "<c-W>-")
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
