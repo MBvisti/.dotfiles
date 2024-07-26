@@ -1,5 +1,4 @@
 return {
-	{
 	"kdheepak/lazygit.nvim",
 	cmd = {
 		"LazyGit",
@@ -12,5 +11,4 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 	},
-}
 }

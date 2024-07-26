@@ -219,6 +219,12 @@ export PATH="/usr/local/picom/latest:$PATH"
 # ollama
 export PATH="/usr/local/ollama/latest:$PATH"
 
+# lazydocker
+export PATH="/usr/local/lazydocker/latest:$PATH"
+
+# ruby
+export PATH="/usr/local/ruby/latest:$PATH"
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 

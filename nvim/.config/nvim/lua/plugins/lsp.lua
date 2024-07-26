@@ -1,12 +1,11 @@
 return {
-	{
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
-		{ "j-hui/fidget.nvim", opts = {} },
+		-- { "j-hui/fidget.nvim", opts = {} },
 
 		-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
@@ -79,6 +78,10 @@ return {
 				},
 			},
 			templ = {},
+			marksman = {
+				single_file_support = false,
+				root_dir = require("lspconfig.util").root_pattern(".marksman.toml"),
+			},
 			tailwindcss = {
 				filetypes = { "templ" },
 				init_options = { userLanguages = { templ = "html" } },
@@ -117,5 +120,4 @@ return {
 			},
 		})
 	end,
-}
 }

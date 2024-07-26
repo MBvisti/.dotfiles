@@ -17,4 +17,4 @@ end
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ import = "plugins" }, { change_detection = {notify = false} })
+require("lazy").setup({ import = "plugins" }, { change_detection = { notify = true } })

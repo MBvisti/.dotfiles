@@ -117,7 +117,7 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminals"
 set $ws2 "2: Brave"
-set $ws3 "3: DBeaver"
+set $ws3 "3: Comms"
 set $ws4 "4: Spotify"
 set $ws5 "5"
 set $ws6 "6"
@@ -187,9 +187,9 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-		position top
-		status_command i3status -c /home/mbv/.config/i3status/i3status.conf
-
+	position bottom
+	status_command i3status -c /home/mbv/.config/i3status/i3status.conf
+	font pango:JetBrains Mono Regular Nerd Font Complete Mono 10
 }
 
 gaps inner 5px
@@ -200,7 +200,7 @@ exec "setxkbmap -layout us"
 exec "setxkbmap -option 'grp:alt_shift_toggle'"
 
 # Wallpaper
-exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/guy-on-bus.png"
+exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/pirate-kind-of-place.png"
 
 # Picom
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b

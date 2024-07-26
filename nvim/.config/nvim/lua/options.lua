@@ -111,3 +111,6 @@ vim.o.hlsearch = false
 vim.cmd([[
   filetype plugin indent on
 ]])
+
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.shortmess:append("c")

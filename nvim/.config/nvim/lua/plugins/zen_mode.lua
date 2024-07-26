@@ -1,13 +1,14 @@
 return {
-	{
 	"folke/zen-mode.nvim",
 	dependencies = { "folke/twilight.nvim" },
 	opts = {
 		window = {
-			-- width = 1.0, -- recording full screen
-			width = 55, -- recording shorts screen
+			backdrop = 0.85,
+			width = 150, -- recording full screen
+			-- width = 55, -- recording shorts screen
 			options = {
 				signcolumn = "no", -- disable signcolumn
+				laststatus = 0,
 				-- number = false, -- disable number column
 				-- relativenumber = false, -- disable relative numbers
 				-- cursorline = false, -- disable cursorline
@@ -17,11 +18,14 @@ return {
 			},
 		},
 		plugins = {
-			twilight = { enabled = true },
+			options = {
+				enabled = true,
+			},
+			twilight = { enabled = false },
 			kitty = {
 				enabled = true,
+				font = "+6",
 			},
 		},
 	},
-}
 }

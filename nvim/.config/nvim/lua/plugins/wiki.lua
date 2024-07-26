@@ -1,5 +1,3 @@
 return {
-	{
 	"lervag/wiki.vim",
-}
 }

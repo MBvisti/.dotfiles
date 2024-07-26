@@ -1,5 +1,4 @@
 return {
-	{
 	"echasnovski/mini.nvim",
 	config = function()
 		local statusline = require("mini.statusline")
@@ -24,5 +23,4 @@ return {
 			return "%2l:%-2v"
 		end
 	end,
-}
 }

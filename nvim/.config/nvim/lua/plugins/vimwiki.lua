@@ -1,5 +1,3 @@
 return {
-	{
-	"vimwiki/vimwiki",
-}
+	-- "vimwiki/vimwiki",
 }
