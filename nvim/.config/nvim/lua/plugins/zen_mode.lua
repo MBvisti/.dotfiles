@@ -3,9 +3,9 @@ return {
 	dependencies = { "folke/twilight.nvim" },
 	opts = {
 		window = {
-			backdrop = 0.85,
-			width = 150, -- recording full screen
-			-- width = 55, -- recording shorts screen
+			backdrop = 1,
+			--width = 100, -- recording full screen
+			-- width = 45, -- recording shorts screen
 			options = {
 				signcolumn = "no", -- disable signcolumn
 				laststatus = 0,
@@ -24,7 +24,7 @@ return {
 			twilight = { enabled = false },
 			kitty = {
 				enabled = true,
-				font = "+6",
+				font = "+8",
 			},
 		},
 	},

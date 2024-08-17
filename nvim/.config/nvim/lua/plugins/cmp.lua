@@ -27,9 +27,34 @@ return {
 		-- See `:help cmp`
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
+		local lspkind = require("lspkind")
 		luasnip.config.setup({})
 
+		local function border(hl_name)
+			--[[ { "┏", "━", "┓", "┃", "┛","━", "┗", "┃" }, ]]
+			--[[ {"─", "│", "─", "│", "┌", "┐", "┘", "└"}, ]]
+			return {
+				{ "┌", hl_name },
+				{ "─", hl_name },
+				{ "┐", hl_name },
+				{ "│", hl_name },
+				{ "┘", hl_name },
+				{ "─", hl_name },
+				{ "└", hl_name },
+				{ "│", hl_name },
+			}
+		end
+
 		cmp.setup({
+			window = {
+				completion = {
+					border = border("FloatBorder"),
+					winhighlight = "Normal:NormalFloat,CursorLine:PmenuSel,Search:None",
+				},
+				documentation = {
+					border = border("FloatBorder"),
+				},
+			},
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -48,6 +73,16 @@ return {
 
 				["<C-Space>"] = cmp.mapping.complete({}),
 			}),
+			formatting = {
+				format = lspkind.cmp_format({
+					mode = "symbol",
+					maxwidth = 50,
+
+					before = function(entry, vim_item)
+						return vim_item
+					end,
+				}),
+			},
 			sources = {
 				{ name = "nvim_lsp" },
 				{ name = "path" },
