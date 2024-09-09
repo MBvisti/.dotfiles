@@ -27,7 +27,7 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set("n", "<leader>pq", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pq", vim.cmd.Explore)
 
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -100,3 +100,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- grug far
+vim.keymap.set("n", "<leader>rg", "<cmd>GrugFar<CR>")
+
+-- obsidian
+vim.keymap.set(
+	"n",
+	"<leader>ob",
+	":e ~/vaults/work/index.md<CR>",
+	{ noremap = true, silent = true, desc = "Open Obsidian" }
+)

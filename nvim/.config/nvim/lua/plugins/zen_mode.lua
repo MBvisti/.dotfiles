@@ -4,7 +4,7 @@ return {
 	opts = {
 		window = {
 			backdrop = 1,
-			--width = 100, -- recording full screen
+			width = 100, -- recording full screen
 			-- width = 45, -- recording shorts screen
 			options = {
 				signcolumn = "no", -- disable signcolumn

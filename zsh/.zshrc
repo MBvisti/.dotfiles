@@ -20,13 +20,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     git 
     zsh-autosuggestions 
-    rust 
     # common-aliases 
     alias-finder 
     web-search
     aws
-    tmux
+    # tmux
     zsh-z
+	ruby
+	asdf
 )
 
 # Set list of themes to pick from when loading at random
@@ -164,7 +165,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # export PATH=$PATH:$GOPATH/bin
 # export PATH=$PATH:$GOROOT/bin
 
-source $HOME/.cargo/env
+# source $HOME/.cargo/env
 
 # rust analyzer
 #export PATH=$PATH:/usr/local/bin
@@ -222,11 +223,20 @@ export PATH="/usr/local/ollama/latest:$PATH"
 # lazydocker
 export PATH="/usr/local/lazydocker/latest:$PATH"
 
+# tmux
+export PATH="/usr/local/bin/tmux:$PATH"
+
 # ruby
-export PATH="/usr/local/ruby/latest:$PATH"
+export PATH="/usr/local/ruby/latest/bin:$PATH"
+export PATH="/home/mbv/.gem/ruby/3.3.0/bin:$PATH"
+
+# just
+export PATH="/usr/local/just/latest:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+alias pip=pip3
 
 # Created by `pipx` on 2023-06-27 09:06:38
 export PATH="$PATH:/home/mbv/.local/bin"

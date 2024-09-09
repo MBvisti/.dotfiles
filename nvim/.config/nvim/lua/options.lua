@@ -80,7 +80,9 @@ vim.o.incsearch = true
 vim.o.swapfile = false
 vim.o.backup = false
 
-vim.o.colorcolumn = "120" -- sets the separator bar
+vim.o.conceallevel = 1
+
+vim.o.colorcolumn = "80" -- sets the separator bar
 
 vim.o.errorbells = false
 

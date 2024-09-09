@@ -47,34 +47,9 @@ return {
 		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		local servers = {
-			gopls = {
-				root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
-				filetypes = { "go", "gomod" },
-				settings = {
-					gopls = {
-						-- hints = {
-						--   assignVariableTypes = true,
-						--   compositeLiteralFields = true,
-						--   compositeLiteralTypes = true,
-						--   constantValues = true,
-						--   functionTypeParameters = true,
-						--   parameterNames = true,
-						--   rangeVariableTypes = true,
-						-- },
-						completeUnimported = true,
-						gofumpt = true,
-						staticcheck = true,
-					},
-				},
-			},
-			templ = {},
 			marksman = {
 				single_file_support = false,
 				root_dir = require("lspconfig.util").root_pattern(".marksman.toml"),
-			},
-			tailwindcss = {
-				filetypes = { "templ" },
-				init_options = { userLanguages = { templ = "html" } },
 			},
 			htmx = {
 				filetypes = { "templ", "html" },
@@ -91,25 +66,93 @@ return {
 					},
 				},
 			},
-			solargraph = {
-				filetypes = { "ruby", "eruby" },
-				settings = {
-					solargraph = {
-						useBundler = true,
-						diagnostic = true,
-						completion = true,
-						hover = true,
-						formatting = true,
-						symbols = true,
-						definitions = true,
-						rename = true,
-						references = true,
-						folding = true,
-					},
-				},
-			},
 		}
 
+		local function border(hl_name)
+			--[[ { "┏", "━", "┓", "┃", "┛","━", "┗", "┃" }, ]]
+			--[[ {"─", "│", "─", "│", "┌", "┐", "┘", "└"}, ]]
+			return {
+				{ "┌", hl_name },
+				{ "─", hl_name },
+				{ "┐", hl_name },
+				{ "│", hl_name },
+				{ "┘", hl_name },
+				{ "─", hl_name },
+				{ "└", hl_name },
+				{ "│", hl_name },
+			}
+		end
+		local handlers = {
+			["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border("FloatBorder") }),
+			["textDocument/signatureHelp"] = vim.lsp.with(
+				vim.lsp.handlers.signature_help,
+				{ border = border("FloatBorder") }
+			),
+		}
+
+		local lsp = require("lspconfig")
+		-- lsp.tailwindcss.setup({
+		-- 	handlers = handlers,
+		-- 	classAttributes = { "class" },
+		-- 	root_dir = require("lspconfig.util").root_pattern(
+		-- 		"resources/tailwind/config.js",
+		-- 		"tailwind.config.js",
+		-- 		".git"
+		-- 	),
+		-- 	-- filetypes = { "templ" },
+		-- 	includeLanguages = {
+		-- 		eruby = "erb",
+		-- 		htmlangular = "html",
+		-- 		templ = "html",
+		-- 	},
+		-- 	-- init_options = { userLanguages = { templ = "html" } },
+		-- })
+		-- lsp.tailwindcss.capabilities =
+		-- 	vim.tbl_deep_extend("force", {}, capabilities, lsp.tailwindcss.capabilities or {})
+
+		lsp.solargraph.setup({
+			filetypes = { "ruby", "eruby" },
+			settings = {
+				solargraph = {
+					useBundler = true,
+					diagnostic = true,
+					completion = true,
+					hover = true,
+					formatting = true,
+					symbols = true,
+					definitions = true,
+					rename = true,
+					references = true,
+					folding = true,
+				},
+			},
+		})
+		lsp.gopls.setup({
+			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+			root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+			filetypes = { "go", "gomod" },
+			settings = {
+				gopls = {
+					-- hints = {
+					--   assignVariableTypes = true,
+					--   compositeLiteralFields = true,
+					--   compositeLiteralTypes = true,
+					--   constantValues = true,
+					--   functionTypeParameters = true,
+					--   parameterNames = true,
+					--   rangeVariableTypes = true,
+					-- },
+					completeUnimported = true,
+					gofumpt = true,
+					staticcheck = true,
+				},
+			},
+		})
+		lsp.templ.setup({
+			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
 		require("mason").setup()
 
 		local ensure_installed = vim.tbl_keys(servers or {})

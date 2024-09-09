@@ -1,13 +1,12 @@
 return {
-	"scottmckendry/cyberdream.nvim",
+	"rebelot/kanagawa.nvim",
 	lazy = false,
 	priority = 1000,
 
 	config = function()
-		local cd = require("cyberdream")
+		local cd = require("kanagawa")
 		cd.setup({
 			transparent = true,
-			borderless_telescope = false,
 		})
 	end,
 }
