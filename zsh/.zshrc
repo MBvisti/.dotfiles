@@ -233,6 +233,24 @@ export PATH="/home/mbv/.gem/ruby/3.3.0/bin:$PATH"
 # just
 export PATH="/usr/local/just/latest:$PATH"
 
+# smug
+export PATH="/usr/local/smug/smug:$PATH"
+alias smug="/usr/local/smug/smug"
+
+# nats server
+export PATH="/usr/local/nats/latest:$PATH"
+
+# sops server
+alias sops="/usr/local/sops/latest/v3.9.1.linux.amd64"
+
+# stripe cli
+export PATH="/usr/local/stripecli/latest:$PATH"
+#
+# tempo
+export PATH="/usr/local/tempo/latest:$PATH"
+
+# export TERM=screen-256color
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 

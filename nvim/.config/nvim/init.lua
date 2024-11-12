@@ -1,6 +1,6 @@
 require("options")
 require("keymaps")
-require("util.hjkl_notifier")
+-- require("util.hjkl_notifier")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -20,3 +20,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ import = "plugins" }, { change_detection = { notify = true } })
 require("util.colorscheme")
+-- require("avante_lib").load()

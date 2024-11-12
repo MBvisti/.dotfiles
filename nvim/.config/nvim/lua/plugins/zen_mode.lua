@@ -4,13 +4,15 @@ return {
 	opts = {
 		window = {
 			backdrop = 1,
-			width = 100, -- recording full screen
+			-- width = 190, -- recording full screen
+			-- width = 120, -- recording full screen
+			width = 80,
 			-- width = 45, -- recording shorts screen
 			options = {
 				signcolumn = "no", -- disable signcolumn
 				laststatus = 0,
-				-- number = false, -- disable number column
-				-- relativenumber = false, -- disable relative numbers
+				number = true, -- disable number column
+				relativenumber = true, -- disable relative numbers
 				-- cursorline = false, -- disable cursorline
 				-- cursorcolumn = false, -- disable cursor column
 				-- foldcolumn = "0", -- disable fold column
@@ -24,8 +26,9 @@ return {
 			twilight = { enabled = false },
 			kitty = {
 				enabled = true,
-				font = "+8",
+				font = "+4",
 			},
+			tmux = { enabled = true },
 		},
 	},
 }
