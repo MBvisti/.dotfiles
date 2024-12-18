@@ -1,4 +1,5 @@
 include ~/.config/i3/workspace.conf
+# include ~/.config/i3/workspace_laptop.conf
 
 set $mod Mod4
 
@@ -23,6 +24,9 @@ exec --no-startup-id dex --autostart --environment i3
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Shortcut for Lockscreen
+bindsym $mod+x exec /home/mbv/.config/i3/scripts/lock
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -125,16 +129,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 1 px or 1 ppt
+        bindsym j resize grow height 2 px or 2ppt
+        bindsym k resize shrink height 2 px or 2 ppt
+        bindsym l resize grow width 1 px or 1 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Up resize shrink height 2 px or 2 ppt
+		bindsym Down resize grow height 2 px or 2 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -160,7 +164,10 @@ exec "setxkbmap -layout us"
 exec "setxkbmap -option 'grp:alt_shift_toggle'"
 
 # Wallpaper
-exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/pirate-kind-of-place.png"
+# exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/pirate-kind-of-place.png"
+# exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/starwars.png"
+# exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/star-wars-kinda.png"
+exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/lonely-mountain-ish.png"
 
 # Picom
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b

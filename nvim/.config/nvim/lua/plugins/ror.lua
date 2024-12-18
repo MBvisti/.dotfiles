@@ -1,3 +1,3 @@
 return {
-	"weizheheng/ror.nvim",
+	-- "weizheheng/ror.nvim",
 }

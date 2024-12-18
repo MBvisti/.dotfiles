@@ -204,9 +204,9 @@ export PATH="/usr/local/quarto/latest/bin/:$PATH"
 export PATH="/usr/local/zellij/:$PATH"
 
 # python
-export PATH="/usr/local/python/latest/bin:$PATH"
-alias python="/usr/local/python/latest/bin/python3"
-alias pip="/usr/local/python/latest/bin/pip3"
+export PATH="~/.local/share/uv/python:$PATH"
+alias python="~/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3"
+# alias pip="/usr/local/python/latest/bin/pip3"
 
 # tailwind
 alias tailwind="/usr/local/tailwind/latest"
@@ -254,7 +254,9 @@ export PATH="/usr/local/tempo/latest:$PATH"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-alias pip=pip3
+# alias pip=pip3
 
 # Created by `pipx` on 2023-06-27 09:06:38
 export PATH="$PATH:/home/mbv/.local/bin"
+
+source ~/.config/smug/.env

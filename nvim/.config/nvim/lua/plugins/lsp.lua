@@ -28,9 +28,10 @@ return {
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
+				-- map("K", "<cmd>GoDoc<CR>", "Hover Documentation")
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+				map("dg", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
 				vim.api.nvim_create_autocmd("BufWritePre", {
@@ -110,29 +111,29 @@ return {
 		-- lsp.tailwindcss.capabilities =
 		-- 	vim.tbl_deep_extend("force", {}, capabilities, lsp.tailwindcss.capabilities or {})
 
-		lsp.solargraph.setup({
-			filetypes = { "ruby", "eruby" },
-			settings = {
-				solargraph = {
-					useBundler = true,
-					diagnostic = true,
-					completion = true,
-					hover = true,
-					formatting = true,
-					symbols = true,
-					definitions = true,
-					rename = true,
-					references = true,
-					folding = true,
-				},
-			},
-		})
+		-- lsp.solargraph.setup({
+		-- 	filetypes = { "ruby", "eruby" },
+		-- 	settings = {
+		-- 		solargraph = {
+		-- 			useBundler = true,
+		-- 			diagnostic = true,
+		-- 			completion = true,
+		-- 			hover = true,
+		-- 			formatting = true,
+		-- 			symbols = true,
+		-- 			definitions = true,
+		-- 			rename = true,
+		-- 			references = true,
+		-- 			folding = true,
+		-- 		},
+		-- 	},
+		-- })
 		lsp.gopls.setup({
 			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			on_attach = function(client)
-				-- Disable completion but keep other LSP features
-				client.server_capabilities.completionProvider = false
-			end,
+			-- on_attach = function(client)
+			-- 	-- Disable completion but keep other LSP features
+			-- 	client.server_capabilities.completionProvider = false
+			-- end,
 			handlers = handlers,
 			root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
 			filetypes = { "go", "gomod" },

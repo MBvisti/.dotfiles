@@ -20,4 +20,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ import = "plugins" }, { change_detection = { notify = true } })
 require("util.colorscheme")
--- require("avante_lib").load()
+require("avante_lib").load()
