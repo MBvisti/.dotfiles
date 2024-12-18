@@ -1,0 +1,9 @@
+tmux has-session -t flyxai:
+exit status 1 no server running on /tmp/tmux-1000/default
+
+/bin/sh -c source ~/.config/smug/.env
+exit status 127 /bin/sh: 1: source: not found
+
+tmux kill-session -t flyxai
+exit status 1 no server running on /tmp/tmux-1000/default
+

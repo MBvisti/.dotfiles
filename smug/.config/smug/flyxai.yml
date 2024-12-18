@@ -1,0 +1,36 @@
+session: flyxai
+
+root: ~
+
+windows:
+  - name: backend
+    root: ~/Projects/flyxai/szrch-service # a relative path to root
+    layout: main-vertical
+    commands:
+      - cd services && vi .
+
+    panes:
+      - type: vertical
+        root: .
+      - type: vertical
+        root: .
+        commands:
+          - make dev
+
+  - name: frontend
+    root: ~/Projects/flyxai/szrch-service # a relative path to root
+    layout: main-vertical
+    commands:
+      - cd frontend && vi .
+
+  - name: database
+    root: .
+    layout: main-vertical
+    commands:
+      - vi -c ":DBUI"
+
+  - name: notes
+    root: ./vaults/work/projects/flyxai
+    layout: main-vertical
+    commands:
+      - vi index.md

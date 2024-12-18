@@ -1,0 +1,20 @@
+session: thelab
+
+root: /home/mbv/projects/mbvlabs
+
+windows:
+  - name: term
+    root: ~/Projects/mbvlabs
+    layout: main-vertical
+
+  - name: database
+    root: .
+    layout: main-vertical
+    commands:
+      - vi -c ":DBUI"
+
+  - name: notes
+    root: ~/vaults/work
+    layout: main-vertical
+    commands:
+      - vi index.md

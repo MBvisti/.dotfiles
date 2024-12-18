@@ -1,0 +1,32 @@
+session: grafto
+
+root: ~/Projects/mbvlabs/grafto
+
+windows:
+  - name: coding
+    root: ~
+    layout: main-vertical
+    commands:
+      - vi .
+
+    panes:
+      - type: vertical
+        root: .
+        commands:
+          - just rw
+      - type: vertical
+        root: .
+        commands:
+          - just r
+
+  - name: database
+    root: ~
+    layout: main-vertical
+    commands:
+      - vi -c ":DBUI"
+
+  - name: notes
+    root: ~/vaults/work
+    layout: main-vertical
+    commands:
+      - vi index.md
