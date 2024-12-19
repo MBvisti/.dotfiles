@@ -1,9 +1,10 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"saghen/blink.cmp",
+		-- "williamboman/mason.nvim",
+		-- "williamboman/mason-lspconfig.nvim",
+		-- "WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- { "j-hui/fidget.nvim", opts = {} },
 
@@ -12,6 +13,69 @@ return {
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local lsp = require("lspconfig")
+
+		lsp.gopls.setup({
+			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			-- capabilities = capabilities,
+			-- on_attach = function(client)
+			-- 	-- Disable completion but keep other LSP features
+			-- 	client.server_capabilities.completionProvider = false
+			-- end,
+			-- handlers = handlers,
+			root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+			filetypes = { "go", "gomod" },
+			settings = {
+				gopls = {
+					-- hints = {
+					--   assignVariableTypes = true,
+					--   compositeLiteralFields = true,
+					--   compositeLiteralTypes = true,
+					--   constantValues = true,
+					--   functionTypeParameters = true,
+					--   parameterNames = true,
+					--   rangeVariableTypes = true,
+					-- },
+					completeUnimported = true,
+					gofumpt = true,
+					staticcheck = true,
+				},
+			},
+		})
+
+		lsp.templ.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			-- handlers = handlers,
+		})
+
+		-- lsp.marksman.setup({
+		-- 	capabilities = capabilities,
+		-- 	single_file_support = false,
+		-- 	root_dir = require("lspconfig.util").root_pattern(".marksman.toml"),
+		-- })
+
+		lsp.htmx.setup({
+			capabilities = capabilities,
+			filetypes = { "templ", "html" },
+		})
+		lsp.emmet_ls.setup({
+			capabilities = capabilities,
+			filetypes = { "html", "templ" },
+		})
+
+		lsp.lua_ls.setup({
+			capabilities = capabilities,
+			settings = {
+				Lua = {
+					completion = {
+						callSnippet = "Replace",
+					},
+				},
+			},
+		})
+
 		--    function will be executed to configure the current buffer
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
@@ -44,54 +108,53 @@ return {
 			end,
 		})
 
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-		local servers = {
-			marksman = {
-				single_file_support = false,
-				root_dir = require("lspconfig.util").root_pattern(".marksman.toml"),
-			},
-			htmx = {
-				filetypes = { "templ", "html" },
-			},
-			emmet_ls = {
-				filetypes = { "html", "templ" },
-			},
-			lua_ls = {
-				settings = {
-					Lua = {
-						completion = {
-							callSnippet = "Replace",
-						},
-					},
-				},
-			},
-		}
+		-- local servers = {
+		-- 	marksman = {
+		-- 		single_file_support = false,
+		-- 		root_dir = require("lspconfig.util").root_pattern(".marksman.toml"),
+		-- 	},
+		-- 	htmx = {
+		-- 		filetypes = { "templ", "html" },
+		-- 	},
+		-- 	emmet_ls = {
+		-- 		filetypes = { "html", "templ" },
+		-- 	},
+		-- 	lua_ls = {
+		-- 		settings = {
+		-- 			Lua = {
+		-- 				completion = {
+		-- 					callSnippet = "Replace",
+		-- 				},
+		-- 			},
+		-- 		},
+		-- 	},
+		-- }
 
-		local function border(hl_name)
-			--[[ { "┏", "━", "┓", "┃", "┛","━", "┗", "┃" }, ]]
-			--[[ {"─", "│", "─", "│", "┌", "┐", "┘", "└"}, ]]
-			return {
-				{ "┌", hl_name },
-				{ "─", hl_name },
-				{ "┐", hl_name },
-				{ "│", hl_name },
-				{ "┘", hl_name },
-				{ "─", hl_name },
-				{ "└", hl_name },
-				{ "│", hl_name },
-			}
-		end
-		local handlers = {
-			["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border("FloatBorder") }),
-			["textDocument/signatureHelp"] = vim.lsp.with(
-				vim.lsp.handlers.signature_help,
-				{ border = border("FloatBorder") }
-			),
-		}
+		-- local function border(hl_name)
+		-- 	return {
+		-- 		{ "┌", hl_name },
+		-- 		{ "─", hl_name },
+		-- 		{ "┐", hl_name },
+		-- 		{ "│", hl_name },
+		-- 		{ "┘", hl_name },
+		-- 		{ "─", hl_name },
+		-- 		{ "└", hl_name },
+		-- 		{ "│", hl_name },
+		-- 	}
+		-- end
+		-- local handlers = {
+		-- 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border("FloatBorder") }),
+		-- 	["textDocument/signatureHelp"] = vim.lsp.with(
+		-- 		vim.lsp.handlers.signature_help,
+		-- 		{ border = border("FloatBorder") }
+		-- 	),
+		-- }
 
-		local lsp = require("lspconfig")
+		-- local lsp = require("lspconfig")
 		-- lsp.tailwindcss.setup({
 		-- 	handlers = handlers,
 		-- 	classAttributes = { "class" },
@@ -128,51 +191,52 @@ return {
 		-- 		},
 		-- 	},
 		-- })
-		lsp.gopls.setup({
-			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			-- on_attach = function(client)
-			-- 	-- Disable completion but keep other LSP features
-			-- 	client.server_capabilities.completionProvider = false
-			-- end,
-			handlers = handlers,
-			root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
-			filetypes = { "go", "gomod" },
-			settings = {
-				gopls = {
-					-- hints = {
-					--   assignVariableTypes = true,
-					--   compositeLiteralFields = true,
-					--   compositeLiteralTypes = true,
-					--   constantValues = true,
-					--   functionTypeParameters = true,
-					--   parameterNames = true,
-					--   rangeVariableTypes = true,
-					-- },
-					completeUnimported = true,
-					gofumpt = true,
-					staticcheck = true,
-				},
-			},
-		})
-		lsp.templ.setup({
-			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
-		require("mason").setup()
-
-		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format lua code
-		})
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
-		})
+		-- lsp.gopls.setup({
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	-- on_attach = function(client)
+		-- 	-- 	-- Disable completion but keep other LSP features
+		-- 	-- 	client.server_capabilities.completionProvider = false
+		-- 	-- end,
+		-- 	-- handlers = handlers,
+		-- 	root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+		-- 	filetypes = { "go", "gomod" },
+		-- 	settings = {
+		-- 		gopls = {
+		-- 			-- hints = {
+		-- 			--   assignVariableTypes = true,
+		-- 			--   compositeLiteralFields = true,
+		-- 			--   compositeLiteralTypes = true,
+		-- 			--   constantValues = true,
+		-- 			--   functionTypeParameters = true,
+		-- 			--   parameterNames = true,
+		-- 			--   rangeVariableTypes = true,
+		-- 			-- },
+		-- 			completeUnimported = true,
+		-- 			gofumpt = true,
+		-- 			staticcheck = true,
+		-- 		},
+		-- 	},
+		-- })
+		-- lsp.templ.setup({
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	-- handlers = handlers,
+		-- })
+		-- require("mason").setup()
+		--
+		-- local ensure_installed = vim.tbl_keys(servers or {})
+		-- vim.list_extend(ensure_installed, {
+		-- 	"stylua", -- Used to format lua code
+		-- })
+		-- require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+		-- require("mason-lspconfig").setup({
+		-- 	handlers = {
+		-- 		function(server_name)
+		-- 			local server = servers[server_name] or {}
+		-- 			-- server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+		-- 			server.capabilities = capabilities
+		-- 			require("lspconfig")[server_name].setup(server)
+		-- 		end,
+		-- 	},
+		-- })
 	end,
 }
