@@ -73,18 +73,18 @@ vim.keymap.set("n", "<leader>zm", "<cmd>ZenMode<CR>")
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- copilot
-vim.keymap.set("i", "<M-CR>", "copilot#Accept('<CR>')", {
-	expr = true,
-	replace_keycodes = false,
-})
-
-vim.keymap.set("i", "<M-]>", "<Plug>(copilot-next)")
-
-vim.keymap.set("i", "<M-[>", "<Plug>(copilot-previous)")
-
-vim.keymap.set("i", "<M-a>", "<Plug>(copilot-accept-word)")
-
-vim.keymap.set("i", "<M-/>", "<Plug>(copilot-suggest)")
+-- vim.keymap.set("i", "<M-CR>", "copilot#Accept('<CR>')", {
+-- 	expr = true,
+-- 	replace_keycodes = false,
+-- })
+--
+-- vim.keymap.set("i", "<M-]>", "<Plug>(copilot-next)")
+--
+-- vim.keymap.set("i", "<M-[>", "<Plug>(copilot-previous)")
+--
+-- vim.keymap.set("i", "<M-a>", "<Plug>(copilot-accept-word)")
+--
+-- vim.keymap.set("i", "<M-/>", "<Plug>(copilot-suggest)")
 
 -- oil
 vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open parent directory" })
