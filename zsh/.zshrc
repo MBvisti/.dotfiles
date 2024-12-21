@@ -19,15 +19,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
     git 
-    zsh-autosuggestions 
+    # zsh-autosuggestions 
     # common-aliases 
-    alias-finder 
-    web-search
-    aws
+    # alias-finder 
+    # web-search
+    # aws
     # tmux
-    zsh-z
-	ruby
-	asdf
+    # zsh-z
+	# ruby
+	# asdf
 )
 
 # Set list of themes to pick from when loading at random
@@ -172,63 +172,60 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # export PATH=$PATH:~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin
 
 # modualr & mojo
-export MODULAR_HOME="/home/mbv/.modular"
-export PATH="/home/mbv/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+# export MODULAR_HOME="/home/mbv/.modular"
+# export PATH="/home/mbv/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
 
 # kotlin & java & maven
 # export PATH="/usr/local/kotlin/bin:$PATH"
 # alias kotlinc="/usr/local/kotlin/bin/kotlinc-native"
 
-export PATH="/usr/local/java/jdk-11/bin:$PATH"
-export PATH="/usr/local/maven/apache-maven-3.6.3/bin:$PATH"
-
 # terraform
-export PATH="/usr/local/terraform/latest:$PATH"
+# export PATH="/usr/local/terraform/latest:$PATH"
 
 # pulumi
-export PATH="/usr/local/pulumi/latest:$PATH"
+# export PATH="/usr/local/pulumi/latest:$PATH"
 
 # heroku
 # export PATH="/usr/local/heroku/bin:$PATH"
 
 # bazecor 
-alias dygma="/home/mbv/Dygma/Bazecor.AppImage"
+# alias dygma="/home/mbv/Dygma/Bazecor.AppImage"
 
 # lazy git
-export PATH="/usr/local/lazygit/latest:$PATH"
+# export PATH="/usr/local/lazygit/latest:$PATH"
 
 # quarto
-export PATH="/usr/local/quarto/latest/bin/:$PATH"
+# export PATH="/usr/local/quarto/latest/bin/:$PATH"
 
 # zellij
-export PATH="/usr/local/zellij/:$PATH"
+# export PATH="/usr/local/zellij/:$PATH"
 
 # python
-export PATH="~/.local/share/uv/python:$PATH"
-alias python="~/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3"
+# export PATH="~/.local/share/uv/python:$PATH"
+# alias python="~/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3"
 # alias pip="/usr/local/python/latest/bin/pip3"
 
 # tailwind
-alias tailwind="/usr/local/tailwind/latest"
+# alias tailwind="/usr/local/tailwind/latest"
 
 # doctl
-export PATH="/usr/local/doctl/latest:$PATH"
+# export PATH="/usr/local/doctl/latest:$PATH"
 
 # picom
-export PATH="/usr/local/picom/latest:$PATH"
+# export PATH="/usr/local/picom/latest:$PATH"
 
 # ollama
-export PATH="/usr/local/ollama/latest:$PATH"
+# export PATH="/usr/local/ollama/latest:$PATH"
 
 # lazydocker
 export PATH="/usr/local/lazydocker/latest:$PATH"
 
 # tmux
-export PATH="/usr/local/bin/tmux:$PATH"
+# export PATH="/usr/local/bin/tmux:$PATH"
 
 # ruby
-export PATH="/usr/local/ruby/latest/bin:$PATH"
-export PATH="/home/mbv/.gem/ruby/3.3.0/bin:$PATH"
+# export PATH="/usr/local/ruby/latest/bin:$PATH"
+# export PATH="/home/mbv/.gem/ruby/3.3.0/bin:$PATH"
 
 # just
 export PATH="/usr/local/just/latest:$PATH"
@@ -238,18 +235,21 @@ export PATH="/usr/local/smug/smug:$PATH"
 alias smug="/usr/local/smug/smug"
 
 # nats server
-export PATH="/usr/local/nats/latest:$PATH"
+# export PATH="/usr/local/nats/latest:$PATH"
 
 # sops server
-alias sops="/usr/local/sops/latest/v3.9.1.linux.amd64"
+# alias sops="/usr/local/sops/latest/v3.9.1.linux.amd64"
 
 # stripe cli
-export PATH="/usr/local/stripecli/latest:$PATH"
-#
-# tempo
-export PATH="/usr/local/tempo/latest:$PATH"
+# export PATH="/usr/local/stripecli/latest:$PATH"
 
-# export TERM=screen-256color
+# tempo
+# export PATH="/usr/local/tempo/latest:$PATH"
+
+export TERM=screen-256color
+
+# kitty symlinks
+export PATH="/usr/local/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
@@ -259,4 +259,4 @@ complete -o nospace -C /usr/bin/terraform terraform
 # Created by `pipx` on 2023-06-27 09:06:38
 export PATH="$PATH:/home/mbv/.local/bin"
 
-source ~/.secrets/antrophic
+# source ~/.secrets/antrophic
