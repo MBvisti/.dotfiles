@@ -1,10 +1,14 @@
 session: thelab
 
-root: /home/mbv/projects/mbvlabs
+root: /home/mbv/work/mbvlabs
 
 windows:
+  - name: neovim
+    root: .
+    layout: main-vertical
+
   - name: term
-    root: ~/Projects/mbvlabs
+    root: .
     layout: main-vertical
 
   - name: database

@@ -1,6 +1,6 @@
 session: blog
 
-root: ~/Projects/mbvisti/mortenvistisen-blog
+root: ~/work/mbvisti/mortenvistisen-blog
 
 windows:
   - name: coding

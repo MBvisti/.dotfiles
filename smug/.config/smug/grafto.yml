@@ -1,10 +1,10 @@
 session: grafto
 
-root: ~/Projects/mbvlabs/grafto
+root: ~/work/mbvlabs/grafto
 
 windows:
   - name: coding
-    root: ~
+    root: .
     layout: main-vertical
     commands:
       - vi .

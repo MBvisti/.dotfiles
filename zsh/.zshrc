@@ -218,7 +218,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # export PATH="/usr/local/ollama/latest:$PATH"
 
 # lazydocker
-export PATH="/usr/local/lazydocker/latest:$PATH"
+# export PATH="/usr/local/lazydocker/latest:$PATH"
 
 # tmux
 # export PATH="/usr/local/bin/tmux:$PATH"
@@ -228,11 +228,11 @@ export PATH="/usr/local/lazydocker/latest:$PATH"
 # export PATH="/home/mbv/.gem/ruby/3.3.0/bin:$PATH"
 
 # just
-export PATH="/usr/local/just/latest:$PATH"
+# export PATH="/usr/local/just/latest:$PATH"
 
 # smug
-export PATH="/usr/local/smug/smug:$PATH"
-alias smug="/usr/local/smug/smug"
+# export PATH="/usr/local/smug/smug:$PATH"
+# alias smug="/usr/local/smug/smug"
 
 # nats server
 # export PATH="/usr/local/nats/latest:$PATH"
@@ -246,7 +246,7 @@ alias smug="/usr/local/smug/smug"
 # tempo
 # export PATH="/usr/local/tempo/latest:$PATH"
 
-export TERM=screen-256color
+# export TERM=screen-256color
 
 # kitty symlinks
 export PATH="/usr/local/bin:$PATH"
@@ -254,9 +254,5 @@ export PATH="/usr/local/bin:$PATH"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
 
-# alias pip=pip3
-
-# Created by `pipx` on 2023-06-27 09:06:38
-export PATH="$PATH:/home/mbv/.local/bin"
-
-# source ~/.secrets/antrophic
+. "$HOME/.asdf/asdf.sh"
+source ~/.secrets/antrophic

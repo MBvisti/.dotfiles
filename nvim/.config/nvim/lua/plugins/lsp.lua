@@ -16,6 +16,27 @@ return {
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local lsp = require("lspconfig")
 
+		local function border(hl_name)
+			return {
+				{ "┌", hl_name },
+				{ "─", hl_name },
+				{ "┐", hl_name },
+				{ "│", hl_name },
+				{ "┘", hl_name },
+				{ "─", hl_name },
+				{ "└", hl_name },
+				{ "│", hl_name },
+			}
+		end
+		local handlers = {
+			["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border("FloatBorder") }),
+			["textDocument/signatureHelp"] = vim.lsp.with(
+				vim.lsp.handlers.signature_help,
+				{ border = border("FloatBorder") }
+			),
+		}
+
+
 		lsp.gopls.setup({
 			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 			-- capabilities = capabilities,
@@ -23,7 +44,7 @@ return {
 			-- 	-- Disable completion but keep other LSP features
 			-- 	client.server_capabilities.completionProvider = false
 			-- end,
-			-- handlers = handlers,
+			handlers = handlers,
 			root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
 			filetypes = { "go", "gomod" },
 			settings = {
@@ -47,7 +68,7 @@ return {
 		lsp.templ.setup({
 			capabilities = capabilities,
 			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			-- handlers = handlers,
+			handlers = handlers,
 		})
 
 		-- lsp.marksman.setup({
@@ -56,25 +77,25 @@ return {
 		-- 	root_dir = require("lspconfig.util").root_pattern(".marksman.toml"),
 		-- })
 
-		lsp.htmx.setup({
-			capabilities = capabilities,
-			filetypes = { "templ", "html" },
-		})
+		-- lsp.htmx.setup({
+		-- 	capabilities = capabilities,
+		-- 	filetypes = { "templ", "html" },
+		-- })
 		lsp.emmet_ls.setup({
 			capabilities = capabilities,
 			filetypes = { "html", "templ" },
 		})
 
-		lsp.lua_ls.setup({
-			capabilities = capabilities,
-			settings = {
-				Lua = {
-					completion = {
-						callSnippet = "Replace",
-					},
-				},
-			},
-		})
+		-- lsp.lua_ls.setup({
+		-- 	capabilities = capabilities,
+		-- 	settings = {
+		-- 		Lua = {
+		-- 			completion = {
+		-- 				callSnippet = "Replace",
+		-- 			},
+		-- 		},
+		-- 	},
+		-- })
 
 		--    function will be executed to configure the current buffer
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -132,26 +153,6 @@ return {
 		-- 			},
 		-- 		},
 		-- 	},
-		-- }
-
-		-- local function border(hl_name)
-		-- 	return {
-		-- 		{ "┌", hl_name },
-		-- 		{ "─", hl_name },
-		-- 		{ "┐", hl_name },
-		-- 		{ "│", hl_name },
-		-- 		{ "┘", hl_name },
-		-- 		{ "─", hl_name },
-		-- 		{ "└", hl_name },
-		-- 		{ "│", hl_name },
-		-- 	}
-		-- end
-		-- local handlers = {
-		-- 	["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border("FloatBorder") }),
-		-- 	["textDocument/signatureHelp"] = vim.lsp.with(
-		-- 		vim.lsp.handlers.signature_help,
-		-- 		{ border = border("FloatBorder") }
-		-- 	),
 		-- }
 
 		-- local lsp = require("lspconfig")

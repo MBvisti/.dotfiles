@@ -1,9 +1,9 @@
 session: gbc
 
-root: ~/Projects/mbvlabs/golangblogcourse
+root: ~/work/mbvlabs/golangblogcourse
 
 windows:
-  - name: coding
+  - name: nvim
     root: ~
     layout: main-vertical
     commands:

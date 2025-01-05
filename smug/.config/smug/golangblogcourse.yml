@@ -1,8 +1,8 @@
 session: golangblogcourse
 
-root: ~/Projects/mbvlabs/golangblogcourse-material
+root: ~/work/mbvlabs/golangblogcourse-material
 
 windows:
   - name: coding
-    root: ~/Projects/mbvlabs/golangblogcourse-material
+    root: ~
     layout: main-vertical

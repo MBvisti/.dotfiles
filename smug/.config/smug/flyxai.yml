@@ -1,10 +1,10 @@
 session: flyxai
 
-root: ~
+root: ~/work/flyxai
 
 windows:
   - name: backend
-    root: ~/Projects/flyxai/szrch-service # a relative path to root
+    root: ./szrch-service # a relative path to root
     layout: main-vertical
     commands:
       - cd services && vi .
@@ -18,7 +18,7 @@ windows:
           - make dev
 
   - name: frontend
-    root: ~/Projects/flyxai/szrch-service # a relative path to root
+    root: ./szrch-service # a relative path to root
     layout: main-vertical
     commands:
       - cd frontend && vi .
