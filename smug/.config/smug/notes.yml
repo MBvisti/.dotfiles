@@ -1,0 +1,10 @@
+session: notes
+
+root: ./vaults/work
+
+windows:
+  - name: notes
+    root: ~
+    layout: main-vertical
+    commands:
+      - vi index.md

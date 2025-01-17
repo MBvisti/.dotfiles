@@ -53,8 +53,8 @@ vim.opt.splitright = true
 -- Sets how neovim will display certain whitespace in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -94,7 +94,7 @@ vim.g.netrw_winsize = 25
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
-vim.g.wiki_root = "~/wiki"
+vim.g.wiki_root = "~/vaults/work"
 vim.cmd([[
   let g:wiki_journal_index = {
           \ 'link_text_parser': { b, d, p -> d },

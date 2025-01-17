@@ -1,6 +1,6 @@
 session: blog
 
-root: ~/work/mbvisti/mortenvistisen-blog
+root: ~/work/mbvisti/mortenvistisen
 
 windows:
   - name: coding
@@ -24,9 +24,3 @@ windows:
     layout: main-vertical
     commands:
       - vi -c ":DBUI"
-
-  - name: notes
-    root: ~/vaults/work
-    layout: main-vertical
-    commands:
-      - vi index.md

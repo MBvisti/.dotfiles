@@ -180,7 +180,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # alias kotlinc="/usr/local/kotlin/bin/kotlinc-native"
 
 # terraform
-# export PATH="/usr/local/terraform/latest:$PATH"
+export PATH="/usr/local/terraform:$PATH"
 
 # pulumi
 # export PATH="/usr/local/pulumi/latest:$PATH"
@@ -248,11 +248,16 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 # export TERM=screen-256color
 
+# composer
+export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer:$PATH"
+export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer/vendor/bin:$PATH"
+
 # kitty symlinks
 export PATH="/usr/local/bin:$PATH"
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
+# complete -o nospace -C /usr/bin/terraform terraform
 
 . "$HOME/.asdf/asdf.sh"
 source ~/.secrets/antrophic
+source ~/.secrets/openai

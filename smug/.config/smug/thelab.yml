@@ -16,9 +16,3 @@ windows:
     layout: main-vertical
     commands:
       - vi -c ":DBUI"
-
-  - name: notes
-    root: ~/vaults/work
-    layout: main-vertical
-    commands:
-      - vi index.md

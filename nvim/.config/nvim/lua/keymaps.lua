@@ -62,15 +62,15 @@ vim.keymap.set(
 )
 
 -- diffview
-vim.keymap.set("n", "<leader>vf", "<cmd>DiffviewFileHistory %<CR>")
-vim.keymap.set("n", "<leader>vb", "<cmd>DiffviewFileHistory<CR>")
-vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<CR>")
+-- vim.keymap.set("n", "<leader>vf", "<cmd>DiffviewFileHistory %<CR>")
+-- vim.keymap.set("n", "<leader>vb", "<cmd>DiffviewFileHistory<CR>")
+-- vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<CR>")
 
 -- zenmode
 vim.keymap.set("n", "<leader>zm", "<cmd>ZenMode<CR>")
 
 -- undo tree
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+-- vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- oil
 vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open parent directory" })

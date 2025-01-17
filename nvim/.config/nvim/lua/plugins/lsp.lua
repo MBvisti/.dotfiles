@@ -71,6 +71,12 @@ return {
 			handlers = handlers,
 		})
 
+		lsp.intelephense.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
+
 		-- lsp.marksman.setup({
 		-- 	capabilities = capabilities,
 		-- 	single_file_support = false,
@@ -104,12 +110,17 @@ return {
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
-				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-				map("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-				map("<leader>d", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+				local ts_builtin = require("telescope.builtin")
+
+				map("gd", ts_builtin.lsp_definitions, "[G]oto [D]efinition")
+				map("gr", ts_builtin.lsp_references, "[G]oto [R]eferences")
+				map("gi", ts_builtin.lsp_implementations, "[G]oto [I]mplementation")
+
+				-- vim.keymap.set("i", "<C-space>", ts_builtin.live_grep, { buffer = event.buf, desc = "LSP: " .. "[L]ive [G]rep" })
+
+				map("<leader>d", ts_builtin.lsp_type_definitions, "Type [D]efinition")
+				map("<leader>ds", ts_builtin.lsp_document_symbols, "[D]ocument [S]ymbols")
+				map("<leader>ws", ts_builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 				map("K", vim.lsp.buf.hover, "Hover Documentation")
