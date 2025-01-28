@@ -1,27 +1,52 @@
+-- return {
+-- 	"sainnhe/gruvbox-material",
+-- 	lazy = false, -- make sure we load this during startup if it is your main colorscheme
+-- 	priority = 1000, -- make sure to load this before all the other start plugins
+-- 	config = function()
+--     	-- Optionally configure and load the colorscheme
+--     	-- directly inside the plugin declaration.
+--     	vim.g.gruvbox_material_enable_italic = true
+--     	vim.cmd.colorscheme('gruvbox-material')
+--     end
+-- }
+
+-- return {
+--   "marcelbeumer/spacedust.vim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+-- 	vim.cmd.colorscheme("spacedust")
+--   end,
+-- }
+
+-- return {
+--   "xero/miasma.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     vim.cmd.colorscheme("miasma")
+--   end,
+-- }
+
 return {
-	"sainnhe/gruvbox-material",
-	lazy = false, -- make sure we load this during startup if it is your main colorscheme
-	priority = 1000, -- make sure to load this before all the other start plugins
+	"xero/miasma.nvim",
+	-- dev = true,
+	branch = "lua",
+	lazy = false,
+	cmd = "Miasma",
 	config = function()
-    	-- Optionally configure and load the colorscheme
-    	-- directly inside the plugin declaration.
-    	vim.g.gruvbox_material_enable_italic = true
-    	vim.cmd.colorscheme('gruvbox-material')
-    end
+		vim.cmd.colorscheme("miasma")
+	end,
 }
 
 -- return {
-	-- "scottmckendry/cyberdream.nvim",
-	-- lazy = false,
-	-- priority = 1000,
-	--
-	-- config = function()
-	-- 	local cd = require("cyberdream")
-	-- 	cd.setup({
-	-- 		transparent = true,
-	-- 		borderless_telescope = false,
-	-- 	})
-	-- end,
+-- 	"scottmckendry/cyberdream.nvim",
+-- 	lazy = false,
+-- 	priority = 1000,
+--
+-- 	config = function()
+--     	vim.cmd.colorscheme("cyberdream")
+-- 	end,
 -- }
 
 -- return {

@@ -1,13 +1,20 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
+	event = "VeryLazy",
 	config = function()
-		local ibl = require("ibl")
-
-		ibl.setup({
-    		-- whitespace = { highlight = { "Whitespace", "NonText" } },
-			-- indent = { char = "▎" },
-			scope = { enabled = true },
+		require("ibl").setup({
+			scope = {
+				show_start = true,
+			},
+			indent = {
+				char = "▎",
+				tab_char = "▎",
+				smart_indent_cap = true,
+			},
+			whitespace = {
+				remove_blankline_trail = true,
+			},
 		})
 	end,
 }

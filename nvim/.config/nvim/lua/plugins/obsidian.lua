@@ -14,7 +14,7 @@ return {
 	dependencies = {
 		-- Required.
 		"nvim-lua/plenary.nvim",
-		"MeanderingProgrammer/render-markdown.nvim",
+		"OXY2DEV/markview.nvim",
 
 		-- see below for full list of optional dependencies 👇
 	},
@@ -49,7 +49,7 @@ return {
 			min_chars = 2,
 		},
 		ui = {
-			enable = true,
+			enable = false,
 		},
 	},
 	-- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
