@@ -3,11 +3,11 @@ font-family = FiraMono Nerd Font Mono
 # theme = GruvboxDarkHard
 # theme = catppuccin-mocha
 # theme = GruvboxDark
-theme = miasma
+# theme = miasma
 # theme = NvimDark
 # theme = Spacedust
 #theme = gruvbox-material
-# theme = Kanagawa Wave
+theme = Kanagawa Wave
 # theme = Kanagawa Dragon
 font-size = 14
 gtk-titlebar = false
@@ -21,3 +21,5 @@ keybind = ctrl+s>\=new_split:right
 keybind = ctrl+s>-=new_split:down
 keybind = ctrl+s>a=new_split:auto
 keybind = ctrl+s>t=new_tab
+
+app-notifications = no-clipboard-copy

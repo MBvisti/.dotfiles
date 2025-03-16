@@ -20,24 +20,15 @@
 -- }
 
 -- return {
---   "xero/miasma.nvim",
---   lazy = false,
---   priority = 1000,
---   config = function()
---     vim.cmd.colorscheme("miasma")
---   end,
+-- 	"xero/miasma.nvim",
+-- 	-- dev = true,
+-- 	branch = "lua",
+-- 	lazy = false,
+-- 	cmd = "Miasma",
+-- 	config = function()
+-- 		vim.cmd.colorscheme("miasma")
+-- 	end,
 -- }
-
-return {
-	"xero/miasma.nvim",
-	-- dev = true,
-	branch = "lua",
-	lazy = false,
-	cmd = "Miasma",
-	config = function()
-		vim.cmd.colorscheme("miasma")
-	end,
-}
 
 -- return {
 -- 	"scottmckendry/cyberdream.nvim",
@@ -63,15 +54,12 @@ return {
 	-- -- },
 -- }
 
--- return {
-	-- "rebelot/kanagawa.nvim",
-	-- lazy = false,
-	-- priority = 1000,
-	--
-	-- config = function()
-	-- 	local cd = require("kanagawa")
-	-- 	cd.setup({
-	-- 		transparent = true,
-	-- 	})
-	-- end,
--- }
+return {
+	"rebelot/kanagawa.nvim",
+	lazy = false,
+	priority = 1000,
+
+	config = function()
+		vim.cmd.colorscheme("kanagawa")
+	end,
+}

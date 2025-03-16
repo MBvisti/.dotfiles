@@ -58,6 +58,7 @@ return {
 					--   parameterNames = true,
 					--   rangeVariableTypes = true,
 					-- },
+					buildFlags =  {"-tags=unit integration e2e"},
 					completeUnimported = true,
 					gofumpt = true,
 					staticcheck = true,
@@ -66,6 +67,18 @@ return {
 		})
 
 		lsp.templ.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
+
+		lsp.html.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
+
+		lsp.cssls.setup({
 			capabilities = capabilities,
 			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 			handlers = handlers,

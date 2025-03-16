@@ -1,18 +1,13 @@
 session: thelab
 
-root: /home/mbv/work/mbvlabs
+root: ~/work/mbvlabs/mbvlabs
 
 windows:
-  - name: neovim
-    root: .
-    layout: main-vertical
-
-  - name: term
-    root: .
-    layout: main-vertical
-
-  - name: database
-    root: .
+  - name: coding
+    root: ~
     layout: main-vertical
     commands:
-      - vi -c ":DBUI"
+      - vi .
+  - name: terminal
+    root: ~
+    layout: main-vertical

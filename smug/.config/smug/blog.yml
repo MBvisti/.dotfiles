@@ -1,13 +1,13 @@
-session: notes
+session: blog
 
-root: ./vaults/work
+root: ~/work/mbvisti/mortenvistisen
 
 windows:
-  - name: notes
+  - name: coding
     root: ~
     layout: main-vertical
     commands:
-      - vi index.md
+      - vi .
   - name: terminal
-    root: /home/mbv
+    root: ~
     layout: main-vertical

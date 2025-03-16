@@ -1,13 +1,13 @@
-session: gbc
+session: flyxai
 
-root: ~/work/mbvlabs/golangblogcourse
+root: ~/work/flyxai
 
 windows:
   - name: coding
-    root: ~
+    root: ./szrch-service
     layout: main-vertical
     commands:
       - vi .
   - name: terminal
-    root: ~
+    root: ./szrch-service
     layout: main-vertical

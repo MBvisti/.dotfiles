@@ -253,7 +253,10 @@ export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer:$PATH"
 export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer/vendor/bin:$PATH"
 
 # kitty symlinks
-export PATH="/usr/local/bin:$PATH"
+# export PATH="/usr/local/bin:$PATH"
+
+# rocm
+export PATH=$PATH:/opt/rocm-6.3.3/bin
 
 autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/bin/terraform terraform

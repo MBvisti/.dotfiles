@@ -1,0 +1,10 @@
+session: database
+
+root: .
+
+windows:
+  - name: database
+    root: .
+    layout: main-vertical
+    commands:
+      - vi -c ":DBUI"
