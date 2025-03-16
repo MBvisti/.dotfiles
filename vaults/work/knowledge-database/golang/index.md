@@ -7,7 +7,7 @@ tags:
   - software
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/knowledge-database/index.md)
 
 # Golang
 

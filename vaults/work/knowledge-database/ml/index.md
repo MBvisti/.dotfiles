@@ -7,7 +7,7 @@ aliases:
 tags: []
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/knowledge-database/index.md)
 
 # Machine Learning
 

@@ -6,7 +6,7 @@ tags:
   - database
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/knowledge-database/index.md)
 
 # Postgres
 
@@ -70,8 +70,10 @@ SELECT pg_terminate_backend(pid int)
 to kill the process(es).
 
 ## Articles
-  - [Ten tips going to prod](https://severalnines.com/blog/ten-tips-going-production-postgresql/)
-  - [Tuning your PostgreSQL server](https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server) 
-  - [Just Use Postgres for Everything](https://www.amazingcto.com/postgres-for-everything/)
-  - [Delete Duplicate Rows](https://sqlfordevs.com/delete-duplicate-rows)
-  - [How to tune PSQL](https://pgtune.leopard.in.ua/#/)
+- [Major upgrade with zero downtime](https://www.instantdb.com/essays/pg_upgrade)
+- [Ten tips going to prod](https://severalnines.com/blog/ten-tips-going-production-postgresql/)
+- [Tuning your PostgreSQL server](https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server) 
+- [Just Use Postgres for Everything](https://www.amazingcto.com/postgres-for-everything/)
+- [Delete Duplicate Rows](https://sqlfordevs.com/delete-duplicate-rows)
+
+- [How to tune PSQL](https://pgtune.leopard.in.ua/#/)

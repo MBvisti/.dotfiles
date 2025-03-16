@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/knowledge-database/index.md)
 
 # Youtube
 
@@ -89,6 +89,20 @@ To create contrast with luminosity you mix lights and darks to better showcase t
 To create contrast with saturation you mix areas of low saturation with high saturiation, e.g. a background with gray scale and bright colors for the main character.
 
 To create hue contrast, you use complementary colors which are colors that are opposite each other on the color wheel.
+
+## Recording
+
+### OBS
+
+To use iPhone as webcam, install this plugin:
+```bash
+flatpak install flathub com.obsproject.Studio.Plugin.DroidCam
+```
+
+Then run OBS with flatpak:
+```bash
+flatpak run --filesystem=/run/usbmuxd:ro com.obsproject.Studio
+```
 
 ## Library
 

@@ -4,7 +4,7 @@ aliases: []
 tags: []
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/knowledge-database/index.md)
 
 # Linux
 
@@ -78,7 +78,7 @@ Add the username of the user creating the ssh key (i.e. your computer user) of d
   xset r rate 220 40
 ```
 ### Connect to headset through terminal
-bluetoothctl connect 14:3F:A6:C2:70:FC
+bluetoothctl connect 14:3F:A6:C2:70:FC | new -> AC:80:0A:37:CF:A5
 
 #### If issues with above
 ```bash
@@ -99,6 +99,34 @@ Open a terminal and run the following:
 ## Misc
 Difference between things like 'apt', 'deb' and 'flatpak', 'snap':
 It highlights that apt is primarily for managing Debian packages and dependencies, whereas snap and flatpak use containerization to handle dependencies more flexibly. While this flexibility aids in avoiding dependency conflicts, it also increases resource usage and can lead to integration issues with the desktop environment. Security concerns are also mentioned, with a desire for improved package review processes and trust-building measures like package signing.
+
+
+## Connect wifi through terminal
+
+To see list of available wifis:
+```sh
+nmcli dev wifi list
+```
+
+To connect:
+```sh
+sudo nmcli dev wifi connect <network-name> password <password>
+```
+
+To enable/disable wifi:
+```sh
+nmcli radio wifi on/off
+```
+
+Or have a popup ask for pw:
+```sh
+sudo nmcli --ask dev wifi connect <network-name>
+```
+
+Show connecion:
+```sh
+nmcli con show
+```
 
 
 ## Articles

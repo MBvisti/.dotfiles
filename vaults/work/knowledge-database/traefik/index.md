@@ -6,7 +6,7 @@ tags:
   - infrastructure
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/knowledge-database/index.md)
 
 # Traefik
 

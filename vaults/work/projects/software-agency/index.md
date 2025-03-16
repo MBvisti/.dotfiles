@@ -8,19 +8,20 @@ tags:
   - business
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/projects/index.md)
 
 # Software Agency
 
 <!--toc:start-->
 - [Software Agency](#software-agency)
   - [TODOs](#todos)
+  - [LinkedIn](projects/software-agency/linkedin.md)
   - [Services](#services)
     - [Software Engineering](#software-engineering)
 <!--toc:end-->
 
 ## TODOs
-- [ ] Put together the services/software-engineering page
+- [x] Put together the services/software-engineering page
 - [ ] Make landing page responsive
 
 ## Services

@@ -6,7 +6,7 @@ tags:
   - infrastructure
 ---
 
-[Back To Index](../index.md)
+[Back To Index](/knowledge-database/index.md)
 
 # AWS
 
@@ -236,6 +236,8 @@ under: `iam -> roles -> <role-name> -> permissions policies -> add inline policy
 - [Setting up AWS accounts for your organization](https://docs.sst.dev/setting-up-aws/) | account management
 - [AWS IAM Policies: A Practical Approach](https://blog.awsfundamentals.com/aws-iam-policies-a-practical-approach)
 - [Get to Grips with AWS IAM Roles: Terms, Concepts, and Examples](https://blog.awsfundamentals.com/aws-iam-roles-terms-concepts-and-examples)
+- [Setup AWS](https://sst.dev/docs/aws-accounts/)
+
 ### Videos
 - [AWS Networking Basics For Programmers](https://www.youtube.com/watch?v=2doSoMN2xvI) | networking
 

@@ -4,76 +4,91 @@ aliases: []
 tags: []
 ---
 
-# Work Index
+# Work index
 
-Main entry into the work vault.
+
+|Project |WHAT   |DOING   |FINISHED   |
+|:---|:---:|:---:|---:|
+|[Grafto](./projects/grafto/index.md) |Test All Paths return expected endpoint |~ |   |
+|[Grafto](./projects/grafto/index.md) |Implement contexts setup from blog |~ |   |
+|[Grafto](./projects/grafto/index.md) |Add bootstrap instead of tailwind |~ |   |
+|[Grafto](./projects/grafto/index.md) |Implement paths setup from blog |~ |   |
+|[Grafto](./projects/grafto/index.md) |Remove 'resources' and 'static' in favor of 'assets' |~ |   |
+|[Blog](./projects/blog/index.md) |We do project management wrong|~ | |
+|[Blog](./projects/blog/index.md) |Find your rock|~ | |
+
+
+Consider building a OSS analytics platform with Grafto but using sqlite
 
 <!--toc:start-->
 - [Work Index](#work-index)
   - [Knowledge Database](./knowledge-database/index.md)
   - [Projects](./projects/index.md)
-  - [Blog](./blog/index.md)
+  - [Daily Thoughts](./thoughts/index.md)
 <!--toc:end-->
+
+- https://www.za-zu.com/blog/playbook
+- https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags#example-generating-financial-reports
+- https://refactoringenglish.com/chapters/rules-for-software-tutorials/
+
+main screen: 189c x 50r
+
+main screen (new): 160c x 45
+
+right screen: 41c x 50r
+bottom: 230c x 9r
+Increase size 2x
+
+obs with iphone cam:
+`flatpak run --filesystem=/run/usbmuxd:ro com.obsproject.Studio`
+
+check: [wallhaven](https://wallhaven.cc) for wallpapers
+
+Use capital T to search tabs in browser (with vimium)!
+
+[Situational Awareness](https://situational-awareness.ai/)
+[SSE](https://packagemain.tech/p/implementing-server-sent-events-in-go)
+[CSRF/CORS](https://smagin.fyi/posts/cross-site-requests/)
+[Setup Davinci Install](https://www.reddit.com/r/davinciresolve/comments/1fj02pg/davinci_resolve_19_works_on_linux_with_amd_gpu/)
 
 --------------------------------------------------------
                 VIM MOVES OF THE WEEK
 
-- `<leader>s/` | telescope_live_grep_open_files
-
+        - `<leader>s/` | telescope_live_grep_open_files
+        
+                Telescope Undo
+        **(i)nsert**
+        - [`<cr>`] | require(`telescope-undo.actions`).yank_additions,
+        - [`<S-cr>`] | require(`telescope-undo.actions`).yank_deletions,
+        - [`<C-cr>`] | require(`telescope-undo.actions`).restore,
+        - -- alternative defaults, for users whose terminals do questionable things with modified <cr>
+        - [`<C-y>`] | require(`telescope-undo.actions`).yank_deletions,
+        - [`<C-r>`] | require(`telescope-undo.actions`).restore,
+        
+        **(n)ormal**
+        - [`y`] | require(`telescope-undo.actions`).yank_additions,
+        - [`Y`] | require(`telescope-undo.actions`).yank_deletions,
+        - [`u`] | require(`telescope-undo.actions`).restore,
+        
                 MAKING KEYWORD WORK
-- `setxkbmap -layout us`
-- `setxkbmap -option 'grp:alt_shift_toggle'`
---------------------------------------------------------
 
-ignaciobarcelo@gmail.com
-
-## TODOs
-
-Leftovers:
-- [ ] Go through notes for Grafto updates
-- [ ] Make mbvlabs landing responsive to tablets
-- [ ] Look into how sales navigator can be used to find people on linkedin
-- [ ] Collect more examples of go course
-- [ ] Outline course for Golang Blog Course
-- [ ] Make small clip of using htmx
-- [ ] Make small snippet showing partials with htmx
-
-Sep 9 2024:
-- [x] Go through Cyril connect to find examples of good banner/headline combo
-- [x] Create banner for service linkedin
-- [x] Re-create linkedin banner
-- [ ] Finish MVP page of mbvlabs.com
-- [ ] Make services page responsive
-- [x] Change newsletter on mortenvistisen.com to start sending newsletters using [trix](https://github.com/basecamp/trix)
-
-Week 37 - marketing week
-**Priorities**:
-- finish first edition of mbvlabs.com
-- send mortenvistisen newsletter
-- create 3 posts on linkedin
-- optimize linkedin page (banners, about, technologies etc)
-- create blog post mortenvistisen
-- create shorts based on '5 days to startup'
-- create posts functionality on glogger
-- (maybe) create day 5 video
+        - `setxkbmap -layout us`
+        - `setxkbmap -option 'grp:alt_shift_toggle'`
+        - `xset r rate 260 40`
 
 --------------------------------------------------------
 
-Sep 6 2024:
-- [x] Add pull initial data to the-bloggening when booting
-- [x] Remove the "-dark/light" from image
+## Ideas
+- Electricity tracker + integration
+- Danish weapon licitation tracker
+- Something mental health + articles
+- competition/price tracker (optic)
 
-Sep 5 2024:
-- [x] Make mbvlabs landing responsive to mobile
-- [x] Change "mail" to "email" in grafto
-- [x] Adjust signup process glogger (create customer on "free" plan + user)
-- [x] Create "script" to quickly generate boilerplate data in current state
-- [x] Finish education page of mbvlabs.com
 
-Sep 4 2024:
-- [x] Finish software engineering page on mbvlabscom
-- [~] More domain name research for go course
-- [x] Sketch DB structure for glogger
-- [x] Collect examples of go courses and their SEO
 
-Week 36 - building week
+
+
+
+
+
+
