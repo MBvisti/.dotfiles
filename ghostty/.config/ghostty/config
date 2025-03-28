@@ -1,13 +1,13 @@
 font-family = FiraMono Nerd Font Mono
 # font-family-bold = FiraMono Nerd Font Mono Bold
-# theme = GruvboxDarkHard
+theme = GruvboxDarkHard
 # theme = catppuccin-mocha
 # theme = GruvboxDark
 # theme = miasma
 # theme = NvimDark
 # theme = Spacedust
-#theme = gruvbox-material
-theme = Kanagawa Wave
+# theme = gruvbox-material
+# theme = Kanagawa Wave
 # theme = Kanagawa Dragon
 font-size = 14
 gtk-titlebar = false

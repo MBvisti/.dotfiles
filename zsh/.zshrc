@@ -180,7 +180,7 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # alias kotlinc="/usr/local/kotlin/bin/kotlinc-native"
 
 # terraform
-export PATH="/usr/local/terraform:$PATH"
+#export PATH="/usr/local/terraform:$PATH"
 
 # pulumi
 # export PATH="/usr/local/pulumi/latest:$PATH"
@@ -221,7 +221,7 @@ export PATH="/usr/local/terraform:$PATH"
 # export PATH="/usr/local/lazydocker/latest:$PATH"
 
 # tmux
-# export PATH="/usr/local/bin/tmux:$PATH"
+export PATH="/usr/local/tmux/latest:$PATH"
 
 # ruby
 # export PATH="/usr/local/ruby/latest/bin:$PATH"
@@ -246,21 +246,28 @@ export PATH="/usr/local/terraform:$PATH"
 # tempo
 # export PATH="/usr/local/tempo/latest:$PATH"
 
+# node
+export PATH="/usr/local/node/latest/bin:$PATH"
+
 # export TERM=screen-256color
 
 # composer
-export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer:$PATH"
-export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer/vendor/bin:$PATH"
+# export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer:$PATH"
+# export PATH="/home/mbv/.asdf/installs/php/8.4.2/bin/composer/vendor/bin:$PATH"
 
 # kitty symlinks
 # export PATH="/usr/local/bin:$PATH"
 
 # rocm
-export PATH=$PATH:/opt/rocm-6.3.3/bin
+# export PATH=$PATH:/opt/rocm-6.3.3/bin
 
-autoload -U +X bashcompinit && bashcompinit
+# autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/bin/terraform terraform
 
-. "$HOME/.asdf/asdf.sh"
+# asdf
+# . "$HOME/.asdf/asdf.sh"
+export ASDF_DATA_DIR="/home/mbv/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
 source ~/.secrets/antrophic
-source ~/.secrets/openai
+# source ~/.secrets/openai

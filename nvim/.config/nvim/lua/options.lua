@@ -107,6 +107,10 @@ vim.o.guicursor = "a:blinkon0"
 -- vim.g.copilot_no_tab_map = true
 
 vim.filetype.add({ extension = { templ = "templ" } })
+-- vim.api.nvim_create_autocmd("BufEnter",
+-- 	{ pattern = "*.templ", callback = function() vim.cmd("TSBufEnable highlight") end })
+-- vim.api.nvim_create_autocmd("BufEnter",
+-- 	{ pattern = "*.go", callback = function() vim.cmd("TSBufEnable highlight") end })
 
 vim.o.hlsearch = false
 

@@ -485,10 +485,6 @@ hx-target="#loginResponse"
 hx-swap="innerHTML"
 hx-post="/login"
 ```
----
-
-WHAT:
-- we only update the ui with the fragment
 
 ```templ
 templ LoginFailureFragment() {
@@ -508,6 +504,11 @@ templ LoginSuccessFragment() {
 	</div>
 }
 ```
+---
+
+WHAT:
+- we only update the ui with the fragment
+
 ```go
 func (c Controller) SessionNew(ctx echo.Context) error {
 	return views.Login("PLACEHOLDER").
@@ -568,7 +569,7 @@ func (c Controller) SessionCreate(ctx echo.Context) error {
 
 ```go
 // routes/routes.go
-	e.GET("/login", func(c echo.Context) error {
+	e.POST("/login", func(c echo.Context) error {
 		return r.ctrl.SessionCreate(c)
 	})
 ```
@@ -666,13 +667,17 @@ func createAuthSession(
 // routes/routes.go
 	e.Use(
 		session.Middleware(
-			sessions.NewCookieStore([]byte(os.Getenv("SESSION_ENC_KEY"))),
+			sessions.NewCookieStore(
+				[]byte(os.Getenv("SESSION_AUTH_KEY")),
+				[]byte(os.Getenv("SESSION_ENC_KEY")),
+			),
 		),
 	)
 ```
 
 ```sh
-export SESSION_ENC_KEY=encryption_key
+export SESSION_AUTH_KEY=7RtmbQNbWJ
+export SESSION_ENC_KEY=suzwJjP40yVKd1xj
 ```
 
 ---
@@ -683,6 +688,8 @@ WHAT:
 
 ```sh
 export CSRF_TOKEN_KEY=enc_key
+
+go get github.com/gorilla/csrf
 ```
 
 ```go
@@ -844,3 +851,13 @@ func (r Routes) Load() *echo.Echo {
 }
 ```
 ---
+
+## Episode 7
+
+**Title**: Remember me/Forget me
+
+Bullet points:
+- implement remember me
+- implement forget me
+
+### Episode 7 Script

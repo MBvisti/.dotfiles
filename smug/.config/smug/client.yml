@@ -1,13 +1,13 @@
 session: flyxai
 
-root: ~/work/flyxai
+root: ~/work/clients/flyxai
 
 windows:
   - name: coding
-    root: ./szrch-service
+    root: .
     layout: main-vertical
     commands:
       - vi .
   - name: terminal
-    root: ./szrch-service
+    root: .
     layout: main-vertical

@@ -58,7 +58,7 @@ return {
 					--   parameterNames = true,
 					--   rangeVariableTypes = true,
 					-- },
-					buildFlags =  {"-tags=unit integration e2e"},
+					buildFlags = { "-tags=unit integration e2e" },
 					completeUnimported = true,
 					gofumpt = true,
 					staticcheck = true,
@@ -72,23 +72,29 @@ return {
 			handlers = handlers,
 		})
 
-		lsp.html.setup({
+		lsp.lua_ls.setup({
 			capabilities = capabilities,
 			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 			handlers = handlers,
 		})
 
-		lsp.cssls.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
+		-- lsp.html.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
 
-		lsp.intelephense.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
+		-- lsp.cssls.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
+
+		-- lsp.intelephense.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
 
 		-- lsp.marksman.setup({
 		-- 	capabilities = capabilities,
@@ -100,6 +106,7 @@ return {
 		-- 	capabilities = capabilities,
 		-- 	filetypes = { "templ", "html" },
 		-- })
+
 		lsp.emmet_ls.setup({
 			capabilities = capabilities,
 			filetypes = { "html", "templ" },

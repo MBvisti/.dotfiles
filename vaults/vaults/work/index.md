@@ -6,18 +6,6 @@ tags: []
 
 # Work index
 
-
-|Project |WHAT   |DOING   |FINISHED   |
-|:---|:---:|:---:|---:|
-|[Grafto](./projects/grafto/index.md) |Test All Paths return expected endpoint |~ |   |
-|[Grafto](./projects/grafto/index.md) |Implement contexts setup from blog |~ |   |
-|[Grafto](./projects/grafto/index.md) |Add bootstrap instead of tailwind |~ |   |
-|[Grafto](./projects/grafto/index.md) |Implement paths setup from blog |~ |   |
-|[Grafto](./projects/grafto/index.md) |Remove 'resources' and 'static' in favor of 'assets' |~ |   |
-|[Blog](./projects/blog/index.md) |We do project management wrong|~ | |
-|[Blog](./projects/blog/index.md) |Find your rock|~ | |
-
-
 Consider building a OSS analytics platform with Grafto but using sqlite
 
 <!--toc:start-->
@@ -35,6 +23,10 @@ main screen: 189c x 50r
 
 main screen (new): 160c x 45
 
+main screen (new new): 161c x 47
+
+zoom editor 7x
+
 right screen: 41c x 50r
 bottom: 230c x 9r
 Increase size 2x
@@ -42,9 +34,18 @@ Increase size 2x
 obs with iphone cam:
 `flatpak run --filesystem=/run/usbmuxd:ro com.obsproject.Studio`
 
+disable super "hold and release" to see overview in ubuntu
+- gsettings set org.gnome.mutter overlay-key ""
+- gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us')]"
+- gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
+
 check: [wallhaven](https://wallhaven.cc) for wallpapers
 
 Use capital T to search tabs in browser (with vimium)!
+
+worktree:
+https://bryanenglish.io/git-worktrees/
+https://github.com/ThePrimeagen/git-worktree.nvim
 
 [Situational Awareness](https://situational-awareness.ai/)
 [SSE](https://packagemain.tech/p/implementing-server-sent-events-in-go)

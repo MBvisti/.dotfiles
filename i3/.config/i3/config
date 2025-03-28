@@ -52,7 +52,8 @@ bindsym $mod+Return exec ghostty
 # bindsym $mod+Return exec kitty --detach
 
 # Start a brave
-bindsym $mod+Shift+Return exec flatpak run com.brave.Browser
+# bindsym $mod+Shift+Return exec flatpak run com.brave.Browser
+bindsym $mod+Shift+Return exec brave-browser
 
 # kill focused window
 bindsym $mod+q kill
@@ -164,13 +165,16 @@ bar {
 	font pango:FiraMono Nerd Font Mono 12
 }
 
-gaps inner 5px
-gaps outer 5px
+gaps inner 2px
+gaps outer 0px
 
 # Keyword layout
 exec_always "setxkbmap -layout us"
 exec_always "setxkbmap -option 'grp:alt_shift_toggle'"
 exec_always "xset r rate 260 40"
+
+# Picom
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
 # Wallpaper
 # exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/pirate-kind-of-place.png"
@@ -178,9 +182,7 @@ exec_always "xset r rate 260 40"
 # exec_always feh --bg-scale "/home/mbv/Pictures/backgrounds/star-wars-kinda.png"
 # exec_always feh --bg-scale "/home/mbv/Pictures/bgs/savana.png"
 # exec_always feh --bg-scale "/home/mbv/Pictures/bgs/mountains.png"
-exec_always feh --bg-scale "/home/mbv/Pictures/bgs/futurisc-street-rain.png"
+# exec_always feh --bg-scale "/home/mbv/Pictures/bgs/futurisc-street-rain.png"
+exec_always feh --bg-scale "/home/mbv/Pictures/bgs/space-rocket.png"
 # exec_always feh --bg-scale "/home/mbv/Pictures/bgs/fuji.png"
 # exec_always feh --bg-scale "/home/mbv/Pictures/bgs/asian-thing.png"
-
-# Picom
-exec --no-startup-id picom --config ~/.config/picom/picom.conf -b

@@ -14,10 +14,11 @@ return {
 		end,
 		["_"] = { "trim_whitespace" },
 		formatters_by_ft = {
-			lua = { "stylua" },
+			-- lua = { "stylua" },
 			sql = { "sqlfmt" },
 			templ = { "templ" },
-			css = {"cssls"},
+			css = { "cssls" },
+			lua = { "lua-language-server" },
 		},
 	},
 }
