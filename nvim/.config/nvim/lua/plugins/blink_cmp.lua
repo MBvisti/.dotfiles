@@ -5,7 +5,7 @@ return {
 		-- "giuxtaposition/blink-cmp-copilot",
 	},
 
-	version = "v0.13.1",
+	version = "1.*",
 	opts = {
 		keymap = {
 			preset = "enter",

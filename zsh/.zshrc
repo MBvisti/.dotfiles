@@ -264,10 +264,13 @@ export PATH="/usr/local/node/latest/bin:$PATH"
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/bin/terraform terraform
 
+# zip
+export PATH="/usr/local/zig/latest:$PATH"
+
 # asdf
 # . "$HOME/.asdf/asdf.sh"
 export ASDF_DATA_DIR="/home/mbv/.asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
-source ~/.secrets/antrophic
-# source ~/.secrets/openai
+source ~/.secrets/anthropic
+source ~/.secrets/openai

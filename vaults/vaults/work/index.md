@@ -19,17 +19,19 @@ Consider building a OSS analytics platform with Grafto but using sqlite
 - https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags#example-generating-financial-reports
 - https://refactoringenglish.com/chapters/rules-for-software-tutorials/
 
+**Not on new setup**
 main screen: 189c x 50r
-
 main screen (new): 160c x 45
-
 main screen (new new): 161c x 47
 
-zoom editor 7x
+zoom editor 9x
 
 right screen: 41c x 50r
 bottom: 230c x 9r
 Increase size 2x
+
+~(ubuntu) 25 left clicks on audio input (settings)~
+(ubuntu) 30 right clicks on audio input (from zero) in settings
 
 obs with iphone cam:
 `flatpak run --filesystem=/run/usbmuxd:ro com.obsproject.Studio`
@@ -51,6 +53,7 @@ https://github.com/ThePrimeagen/git-worktree.nvim
 [SSE](https://packagemain.tech/p/implementing-server-sent-events-in-go)
 [CSRF/CORS](https://smagin.fyi/posts/cross-site-requests/)
 [Setup Davinci Install](https://www.reddit.com/r/davinciresolve/comments/1fj02pg/davinci_resolve_19_works_on_linux_with_amd_gpu/)
+[Changes to Davinci](https://www.reddit.com/r/davinciresolve/comments/1d7cr2w/optresolvebinresolve_symbol_lookup_error/)
 
 --------------------------------------------------------
                 VIM MOVES OF THE WEEK
@@ -84,12 +87,3 @@ https://github.com/ThePrimeagen/git-worktree.nvim
 - Danish weapon licitation tracker
 - Something mental health + articles
 - competition/price tracker (optic)
-
-
-
-
-
-
-
-
-

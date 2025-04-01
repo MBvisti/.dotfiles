@@ -75,7 +75,7 @@ Add the username of the user creating the ssh key (i.e. your computer user) of d
 ## misc stuff
 ### To improve key repeat:
 ```bash
-  xset r rate 220 40
+  xset r rate 260 40
 ```
 ### Connect to headset through terminal
 bluetoothctl connect 14:3F:A6:C2:70:FC | new -> AC:80:0A:37:CF:A5

@@ -1,13 +1,12 @@
 session: flyxai
 
-root: ~/work/clients/flyxai
+root: ~/work
 
 windows:
   - name: coding
     root: .
     layout: main-vertical
-    commands:
-      - vi .
+
   - name: terminal
     root: .
     layout: main-vertical

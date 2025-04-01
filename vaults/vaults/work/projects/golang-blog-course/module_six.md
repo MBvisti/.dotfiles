@@ -861,3 +861,312 @@ Bullet points:
 - implement forget me
 
 ### Episode 7 Script
+
+```html
+<span class="flex justify-between mt-4 mb-2">
+	<p class="text-white">Remember me</p>
+	<input
+		name="remember_me"
+		type="checkbox"
+	/>
+</span>
+```
+
+```go
+func (c Controller) SessionCreate(ctx echo.Context) error {
+	type sessionCreatePayload struct {
+		Email      string `form:"email"`
+		Password   string `form:"password"`
+	--> RememberMe string `form:"remember_me"`
+	}
+
+	var payload sessionCreatePayload
+	if err := ctx.Bind(&payload); err != nil {
+		return views.LoginFailureFragment().
+			Render(renderArgs(ctx))
+	}
+
+    --> rememberMe := payload.RememberMe == "on"
+
+	user, err := models.GetUserByEmail(
+		ctx.Request().Context(),
+		c.db.Pool,
+		payload.Email,
+	)
+	if err != nil {
+		return views.LoginFailureFragment().
+			Render(renderArgs(ctx))
+	}
+
+	if err := user.ValidatePassword(payload.Password); err != nil {
+		return views.LoginFailureFragment().
+			Render(renderArgs(ctx))
+	}
+
+	if err := createAuthSession(ctx, user, --> rememberMe); err != nil {
+		return views.LoginFailureFragment().
+			Render(renderArgs(ctx))
+	}
+
+	return views.LoginSuccessFragment().
+		Render(renderArgs(ctx))
+}
+```
+
+```go
+func createAuthSession(
+	ctx echo.Context,
+	user models.User,
+	--> extendSession bool,
+) error {
+	s, err := session.Get(authSessionName, ctx)
+	if err != nil {
+		return err
+	}
+
+	--> maxAge := 604800
+	--> if extendSession {
+	--> 	maxAge = maxAge * 2
+	--> }
+
+	s.Options = &sessions.Options{
+		Path:     "/",
+		--> MaxAge:   maxAge,
+		HttpOnly: true,
+	}
+
+	s.Values[authUserID] = user.ID
+	s.Values[authUserEmail] = user.Email
+	s.Values[authIsAthenticated] = true
+
+	return s.Save(ctx.Request(), ctx.Response())
+}
+```
+---
+
+Create `views/contexts`
+
+```go
+// views/contexts/app.go
+package contexts
+
+import (
+	"github.com/google/uuid"
+	"github.com/labstack/echo/v4"
+)
+
+type AppKey struct{}
+
+func (AppKey) String() string {
+	return ""
+}
+
+type App struct {
+	echo.Context
+	UserID          uuid.UUID
+	IsAuthenticated bool
+}
+```
+
+```go
+// views/contexts/context.go
+package contexts
+
+import "context"
+
+func ExtractApp(ctx context.Context) App {
+	appCtx, ok := ctx.Value(AppKey{}).(App)
+	if !ok {
+		return App{}
+	}
+
+	return appCtx
+}
+```
+
+```go
+// controllers/controller.go
+func setAppCtx(ctx echo.Context) context.Context {
+	appcKey := contexts.AppKey{}
+	appc := ctx.Get(appcKey.String())
+
+	return context.WithValue(
+		ctx.Request().Context(),
+		appcKey,
+		appc,
+	)
+}
+```
+
+```go
+// controllers/controller.go
+func renderArgs(ctx echo.Context) (context.Context, io.Writer) {
+	return setAppCtx(ctx), ctx.Response().Writer
+}
+```
+---
+
+```go
+// controllers/controller.go
+func RegisterAppContext(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		if strings.HasPrefix(c.Request().URL.Path, "/static") {
+			return next(c)
+		}
+
+		s, err := session.Get(authSessionName, c)
+		if err != nil {
+			return next(c)
+		}
+
+		isAuthenticated, _ := s.Values[authIsAthenticated].(bool)
+		userID, _ := s.Values[authUserID].(uuid.UUID)
+
+		appContext := contexts.App{
+			Context:         c,
+			IsAuthenticated: isAuthenticated,
+			UserID:          userID,
+		}
+
+		c.Set(contexts.AppKey{}.String(), appContext)
+
+		return next(c)
+	}
+}
+```
+
+```go
+// routes/routes.go
+func NewRoutes(ctrl controllers.Controller) Routes {
+	e := echo.New()
+
+	e.Use(
+		session.Middleware(
+			sessions.NewCookieStore(
+				[]byte(os.Getenv("SESSION_AUTH_KEY")),
+				[]byte(os.Getenv("SESSION_ENC_KEY")),
+			),
+		),
+		--> controllers.RegisterAppContext,
+	)
+
+	echo.MustSubFS(static.Files, "static")
+	e.StaticFS("/static/", static.Files)
+
+	return Routes{e, ctrl}
+}
+```
+
+```templ
+
+templ navElement(link, name string, attrs templ.Attributes) {
+    <a 
+		{ attrs... }
+        class="font-semibold text-sm text-base-content mx-2 hover:text-base-content/70 hover:underline cursor-pointer" 
+        href={templ.SafeURL(link)}
+    >
+        {name}
+    </a>
+}
+```
+
+```templ
+templ navigation() {
+	<header class="flex bg-base-300 w-full">
+		<div class="bg-base-100 container mx-auto flex justify-center">
+			<nav --> id="navBar"class="mt-6 p-2 rounded border border-base-content bg-base-300 w-fit">
+                --> @navElement("/", "Home", nil)
+                --> @navElement("/articles", "Articles", nil)
+                --> @navElement("/about", "About", nil)
+		        --> if contexts.ExtractApp(ctx).IsAuthenticated {
+                -->     @navElement("/logout", "Logout", nil)
+                --> }
+			</nav>
+		</div>
+	</header>
+}
+```
+
+```templ
+// views/login.templ
+templ LoginSuccessFragment() {
+	<div class="flex flex-col items-center">
+		<p
+			class="text-success mb-2"
+		>
+			You've been authenticated.
+		</p>
+		<a href="/dashboard" class="text-white hover:text-white/50 hover:underline">Go to dashboard</a>
+	</div>
+	@navElement("/logout", "Logout", templ.Attributes{"hx-swap-oob": "beforeend:#navBar"})
+}
+```
+---
+
+```go
+// controllers/controller
+func deleteAuthSession(ctx echo.Context) error {
+	s, err := session.Get(authSessionName, ctx)
+	if err != nil {
+		return err
+	}
+
+	s.Options = &sessions.Options{
+		Path:     "/",
+		MaxAge:   -1,
+		HttpOnly: true,
+	}
+
+	s.Values[authIsAthenticated] = false
+
+	return s.Save(ctx.Request(), ctx.Response())
+}
+```
+
+```go
+// controllers/controller
+func (c Controller) SessionDestroy(ctx echo.Context) error {
+	if err := deleteAuthSession(ctx); err != nil {
+		return views.LoginFailureFragment().
+			Render(renderArgs(ctx))
+	}
+
+	return ctx.Redirect(http.StatusPermanentRedirect, "/")
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadApp(e *echo.Echo) *echo.Echo {
+	// setup routes for different pages
+	r.e.GET("", func(c echo.Context) error {
+		return r.ctrl.Home(c)
+	})
+
+	r.e.GET("/articles/:slug", func(c echo.Context) error {
+		return r.ctrl.Article(c)
+	})
+
+	r.e.GET("/about", func(c echo.Context) error {
+		return r.ctrl.About(c)
+	})
+
+	r.e.GET("/login", func(c echo.Context) error {
+		return r.ctrl.SessionNew(c)
+	})
+	r.e.POST("/login", func(c echo.Context) error {
+		return r.ctrl.SessionCreate(c)
+	})
+
+	--> r.e.GET("/logout", func(c echo.Context) error {
+	--> 	return r.ctrl.SessionDestroy(c)
+	--> })
+
+	r.e.GET("*", func(c echo.Context) error {
+		return views.ErrorPage(views.WithErrPageTitle("Oops!"), views.WithErrPageMsg("We could not find the page you're looking for.")).
+			Render(c.Request().Context(), c.Response())
+	})
+
+	return r.e
+}
+```
