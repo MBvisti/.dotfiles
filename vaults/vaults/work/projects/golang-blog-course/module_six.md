@@ -1059,9 +1059,8 @@ func NewRoutes(ctrl controllers.Controller) Routes {
 
 ```templ
 
-templ navElement(link, name string, attrs templ.Attributes) {
+templ navElement(link, name string) {
     <a 
-		{ attrs... }
         class="font-semibold text-sm text-base-content mx-2 hover:text-base-content/70 hover:underline cursor-pointer" 
         href={templ.SafeURL(link)}
     >
@@ -1075,11 +1074,11 @@ templ navigation() {
 	<header class="flex bg-base-300 w-full">
 		<div class="bg-base-100 container mx-auto flex justify-center">
 			<nav --> id="navBar"class="mt-6 p-2 rounded border border-base-content bg-base-300 w-fit">
-                --> @navElement("/", "Home", nil)
-                --> @navElement("/articles", "Articles", nil)
-                --> @navElement("/about", "About", nil)
+                --> @navElement("/", "Home")
+                --> @navElement("/articles", "Articles")
+                --> @navElement("/about", "About")
 		        --> if contexts.ExtractApp(ctx).IsAuthenticated {
-                -->     @navElement("/logout", "Logout", nil)
+                -->     @navElement("/logout", "Logout")
                 --> }
 			</nav>
 		</div>
@@ -1098,7 +1097,9 @@ templ LoginSuccessFragment() {
 		</p>
 		<a href="/dashboard" class="text-white hover:text-white/50 hover:underline">Go to dashboard</a>
 	</div>
-	@navElement("/logout", "Logout", templ.Attributes{"hx-swap-oob": "beforeend:#navBar"})
+    <div hx-swap-oob="beforeend:#navBar">
+        @navElement("/logout", "Logout", nil)
+    </div>
 }
 ```
 ---
