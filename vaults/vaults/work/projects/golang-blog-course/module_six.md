@@ -1171,3 +1171,1509 @@ func (r Routes) loadApp(e *echo.Echo) *echo.Echo {
 	return r.e
 }
 ```
+---
+
+## Episode 8
+
+**Title**: Managing the blog using hypermedia api
+
+### Episode 8 Script
+
+```templ
+// views/dashboard_base.templ
+templ dashboardNavigation() {
+	<header class="flex bg-base-300 w-full">
+		<div class="bg-base-100 container mx-auto flex justify-center">
+			<nav class="mt-6 p-2 rounded border border-base-content bg-base-300 w-fit">
+				@navElement("/dashboard", "Home")
+				@navElement("/dashboard/subscribers", "Subscribers")
+				@navElement("/dashboard/newsletters", "Newsletters")
+				@navElement("/logout", "Logout")
+			</nav>
+		</div>
+	</header>
+}
+```
+
+```templ
+// views/dashboard_home.templ
+templ stat(count int, statName string) {
+	<div class="w-44 bg-base-200 border rounded flex flex-col items-center mx-10 p-4">
+		<span class="text-lg text-white">{ strconv.Itoa(count) }</span>
+		<p class="font-bold text-white text-sm">{ statName }</p>
+	</div>
+}
+```
+
+```templ
+// views/dashboard_home.templ
+templ DashboardHome() {
+	@dashboardBase() {
+		<div class="h-full flex-1 bg-base-100 container mx-auto flex flex-col items-center">
+			<div class="w-fit flex mt-16">
+				@stat(13, "New Subs")
+				@stat(153, "Verified Subs")
+				@stat(166, "Total Subs")
+            </div>
+		</div>
+	}
+}
+```
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardHome(ctx echo.Context) error {
+	return views.DashboardHome().Render(renderArgs(ctx))
+}
+```
+---
+
+```templ
+// views/dashboard_home.templ
+templ substable() {
+	<div class="flex flex-col justify-between h-96">
+		<h2 class="mb-4 text-lg text-white">Latest Subscribers</h2>
+		<div class="bg-base-200 overflow-y-auto w-96 min-h-full max-h-96">
+			<table class="text-white table-auto table-fixed w-full">
+				<thead class="h-12 bg-base-300">
+					<tr class="h-12">
+						<th class="text-start pl-4">Email</th>
+						<th class="text-end pr-4">Subscribed At</th>
+					</tr>
+				</thead>
+				<tbody class="bg-base-300/10 align-top">
+					<tr class="h-10 align-middle">
+						<td class="pl-4">marcus@golangblogcourse.com</td>
+						<td class="text-end pr-4">21-11-2024</td>
+					</tr>
+					<tr class="h-10 align-middle">
+						<td class="pl-4">peter@golangblogcourse.com</td>
+						<td class="text-end pr-4">11-01-2025</td>
+					</tr>
+					<tr class="h-10 align-middle">
+						<td class="pl-4">carla@golangblogcourse.com</td>
+						<td class="text-end pr-4">03-01-2025</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+}
+```
+
+```templ
+// views/dashboard_home.templ
+templ Poststable() {
+	<div id="postsTableContainer" class="flex flex-col mr-10 h-96">
+		<div class="flex justify-between">
+			<h2 class="text-lg text-white">Latest Articles</h2>
+			<a
+				href="/dashboard/articles/new"
+				class="text-sm mb-2 px-4 py-2 text-white rounded bg-base-300 cursor-pointer hover:bg-base-300/50 hover:font-semibold"
+			>
+				New Post
+			</a>
+		</div>
+		<div class="bg-base-200 overflow-y-auto flex-1 min-h-full max-h-96">
+			<table class="text-white table-auto table-fixed w-full">
+				<thead class="h-12 bg-base-300">
+					<tr class="h-12">
+						<th class="text-start pl-4 w-1/3">Title</th>
+						<th class="text-center">Status</th>
+						<th class="text-center">Created at</th>
+						<th class="text-center">Updated at</th>
+						<th class="text-end pr-4"></th>
+					</tr>
+				</thead>
+				<tbody class="bg-base-300/10 align-top">
+					<tr class="h-10 align-middle">
+						<td class="text-start pl-4">Placeholder Article</td>
+						<td class={ "text-center", templ.KV("text-success", false), templ.KV("text-info", true) }>
+							if false {
+								Released
+							}
+							if true {
+								Draft
+							}
+						</td>
+						<td class="text-center">{ time.Now().CreatedAt.Format("2006-01-02") }</td>
+						<td class="text-center">{ time.Now().UpdatedAt.Format("2006-01-02") }</td>
+						<td class="text-end pr-4">
+							<a
+								class="text-sm px-2 py-1 text-white rounded bg-secondary cursor hover:bg-secondary/70"
+								href={ templ.SafeURL(fmt.Sprintf("/dashboard/articles/%v/edit", uuid.New())) }
+							>Edit</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+}
+```
+
+```templ
+// views/dashboard_home.templ
+templ DashboardHome() {
+	@dashboardBase() {
+		<div class="h-full flex-1 bg-base-100 container mx-auto flex flex-col items-center">
+			<div class="w-fit flex mt-16">
+				@stat(13, "New Subs")
+				@stat(153, "Verified Subs")
+				@stat(166, "Total Subs")
+			</div>
+			<div class="mt-24 h-96 w-4/5 mx-auto flex justify-around">
+				--> @Poststable()
+				--> @substable()
+			</div>
+		</div>
+	}
+}
+```
+---
+
+```sql
+-- name: QueryArticlesPage :many
+select 
+	*
+from articles
+order by created_at desc
+limit $1 offset $2;
+
+-- name: QueryArticlesCount :one
+select count(*) from articles;
+```
+
+```go
+type PaginatedArticles struct {
+	Articles []Article
+	Total    int64
+	Page     int32
+	PageSize int32
+}
+
+func GetArticlesPage(
+	ctx context.Context,
+	dbtx db.DBTX,
+	page int32,
+	pageSize int32,
+) (PaginatedArticles, error) {
+	total, err := db.Stmts.QueryArticlesCount(ctx, dbtx)
+	if err != nil {
+		return PaginatedArticles{}, err
+	}
+
+	offset := (page - 1) * pageSize
+	dbArticles, err := db.Stmts.QueryArticlesPage(
+		ctx,
+		dbtx,
+		db.QueryArticlesPageParams{
+			Limit:  pageSize,
+			Offset: offset,
+		},
+	)
+	if err != nil {
+		return PaginatedArticles{}, err
+	}
+
+	articles := make([]Article, len(dbArticles))
+	for i, dbSub := range dbArticles {
+		articles[i] = Article{
+			ID:         dbSub.ID,
+			CreatedAt:  dbSub.CreatedAt.Time,
+			UpdatedAt:  dbSub.UpdatedAt.Time,
+			Title:      dbSub.Title,
+			Filename:   dbSub.Filename,
+			Slug:       dbSub.Slug,
+			Excerpt:    dbSub.Excerpt,
+			Draft:      dbSub.Draft,
+			ReleasedAt: dbSub.ReleasedAt.Time,
+			ReadTime:   dbSub.ReadTime.Int32,
+		}
+	}
+
+	return PaginatedArticles{
+		Articles: articles,
+		Total:    total,
+		Page:     page,
+		PageSize: pageSize,
+	}, nil
+}
+```
+---
+
+```templ
+// views/dashboard_home.templ
+type PostsTableProps struct {
+	Articles         []models.Article
+	CurrentPage      int64
+	TotalPages       int64
+	NextPageLink     string
+	PreviousPageLink string
+}
+
+templ Poststable(props PostsTableProps) {
+    // omitted
+    for _, article := range props.Articles {
+    	<tr class="h-10 align-middle">
+    		<td class="text-start pl-4">{ article.Title }</td>
+    		<td class={ "text-center", templ.KV("text-success", !article.ReleasedAt.IsZero()), templ.KV("text-info", article.ReleasedAt.IsZero()) }>
+    			if !article.ReleasedAt.IsZero() {
+    				Released
+    			}
+    			if article.ReleasedAt.IsZero() {
+    				Draft
+    			}
+    		</td>
+    		<td class="text-center">{ article.CreatedAt.Format("2006-01-02") }</td>
+    		<td class="text-center">{ article.UpdatedAt.Format("2006-01-02") }</td>
+    		<td class="text-end pr-4">
+    			<a
+    				class="text-sm px-2 py-1 text-white rounded bg-secondary cursor hover:bg-secondary/70"
+    				href={ templ.SafeURL(fmt.Sprintf("/dashboard/articles/%v/edit", article.ID)) }
+    			>Edit</a>
+    		</td>
+    	</tr>
+    }
+}
+```
+
+```templ
+// views/dashboard_home.templ
+	<div class="flex mt-4">
+		<button
+			hx-get={ props.PreviousPageLink }
+			hx-swap="outerHTML"
+			hx-target="#postsTableContainer"
+			class={ "rounded cursor-pointer text-sm px-2 py-1 text-base-content hover:text-white bg-base-300 hover:bg-base-300/70", templ.KV("cursor-not-allowed opacity-50", props.TotalPages == 1 || props.CurrentPage == 1) }
+			type="submit"
+			if props.TotalPages == 1 || props.CurrentPage == 1 {
+				disabled
+			}
+		>
+			Previous
+		</button>
+		<button
+			hx-get={ props.NextPageLink }
+			hx-swap="outerHTML"
+			hx-target="#postsTableContainer"
+			class={ "rounded cursor-pointer ml-4 text-sm px-2 py-1 text-base-content hover:text-white bg-base-300 hover:bg-base-300/70", templ.KV("cursor-not-allowed opacity-50", props.TotalPages == props.CurrentPage) }
+			if props.TotalPages == props.CurrentPage {
+				disabled
+			}
+		>
+			Next
+		</button>
+	</div>
+```
+
+```templ
+type DashboardHomeProps struct {
+	PostsTableProps PostsTableProps
+}
+
+templ DashboardHome(props DashboardHomeProps) {
+    // omitted
+}
+```
+---
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardHome(ctx echo.Context) error {
+	const pageSize int64 = 10
+
+	paginatedArticles, err := models.GetArticlesPage(
+		ctx.Request().Context(),
+		c.db.Pool,
+		1,
+		int32(pageSize),
+	)
+	if err != nil {
+		slog.Error("could not get articles", "error", err.Error())
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	totalPages := max(1, (paginatedArticles.Total+pageSize-1)/pageSize)
+
+	var nextPageLink string
+	if totalPages > 1 {
+		nextPageLink = "/fragments/dashboard/articles-table?page=2"
+	}
+
+	return views.DashboardHome(views.DashboardHomeProps{
+		PostsTableProps: views.PostsTableProps{
+			Articles:         paginatedArticles.Articles,
+			CurrentPage:      1,
+			TotalPages:       totalPages,
+			NextPageLink:     nextPageLink,
+			PreviousPageLink: "",
+		},
+	}).Render(renderArgs(ctx))
+}
+```
+
+```go
+// controllers/fragment.go
+func (c Controller) ArticlesTableFragment(ctx echo.Context) error {
+	const pageSize int64 = 10
+
+	page, err := strconv.Atoi(ctx.QueryParam("page"))
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	if page == 0 {
+		page = 1
+	}
+
+	paginatedArticles, err := models.GetArticlesPage(
+		ctx.Request().Context(),
+		c.db.Pool,
+		int32(page),
+		int32(pageSize),
+	)
+	if err != nil {
+		slog.Error("could not get articles", "error", err.Error())
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	totalPages := max(1, (paginatedArticles.Total+pageSize-1)/pageSize)
+
+	var nextPageLink string
+	if totalPages > 1 {
+		nextPageLink = "/fragments/dashboard/articles-table?page=2"
+	}
+
+	var previousPageLink string
+	if page >= 2 {
+		previousPageLink = fmt.Sprintf(
+			"/fragments/dashboard/articles-table?page=%v",
+			page-1,
+		)
+	}
+
+	return views.Poststable(views.PostsTableProps{
+		Articles:         paginatedArticles.Articles,
+		CurrentPage:      int64(page),
+		TotalPages:       totalPages,
+		NextPageLink:     nextPageLink,
+		PreviousPageLink: previousPageLink,
+	}).
+		Render(renderArgs(ctx))
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadFragments(e *echo.Echo) *echo.Echo {
+	fragmentsGroup := e.Group("/fragments")
+
+	fragmentsGroup.GET("/dashboard/articles-table", func(c echo.Context) error {
+		return r.ctrl.ArticlesTableFragment(c)
+	}, controllers.AuthOnly)
+
+	return e
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) Load() *echo.Echo {
+	e := r.loadApp()
+	--> e = r.loadFragments(e)
+	return r.loadDashboard(e)
+}
+```
+---
+
+## Episode 9
+
+**Title**: Managing the blog using hypermedia api
+
+Might be a split into 2 episodes
+
+### Episode 9 Script
+
+```templ
+// views/dashboard_article_new.templ
+templ DashboardArticleNew() {
+	@dashboardBase() {
+		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
+			<h1 class="mb-5 mx-auto text-xl text-white font-bold">New Article</h1>
+		</div>
+	}
+}
+```
+
+```templ
+// views/dashboard_article_new.templ
+templ NewArticleForm(embeddedFiles []string) {
+	<form
+		hx-target="this"
+		hx-swap="outerHTML"
+		hx-post="/dashboard/articles"
+		class="bg-base-300 p-4 w-96 mx-auto border rounded"
+	>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Title
+			</label>
+			<input
+				name="title"
+				required
+				placeholder="Article title here"
+				type="text"
+				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
+			/>
+		</span>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Filename
+			</label>
+			<select
+				name="filename"
+				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
+			>
+				<option value="">Select associated file</option>
+				for _, file := range embeddedFiles {
+					<option
+						value={ file }
+					>{ file }</option>
+				}
+			</select>
+		</span>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Excerpt
+			</label>
+			<textarea
+				name="excerpt"
+				required
+				placeholder="Article excerpt here"
+				type="text"
+				minlength="120"
+				maxlength="160"
+				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
+			></textarea>
+		</span>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Read time
+			</label>
+			<input
+				name="read_time"
+				required
+				placeholder="Approx. read time"
+				type="number"
+				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
+			/>
+		</span>
+		<span class="w-full flex justify-between">
+			<span
+				class="flex-1 text-white font-semibold"
+			>
+				Release
+			</span>
+			<input
+				name="email"
+				type="checkbox"
+				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
+			/>
+		</span>
+		<button
+			class="w-full mt-8 px-2 py-1 font-bold border rounded text-white bg-base-200 hover:bg-base-100"
+		>
+			Submit
+		</button>
+	</form>
+}
+```
+
+```templ
+// views/dashboard_article_new.templ
+type DashboardArticleNewProps struct {
+    EmbeddedFiles []string
+}
+
+templ DashboardArticleNew(props DashboardArticleNewProps) {
+	@dashboardBase() {
+		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
+			<h1 class="mb-5 mx-auto text-xl text-white font-bold">New Article</h1>
+			@NewArticleForm()
+		</div>
+	}
+}
+```
+---
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesNew(ctx echo.Context) error {
+	embeddedArticles, err := articles.GetAll()
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	var articles []string
+	for _, article := range embeddedArticles {
+		articles = append(articles, article.Meta.Title)
+	}
+
+	return views.DashboardArticleNew(articles).
+		Render(renderArgs(ctx))
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
+	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
+
+	dashboardGroup.GET("", func(c echo.Context) error {
+		return r.ctrl.DashboardHome(c)
+	})
+
+	--> dashboardGroup.GET("/articles/new", func(c echo.Context) error {
+	--> 	return r.ctrl.DashboardArticlesNew(c)
+	--> })
+
+	return e
+}
+```
+---
+
+```go
+// models/article.go
+func NewArticle(
+	ctx context.Context,
+	dbtx db.DBTX,
+	payload NewArticlePayload,
+) (Article, error) {
+	if payload.Title == "" {
+		return Article{}, errors.Join(
+			ErrInvalidPayload,
+			ErrArticleTitleEmpty,
+		)
+	}
+	if payload.Filename == "" && !payload.ReleasedAt.IsZero() {
+		return Article{}, errors.Join(
+			ErrInvalidPayload,
+			ErrArticleFilenameEmpty,
+		)
+	}
+	if len(payload.Excerpt) > 160 || len(payload.Excerpt) < 100 {
+		return Article{}, errors.Join(
+			ErrInvalidPayload,
+			ErrArticleExcerptInsufficientLength,
+		)
+	}
+    // omitted
+}
+```
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesCreate(ctx echo.Context) error {
+	type newArticlePayload struct {
+		Title    string `form:"title"`
+		Filename string `form:"filename"`
+		Excerpt  string `form:"excerpt"`
+		ReadTime int64  `form:"read_time"`
+		Release  string `form:"release"`
+	}
+
+	var payload newArticlePayload
+	if err := ctx.Bind(&payload); err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	release := payload.Release == "on"
+	var releasedAt time.Time
+	if release {
+		releasedAt = time.Now()
+	}
+
+	article, err := models.NewArticle(
+		ctx.Request().Context(),
+		c.db.Pool,
+		models.NewArticlePayload{
+			Title:      payload.Title,
+			Filename:   payload.Filename,
+			Excerpt:    payload.Excerpt,
+			Draft:      !release,
+			ReleasedAt: releasedAt,
+			ReadTime:   int32(payload.ReadTime),
+		},
+	)
+	if err != nil {
+	    embeddedArticles, err := articles.GetAll()
+	    if err != nil {
+	    	return views.ErrorPage().Render(renderArgs(ctx))
+	    }
+
+	    var articles []string
+	    for _, article := range embeddedArticles {
+	    	articles = append(articles, article.Meta.Title)
+	    }
+
+		return views.NewArticleForm(articles).Render(renderArgs(ctx))
+	}
+
+	ctx.Response().
+		Header().
+		Set("HX-Redirect", fmt.Sprintf("/dashboard/articles/%v/edit", article.ID))
+	ctx.Response().Writer.WriteHeader(http.StatusSeeOther)
+
+	return nil
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
+	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
+
+	dashboardGroup.GET("", func(c echo.Context) error {
+		return r.ctrl.DashboardHome(c)
+	})
+
+	dashboardGroup.GET("/articles/new", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesNew(c)
+	})
+	--> dashboardGroup.POST("/articles", func(c echo.Context) error {
+	--> 	return r.ctrl.DashboardArticlesCreate(c)
+	--> })
+
+	return e
+}
+```
+---
+
+```templ
+// views/dashboard_article_edit.templ
+templ DashboardArticleEdit() {
+	@dashboardBase() {
+		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
+			<h1 class="mb-5 mx-auto text-xl text-white font-bold">Update Article</h1>
+		</div>
+	}
+}
+```
+
+Copy/Paste NewArticleForm and make it into this:
+
+```templ
+// views/dashboard_article_edit.templ
+type Field struct {
+	Value  any
+	Errors []string
+}
+
+type NewArticleFormProps struct {
+	Fields    map[string]Field
+	Filenames []string
+}
+```
+
+```templ
+// views/dashboard_article_edit.templ
+templ ArticleForm(props ArticleFormProps, action map[string]string) {
+	<form
+		hx-target="this"
+		hx-swap="outerHTML"
+		if action["post"] != "" {
+			hx-post={ action["post"] }
+		}
+		if action["update"] != "" {
+			hx-put={ action["update"] }
+		}
+		class="bg-base-300 p-4 w-96 mx-auto border rounded"
+	>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Title
+			</label>
+			<input
+				name="title"
+				required
+				placeholder="Article title here"
+				type="text"
+				value={ props.Fields["title"].Value.(string) }
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["title"].Errors != nil) }
+			/>
+			if errors := props.Fields["title"].Errors; errors  != nil {
+				<ul class="ml-4 list-disc text-error my-2">
+					for _, err := range errors {
+						<li>{ err }</li>
+					}
+				</ul>
+			}
+		</span>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Filename
+			</label>
+			<select
+				name="filename"
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["filename"].Errors != nil) }
+			>
+				<option value="">Select associated file</option>
+				for _, file := range props.Filenames {
+					<option
+						value={ file }
+						if file == props.Fields["filename"].Value.(string) {
+							selected
+						}
+					>{ file }</option>
+				}
+			</select>
+			if errors := props.Fields["filename"].Errors; errors  != nil {
+				<ul class="ml-4 list-disc text-error my-2">
+					for _, err := range errors {
+						<li>{ err }</li>
+					}
+				</ul>
+			}
+		</span>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Excerpt
+			</label>
+			<textarea
+				name="excerpt"
+				required
+				placeholder="Article excerpt here"
+				type="text"
+				minlength="100"
+				maxlength="160"
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["excerpt"].Errors != nil) }
+			>
+				{ props.Fields["excerpt"].Value.(string) }
+			</textarea>
+			if errors := props.Fields["excerpt"].Errors; errors  != nil {
+				<ul class="ml-4 list-disc text-error my-2">
+					for _, err := range errors {
+						<li>{ err }</li>
+					}
+				</ul>
+			}
+		</span>
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
+			>
+				Read time
+			</label>
+			<input
+				name="read_time"
+				required
+				value={ props.Fields["read_time"].Value.(string) }
+				placeholder="Approx. read time"
+				type="number"
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["read_time"].Errors != nil) }
+			/>
+			if errors := props.Fields["read_time"].Errors; errors  != nil {
+				<ul class="ml-4 list-disc text-error my-2">
+					for _, err := range errors {
+						<li>{ err }</li>
+					}
+				</ul>
+			}
+		</span>
+		<span class="w-full flex justify-between">
+			<span
+				class="flex-1 text-white font-semibold"
+			>
+				Release
+			</span>
+			<input
+				name="release"
+				type="checkbox"
+				if  props.Fields["release"].Value.(bool) {
+					checked="checked"
+				}
+				class="px-2 py-1 border rounded"
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["release"].Errors != nil) }
+			/>
+			if errors := props.Fields["release"].Errors; errors  != nil {
+				<ul class="ml-4 list-disc text-error my-2">
+					for _, err := range errors {
+						<li>{ err }</li>
+					}
+				</ul>
+			}
+		</span>
+		<div class="flex justify-between">
+			<button
+				class="w-full mt-8 px-2 py-1 font-bold border rounded text-white bg-base-200 hover:bg-base-100"
+			>
+				Submit
+			</button>
+		</div>
+	</form>
+}
+```
+
+```templ
+// views/dashboard_article_edit.templ
+type DashboardArticleEditProps struct {
+	FormProps ArticleFormProps
+	Action    map[string]string
+}
+
+templ DashboardArticleEdit(props DashboardArticleEditProps) {
+	@dashboardBase() {
+		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
+			<h1 class="mb-5 mx-auto text-xl text-white font-bold">Update Article</h1>
+			@ArticleForm(props.FormProps, props.Action)
+		</div>
+	}
+}
+```
+---
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesEdit(ctx echo.Context) error {
+	id, err := uuid.Parse(ctx.Param("id"))
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	article, err := models.GetArticle(ctx.Request().Context(), c.db.Pool, id)
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	embeddedArticles, err := articles.GetAll()
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	var embeddedArticleNames []string
+	for _, embeddedArticle := range embeddedArticles {
+		embeddedArticleNames = append(
+			embeddedArticleNames,
+			embeddedArticle.Meta.Title,
+		)
+	}
+
+	return views.DashboardArticleEdit(
+		views.DashboardArticleEditProps{
+			FormProps: views.ArticleFormProps{
+				Fields: map[string]views.Field{
+					"title": {
+						Value: article.Title,
+					},
+					"filename": {
+						Value: article.Filename,
+					},
+					"excerpt": {
+						Value: article.Excerpt,
+					},
+					"read_time": {
+						Value: strconv.Itoa(int(article.ReadTime)),
+					},
+					"release": {
+						Value: !article.ReleasedAt.IsZero(),
+					},
+				},
+				Filenames: embeddedArticleNames,
+			},
+			Action: map[string]string{
+				"update": fmt.Sprintf("/dashboard/articles/%v", article.ID),
+			},
+		},
+	).
+		Render(renderArgs(ctx))
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
+	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
+
+	dashboardGroup.GET("", func(c echo.Context) error {
+		return r.ctrl.DashboardHome(c)
+	})
+
+	dashboardGroup.GET("/articles/new", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesNew(c)
+	})
+	dashboardGroup.POST("/articles", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesCreate(c)
+	})
+	--> dashboardGroup.GET("/articles/:id/edit", func(c echo.Context) error {
+	--> 	return r.ctrl.DashboardArticlesEdit(c)
+	--> })
+
+	return e
+}
+```
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesUpdate(ctx echo.Context) error {
+	id, err := uuid.Parse(ctx.Param("id"))
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	type updateArticlePayload struct {
+		Title    string `form:"title"`
+		Filename string `form:"filename"`
+		Excerpt  string `form:"excerpt"`
+		ReadTime int64  `form:"read_time"`
+		Release  string `form:"release"`
+	}
+
+	var payload updateArticlePayload
+	if err := ctx.Bind(&payload); err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	release := payload.Release == "on"
+	var releasedAt time.Time
+	if release {
+		releasedAt = time.Now()
+	}
+
+	embeddedArticles, err := articles.GetAll()
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	var articles []string
+	for _, article := range embeddedArticles {
+		articles = append(articles, article.Meta.Title)
+	}
+
+	updatedArticle, err := models.UpdateArticle(
+		ctx.Request().Context(),
+		c.db.Pool,
+		models.UpdateArticlePayload{
+			ID:         id,
+			Title:      payload.Title,
+			Filename:   payload.Filename,
+			Excerpt:    payload.Excerpt,
+			Draft:      !release,
+			ReleasedAt: releasedAt,
+			ReadTime:   int32(payload.ReadTime),
+		},
+	)
+	if err != nil {
+		props := views.ArticleFormProps{
+			Fields: map[string]views.Field{
+				"title": {
+					Value: payload.Title,
+				},
+				"filename": {
+					Value: payload.Filename,
+				},
+				"excerpt": {
+					Value: payload.Excerpt,
+				},
+				"read_time": {
+					Value: strconv.Itoa(int(payload.ReadTime)),
+				},
+				"release": {
+					Value: release,
+				},
+			},
+			Filenames: articles,
+		}
+
+		if errors.Is(err, models.ErrArticleTitleEmpty) {
+			field := props.Fields["title"]
+			field.Errors = []string{
+				models.ErrArticleTitleEmpty.Error(),
+			}
+
+			props.Fields["title"] = field
+		}
+		if errors.Is(err, models.ErrArticleFilenameEmpty) {
+			field := props.Fields["filename"]
+			field.Errors = []string{
+				models.ErrArticleFilenameEmpty.Error(),
+			}
+
+			props.Fields["filename"] = field
+		}
+		if errors.Is(err, models.ErrArticleExcerptInsufficientLength) {
+			field := props.Fields["excerpt"]
+			field.Errors = []string{
+				models.ErrArticleExcerptInsufficientLength.Error(),
+			}
+
+			props.Fields["excerpt"] = field
+		}
+
+		return views.ArticleForm(props, map[string]string{
+			"update": fmt.Sprintf("/dashboard/articles/%v", id),
+		}).
+			Render(renderArgs(ctx))
+	}
+
+	return views.ArticleForm(views.ArticleFormProps{
+		Fields: map[string]views.Field{
+			"title": {
+				Value: updatedArticle.Title,
+			},
+			"filename": {
+				Value: updatedArticle.Filename,
+			},
+			"excerpt": {
+				Value: updatedArticle.Excerpt,
+			},
+			"read_time": {
+				Value: strconv.Itoa(int(updatedArticle.ReadTime)),
+			},
+			"release": {
+				Value: !updatedArticle.ReleasedAt.IsZero(),
+			},
+		},
+		Filenames: articles,
+	}, map[string]string{
+		"update": fmt.Sprintf("/dashboard/articles/%v", id),
+	}).
+		Render(renderArgs(ctx))
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
+	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
+
+	dashboardGroup.GET("", func(c echo.Context) error {
+		return r.ctrl.DashboardHome(c)
+	})
+
+	dashboardGroup.GET("/articles/new", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesNew(c)
+	})
+	dashboardGroup.POST("/articles", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesCreate(c)
+	})
+	dashboardGroup.GET("/articles/:id/edit", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesEdit(c)
+	})
+	--> dashboardGroup.PUT("/articles/:id", func(c echo.Context) error {
+	--> 	return r.ctrl.DashboardArticlesUpdate(c)
+	--> })
+
+	return e
+}
+```
+---
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesDelete(ctx echo.Context) error {
+	id, err := uuid.Parse(ctx.Param("id"))
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	if err := models.DeleteArticle(ctx.Request().Context(), c.db.Pool, id); err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	ctx.Response().
+		Header().
+		Set("HX-Redirect", "/dashboard")
+	ctx.Response().Writer.WriteHeader(http.StatusSeeOther)
+
+	return nil
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
+	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
+
+	dashboardGroup.GET("", func(c echo.Context) error {
+		return r.ctrl.DashboardHome(c)
+	})
+
+	dashboardGroup.GET("/articles/new", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesNew(c)
+	})
+	dashboardGroup.POST("/articles", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesCreate(c)
+	})
+	dashboardGroup.GET("/articles/:id/edit", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesEdit(c)
+	})
+	dashboardGroup.PUT("/articles/:id", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesUpdate(c)
+	})
+	--> dashboardGroup.DELETE("/articles/:id", func(c echo.Context) error {
+	--> 	return r.ctrl.DashboardArticlesDelete(c)
+	--> })
+
+	return e
+}
+```
+
+```templ
+templ ArticleForm(props ArticleFormProps, action map[string]string) {
+    // omitted
+	<div class="flex justify-between">
+		<button
+			class="w-full mt-8 px-2 py-1 font-bold border rounded text-white bg-base-200 hover:bg-base-100"
+		>
+			Submit
+		</button>
+		if action["update"] != "" {
+			<button
+				hx-delete={ action["update"] }
+				class="ml-4 w-full mt-8 px-2 py-1 font-bold border border-bg-base-100 rounded text-warning-content bg-warning hover:bg-warning/70"
+			>
+				Delete
+			</button>
+		}
+	</div>
+    // omitted
+}
+```
+---
+
+REWORK NEW TO USE THE COMPONENT
+
+---
+
+## Episode 10
+
+**Title**: Flashing ourselves/visual feedback
+
+### Episode 10 Script
+
+```go
+// routes/contexts/toast.go
+package contexts
+
+import (
+	"time"
+
+	"github.com/google/uuid"
+	"github.com/labstack/echo/v4"
+)
+
+type FlashKey struct{}
+
+func (FlashKey) String() string {
+	return "flash_key"
+}
+
+type FlashType string
+
+const (
+	FlashSuccess FlashType = "success"
+	FlashError   FlashType = "error"
+	FlashWarning FlashType = "warning"
+	FlashInfo    FlashType = "info"
+)
+
+type FlashMessage struct {
+	echo.Context
+	ID        uuid.UUID
+	Type      FlashType
+	CreatedAt time.Time
+	Message   string
+}
+```
+
+```go
+// controllers/controller.go
+func RegisterFlashMessagesContext(
+	next echo.HandlerFunc,
+) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		if strings.HasPrefix(c.Request().URL.Path, "/static") {
+			return next(c)
+		}
+
+		sess, err := session.Get(flashSessionKey, c)
+		if err != nil {
+			return err
+		}
+
+		flashMessages := []contexts.FlashMessage{}
+		if flashes := sess.Flashes(flashSessionKey); len(
+			flashes,
+		) > 0 {
+			for _, flash := range flashes {
+				if msg, ok := flash.(contexts.FlashMessage); ok {
+					flashMessages = append(
+						flashMessages,
+						contexts.FlashMessage{
+							Context:   c,
+							ID:        msg.ID,
+							Type:      msg.Type,
+							CreatedAt: msg.CreatedAt,
+							Message:   msg.Message,
+						},
+					)
+				}
+			}
+
+			if err := sess.Save(c.Request(), c.Response()); err != nil {
+				return err
+			}
+		}
+
+		c.Set(contexts.FlashKey{}.String(), flashMessages)
+
+		return next(c)
+	}
+}
+```
+
+```go
+func setAppCtx(ctx echo.Context) context.Context {
+	appCtxKey := contexts.AppKey{}
+	appCtx := ctx.Get(appCtxKey.String())
+
+	--> withAppCtx := context.WithValue(
+	--> 	ctx.Request().Context(),
+	--> 	appCtxKey,
+	--> 	appCtx,
+	--> )
+
+	--> flashCtxKey := contexts.FlashKey{}
+	--> flashCtx := ctx.Get(flashCtxKey.String())
+
+	--> return context.WithValue(
+	--> 	withAppCtx,
+	--> 	flashCtxKey,
+	--> 	flashCtx,
+	--> )
+}
+```
+---
+
+```go
+// routes/contexts/context.go
+func ExtractFlashMessages(ctx context.Context) []FlashMessage {
+	value, ok := ctx.Value(FlashKey{}).([]FlashMessage)
+	if !ok {
+		return nil
+	}
+
+	return value
+}
+```
+
+```templ
+// views/toast_message.templ
+templ toastBase(tType string, flash contexts.FlashMessage) {
+	<div
+		x-data="{ show: true }"
+		x-show="show"
+		x-transition:leave="transition ease-in duration-300"
+		x-transition:leave-start="opacity-100 scale-100"
+		x-transition:leave-end="opacity-0 scale-90"
+		x-init="setTimeout(() => $el.remove(), 8000)"
+		class="bg-base-300 rounded border border-white/50 flex flex-col w-72"
+	>
+		<div
+			class="border-b-2 border-white/50 px-4 py-2 flex items-center justify-between"
+		>
+			<div
+				class={ "rounded w-3 h-3", tType }
+			></div>
+			<div
+				class="flex"
+			>
+				<p
+					class="text-gray-400 text-sm"
+				>{ carbon.CreateFromStdTime(flash.CreatedAt, carbon.Berlin).DiffForHumans() }</p>
+				<button
+					@click="show = false"
+					class="ml-4 w-5 h-5 cursor-pointer"
+					type="button"
+				>
+					<svg class="fill-white" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 24 24">
+						<path d="M 4.9902344 3.9902344 A 1.0001 1.0001 0 0 0 4.2929688 5.7070312 L 10.585938 12 L 4.2929688 18.292969 A 1.0001 1.0001 0 1 0 5.7070312 19.707031 L 12 13.414062 L 18.292969 19.707031 A 1.0001 1.0001 0 1 0 19.707031 18.292969 L 13.414062 12 L 19.707031 5.7070312 A 1.0001 1.0001 0 0 0 18.980469 3.9902344 A 1.0001 1.0001 0 0 0 18.292969 4.2929688 L 12 10.585938 L 5.7070312 4.2929688 A 1.0001 1.0001 0 0 0 4.9902344 3.9902344 z"></path>
+					</svg>
+				</button>
+			</div>
+		</div>
+		<span class="text-base-content max-h-40 p-4 text-wrap max-w-96 overflow-x-hidden overflow-y-auto">
+			{ flash.Message }
+		</span>
+	</div>
+}
+```
+
+```templ
+// views/toast_message.templ
+templ toastMessage(flash contexts.FlashMessage) {
+	switch flash.Type {
+		case contexts.FlashSuccess:
+			@toastBase("bg-success", flash)
+		case contexts.FlashInfo:
+			@toastBase("bg-info", flash)
+		case contexts.FlashError:
+			@toastBase("bg-error", flash)
+		case contexts.FlashWarning:
+			@toastBase("bg-warning", flash)
+	}
+}
+```
+
+```templ
+// views/dashboard_base.templ
+		<div class="absolute bottom-5 right-5">
+			for _, flash := range contexts.ExtractFlashMessages(ctx) {
+				@toastMessage(flash)
+			}
+		</div>
+```
+---
+
+```go
+// controllers/controller.go
+func addFlash(
+	c echo.Context, flashType contexts.FlashType, msg string,
+) error {
+	sess, err := session.Get(flashSessionKey, c)
+	if err != nil {
+		return err
+	}
+
+	sess.AddFlash(contexts.FlashMessage{
+		ID:        uuid.New(),
+		Type:      flashType,
+		CreatedAt: time.Now(),
+		Message:   msg,
+	}, flashSessionKey)
+
+	return sess.Save(c.Request(), c.Response())
+}
+```
+
+```go
+func (c Controller) DashboardArticlesCreate(ctx echo.Context) error {
+    // omitted
+	if err := ctx.Bind(&payload); err != nil {
+		if err := addFlash(ctx, contexts.FlashError, "could parse the form submission"); err != nil {
+			slog.ErrorContext(
+				ctx.Request().Context(),
+				"could not add flash",
+				"error",
+				err,
+			)
+		}
+
+		return views.NewArticleForm(views.NewArticleFormProps{}).
+			Render(renderArgs(ctx))
+	}
+
+    // omitted
+	if err != nil {
+		if err := addFlash(ctx, contexts.FlashInfo, "article did not pass validation"); err != nil {
+			slog.ErrorContext(
+				ctx.Request().Context(),
+				"could not add flash",
+				"error",
+				err,
+			)
+		}
+        // omitted
+    }
+
+	if err := addFlash(ctx, contexts.FlashSuccess, "succesfully created article"); err != nil {
+		slog.ErrorContext(
+			ctx.Request().Context(),
+			"could not add flash",
+			"error",
+			err,
+		)
+	}
+	ctx.Response().
+		Header().
+		Set("HX-Redirect", fmt.Sprintf("/dashboard/articles/%v/edit", article.ID))
+	ctx.Response().Writer.WriteHeader(http.StatusSeeOther)
+
+	return nil
+}
+```
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesUpdate(ctx echo.Context) error {
+    // omitted
+
+	if err != nil {
+	    if err := addFlash(ctx, contexts.FlashInfo, "could not updated article"); err != nil {
+	    	slog.ErrorContext(
+	    		ctx.Request().Context(),
+	    		"could not add flash",
+	    		"error",
+	    		err,
+	    	)
+	    }
+
+        // omitted
+	}
+
+	if err := addFlash(ctx, contexts.FlashSuccess, "succesfully updated article"); err != nil {
+		slog.ErrorContext(
+			ctx.Request().Context(),
+			"could not add flash",
+			"error",
+			err,
+		)
+	}
+
+	ctx.Response().
+		Header().
+		Set("HX-Redirect", fmt.Sprintf("/dashboard/articles/%v/edit", updatedArticle.ID))
+	ctx.Response().Writer.WriteHeader(http.StatusSeeOther)
+
+	return nil
+}
+```
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesDelete(ctx echo.Context) error {
+    // omitted 
+
+	if err := addFlash(ctx, contexts.FlashSuccess, "succesfully deleted article"); err != nil {
+		slog.ErrorContext(
+			ctx.Request().Context(),
+			"could not add flash",
+			"error",
+			err,
+		)
+	}
+
+	ctx.Response().
+		Header().
+		Set("HX-Redirect", "/dashboard")
+	ctx.Response().Writer.WriteHeader(http.StatusSeeOther)
+
+	return nil
+}
+```
+---
