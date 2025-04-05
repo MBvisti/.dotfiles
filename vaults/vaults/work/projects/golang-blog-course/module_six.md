@@ -1219,13 +1219,6 @@ templ DashboardHome() {
 	}
 }
 ```
-
-```go
-// controllers/controller.go
-func (c Controller) DashboardHome(ctx echo.Context) error {
-	return views.DashboardHome().Render(renderArgs(ctx))
-}
-```
 ---
 
 ```templ
@@ -1263,15 +1256,15 @@ templ substable() {
 
 ```templ
 // views/dashboard_home.templ
-templ Poststable() {
-	<div id="postsTableContainer" class="flex flex-col mr-10 h-96">
+templ articlesTable() {
+	<div id="articlesTableContainer" class="flex flex-col mr-10 h-96">
 		<div class="flex justify-between">
 			<h2 class="text-lg text-white">Latest Articles</h2>
 			<a
 				href="/dashboard/articles/new"
 				class="text-sm mb-2 px-4 py-2 text-white rounded bg-base-300 cursor-pointer hover:bg-base-300/50 hover:font-semibold"
 			>
-				New Post
+				New Article
 			</a>
 		</div>
 		<div class="bg-base-200 overflow-y-auto flex-1 min-h-full max-h-96">
@@ -1323,7 +1316,7 @@ templ DashboardHome() {
 				@stat(166, "Total Subs")
 			</div>
 			<div class="mt-24 h-96 w-4/5 mx-auto flex justify-around">
-				--> @Poststable()
+				--> @articlesTable()
 				--> @substable()
 			</div>
 		</div>
@@ -1589,7 +1582,7 @@ func (r Routes) Load() *echo.Echo {
 
 ## Episode 9
 
-**Title**: Managing the blog using hypermedia api
+**Title**: implementing crud for articles
 
 Might be a split into 2 episodes
 
@@ -1658,7 +1651,7 @@ templ NewArticleForm(embeddedFiles []string) {
 				required
 				placeholder="Article excerpt here"
 				type="text"
-				minlength="120"
+				minlength="100"
 				maxlength="160"
 				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
 			></textarea>
