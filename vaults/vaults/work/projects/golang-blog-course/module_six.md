@@ -1601,284 +1601,19 @@ templ DashboardArticleNew() {
 
 ```templ
 // views/dashboard_article_new.templ
-templ NewArticleForm(embeddedFiles []string) {
-	<form
-		hx-target="this"
-		hx-swap="outerHTML"
-		hx-post="/dashboard/articles"
-		class="bg-base-300 p-4 w-96 mx-auto border rounded"
-	>
-		<span class="flex flex-col">
-			<label
-				class="text-white mb-1 font-semibold"
-			>
-				Title
-			</label>
-			<input
-				name="title"
-				required
-				placeholder="Article title here"
-				type="text"
-				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
-			/>
-		</span>
-		<span class="flex flex-col">
-			<label
-				class="text-white mb-1 font-semibold"
-			>
-				Filename
-			</label>
-			<select
-				name="filename"
-				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
-			>
-				<option value="">Select associated file</option>
-				for _, file := range embeddedFiles {
-					<option
-						value={ file }
-					>{ file }</option>
-				}
-			</select>
-		</span>
-		<span class="flex flex-col">
-			<label
-				class="text-white mb-1 font-semibold"
-			>
-				Excerpt
-			</label>
-			<textarea
-				name="excerpt"
-				required
-				placeholder="Article excerpt here"
-				type="text"
-				minlength="100"
-				maxlength="160"
-				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
-			></textarea>
-		</span>
-		<span class="flex flex-col">
-			<label
-				class="text-white mb-1 font-semibold"
-			>
-				Read time
-			</label>
-			<input
-				name="read_time"
-				required
-				placeholder="Approx. read time"
-				type="number"
-				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
-			/>
-		</span>
-		<span class="w-full flex justify-between">
-			<span
-				class="flex-1 text-white font-semibold"
-			>
-				Release
-			</span>
-			<input
-				name="email"
-				type="checkbox"
-				class="bg-base-200 text-base-content px-2 py-1 border rounded mb-4"
-			/>
-		</span>
-		<button
-			class="w-full mt-8 px-2 py-1 font-bold border rounded text-white bg-base-200 hover:bg-base-100"
-		>
-			Submit
-		</button>
-	</form>
-}
-```
-
-```templ
-// views/dashboard_article_new.templ
-type DashboardArticleNewProps struct {
-    EmbeddedFiles []string
-}
-
-templ DashboardArticleNew(props DashboardArticleNewProps) {
-	@dashboardBase() {
-		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
-			<h1 class="mb-5 mx-auto text-xl text-white font-bold">New Article</h1>
-			@NewArticleForm()
-		</div>
-	}
-}
-```
----
-
-```go
-// controllers/controller.go
-func (c Controller) DashboardArticlesNew(ctx echo.Context) error {
-	embeddedArticles, err := articles.GetAll()
-	if err != nil {
-		return views.ErrorPage().Render(renderArgs(ctx))
-	}
-
-	var articles []string
-	for _, article := range embeddedArticles {
-		articles = append(articles, article.Meta.Title)
-	}
-
-	return views.DashboardArticleNew(articles).
-		Render(renderArgs(ctx))
-}
-```
-
-```go
-// routes/routes.go
-func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
-	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
-
-	dashboardGroup.GET("", func(c echo.Context) error {
-		return r.ctrl.DashboardHome(c)
-	})
-
-	--> dashboardGroup.GET("/articles/new", func(c echo.Context) error {
-	--> 	return r.ctrl.DashboardArticlesNew(c)
-	--> })
-
-	return e
-}
-```
----
-
-```go
-// models/article.go
-func NewArticle(
-	ctx context.Context,
-	dbtx db.DBTX,
-	payload NewArticlePayload,
-) (Article, error) {
-	if payload.Title == "" {
-		return Article{}, errors.Join(
-			ErrInvalidPayload,
-			ErrArticleTitleEmpty,
-		)
-	}
-	if payload.Filename == "" && !payload.ReleasedAt.IsZero() {
-		return Article{}, errors.Join(
-			ErrInvalidPayload,
-			ErrArticleFilenameEmpty,
-		)
-	}
-	if len(payload.Excerpt) > 160 || len(payload.Excerpt) < 100 {
-		return Article{}, errors.Join(
-			ErrInvalidPayload,
-			ErrArticleExcerptInsufficientLength,
-		)
-	}
-    // omitted
-}
-```
-
-```go
-// controllers/controller.go
-func (c Controller) DashboardArticlesCreate(ctx echo.Context) error {
-	type newArticlePayload struct {
-		Title    string `form:"title"`
-		Filename string `form:"filename"`
-		Excerpt  string `form:"excerpt"`
-		ReadTime int64  `form:"read_time"`
-		Release  string `form:"release"`
-	}
-
-	var payload newArticlePayload
-	if err := ctx.Bind(&payload); err != nil {
-		return views.ErrorPage().Render(renderArgs(ctx))
-	}
-
-	release := payload.Release == "on"
-	var releasedAt time.Time
-	if release {
-		releasedAt = time.Now()
-	}
-
-	article, err := models.NewArticle(
-		ctx.Request().Context(),
-		c.db.Pool,
-		models.NewArticlePayload{
-			Title:      payload.Title,
-			Filename:   payload.Filename,
-			Excerpt:    payload.Excerpt,
-			Draft:      !release,
-			ReleasedAt: releasedAt,
-			ReadTime:   int32(payload.ReadTime),
-		},
-	)
-	if err != nil {
-	    embeddedArticles, err := articles.GetAll()
-	    if err != nil {
-	    	return views.ErrorPage().Render(renderArgs(ctx))
-	    }
-
-	    var articles []string
-	    for _, article := range embeddedArticles {
-	    	articles = append(articles, article.Meta.Title)
-	    }
-
-		return views.NewArticleForm(articles).Render(renderArgs(ctx))
-	}
-
-	ctx.Response().
-		Header().
-		Set("HX-Redirect", fmt.Sprintf("/dashboard/articles/%v/edit", article.ID))
-	ctx.Response().Writer.WriteHeader(http.StatusSeeOther)
-
-	return nil
-}
-```
-
-```go
-// routes/routes.go
-func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
-	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
-
-	dashboardGroup.GET("", func(c echo.Context) error {
-		return r.ctrl.DashboardHome(c)
-	})
-
-	dashboardGroup.GET("/articles/new", func(c echo.Context) error {
-		return r.ctrl.DashboardArticlesNew(c)
-	})
-	--> dashboardGroup.POST("/articles", func(c echo.Context) error {
-	--> 	return r.ctrl.DashboardArticlesCreate(c)
-	--> })
-
-	return e
-}
-```
----
-
-```templ
-// views/dashboard_article_edit.templ
-templ DashboardArticleEdit() {
-	@dashboardBase() {
-		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
-			<h1 class="mb-5 mx-auto text-xl text-white font-bold">Update Article</h1>
-		</div>
-	}
-}
-```
-
-Copy/Paste NewArticleForm and make it into this:
-
-```templ
-// views/dashboard_article_edit.templ
 type Field struct {
 	Value  any
 	Errors []string
 }
 
-type NewArticleFormProps struct {
+type ArticleFormProps struct {
 	Fields    map[string]Field
 	Filenames []string
 }
 ```
 
 ```templ
-// views/dashboard_article_edit.templ
+// views/dashboard_article_new.templ
 templ ArticleForm(props ArticleFormProps, action map[string]string) {
 	<form
 		hx-target="this"
@@ -1886,8 +1621,8 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 		if action["post"] != "" {
 			hx-post={ action["post"] }
 		}
-		if action["update"] != "" {
-			hx-put={ action["update"] }
+		if action["put"] != "" {
+			hx-put={ action["put"] }
 		}
 		class="bg-base-300 p-4 w-96 mx-auto border rounded"
 	>
@@ -2021,6 +1756,222 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 	</form>
 }
 ```
+---
+
+```templ
+// views/dashboard_article_new.templ
+templ DashboardArticleNew(embeddedArticles []string) {
+	@dashboardBase() {
+		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
+			<h1 class="mb-5 mx-auto text-xl text-white font-bold">New Article</h1>
+			@ArticleForm(ArticleFormProps{Filename: embeddedArticles}, map[string]string{"post": "/dashboard/articles")
+		</div>
+	}
+}
+```
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesNew(ctx echo.Context) error {
+	embeddedArticles, err := articles.GetAll()
+	if err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	var articles []string
+	for _, article := range embeddedArticles {
+		articles = append(articles, article.Meta.Title)
+	}
+
+	return views.DashboardArticleNew(articles).
+		Render(renderArgs(ctx))
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
+	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
+
+	dashboardGroup.GET("", func(c echo.Context) error {
+		return r.ctrl.DashboardHome(c)
+	})
+
+	--> dashboardGroup.GET("/articles/new", func(c echo.Context) error {
+	--> 	return r.ctrl.DashboardArticlesNew(c)
+	--> })
+
+	return e
+}
+```
+---
+
+```go
+// models/article.go
+func NewArticle(
+	ctx context.Context,
+	dbtx db.DBTX,
+	payload NewArticlePayload,
+) (Article, error) {
+	if payload.Title == "" {
+		return Article{}, errors.Join(
+			ErrInvalidPayload,
+			ErrArticleTitleEmpty,
+		)
+	}
+	if payload.Filename == "" && !payload.ReleasedAt.IsZero() {
+		return Article{}, errors.Join(
+			ErrInvalidPayload,
+			ErrArticleFilenameEmpty,
+		)
+	}
+	if len(payload.Excerpt) > 160 || len(payload.Excerpt) < 100 {
+		return Article{}, errors.Join(
+			ErrInvalidPayload,
+			ErrArticleExcerptInsufficientLength,
+		)
+	}
+    // omitted
+}
+```
+
+```go
+// controllers/controller.go
+func (c Controller) DashboardArticlesCreate(ctx echo.Context) error {
+	type newArticlePayload struct {
+		Title    string `form:"title"`
+		Filename string `form:"filename"`
+		Excerpt  string `form:"excerpt"`
+		ReadTime int64  `form:"read_time"`
+		Release  string `form:"release"`
+	}
+
+	var payload newArticlePayload
+	if err := ctx.Bind(&payload); err != nil {
+		return views.ErrorPage().Render(renderArgs(ctx))
+	}
+
+	release := payload.Release == "on"
+	var releasedAt time.Time
+	if release {
+		releasedAt = time.Now()
+	}
+
+	article, err := models.NewArticle(
+		ctx.Request().Context(),
+		c.db.Pool,
+		models.NewArticlePayload{
+			Title:      payload.Title,
+			Filename:   payload.Filename,
+			Excerpt:    payload.Excerpt,
+			Draft:      !release,
+			ReleasedAt: releasedAt,
+			ReadTime:   int32(payload.ReadTime),
+		},
+	)
+	if err != nil {
+	    embeddedArticles, err := articles.GetAll()
+	    if err != nil {
+	    	return views.ErrorPage().Render(renderArgs(ctx))
+	    }
+
+	    var articles []string
+	    for _, article := range embeddedArticles {
+	    	articles = append(articles, article.Meta.Title)
+	    }
+        props := ArticleFormProps{
+				Fields: map[string]views.Field{
+					"title": {
+						Value: article.Title,
+					},
+					"filename": {
+						Value: article.Filename,
+					},
+					"excerpt": {
+						Value: article.Excerpt,
+					},
+					"read_time": {
+						Value: strconv.Itoa(int(article.ReadTime)),
+					},
+					"release": {
+						Value: !article.ReleasedAt.IsZero(),
+					},
+				},
+				Filenames: embeddedArticleNames,
+			}
+
+		if errors.Is(err, models.ErrArticleTitleEmpty) {
+			field := props.Fields["title"]
+			field.Errors = []string{
+				models.ErrArticleTitleEmpty.Error(),
+			}
+
+			props.Fields["title"] = field
+		}
+		if errors.Is(err, models.ErrArticleFilenameEmpty) {
+			field := props.Fields["filename"]
+			field.Errors = []string{
+				models.ErrArticleFilenameEmpty.Error(),
+			}
+
+			props.Fields["filename"] = field
+		}
+		if errors.Is(err, models.ErrArticleExcerptInsufficientLength) {
+			field := props.Fields["excerpt"]
+			field.Errors = []string{
+				models.ErrArticleExcerptInsufficientLength.Error(),
+			}
+
+			props.Fields["excerpt"] = field
+		}
+
+		return views.ArticleForm(props, map[string]string{
+				"post": "/dashboard/articles"),
+			}).Render(renderArgs(ctx))
+	}
+
+	ctx.Response().
+		Header().
+		Set("HX-Redirect", fmt.Sprintf("/dashboard/articles/%v/edit", article.ID))
+	ctx.Response().Writer.WriteHeader(http.StatusSeeOther)
+
+	return nil
+}
+```
+
+```go
+// routes/routes.go
+func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
+	dashboardGroup := e.Group("/dashboard", controllers.AuthOnly)
+
+	dashboardGroup.GET("", func(c echo.Context) error {
+		return r.ctrl.DashboardHome(c)
+	})
+
+	dashboardGroup.GET("/articles/new", func(c echo.Context) error {
+		return r.ctrl.DashboardArticlesNew(c)
+	})
+	--> dashboardGroup.POST("/articles", func(c echo.Context) error {
+	--> 	return r.ctrl.DashboardArticlesCreate(c)
+	--> })
+
+	return e
+}
+```
+---
+
+```templ
+// views/dashboard_article_edit.templ
+templ DashboardArticleEdit() {
+	@dashboardBase() {
+		<div class="flex-1 bg-base-100 mx-auto container flex flex-col justify-center">
+			<h1 class="mb-5 mx-auto text-xl text-white font-bold">Update Article</h1>
+		</div>
+	}
+}
+```
+
+IMPLEMENT ArtileForm
 
 ```templ
 // views/dashboard_article_edit.templ
