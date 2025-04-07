@@ -246,6 +246,9 @@ export PATH="/usr/local/tmux/latest:$PATH"
 # tempo
 # export PATH="/usr/local/tempo/latest:$PATH"
 
+# uv
+export PATH="/usr/local/uv/latest:$PATH"
+
 # node
 export PATH="/usr/local/node/latest/bin:$PATH"
 

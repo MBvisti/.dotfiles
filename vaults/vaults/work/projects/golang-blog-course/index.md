@@ -30,6 +30,7 @@ tags:
   - [Module four](./module_four.md#module-four)
   - [Module five](./module_five.md#module-five)
   - [Module six](./module_six.md#module-six)
+  - [Module seven](./module_seven.md#module-seven)
   - [List of courses](#list-of-courses)
 <!--toc:end-->
 

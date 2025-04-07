@@ -7,6 +7,7 @@ tags: []
 # Work index
 
 Consider building a OSS analytics platform with Grafto but using sqlite
+Consider just setting neovim to the same settings as zen mode instead of running it all the time
 
 <!--toc:start-->
 - [Work Index](#work-index)

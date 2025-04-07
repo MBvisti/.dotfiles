@@ -1635,12 +1635,13 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 			<input
 				name="title"
 				required
-				placeholder="Article title here"
+				if val, ok := props.Fields["title"].Value.(string); ok {
+					value={ val }
+				}
 				type="text"
-				value={ props.Fields["title"].Value.(string) }
-				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["title"].Errors != nil) }
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-4", props.Fields["title"].Errors != nil) }
 			/>
-			if errors := props.Fields["title"].Errors; errors  != nil {
+			if errors := props.Fields["title"].Errors; errors != nil {
 				<ul class="ml-4 list-disc text-error my-2">
 					for _, err := range errors {
 						<li>{ err }</li>
@@ -1656,19 +1657,24 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 			</label>
 			<select
 				name="filename"
-				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["filename"].Errors != nil) }
+				required
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-4", props.Fields["filename"].Errors != nil) }
 			>
 				<option value="">Select associated file</option>
 				for _, file := range props.Filenames {
 					<option
 						value={ file }
-						if file == props.Fields["filename"].Value.(string) {
-							selected
+						if filename, ok := props.Fields["filename"].Value.(string); ok {
+							if file == filename {
+								selected
+							}
 						}
-					>{ file }</option>
+					>
+						{ file }
+					</option>
 				}
 			</select>
-			if errors := props.Fields["filename"].Errors; errors  != nil {
+			if errors := props.Fields["filename"].Errors; errors != nil {
 				<ul class="ml-4 list-disc text-error my-2">
 					for _, err := range errors {
 						<li>{ err }</li>
@@ -1689,11 +1695,9 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 				type="text"
 				minlength="100"
 				maxlength="160"
-				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["excerpt"].Errors != nil) }
-			>
-				{ props.Fields["excerpt"].Value.(string) }
-			</textarea>
-			if errors := props.Fields["excerpt"].Errors; errors  != nil {
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-4", props.Fields["excerpt"].Errors != nil) }
+			></textarea>
+			if errors := props.Fields["excerpt"].Errors; errors != nil {
 				<ul class="ml-4 list-disc text-error my-2">
 					for _, err := range errors {
 						<li>{ err }</li>
@@ -1709,13 +1713,15 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 			</label>
 			<input
 				name="read_time"
+				if val, ok := props.Fields["read_time"].Value.(string); ok {
+					value={ val }
+				}
 				required
-				value={ props.Fields["read_time"].Value.(string) }
-				placeholder="Approx. read time"
 				type="number"
-				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["read_time"].Errors != nil) }
+				placeholder="estimated read time of the article"
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-4", props.Fields["read_time"].Errors != nil) }
 			/>
-			if errors := props.Fields["read_time"].Errors; errors  != nil {
+			if errors := props.Fields["read_time"].Errors; errors != nil {
 				<ul class="ml-4 list-disc text-error my-2">
 					for _, err := range errors {
 						<li>{ err }</li>
@@ -1723,22 +1729,22 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 				</ul>
 			}
 		</span>
-		<span class="w-full flex justify-between">
-			<span
-				class="flex-1 text-white font-semibold"
+		<span class="flex flex-col">
+			<label
+				class="text-white mb-1 font-semibold"
 			>
 				Release
-			</span>
+			</label>
 			<input
 				name="release"
-				type="checkbox"
-				if  props.Fields["release"].Value.(bool) {
+				if val, ok := props.Fields["release"].Value.(bool);  ok && val {
 					checked="checked"
 				}
-				class="px-2 py-1 border rounded"
-				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-0", props.Fields["release"].Errors != nil) }
+				type="checkbox"
+				placeholder="estimated read time of the article"
+				class={ "bg-base-200 text-base-content px-2 py-1 border rounded mb-4", templ.KV("border-error mb-4", props.Fields["release"].Errors != nil) }
 			/>
-			if errors := props.Fields["release"].Errors; errors  != nil {
+			if errors := props.Fields["release"].Errors; errors != nil {
 				<ul class="ml-4 list-disc text-error my-2">
 					for _, err := range errors {
 						<li>{ err }</li>
@@ -1746,12 +1752,8 @@ templ ArticleForm(props ArticleFormProps, action map[string]string) {
 				</ul>
 			}
 		</span>
-		<div class="flex justify-between">
-			<button
-				class="w-full mt-8 px-2 py-1 font-bold border rounded text-white bg-base-200 hover:bg-base-100"
-			>
-				Submit
-			</button>
+		<div class="w-full flex justify-between">
+			<button class="w-full px-2 py-1 border rounded text-white bg-base-200 hover:bg-base-100">Submit</button>
 		</div>
 	</form>
 }
@@ -1989,7 +1991,6 @@ templ DashboardArticleEdit(props DashboardArticleEditProps) {
 	}
 }
 ```
----
 
 ```go
 // controllers/controller.go
@@ -2070,6 +2071,7 @@ func (r Routes) loadDashboard(e *echo.Echo) *echo.Echo {
 	return e
 }
 ```
+---
 
 ```go
 // controllers/controller.go
