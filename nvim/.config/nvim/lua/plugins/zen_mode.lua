@@ -1,6 +1,21 @@
 return {
 	"folke/zen-mode.nvim",
-	dependencies = { "folke/twilight.nvim" },
+	dependencies = {
+		"folke/twilight.nvim",
+		-- {
+		-- 	"lewis6991/gitsigns.nvim",
+		-- 	opts = {
+		-- 		signcolumn = true,
+		-- 		signs = {
+		-- 			add = { text = "+" },
+		-- 			change = { text = "~" },
+		-- 			delete = { text = "_" },
+		-- 			topdelete = { text = "‾" },
+		-- 			changedelete = { text = "~" },
+		-- 		}
+		-- 	}
+		-- },
+	},
 	opts = {
 		window = {
 			backdrop = 0.90,
@@ -10,7 +25,7 @@ return {
 			-- width = 45, -- recording shorts screen
 			width = .99999,
 			options = {
-				signcolumn = "yes", -- disable signcolumn
+				signcolumn = "no", -- disable signcolumn
 				number = true, -- disable number column
 				relativenumber = true, -- disable relative numbers
 				cursorline = true, -- disable cursorline
@@ -27,6 +42,7 @@ return {
 			},
 			twilight = { enabled = true },
 			tmux = { enabled = false },
+			gitsigns = { enabled = false },
 		},
 	},
 }
