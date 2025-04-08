@@ -10,7 +10,7 @@ return {
 			-- width = 45, -- recording shorts screen
 			width = .99999,
 			options = {
-				signcolumn = "no", -- disable signcolumn
+				signcolumn = "yes", -- disable signcolumn
 				number = true, -- disable number column
 				relativenumber = true, -- disable relative numbers
 				cursorline = true, -- disable cursorline

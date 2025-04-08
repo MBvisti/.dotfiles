@@ -2,14 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"saghen/blink.cmp",
-		-- "williamboman/mason.nvim",
-		-- "williamboman/mason-lspconfig.nvim",
-		-- "WhoIsSethDaniel/mason-tool-installer.nvim",
-
-		-- { "j-hui/fidget.nvim", opts = {} },
-
-		-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-		-- used for completion, annotations and signatures of Neovim apis
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
@@ -29,11 +21,8 @@ return {
 			}
 		end
 		local handlers = {
-			["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border("FloatBorder") }),
-			["textDocument/signatureHelp"] = vim.lsp.with(
-				vim.lsp.handlers.signature_help,
-				{ border = border("FloatBorder") }
-			),
+			["textDocument/hover"] = vim.lsp.buf.hover({ border = border("FloatBorder") }),
+			["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = border("FloatBorder") }),
 		}
 
 
