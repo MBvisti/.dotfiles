@@ -3,18 +3,18 @@ return {
 	dependencies = { "folke/twilight.nvim" },
 	opts = {
 		window = {
-			backdrop = 1,
+			backdrop = 0.90,
 			-- width = 190,
-			width = 120,
+			-- width = 120,
 			-- width = 100,
 			-- width = 45, -- recording shorts screen
+			width = .99999,
 			options = {
-				signcolumn = "yes", -- disable signcolumn
-				laststatus = 0,
-				number = false, -- disable number column
-				relativenumber = false, -- disable relative numbers
-				-- cursorline = false, -- disable cursorline
-				-- cursorcolumn = false, -- disable cursor column
+				signcolumn = "no", -- disable signcolumn
+				number = true, -- disable number column
+				relativenumber = true, -- disable relative numbers
+				cursorline = true, -- disable cursorline
+				cursorcolumn = false, -- disable cursor column
 				-- foldcolumn = "0", -- disable fold column
 				-- list = false, -- disable whitespace characters
 			},
@@ -22,13 +22,11 @@ return {
 		plugins = {
 			options = {
 				enabled = true,
+				laststatus = 3,
+				showcmd = false,
 			},
-			twilight = { enabled = false },
-			-- kitty = {
-			-- 	enabled = true,
-			-- 	font = "+4",
-			-- },
-			tmux = { enabled = true },
+			twilight = { enabled = true },
+			tmux = { enabled = false },
 		},
 	},
 }

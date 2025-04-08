@@ -1,20 +1,38 @@
 return {
-	"lukas-reineke/indent-blankline.nvim",
-	main = "ibl",
-	event = "VeryLazy",
-	config = function()
-		require("ibl").setup({
-			scope = {
-				show_start = true,
-			},
-			indent = {
-				char = "▎",
-				tab_char = "▎",
-				smart_indent_cap = true,
-			},
-			whitespace = {
-				remove_blankline_trail = true,
-			},
-		})
-	end,
+	-- "lukas-reineke/indent-blankline.nvim",
+	-- main = "ibl",
+	-- event = "VeryLazy",
+	-- config = function()
+	-- 	require("ibl").setup({
+	-- 		scope = {
+	-- 			show_start = true,
+	-- 		},
+	-- 		indent = {
+	-- 			char = "▎",
+	-- 			tab_char = "▎",
+	-- 			smart_indent_cap = true,
+	-- 		},
+	-- 		whitespace = {
+	-- 			remove_blankline_trail = true,
+	-- 		},
+	-- 	})
+	-- end,
+	-- "folke/snacks.nvim",
+	--  	---@type snacks.Config
+	--  	opts = {
+	--  	  indent = {
+	--  	    -- your indent configuration comes here
+	--  	    -- or leave it empty to use the default settings
+	--  	    -- refer to the configuration section below
+	-- 	animate = {
+	--    		enabled = vim.fn.has("nvim-0.10") == 1,
+	--    		style = "out",
+	--    		easing = "linear",
+	--    		duration = {
+	--      			step = 15, -- ms per step
+	--      			total = 250, -- maximum duration
+	--    		},
+	--  		},
+	--  	  }
+	--  	}
 }
