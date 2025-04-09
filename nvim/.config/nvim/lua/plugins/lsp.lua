@@ -7,31 +7,40 @@ return {
 	config = function()
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local lsp = require("lspconfig")
-
-		local function border(hl_name)
-			return {
-				{ "┌", hl_name },
-				{ "─", hl_name },
-				{ "┐", hl_name },
-				{ "│", hl_name },
-				{ "┘", hl_name },
-				{ "─", hl_name },
-				{ "└", hl_name },
-				{ "│", hl_name },
-			}
-		end
+		-- local function border(hl_name)
+		-- 	return {
+		-- 		{ "┌", hl_name },
+		-- 		{ "─", hl_name },
+		-- 		{ "┐", hl_name },
+		-- 		{ "│", hl_name },
+		-- 		{ "┘", hl_name },
+		-- 		{ "─", hl_name },
+		-- 		{ "└", hl_name },
+		-- 		{ "│", hl_name },
+		-- 	}
+		-- end
 		local handlers = {
-			["textDocument/hover"] = vim.lsp.buf.hover({ border = border("FloatBorder") }),
-			["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = border("FloatBorder") }),
+			["textDocument/hover"] = vim.lsp.buf.hover({ border = "rounded" }),
+			-- ["textDocument/hover"] = vim.lsp.buf.hover({ border = border("FloatBorder") }),
+			["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = "rounded" }),
+			-- ["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = border("FloatBorder") }),
 		}
 
 
 		lsp.gopls.setup({
 			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 			-- capabilities = capabilities,
-			-- on_attach = function(client)
-			-- 	-- Disable completion but keep other LSP features
-			-- 	client.server_capabilities.completionProvider = false
+			-- on_attach = function(_, bufnr)
+			-- 	-- This disables only the virtual text
+			-- 	vim.diagnostic.config({
+			-- 		virtual_text = false,
+			-- 		virtual_lines = true,
+			-- 		float = { source = true }, -- Keep the floating window
+			-- 		severity_sort = true,
+			-- 	}, bufnr)
+			-- 	-- vim.diagnostic.config({
+			-- 	-- 	virtual_text = false
+			-- 	-- }, bufnr)
 			-- end,
 			handlers = handlers,
 			root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
@@ -62,6 +71,12 @@ return {
 		})
 
 		lsp.lua_ls.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
+
+		lsp.postgres_lsp.setup({
 			capabilities = capabilities,
 			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 			handlers = handlers,
@@ -120,6 +135,19 @@ return {
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 				local ts_builtin = require("telescope.builtin")
+				vim.diagnostic.config({
+					virtual_text = false,
+					virtual_lines = {
+						-- Only show virtual line diagnostics for the current cursor line
+						current_line = true,
+					},
+
+					-- Alternatively, customize specific options
+					-- virtual_lines = {
+					--  -- Only show virtual line diagnostics for the current cursor line
+					--  current_line = true,
+					-- },
+				})
 
 				map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
 				map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
@@ -132,7 +160,8 @@ return {
 				map("<leader>ws", ts_builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-				map("K", vim.lsp.buf.hover, "Hover Documentation")
+				-- map("K", vim.lsp.buf.hover, "Hover Documentation")
+				map("K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover Documentation")
 				-- map("K", "<cmd>GoDoc<CR>", "Hover Documentation")
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header

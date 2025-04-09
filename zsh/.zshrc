@@ -267,8 +267,11 @@ export PATH="/usr/local/node/latest/bin:$PATH"
 # autoload -U +X bashcompinit && bashcompinit
 # complete -o nospace -C /usr/bin/terraform terraform
 
-# zip
+# zig
 export PATH="/usr/local/zig/latest:$PATH"
+
+# postgrestools
+export PATH="/usr/local/psql-lsp/latest:$PATH"
 
 # asdf
 # . "$HOME/.asdf/asdf.sh"
