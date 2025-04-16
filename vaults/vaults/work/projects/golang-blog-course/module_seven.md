@@ -843,55 +843,56 @@ templ base() {
 		  background-color: white;
 		}
 
-    body,
-    td,
-    th {
-      font-family: "Nunito Sans", Helvetica, Arial, sans-serif;
-    }
+        body,
+        td,
+        th {
+          font-family: "Nunito Sans", Helvetica, Arial, sans-serif;
+        }
 
-    h1 {
-      margin-top: 0;
-      color: #2a2a2a;
-      font-size: 22px;
-      font-weight: bold;
-      text-align: left;
-    }
-    
-    h2 {
-      margin-top: 0;
-      color: #2a2a2a;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: left;
-    }
-    
-    h3 {
-      margin-top: 0;
-      color: #333333;
-      font-size: 14px;
-      font-weight: bold;
-      text-align: left;
-    }
+        h1 {
+          margin-top: 0;
+          color: #2a2a2a;
+          font-size: 22px;
+          font-weight: bold;
+          text-align: left;
+        }
+        
+        h2 {
+          margin-top: 0;
+          color: #2a2a2a;
+          font-size: 16px;
+          font-weight: bold;
+          text-align: left;
+        }
+        
+        h3 {
+          margin-top: 0;
+          color: #333333;
+          font-size: 14px;
+          font-weight: bold;
+          text-align: left;
+        }
 
-    td,
-    th {
-      font-size: 16px;
-    }
+        td,
+        th {
+          font-size: 16px;
+        }
 
-		p {
-		  color: black;
-		}
+	    	p {
+	    	  color: black;
+	    	}
 
-    p,
-		a,
-    ul,
-    ol,
-    blockquote {
-      margin: .4em 0 1.1875em;
-      font-size: 16px;
-      line-height: 1.625;
-    }
-</style>
+        p,
+	    a,
+        ul,
+        ol,
+        blockquote {
+          margin: .4em 0 1.1875em;
+          font-size: 16px;
+          line-height: 1.625;
+        }
+    </style>
+
 	<!DOCTYPE html>
 	<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>

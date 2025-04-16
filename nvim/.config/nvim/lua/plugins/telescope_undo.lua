@@ -14,10 +14,23 @@ return {
 		},
 	},
 	opts = {
-		-- don't use `defaults = { }` here, do this in the main telescope spec
 		extensions = {
 			undo = {
-				-- telescope-undo.nvim config, see below
+				mappings = {
+					i = {
+						-- ["<cr>"] = require("telescope-undo.actions").yank_additions,
+						-- ["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
+						-- ["<C-cr>"] = require("telescope-undo.actions").restore,
+						-- alternative defaults, for users whose terminals do questionable things with modified <cr>
+						-- ["<C-y>"] = require("telescope-undo.actions").yank_deletions,
+						-- ["<C-r>"] = require("telescope-undo.actions").restore,
+					},
+					n = {
+						-- ["y"] = require("telescope-undo.actions").yank_additions,
+						-- ["Y"] = require("telescope-undo.actions").yank_deletions,
+						-- ["u"] = require("telescope-undo.actions").restore,
+					},
+				},
 			},
 			-- no other extensions here, they can have their own spec too
 		},

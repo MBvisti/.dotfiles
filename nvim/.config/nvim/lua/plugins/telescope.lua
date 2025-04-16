@@ -26,6 +26,7 @@ return {
 		-- Enable telescope extensions, if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
+		pcall(require("telescope").load_extension, "undo")
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
@@ -42,6 +43,13 @@ return {
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+
+		-- undo
+		local undo = require("telescope-undo.actions")
+		vim.keymap.set("i", "<A-CR>", undo.yank_additions, { desc = '[Y]ank [a]dditions' })
+		vim.keymap.set("i", "<S-CR>", undo.yank_deletions, { desc = '[Y]rank deletions' })
+		vim.keymap.set("i", "<R-CR>", undo.restore, { desc = '[R]estore to this point in time' })
+
 
 		-- Slightly advanced example of overriding default behavior and theme
 		vim.keymap.set("n", "<leader>/", function()
