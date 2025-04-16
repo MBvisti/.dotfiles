@@ -133,8 +133,9 @@ return {
 				local ts_builtin = require("telescope.builtin")
 
 				map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-				map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
-				map("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+				map("gr", ts_builtin.lsp_references, "[G]oto [R]eferences")
+				-- map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
+				map("gi", ts_builtin.lsp_implementations, "[G]oto [I]mplementation")
 
 				-- vim.keymap.set("i", "<C-space>", ts_builtin.live_grep, { buffer = event.buf, desc = "LSP: " .. "[L]ive [G]rep" })
 
