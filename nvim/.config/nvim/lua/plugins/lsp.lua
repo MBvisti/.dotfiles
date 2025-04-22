@@ -1,11 +1,14 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"saghen/blink.cmp",
+		-- "saghen/blink.cmp",
+		-- "hrsh7th/nvim-cmp",
+		"hrsh7th/cmp-nvim-lsp",
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local capabilities = require('cmp_nvim_lsp').default_capabilities() --nvim-cmp
 		local lsp = require("lspconfig")
 		-- local function border(hl_name)
 		-- 	return {
@@ -28,8 +31,8 @@ return {
 
 
 		lsp.gopls.setup({
-			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			-- capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			capabilities = capabilities,
 			-- on_attach = function(_, bufnr)
 			-- 	-- This disables only the virtual text
 			-- 	vim.diagnostic.config({
