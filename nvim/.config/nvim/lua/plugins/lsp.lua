@@ -1,11 +1,14 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		"saghen/blink.cmp",
+		-- "saghen/blink.cmp",
+		-- "hrsh7th/nvim-cmp",
+		"hrsh7th/cmp-nvim-lsp",
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		local capabilities = require('cmp_nvim_lsp').default_capabilities() --nvim-cmp
 		local lsp = require("lspconfig")
 		-- local function border(hl_name)
 		-- 	return {
@@ -28,8 +31,8 @@ return {
 
 
 		lsp.gopls.setup({
-			capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			-- capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			capabilities = capabilities,
 			-- on_attach = function(_, bufnr)
 			-- 	-- This disables only the virtual text
 			-- 	vim.diagnostic.config({
@@ -150,8 +153,9 @@ return {
 				})
 
 				map("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-				map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
-				map("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+				map("gr", ts_builtin.lsp_references, "[G]oto [R]eferences")
+				-- map("gr", vim.lsp.buf.references, "[G]oto [R]eferences")
+				map("gi", ts_builtin.lsp_implementations, "[G]oto [I]mplementation")
 
 				-- vim.keymap.set("i", "<C-space>", ts_builtin.live_grep, { buffer = event.buf, desc = "LSP: " .. "[L]ive [G]rep" })
 

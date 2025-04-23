@@ -18,15 +18,15 @@ tags: []
 **Title**: Adding Subscribers
 
 Currently planned videos:
-1. What are the minimum requirements
-2. Expanding the database: Tokens & Subscribers 
-3. Creating the token and subscriber models
-4. Creating the subscription form
-5. Saving new subscribers in the database
-6. Emails and Clients
-7. Verifying subscribers' email
-8. Validation view
-9. Updating dashboard with subscriber info
+- [ ] 1. What are the minimum requirements
+- [x] 2. Expanding the database: Tokens & Subscribers
+- [x] 3. Creating the token and subscriber models
+- [x] 4. Creating the subscription form
+- [x] 5. Saving new subscribers in the database
+- [ ] 6. Emails and Clients
+- [ ] 7. Verifying subscribers' email
+- [ ] 8. ~Validation view~ TODO: is this needed?
+- [ ] 9. Updating dashboard with subscriber info
 
 ## Episode 2
 
@@ -758,6 +758,12 @@ func (r Routes) loadFragments(e *echo.Echo) *echo.Echo {
 
 ## Episode 6 Script
 
+```sh
+go get github.com/jaytaylor/html2text
+
+go get github.com/vanng822/go-premailer/premailer
+```
+
 ```go
 // emails/email.templ
 package emails
@@ -1064,6 +1070,16 @@ templ (s SubscriberWelcome) template() {
 }
 ```
 ---
+
+```sh
+	go get github.com/aws/aws-sdk-go/aws
+
+	go get github.com/aws/aws-sdk-go/aws/credentials
+
+	go get github.com/aws/aws-sdk-go/aws/session
+
+	go get github.com/aws/aws-sdk-go/service/ses
+```
 
 ```go
 // clients/aws_ses.go

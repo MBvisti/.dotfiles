@@ -1,6 +1,6 @@
 {
   "avante.nvim": { "branch": "main", "commit": "eb1cd44731783024621beafe4e46204cbc9a4320" },
-  "blink.cmp": { "branch": "main", "commit": "cb5e346d9e0efa7a3eee7fd4da0b690c48d2a98e" },
+  "cmp-nvim-lsp": { "branch": "main", "commit": "a8912b88ce488f411177fc8aed358b04dc246d7b" },
   "conform.nvim": { "branch": "master", "commit": "6632e7d788a85bf8405ea0c812d343fc308b7b8c" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "fzf-lua": { "branch": "main", "commit": "b62a34f5e4fbf36dd4c6d29920a61451eecd04ed" },
@@ -15,6 +15,7 @@
   "mini.nvim": { "branch": "main", "commit": "a8b1d74f45dadf3554c0eed784c6ccd8ade67883" },
   "neodev.nvim": { "branch": "main", "commit": "46aa467dca16cf3dfe27098042402066d2ae242d" },
   "nui.nvim": { "branch": "main", "commit": "8d3bce9764e627b62b07424e0df77f680d47ffdb" },
+  "nvim-cmp": { "branch": "main", "commit": "b5311ab3ed9c846b585c0c15b7559be131ec4be9" },
   "nvim-lspconfig": { "branch": "master", "commit": "a56f4b9dde5daf3d4c7bb50cf78ab609537f2259" },
   "nvim-treesitter": { "branch": "master", "commit": "684eeac91ed8e297685a97ef70031d19ac1de25a" },
   "nvim-web-devicons": { "branch": "master", "commit": "c90dee4e930ab9f49fa6d77f289bff335b49e972" },

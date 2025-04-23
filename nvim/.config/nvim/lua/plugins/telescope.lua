@@ -35,7 +35,9 @@ return {
 		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-		vim.keymap.set("n", "<leader>si", builtin.lsp_implementations, { desc = "[S]earch [I]mplementation" })
+		-- vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "[G]it [C]ommits" })
+		vim.keymap.set("n", "<leader>gc", builtin.git_bcommits, { desc = "[G]it [C]ommits" })
+		-- vim.keymap.set("n", "<leader>si", builtin.lsp_implementations, { desc = "[S]earch [I]mplementation" })
 
 		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
