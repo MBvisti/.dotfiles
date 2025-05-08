@@ -46,6 +46,6 @@ require("lazy").setup({
 	checker = { enabled = false },
 })
 
-require("avante_lib").load()
+-- require("avante_lib").load()
 -- local zm = require("zen-mode")
 -- vim.schedule(zm.toggle)
