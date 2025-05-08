@@ -4,8 +4,8 @@ return {
 	lazy = false,
 	version = false,
 	opts = {
-		provider = "claude",
-		-- provider = "openai",
+		-- provider = "claude",
+		provider = "openai",
 		-- provider = "gemini",
 		-- auto_suggestions_provider = "claude",
 		cursor_applying_provider = "claude",
@@ -17,13 +17,13 @@ return {
 			max_tokens = 8192,
 			disable_tools = { "git_commit", "web_search" },
 		},
-		-- 		openai = {
-		--     		endpoint = "https://api.openai.com/v1",
-		--     		model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
-		--     		-- timeout = 30000, -- timeout in milliseconds
-		--     		temperature = 0, -- adjust if needed
-		--     		max_tokens = 8192,
-		--   	},
+		openai = {
+		    endpoint = "https://api.openai.com/v1",
+		    model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+		    -- timeout = 30000, -- timeout in milliseconds
+		    temperature = 0, -- adjust if needed
+		    max_tokens = 8192,
+		},
 		-- gemini = {
 		--   	 	endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
 		--   	 	model = "gemini-2.0-flash-latest",

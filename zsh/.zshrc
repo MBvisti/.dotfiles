@@ -123,6 +123,9 @@ alias nvim="/usr/local/neovim/latest/bin/nvim"
 alias nd="/usr/local/neovim/dev/bin/nvim"
 alias nvimdev="/usr/local/neovim/dev/bin/nvim"
 
+# alias rails="~/.local/share/gem/ruby/3.3.0/bin/rails"
+# alias noko="~/.local/share/gem/ruby/3.3.0/bin/nokogiri"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -204,6 +207,9 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # export PATH="~/.local/share/uv/python:$PATH"
 # alias python="~/.local/share/uv/python/cpython-3.13.0-linux-x86_64-gnu/bin/python3"
 # alias pip="/usr/local/python/latest/bin/pip3"
+# alias pip="/usr/bin/pip3"
+# alias python="/usr/bin/python3.13"
+# alias py="/usr/bin/python3.13"
 
 # tailwind
 # alias tailwind="/usr/local/tailwind/latest"
@@ -272,6 +278,9 @@ export PATH="/usr/local/zig/latest:$PATH"
 
 # postgrestools
 export PATH="/usr/local/psql-lsp/latest:$PATH"
+
+export PATH="/home/mbv/.gem/bin:$PATH"
+export GEM_HOME=$HOME/.gem
 
 # asdf
 # . "$HOME/.asdf/asdf.sh"

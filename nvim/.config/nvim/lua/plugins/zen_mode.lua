@@ -42,7 +42,7 @@ return {
 			},
 			twilight = { enabled = true },
 			tmux = { enabled = false },
-			gitsigns = { enabled = false },
+			-- gitsigns = { enabled = false },
 		},
 	},
 }

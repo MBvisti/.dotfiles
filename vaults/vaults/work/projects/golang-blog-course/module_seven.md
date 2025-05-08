@@ -23,7 +23,7 @@ Currently planned videos:
 - [x] 3. Creating the token and subscriber models
 - [x] 4. Creating the subscription form
 - [x] 5. Saving new subscribers in the database
-- [ ] 6. Emails and Clients
+- [x] 6. Emails and Clients
 - [ ] 7. Verifying subscribers' email
 - [ ] 8. ~Validation view~ TODO: is this needed?
 - [ ] 9. Updating dashboard with subscriber info
