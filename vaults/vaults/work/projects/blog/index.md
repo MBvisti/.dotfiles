@@ -73,3 +73,19 @@ there is a (perhaps natural) human need to analyze a thing before deciding on ho
 **Status**: Released
 
 [source](./why-go.md#why-go)
+
+## One year of main videos
+
+**Status**: WIP
+
+**Alternative title**:
+- so you wan to make videos
+
+**Core Idea**:
+talk about my learnings on creating programming videos. focus on things like:
+- process
+- just pressing record
+- start from a finished project then plan episodes
+- keep them focused
+- getting quality to an acceptable level
+
