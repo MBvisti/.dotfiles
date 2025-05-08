@@ -118,10 +118,8 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias vi="/usr/local/neovim/latest/bin/nvim"
-alias nvim="/usr/local/neovim/latest/bin/nvim"
-alias nd="/usr/local/neovim/dev/bin/nvim"
-alias nvimdev="/usr/local/neovim/dev/bin/nvim"
+alias vi="/usr/local/nvim/bin/nvim"
+alias nvim="/usr/local/nvim/bin/nvim"
 
 # alias rails="~/.local/share/gem/ruby/3.3.0/bin/rails"
 # alias noko="~/.local/share/gem/ruby/3.3.0/bin/nokogiri"
@@ -129,15 +127,10 @@ alias nvimdev="/usr/local/neovim/dev/bin/nvim"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Go related
-## linux setup
 export GOPATH=/home/mbv/golang
 export GOBIN=/home/mbv/golang/bin
-export GOROOT=/usr/local/go/latest
+export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
@@ -158,15 +151,8 @@ alias wo="pomodoro 'work'"
 alias br="pomodoro 'break'"
 
 # fly io setup
-export FLYCTL_INSTALL='/home/mbv/.fly'
+#export FLYCTL_INSTALL='/home/mbv/.fly'
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
-## Mac setup
-# export PATH=$PATH:/usr/local/go/bin
-# export GOPATH=$HOME/golang
-# export GOROOT=/usr/local/go
-# export PATH=$PATH:$GOPATH/bin
-# export PATH=$PATH:$GOROOT/bin
 
 # source $HOME/.cargo/env
 
@@ -232,6 +218,7 @@ export PATH="/usr/local/tmux/latest:$PATH"
 # ruby
 # export PATH="/usr/local/ruby/latest/bin:$PATH"
 # export PATH="/home/mbv/.gem/ruby/3.3.0/bin:$PATH"
+export PATH="$HOME/.asdf/shims/:$PATH"
 
 # just
 # export PATH="/usr/local/just/latest:$PATH"
@@ -252,11 +239,11 @@ export PATH="/usr/local/tmux/latest:$PATH"
 # tempo
 # export PATH="/usr/local/tempo/latest:$PATH"
 
-# uv
-export PATH="/usr/local/uv/latest:$PATH"
-
 # node
-export PATH="/usr/local/node/latest/bin:$PATH"
+export PATH="/usr/local/node/bin:$PATH"
+
+# gh
+export PATH="/usr/local/gh/bin:$PATH"
 
 # export TERM=screen-256color
 
@@ -274,18 +261,21 @@ export PATH="/usr/local/node/latest/bin:$PATH"
 # complete -o nospace -C /usr/bin/terraform terraform
 
 # zig
-export PATH="/usr/local/zig/latest:$PATH"
+export PATH="/usr/local/zig/:$PATH"
+
+# export GEM_HOME="$HOME/gems"
+# export PATH="$HOME/gems/bin:$PATH"
 
 # postgrestools
-export PATH="/usr/local/psql-lsp/latest:$PATH"
+#export PATH="/usr/local/psql-lsp/latest:$PATH"
 
 export PATH="/home/mbv/.gem/bin:$PATH"
 export GEM_HOME=$HOME/.gem
 
 # asdf
 # . "$HOME/.asdf/asdf.sh"
-export ASDF_DATA_DIR="/home/mbv/.asdf"
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
+#export ASDF_DATA_DIR="/home/mbv/.asdf"
+#export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
-source ~/.secrets/anthropic
-source ~/.secrets/openai
+#source ~/.secrets/anthropic
+#source ~/.secrets/openai

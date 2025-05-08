@@ -73,7 +73,13 @@ return {
 			handlers = handlers,
 		})
 
-		lsp.lua_ls.setup({
+		-- lsp.lua_language_server.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
+		
+		lsp.ruby_lsp.setup({
 			capabilities = capabilities,
 			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 			handlers = handlers,
