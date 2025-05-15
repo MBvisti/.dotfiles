@@ -24,9 +24,8 @@ Currently planned videos:
 - [x] 4. Creating the subscription form
 - [x] 5. Saving new subscribers in the database
 - [x] 6. Emails and Clients
-- [ ] 7. Verifying subscribers' email
-- [ ] 8. ~Validation view~ TODO: is this needed?
-- [ ] 9. Updating dashboard with subscriber info
+- [ ] 7. Send validation email
+- [ ] 8. Update dashboard with subscriber info
 
 ## Episode 2
 
