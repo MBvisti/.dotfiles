@@ -16,13 +16,20 @@ window-decoration = false
 window-padding-x = 0
 window-padding-y = 0
 copy-on-select = true
+# copy-on-select = clipboard
 shell-integration = zsh
 mouse-hide-while-typing = true
 
-keybind = ctrl+s>\=new_split:right
-keybind = ctrl+s>-=new_split:down
-keybind = ctrl+s>a=new_split:auto
-keybind = ctrl+s>t=new_tab
+# keybind = ctrl+s>\=new_split:right
+# keybind = ctrl+s>-=new_split:down
+keybind = ctrl+a>t=next_tab
+keybind = ctrl+a>c=new_tab
+
+keybind = ctrl+shift+l=resize_split:right,20
+keybind = ctrl+shift+h=resize_split:left,20
+keybind = ctrl+shift+k=resize_split:up,20
+keybind = ctrl+shift+j=resize_split:down,20
+keybind = ctrl+shift+e=equalize_splits
 
 keybind = ctrl+h=goto_split:left
 keybind = ctrl+j=goto_split:bottom
@@ -34,5 +41,3 @@ keybind = ctrl+a>j=new_split:down
 keybind = ctrl+a>k=new_split:up
 keybind = ctrl+a>l=new_split:right
 keybind = ctrl+a>f=toggle_split_zoom
-
-app-notifications = no-clipboard-copy
