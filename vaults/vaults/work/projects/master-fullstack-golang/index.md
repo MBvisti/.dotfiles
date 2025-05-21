@@ -44,6 +44,9 @@ The idea is to make the course more consumable if you don't want to watch all th
 * Lesson (main) 2.3: Understanding Concurrency: Goroutines & Channels (Conceptual, relevance to web servers)
 * Lesson (main) 2.4: Effective Error Handling in Go
 
+**Module 3: Depedencies (UPDATE TITLE)**
+* Lesson (main) 7.2: Database Selection: Why Postgres? (Brief on SQLite as an alternative).
+
 **Module 3: Structuring Your Go Web Application**
 * Lesson (main) 3.1: MVC (Model-View-Controller) Architecture (Theory)
 * Lesson (main) 3.2: MVC (Model-View-Controller) Adapting it for Go Web Apps (practice)
@@ -83,15 +86,19 @@ The idea is to make the course more consumable if you don't want to watch all th
 * Lesson (main) 5.3: Frontmatter: Adding Structured Metadata to Markdown Files.
 * Lesson (main) 5.4: The Rendering Pipeline: Parsing Markdown to HTML.
 * Lesson (main) 5.5: Enhancing Readability: Code Syntax Highlighting in Articles.
+
+<!-- Not sure about side here -->
 * Lesson (side) 5.5.1: Developing the articles Package: Logic for Handling Markdown Files.
 * Lesson (side) 5.5.2: Embedding Content: Using //go:embed for Sample Markdown Articles.
 * Lesson (side) 5.5.3: Goldstandard: Integrating Goldmark with Frontmatter & Highlighting Extensions.
 * Lesson (side) 5.5.4: Dynamic Content Logic: Listing Articles (Homepage) and Displaying Single Articles.
 * Lesson (side) 5.5.5: View Updates: Connecting Article Data to Templ Components.
 
+<!-- (Should this come AFTER subs?) -->
 **Module 6: Enhancing User Experience with HTMX & Alpine.js**
-r Lesson (main) 6.1: The "Just Enough Interactivity" Philosophy for Server-Rendered Apps.
+* Lesson (main) 6.1: The "Just Enough Interactivity" Philosophy for Server-Rendered Apps.
 * Lesson (main) 6.2: Introduction to HTMX: Supercharging HTML for Dynamic Updates.
+
 * Lesson (main) 6.3: Introduction to Alpine.js: Lightweight Client-Side Interactivity.
 * Lesson (main) 6.4: Identifying Use Cases: Where HTMX & Alpine.js Shine in the Blog Project.
 * Lesson (side) 6.4.1: Setup: Adding HTMX and Alpine.js to Static Assets.
@@ -102,10 +109,10 @@ r Lesson (main) 6.1: The "Just Enough Interactivity" Philosophy for Server-Rende
 
 **Module 7: Introducing Databases – Postgres, Migrations & SQLC**
 * Lesson (main) 7.1: The Need for a Database: Moving Beyond File-Based Content.
-* Lesson (main) 7.2: Database Selection: Why Postgres? (Brief on SQLite as an alternative).
 * Lesson (main) 7.3: Database Schema Design: Crafting Tables for Blog Posts.
 * Lesson (main) 7.4: Database Migrations: Principles, Importance, Up/Down Strategy (Goose).
 * Lesson (main) 7.5: Type-Safe Database Interactions: Introduction to SQLC.
+
 * Lesson (side) 7.5.1: Postgres Setup: Local Installation (Docker Recommended).
 * Lesson (side) 7.5.2: Migration Management: Installing and Using Goose.
 * Lesson (side) 7.5.3: Your First Migration: Defining and Applying the posts Table Schema.
@@ -160,7 +167,7 @@ r Lesson (main) 6.1: The "Just Enough Interactivity" Philosophy for Server-Rende
 * Lesson (side) 10.5.8: Verification Handler: Logic to Verify Email Addresses via Token.
 * Lesson (side) 10.5.9: (Optional) Admin View: Basic Interface for Viewing Subscribers.
 
-**Module 11: Sending Newsletters (Optional Advanced Module)**
+**Module 11: Sending Newsletters**
 * Lesson (main) 11.1: Newsletter Strategy: Planning Your Content and Cadence.
 * Lesson (main) 11.2: Content Creation: WYSIWYG Editors vs. Markdown for Newsletters.
 * Lesson (main) 11.3: Reliable Sending: Ensuring Idempotency and Handling Failures.
