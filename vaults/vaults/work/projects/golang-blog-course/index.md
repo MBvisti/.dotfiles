@@ -38,7 +38,7 @@ tags:
 
 - [ ] Reshoot M3E3 (wrong tailwind directive)
 
-## Outline
+## Outline v1
 
 Taking some inspiriation from Aaron Francis's High Performance Sqlite and dividing everything into modules. 
 
