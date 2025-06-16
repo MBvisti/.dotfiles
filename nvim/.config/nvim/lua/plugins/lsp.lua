@@ -101,6 +101,11 @@ return {
 			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 			handlers = handlers,
 		})
+		lsp.ts_ls.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
 
 		lsp.ruby_lsp.setup({
 			capabilities = capabilities,

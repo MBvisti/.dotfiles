@@ -26,3 +26,8 @@ tags:
 
 ## To get entire history for a file 
 `git log -p -- file-name`
+
+## Git Worktree
+
+1. create bare repo: git clone --bare <repo-url> <dir-name>
+
