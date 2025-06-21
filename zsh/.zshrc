@@ -279,3 +279,6 @@ export GEM_HOME=$HOME/.gem
 
 #source ~/.secrets/anthropic
 #source ~/.secrets/openai
+
+# claude yolo
+alias yolo="claude --dangerously-skip-permissions"
