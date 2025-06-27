@@ -152,7 +152,7 @@ alias br="pomodoro 'break'"
 
 # fly io setup
 #export FLYCTL_INSTALL='/home/mbv/.fly'
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH="/home/mbv/.fly/bin:$PATH"
 
 # source $HOME/.cargo/env
 
@@ -279,3 +279,6 @@ export GEM_HOME=$HOME/.gem
 
 #source ~/.secrets/anthropic
 #source ~/.secrets/openai
+
+# claude yolo
+alias yolo="claude --dangerously-skip-permissions"
