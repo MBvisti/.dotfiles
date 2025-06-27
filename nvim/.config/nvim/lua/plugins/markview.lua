@@ -2,13 +2,15 @@ return {
 	"OXY2DEV/markview.nvim",
 	lazy = false,
 	dependencies = {
-		-- "nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter",
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
 		local markview = require("markview")
 		local presets = require("markview.presets")
+
 		markview.setup({
+			experimental = { check_rtp_message = false },
 			markdown = {
 				headings = presets.headings.glow,
 				checkboxes = {

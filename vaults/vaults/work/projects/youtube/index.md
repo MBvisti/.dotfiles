@@ -46,3 +46,10 @@ video explaining concurrency with analogy to how javi switches topics while seem
 
 **title**: dude! where's my error?
 my approach to error handling in go
+
+**title**: how to vibe code professionally
+how i currently use claude code
+
+## Videos
+
+- [vibing professionally](./vibe_coding.md)

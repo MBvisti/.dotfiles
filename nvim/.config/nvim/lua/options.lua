@@ -61,7 +61,7 @@ vim.opt.splitright = true
 vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 15
@@ -83,7 +83,7 @@ vim.o.backup = false
 
 vim.o.conceallevel = 2
 
-vim.o.colorcolumn = "80" -- sets the separator bar
+--vim.o.colorcolumn = "80" -- sets the separator bar
 
 vim.o.errorbells = false
 
