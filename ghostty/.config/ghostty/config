@@ -1,5 +1,6 @@
 # font-family = FiraMono Nerd Font Mono
-font-family = Hack Nerd Font Mono
+# font-family = Adwaita Mono
+# font-family = Hack Nerd Font Mono
 # font-family-bold = FiraMono Nerd Font Mono Bold
 theme = GruvboxDarkHard
 # theme = catppuccin-mocha
@@ -10,7 +11,7 @@ theme = GruvboxDarkHard
 # theme = gruvbox-material
 # theme = Kanagawa Wave
 # theme = Kanagawa Dragon
-font-size = 14
+font-size = 12
 gtk-titlebar = false
 window-decoration = false
 window-padding-x = 0
@@ -45,4 +46,4 @@ keybind = ctrl+a>l=new_split:right
 keybind = ctrl+a>f=toggle_split_zoom
 keybind = shift+enter=text:\n
 
-background-opacity = 0.80
+background-opacity = 1.0
