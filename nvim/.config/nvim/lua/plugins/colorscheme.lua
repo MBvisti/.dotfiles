@@ -10,15 +10,15 @@
 -- 	end
 -- }
 
-return {
-	"ellisonleao/gruvbox.nvim", 
-	priority = 1000 , 
-	lazy = false, 
- 	config = function()
-		vim.o.background = "dark" -- or "light" for light mode
-		vim.cmd([[colorscheme gruvbox]])
- 	end
-}
+-- return {
+-- 	"ellisonleao/gruvbox.nvim", 
+-- 	priority = 1000 , 
+-- 	lazy = false, 
+--  	config = function()
+-- 		vim.o.background = "dark" -- or "light" for light mode
+-- 		vim.cmd([[colorscheme gruvbox]])
+--  	end
+-- }
 
 -- return {
 --   "marcelbeumer/spacedust.vim",
@@ -73,13 +73,13 @@ return {
 -- 		vim.cmd.colorscheme("kanagawa-dragon")
 -- 	end,
 -- }
---
--- return {
--- 	"catppuccin/nvim",
--- 	lazy = false,
--- 	priority = 1000,
---
--- 	config = function()
--- 		vim.cmd.colorscheme("catppuccin-mocha")
--- 	end,
--- }
+
+return {
+	"catppuccin/nvim",
+	lazy = false,
+	priority = 1000,
+
+	config = function()
+		vim.cmd.colorscheme("catppuccin-mocha")
+	end,
+}

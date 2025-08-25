@@ -74,7 +74,7 @@ vim.keymap.set(
 -- vim.keymap.set("n", "<leader>vc", "<cmd>DiffviewClose<CR>")
 
 -- zenmode
-vim.keymap.set("n", "<leader>zm", "<cmd>ZenMode<CR>")
+-- vim.keymap.set("n", "<leader>zm", "<cmd>ZenMode<CR>")
 
 -- undo tree
 -- vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
@@ -83,7 +83,7 @@ vim.keymap.set("n", "<leader>zm", "<cmd>ZenMode<CR>")
 vim.keymap.set("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 -- lazygit
-vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "Open lazygit" })
+-- vim.keymap.set("n", "<leader>gg", "<CMD>LazyGit<CR>", { desc = "Open lazygit" })
 
 -- hightlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {

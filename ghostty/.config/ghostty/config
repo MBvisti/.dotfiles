@@ -2,8 +2,8 @@
 # font-family = Adwaita Mono
 # font-family = Hack Nerd Font Mono
 # font-family-bold = FiraMono Nerd Font Mono Bold
-theme = GruvboxDarkHard
-# theme = catppuccin-mocha
+# theme = GruvboxDarkHard
+theme = catppuccin-mocha
 # theme = GruvboxDark
 # theme = miasma
 # theme = NvimDark
