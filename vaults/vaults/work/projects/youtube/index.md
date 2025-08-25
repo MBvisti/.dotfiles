@@ -51,5 +51,4 @@ my approach to error handling in go
 how i currently use claude code
 
 ## Videos
-
 - [vibing professionally](./vibe_coding.md)

@@ -45,10 +45,15 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- greatest remap ever, also not sure
 -- vim.keymap.set("x", "<leader>p", "\"_dP")
 
-vim.keymap.set("n", "<M-[>", "<c-w>5<")
-vim.keymap.set("n", "<M-]>", "<c-w>5>")
-vim.keymap.set("n", "<M-t>", "<c-W>+")
-vim.keymap.set("n", "<M-b>", "<c-W>-")
+-- vim.keymap.set("n", "<M-[>", "<c-w>5<")
+-- vim.keymap.set("n", "<M-]>", "<c-w>5>")
+-- vim.keymap.set("n", "<M-t>", "<c-W>+")
+-- vim.keymap.set("n", "<M-b>", "<c-W>-")
+
+vim.keymap.set("n", "<D-S-h>", "<c-w>5<")
+vim.keymap.set("n", "<D-S-l>", "<c-w>5>")
+vim.keymap.set("n", "<D-S-k>", "<c-W>+")
+vim.keymap.set("n", "<D-S-j>", "<c-W>-")
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")

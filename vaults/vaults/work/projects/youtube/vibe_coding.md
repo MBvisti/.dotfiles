@@ -42,15 +42,13 @@ More is now available to you
 3. Workflows & limited context
 talk about worksflows in claude.md and how to optimize context
 make sure it has 'quality check' tools available
-4. Expanded single task example
-add a single feature to mbvlabs using workflow
 4. Increasing output exponentially
 talk about git worktrees and how we can now scale different task
 5. Concerns, reality checks and when not to use
 more code is a liability. 
 congratulations, you're now a product manager.
 you must create the design, and be responsible for what goes into master.
-for highly complex tasks, don't use agents, discuss ideas sure, but write the code yourself (which you get to do faster with the low hanging fruits out of the way).
+allow time for going back and improving code. mention basecamp's 4 weeks on 1 week off approach.
 6. Outro
 
 General approach to using agentic coding and types of task it excels at. Be aware of the context window, limit it to only relevant files/areas of the codebase.
@@ -132,17 +130,9 @@ and all of this has been done in the span of a couple of days on the side. it's 
 
 ## Hook
 
-a.
-It's the year of agents! 
-
-But, while everyone is arguing about AI taking our jobs, I'm out here shipping production code using claude code.
-
-Here is my worklow that has made me fully embrace agentic coding.
-
-b.
 It's the year of agents!
 
-Everyone's arguing about AI taking our jobs. Meanwhile, I'm using Claude Code to do 3x the work in half the time.
+Everyone's arguing about AI taking our jobs. Meanwhile, I'm using Claude Code to do 2x the work in the same time.
 
 Let me show you the worklow that has made me fully embrace agentic coding.
 
@@ -150,8 +140,61 @@ Let me show you the worklow that has made me fully embrace agentic coding.
 
 **meta**:
 use mbvlabs as example
+task: breadcrumb navigation on the blog (make sure it also shows when clicking a blog article)
+make it into a component that checks the url after /blog
 
-## Workflows workflow workflows
+Let's start by adding a small feature to one of my websites.
+
+i'm testing out my open-source golang starter template, grafto, by rebuilding my consultancy/freelance site with it.
+
+all of what you see here is vibe coded (insert we can tell meme) and still needs some work to be ready.
+
+but in just a couple of days, while working on other projects, i'm starting to have a decent mvp.
+
+## Workflows & limited context
+
+two things seems to help the quality of the output: 
+- a plan the agent can follow
+- limiting context
+
+one shotting is not a thing.
+
+(show claude.md)
+
+you will likely see even better results if you create the plan yourself instead of letting the agent do it. but then comes the question, couldn't you just have written the code in the time used to type out the plan? for there to be produtivity gains, at least for now, we need the agent to write the plan based on our input, adjust it and then let it rip with a fresh memory.
+
+using /clear alot is important, and using something like a task.md file to clearly describe the work AND keep track of whats been done, helps bring down the material that goes into the context window.
+
+## Increasing output exponentially
+
+doing one task at a time while looking at the agent's output might feel more secure, but we could just as well have done it ourselves then.
+
+one approach, to start working on multiple task in parallel is to use git worktrees.
+
+effectively this enables you to have multiple branches checked out at the same time, meaning we can have claude work in an (almost) isolated environment, for each task.
+
+i have started to have two versions of the repositories i use claude code with: one regular and one vibe. the regular one is what you get from running git clone while the vibe one is a 'bare' repository where we can create our work trees.
+
+note that this only works well if you have multiple independent tasks
+
+if you have a task that requires multiple changes to different parts of the codebase your likely better off spinning up sub agents (simple tell claude code to do so).
+
+**meta**:
+use mbvlabs as example
+
+one agent to make the create/update case study view and one to create the articles overview page.
+
+## Concerns, reality checks and when not to use
+
+this thing just generated a lot of code in not that long-this is both awesome and dangerous at the same time.
+
+more code opens us up to bugs and liabilities so it's important to review and test whatever gets generated.
+
+it's still not good enough to just blindly trust which, for the sake of our jobs, hopefully continues.
+
+a part of this is accepting that your role becomes part reviewer, part developer and part product manager.
+
+it does _alot_ of things very decently but it will go awry at times so you need to be sure it about what it produces.
 
 ## Outro
 
