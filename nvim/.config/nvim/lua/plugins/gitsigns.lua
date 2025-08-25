@@ -6,7 +6,7 @@ return {
   end,
   keys = {
     {
-      "<leader>ga", -- Or whatever keybinding you want
+      "<leader>ga",
       function()
         local gitsigns = require("gitsigns")
 		gitsigns.attach()
@@ -14,18 +14,10 @@ return {
       desc = "Toggle Gitsigns",
     },
     {
-      "<leader>gd", -- Or whatever keybinding you want
+      "<leader>gd",
       function()
         local gitsigns = require("gitsigns")
 		gitsigns.detach()
-        -- if package.loaded["gitsigns"] then
-        --   gitsigns.detach()
-        --   package.loaded["gitsigns"] = nil
-        --   vim.notify("Gitsigns disabled")
-        -- else
-        --   require("lazy").load({ plugins = { "gitsigns.nvim" } })
-        --   vim.notify("Gitsigns enabled")
-        -- end
       end,
       desc = "Toggle Gitsigns",
     },

@@ -79,45 +79,46 @@ return {
 		-- 	handlers = handlers,
 		-- })
 		
-		lsp.ruby_lsp.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
-
-		lsp.postgres_lsp.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
-
-		lsp.css_variables.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
-		lsp.cssls.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
-		lsp.ts_ls.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
-
-		lsp.ruby_lsp.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
-
-		-- lsp.html.setup({
+		-- lsp.ruby_lsp.setup({
 		-- 	capabilities = capabilities,
 		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
 		-- 	handlers = handlers,
 		-- })
+
+		-- lsp.postgres_lsp.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
+
+		-- lsp.css_variables.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
+		-- lsp.cssls.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
+		
+		-- lsp.ts_ls.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
+
+		lsp.ruby_lsp.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
+
+		lsp.html.setup({
+			capabilities = capabilities,
+			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+			handlers = handlers,
+		})
 
 		-- lsp.cssls.setup({
 		-- 	capabilities = capabilities,
@@ -142,7 +143,7 @@ return {
 		-- 	filetypes = { "templ", "html" },
 		-- })
 
-		lsp.emmet_ls.setup({
+		lsp.emmet_language_server.setup({
 			capabilities = capabilities,
 			filetypes = { "html", "templ", "eruby", "css" },
 		})

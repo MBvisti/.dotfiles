@@ -56,6 +56,8 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- thank theprimeagen later
 vim.keymap.set("n", "<leader>re", "oif err != nil {<CR>}<ESC>Oreturn err")
 
+vim.keymap.set("n", "<leader>nn", vim.cmd.NoNeckPain, { noremap = true, silent = true, desc = "No Neck Pain" })
+
 -- wiki
 vim.keymap.set("n", "<leader>ww", vim.cmd.WikiIndex, { noremap = true, silent = true, desc = "Open Wiki" })
 vim.keymap.set("n", "<leader>mj", vim.cmd.WikiJournal, { noremap = true, silent = true, desc = "[M]ake [J]ournal" })

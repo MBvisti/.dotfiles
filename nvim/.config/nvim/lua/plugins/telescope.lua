@@ -16,6 +16,17 @@ return {
 	},
 	config = function()
 		require("telescope").setup({
+			defaults = {
+				layout_strategy = 'vertical',
+				layout_config = {
+					vertical = {
+						mirror = false, -- This puts preview on top
+						preview_height = 0.65,
+						width = 0.60,
+						height = 0.80,
+					},
+				},
+			},
 			extensions = {
 				["ui-select"] = {
 					require("telescope.themes").get_dropdown(),
@@ -26,7 +37,7 @@ return {
 		-- Enable telescope extensions, if they are installed
 		pcall(require("telescope").load_extension, "fzf")
 		pcall(require("telescope").load_extension, "ui-select")
-		pcall(require("telescope").load_extension, "undo")
+		-- pcall(require("telescope").load_extension, "undo")
 
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
@@ -45,10 +56,10 @@ return {
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 
 		-- undo
-		local undo = require("telescope-undo.actions")
-		vim.keymap.set("i", "<A-CR>", undo.yank_additions, { desc = '[Y]ank [a]dditions' })
-		vim.keymap.set("i", "<S-CR>", undo.yank_deletions, { desc = '[Y]rank deletions' })
-		vim.keymap.set("i", "<R-CR>", undo.restore, { desc = '[R]estore to this point in time' })
+		-- local undo = require("telescope-undo.actions")
+		-- vim.keymap.set("i", "<A-CR>", undo.yank_additions, { desc = '[Y]ank [a]dditions' })
+		-- vim.keymap.set("i", "<S-CR>", undo.yank_deletions, { desc = '[Y]rank deletions' })
+		-- vim.keymap.set("i", "<R-CR>", undo.restore, { desc = '[R]estore to this point in time' })
 
 
 		-- Slightly advanced example of overriding default behavior and theme

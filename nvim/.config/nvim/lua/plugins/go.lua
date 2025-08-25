@@ -3,12 +3,12 @@ return {
 	dependencies = {},
 	config = function()
 		require("go").setup({
-			max_line_len = 80, -- max line length in golines format, Target maximum line length for golines
+			max_line_len = 100, -- max line length in golines format, Target maximum line length for golines
 			lsp_inlay_hints = {
 				enabled = false,
 			},
 			gofmt = "golines",
-			tag_transform = "snakecase", -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
+			tag_transform = "camelcase", -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
 			tag_options = "",
 			lsp_gofumpt = true,
 			lsp_document_formatting = false,
