@@ -3,7 +3,10 @@
 # font-family = Hack Nerd Font Mono
 # font-family-bold = FiraMono Nerd Font Mono Bold
 # theme = GruvboxDarkHard
+
 theme = catppuccin-mocha
+
+working-directory = inherit
 
 # theme = GruvboxDark
 # theme = miasma
@@ -12,6 +15,7 @@ theme = catppuccin-mocha
 # theme = gruvbox-material
 # theme = Kanagawa Wave
 # theme = Kanagawa Dragon
+
 font-size = 12
 gtk-titlebar = false
 window-decoration = false
@@ -21,7 +25,7 @@ copy-on-select = true
 
 # copy-on-select = clipboard
 
-shell-integration = zsh
+# shell-integration = bash
 mouse-hide-while-typing = true
 
 # keybind = ctrl+s>\=new_split:right

@@ -49,23 +49,17 @@ vim.g.netrw_winsize = 25
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
-vim.g.wiki_root = "~/vaults/work"
 vim.cmd([[
-  let g:wiki_journal_index = {
-          \ 'link_text_parser': { b, d, p -> d },
-          \ 'link_url_parser': { b, d, p -> 'journal/' . d }
-          \}
+	let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': 'md'}]
+]])
+vim.cmd([[
+	let g:vimwiki_global_ext = 0
 ]])
 
 vim.o.guicursor = "a:blinkon0"
 
--- vim.g.copilot_no_tab_map = true
-
 vim.filetype.add({ extension = { templ = "templ" } })
--- vim.api.nvim_create_autocmd("BufEnter",
--- 	{ pattern = "*.templ", callback = function() vim.cmd("TSBufEnable highlight") end })
--- vim.api.nvim_create_autocmd("BufEnter",
--- 	{ pattern = "*.go", callback = function() vim.cmd("TSBufEnable highlight") end })
 
 vim.o.hlsearch = false
 
@@ -75,3 +69,5 @@ vim.cmd([[
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
+
+

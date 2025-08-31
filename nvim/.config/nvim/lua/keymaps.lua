@@ -64,14 +64,17 @@ vim.keymap.set("n", "<leader>re", "oif err != nil {<CR>}<ESC>Oreturn err")
 vim.keymap.set("n", "<leader>nn", vim.cmd.NoNeckPain, { noremap = true, silent = true, desc = "No Neck Pain" })
 
 -- wiki
-vim.keymap.set("n", "<leader>ww", vim.cmd.WikiIndex, { noremap = true, silent = true, desc = "Open Wiki" })
-vim.keymap.set("n", "<leader>mj", vim.cmd.WikiJournal, { noremap = true, silent = true, desc = "[M]ake [J]ournal" })
-vim.keymap.set(
-	"n",
-	"<leader>ji",
-	vim.cmd.WikiJournalIndex,
-	{ noremap = true, silent = true, desc = "Make [J]ournal [I]ndex" }
-)
+vim.keymap.set("n", "<leader>vd", vim.cmd.VimwikiDiaryIndex, { noremap = true, silent = true, desc = "Open Wiki" })
+vim.keymap.set("n", "<leader>vg", vim.cmd.VimwikiMakeDiaryNote, { noremap = true, silent = true, desc = "Make Diary Note" })
+
+-- vim.keymap.set("n", "<leader>ww", vim.cmd.WikiIndex, { noremap = true, silent = true, desc = "Open Wiki" })
+-- vim.keymap.set("n", "<leader>mj", vim.cmd.WikiJournal, { noremap = true, silent = true, desc = "[M]ake [J]ournal" })
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<leader>ji",
+-- 	vim.cmd.WikiJournalIndex,
+-- 	{ noremap = true, silent = true, desc = "Make [J]ournal [I]ndex" }
+-- )
 
 -- diffview
 -- vim.keymap.set("n", "<leader>vf", "<cmd>DiffviewFileHistory %<CR>")
