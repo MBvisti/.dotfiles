@@ -49,6 +49,8 @@ vim.g.netrw_winsize = 25
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 
+vim.o.winborder = "solid"
+
 vim.cmd([[
 	let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': 'md'}]

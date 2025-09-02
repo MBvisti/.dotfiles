@@ -1,14 +1,24 @@
 return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
-		-- "saghen/blink.cmp",
+		"saghen/blink.cmp",
 		-- "hrsh7th/nvim-cmp",
-		"hrsh7th/cmp-nvim-lsp",
+		-- "hrsh7th/cmp-nvim-lsp",
 		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
 		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
-		local capabilities = require('cmp_nvim_lsp').default_capabilities() --nvim-cmp
+		-- local capabilities = require('blink.cmp').default_capabilities() --nvim-cmp
+		local capabilities = {
+		  textDocument = {
+		    foldingRange = {
+		      dynamicRegistration = false,
+		      lineFoldingOnly = true
+		    }
+		  }
+		}
+		
+		capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 		local lsp = require("lspconfig")
 		-- local function border(hl_name)
 		-- 	return {
@@ -108,11 +118,11 @@ return {
 		-- 	handlers = handlers,
 		-- })
 
-		lsp.ruby_lsp.setup({
-			capabilities = capabilities,
-			-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
-			handlers = handlers,
-		})
+		-- lsp.ruby_lsp.setup({
+		-- 	capabilities = capabilities,
+		-- 	-- capabilities = vim.tbl_deep_extend("force", {}, capabilities, lsp.gopls.capabilities or {}),
+		-- 	handlers = handlers,
+		-- })
 
 		lsp.html.setup({
 			capabilities = capabilities,

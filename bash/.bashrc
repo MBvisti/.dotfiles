@@ -1,5 +1,20 @@
 #!/usr/bin/env bash
 
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+# source ~/.local/share/omarchy/default/bash/rc
+
+# Add your own exports, aliases, and functions here.
+#
+# Make an alias for invoking commands you use constantly
+# alias p='python'
+#
+# Use VSCode instead of neovim as your default editor
+# export EDITOR="code"
+#
+# Set a custom prompt with the directory revealed (alternatively use https://starship.rs)
+# PS1="\W \[\e]0;\w\a\]$PS1"
+
 # source ~/.local/share/omarchy/default/bash/rc
 
 # iatest=$(expr index "$-" i)
@@ -30,7 +45,9 @@ export GOROOT=/usr/local/go
 export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
-export PATH=$PATH:/home/mbv/.local/bin
+export PATH=$PATH:/home/mbv/.cache/.bun/bin:$PATH
+
+# export PATH=$PATH:/home/mbv/.local/bin
 
 # Alias's to modified commands
 alias cp='cp -i'
@@ -48,11 +65,12 @@ alias yayf="yay -Slq | fzf --multi --preview 'yay -Sii {1}' --preview-window=dow
 
 alias gst='git status'
 alias gcb='git checkout -b'
-alias gpl='git pull'
 alias gco='git checkout'
 alias ga='git add'
 alias gp='git push'
-alias gcm='git commit -m'
+alias gl='git pull'
+alias gcmsg='git commit -m'
+alias gpsup='git push --set-upstream origin feat/generate-mvc-elements'
 
 # Change directory aliases
 alias home='cd ~'
@@ -90,4 +108,4 @@ alias lls='ls -l'                 # List
 alias g='lazygit'                 
 
 eval "$(starship init bash)"
-# eval "$(zoxide init bash)"
+eval "$(mise activate bash)"
