@@ -22,7 +22,7 @@ working-directory = inherit
 # theme = Kanagawa Wave
 # theme = Kanagawa Dragon
 
-font-size = 12
+font-size = 14
 font-thicken = true
 
 window-theme = ghostty
