@@ -27,7 +27,8 @@ return {
 	
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),
-				["<C-e>"] = cmp.mapping.abort(),
+				["<C-e>"] = cmp.mapping.complete(),
+				-- ["<C->"] = cmp.mapping.abort(),
 			}),
 			formatting = {
 				expandable_indicator = true,

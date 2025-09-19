@@ -38,14 +38,19 @@ require("lazy").setup({
 	checker = { enabled = false },
 })
 
--- require("lazy").setup({
--- 	spec = {
---
--- 	    news = {
---         	lazyvim = false,  -- Disable LazyVim news/welcome messages
---         	neovim = false,   -- Also disable Neovim news if desired
---         },
--- 		{ import = "plugins" },
--- 	},
--- 	checker = { enabled = false },
--- })
+-- vim.cmd.colorscheme("catppuccin-latte")
+-- vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("kanagawa-dragon")
+-- vim.cmd.colorscheme("kanagawa")
+-- vim.cmd.colorscheme("gruvbox")
+-- vim.cmd.colorscheme("everforest")
+-- Rose Pine
+-- vim.cmd.colorscheme("rose-pine-dawn")
+-- Ristretto
+-- vim.cmd.colorscheme("monokai-pro")
+-- Osaka Jade
+-- vim.cmd.colorscheme("bamboo")
+-- Nord
+-- vim.cmd.colorscheme("nordfox")
+-- vim.cmd.colorscheme("matteblack")
+vim.cmd.colorscheme("tokyonight")
