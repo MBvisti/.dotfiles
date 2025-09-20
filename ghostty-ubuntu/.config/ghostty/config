@@ -1,0 +1,40 @@
+theme = TokyoNight Moon
+
+font-family = JetBrainsMono Nerd Font
+font-style = Regular
+
+working-directory = inherit
+
+font-size = 14
+
+gtk-titlebar = false
+window-decoration = false
+
+window-padding-x = 0
+window-padding-y = 0
+
+copy-on-select = false
+
+shell-integration = bash
+mouse-hide-while-typing = true
+
+keybind = ctrl+a>t=next_tab
+keybind = ctrl+a>c=new_tab
+
+keybind = ctrl+shift+l=resize_split:right,20
+keybind = ctrl+shift+h=resize_split:left,20
+keybind = ctrl+shift+k=resize_split:up,20
+keybind = ctrl+shift+j=resize_split:down,20
+keybind = ctrl+shift+e=equalize_splits
+
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+keybind = ctrl+a>h=new_split:left
+keybind = ctrl+a>j=new_split:down
+keybind = ctrl+a>k=new_split:up
+keybind = ctrl+a>l=new_split:right
+keybind = ctrl+a>f=toggle_split_zoom
+keybind = shift+enter=text:\n
