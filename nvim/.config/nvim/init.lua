@@ -1,6 +1,7 @@
-require("options")
-require("keymaps")
--- require("util.hjkl_notifier")
+require("config.autocmds")
+require("config.options")
+require("config.lsp")
+require("config.keymaps")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -41,7 +42,7 @@ require("lazy").setup({
 -- vim.cmd.colorscheme("catppuccin-latte")
 -- vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("kanagawa-dragon")
--- vim.cmd.colorscheme("kanagawa")
+vim.cmd.colorscheme("kanagawa")
 -- vim.cmd.colorscheme("gruvbox")
 -- vim.cmd.colorscheme("everforest")
 -- Rose Pine
@@ -53,4 +54,4 @@ require("lazy").setup({
 -- Nord
 -- vim.cmd.colorscheme("nordfox")
 -- vim.cmd.colorscheme("matteblack")
-vim.cmd.colorscheme("tokyonight")
+-- vim.cmd.colorscheme("tokyonight")

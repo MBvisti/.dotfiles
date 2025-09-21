@@ -46,8 +46,8 @@ export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:/home/mbv/.cache/.bun/bin:$PATH
-
 export PATH=$PATH:/usr/local/nvim/bin
+export PATH=$PATH:/home/mbv/.bun/bin:$PATH
 
 # export PATH=$PATH:/home/mbv/.local/bin
 
