@@ -1,20 +1,18 @@
 # theme = TokyoNight Moon
-theme = Kanagawa Wave
+# theme = Kanagawa Dragon
+theme = Gruvbox Dark Hard
 
 font-family = JetBrainsMono Nerd Font
-font-style = Regular
 
 working-directory = inherit
 
-font-size = 14
+font-size = 15
 
-gtk-titlebar = false
+gtk-titlebar = true
 window-decoration = false
 
 window-padding-x = 0
 window-padding-y = 0
-
-copy-on-select = false
 
 shell-integration = bash
 mouse-hide-while-typing = true

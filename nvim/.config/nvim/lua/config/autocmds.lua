@@ -15,17 +15,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		map("<leader>ws", ts_builtin.lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 		map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 		map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-		map("K", function() vim.lsp.buf.hover({ border = "rounded" }) end, "Hover Documentation")
 		map("dg", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-                                                                                                  
-		-- local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
-		-- vim.api.nvim_create_autocmd("BufWritePre", {
-		-- 	group = format_sync_grp,
-		-- 	pattern = "*.go",
-		-- 	callback = function()
-		-- 		require("go.format").goimport()
-		-- 	end,
-		-- })
+
+		local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = format_sync_grp,
+			pattern = "*.go",
+			callback = function()
+				require("go.format").goimport()
+			end,
+		})
+
 	end,
 })
 
@@ -35,4 +35,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
 	end,
+})
+
+-- disable certain plugins for courses
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile", "BufEnter"}, {
+  callback = function()
+    local file_path = vim.fn.expand("%:p:h")
+
+    if string.match(file_path, "/home/mbv/work/master%-fullstack%-golang") then
+    	vim.cmd("Copilot disable")
+		vim.cmd("Gitsigns detach")
+		vim.cmd("Gitsigns toggle_signs")
+    end
+  end,
 })

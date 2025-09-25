@@ -30,6 +30,8 @@ vim.opt.scrolloff = 1000
 
 vim.opt.hlsearch = true
 
+vim.opt.termguicolors = true
+
 vim.o.undodir = os.getenv("HOME") .. "/.neovim/undodir"
 
 vim.o.incsearch = true
@@ -71,4 +73,4 @@ vim.cmd([[
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 
-vim.o.winborder = "single"
+vim.o.winborder = "solid"

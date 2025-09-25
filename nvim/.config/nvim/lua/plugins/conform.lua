@@ -14,11 +14,7 @@ return {
 		end,
 		["_"] = { "trim_whitespace" },
 		formatters_by_ft = {
-			-- lua = { "stylua" },
-			-- sql = { "postgres_lsp" },
 			templ = { "templ" },
-			css = { "cssls" },
-			lua = { "lua-language-server" },
 		},
 	},
 }

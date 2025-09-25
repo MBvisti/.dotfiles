@@ -9,14 +9,19 @@ return {
 		
 		  ['<Up>'] = { 'select_prev', 'fallback' },
 		  ['<Down>'] = { 'select_next', 'fallback' },
+
+		  ['<C-f>'] = { "scroll_documentation_up", "fallback" },
+		  ['<C-b>'] = { "scroll_documentation_down", "fallback" },
 		
 		  ['<C-e>'] = { "show" },
 		  ['<C-space>'] = { "hide" },
-		  ['<CR>'] = { "accept" },
+
+		  ['<CR>'] = { "select_and_accept", "fallback" },
 		},
 
 	   appearance = {
-	     nerd_font_variant = 'mono'
+	     nerd_font_variant = 'mono',
+			    use_nvim_cmp_as_default = false,
 	   },
 
 	   cmdline = {
@@ -30,7 +35,6 @@ return {
 	   completion = { 
 		menu = {
 			auto_show = false,
-            border = nil,
             scrolloff = 1,
             scrollbar = false,
             draw = {
@@ -43,12 +47,16 @@ return {
             },
         },
 		documentation = { 
-			auto_show = true 
+			auto_show = true,
+				            window = {
+                            border = nil,
+                            scrollbar = false,
+                        },
 		} 
 	},
 
 	   sources = {
-	     default = { 'lsp', 'path' },
+	     default = { 'lsp', 'path', 'buffer' },
 	   },
 
 	   fuzzy = { implementation = "prefer_rust_with_warning" }
