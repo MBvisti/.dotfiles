@@ -44,7 +44,8 @@ require("lazy").setup({
 -- vim.cmd.colorscheme("catppuccin")
 -- vim.cmd.colorscheme("kanagawa-dragon")
 -- vim.cmd.colorscheme("kanagawa")
-vim.cmd.colorscheme("gruvbox") -- used for course!
+-- vim.cmd.colorscheme("gruvbox") -- used for course!
+-- vim.cmd.colorscheme("gruvbox")
 -- vim.cmd.colorscheme("gruvbox-material")
 -- vim.cmd.colorscheme("everforest")
 -- Rose Pine
@@ -52,7 +53,7 @@ vim.cmd.colorscheme("gruvbox") -- used for course!
 -- Ristretto
 -- vim.cmd.colorscheme("monokai-pro")
 -- Osaka Jade
--- vim.cmd.colorscheme("bamboo")
+vim.cmd.colorscheme("bamboo")
 -- Nord
 -- vim.cmd.colorscheme("nordfox")
 -- vim.cmd.colorscheme("matteblack")
