@@ -15,6 +15,7 @@ return {
 		["_"] = { "trim_whitespace" },
 		formatters_by_ft = {
 			templ = { "templ" },
+			css = { "cssls" },
 		},
 	},
 }

@@ -34,5 +34,6 @@ return {
 		"folke/tokyonight.nvim",
   		lazy = true,
   		opts = { style = "moon" },
-	}
+	},
+	{ 'projekt0n/github-nvim-theme', name = 'github-theme' }
 }

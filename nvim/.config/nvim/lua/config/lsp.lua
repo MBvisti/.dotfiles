@@ -17,6 +17,16 @@ vim.lsp.config('html', {
 	filetypes = { "html", "templ" }
 })
 
+vim.lsp.config('css_variables', {
+	cmd = { "bun", "run", "css-variables-language-server", "--stdio" },
+	filetypes = { "css" }
+})
+
+vim.lsp.config('cssls', {
+	cmd = { "bun", "run", "vscode-css-language-server", "--stdio" },
+	filetypes = { "css" }
+})
+
 vim.lsp.config('tailwindcss', {
 	cmd = { "bun", "run", "tailwindcss-language-server", "--stdio" },
 	filetypes = { "html", "templ", "erb.html" },
@@ -66,6 +76,8 @@ vim.lsp.enable('templ')
 vim.lsp.enable('emmet-language-server')
 vim.lsp.enable('html')
 vim.lsp.enable('tailwindcss')
+vim.lsp.enable('css_variables')
+vim.lsp.enable('cssls')
 
 vim.diagnostic.config({
 	virtual_text = false,
