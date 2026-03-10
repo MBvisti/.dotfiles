@@ -53,9 +53,10 @@ require("lazy").setup({
 -- Ristretto
 -- vim.cmd.colorscheme("monokai-pro")
 -- Osaka Jade
-vim.cmd.colorscheme("bamboo")
+-- vim.cmd.colorscheme("bamboo")
 -- Nord
--- vim.cmd.colorscheme("nordfox")
+vim.cmd.colorscheme("nordfox")
+-- vim.cmd.colorscheme("miasma")
 -- vim.cmd.colorscheme("matteblack")
 -- vim.cmd.colorscheme("tokyonight")
 

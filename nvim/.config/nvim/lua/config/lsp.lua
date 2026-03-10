@@ -74,7 +74,7 @@ vim.lsp.config('emmet-language-server', {
 vim.lsp.enable('gopls')
 vim.lsp.enable('templ')
 vim.lsp.enable('emmet-language-server')
-vim.lsp.enable('html')
+-- vim.lsp.enable('html')
 vim.lsp.enable('tailwindcss')
 vim.lsp.enable('css_variables')
 vim.lsp.enable('cssls')
