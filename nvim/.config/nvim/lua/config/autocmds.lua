@@ -37,6 +37,41 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'go',
+  callback = function() 
+	vim.treesitter.start() 
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'templ',
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'css',
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'js',
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'html',
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
 -- disable certain plugins for courses
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile", "BufEnter"}, {
   callback = function()

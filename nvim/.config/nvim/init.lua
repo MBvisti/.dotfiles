@@ -2,7 +2,6 @@ require("config.autocmds")
 require("config.options")
 require("config.lsp")
 require("config.keymaps")
--- require("util.hjkl_notifier")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
