@@ -40,7 +40,7 @@ o.shiftwidth = 4
 o.guicursor = "a:blinkon0"
 o.hlsearch = false
 o.winborder = "rounded"
-o.completeopt = "menu,menuone,noselect,popup"
+o.completeopt = "menu,menuone"
 o.shortmess:append("c")
 
 vim.filetype.add({ extension = { templ = "templ" } })
@@ -86,8 +86,6 @@ map("i", "<C-c>", "<Esc>")
 -- thank theprimeagen later
 map("n", "<leader>re", "oif err != nil {<CR>}<ESC>Oreturn err")
 map("n", "<leader>nn", vim.cmd.NoNeckPain, { noremap = true, silent = true, desc = "No Neck Pain" })
--- oil
-map("n", "<leader>o", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 -- gitsigns
 map("n", "<leader>gb", "<CMD>Gitsigns blame<CR>", { noremap = true, silent = true, desc = "Blaming Game" })
 map("n", "<leader>bl", "<CMD>Gitsigns blame_line<CR>", { noremap = true, silent = true, desc = "Blaming Game Specific" })
@@ -128,12 +126,23 @@ local function setup_lsp()
 
       map("n", "gd", vim.lsp.buf.definition, bufopts)
       map("n", "gr", vim.lsp.buf.references, bufopts)
+      map("n", "gi", vim.lsp.buf.implementation, bufopts)
+      map("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
       map("i", "<C-k>", function()
         if vim.fn.pumvisible() == 1 then
           return "<C-e>"
         end
         vim.lsp.completion.get()
       end, { noremap = true, silent = true, buffer = ev.buf, expr = true })
+      map("i", "<C-d>", function()
+        return vim.fn.pumvisible() == 1 and "<C-n>" or "<C-d>"
+      end, { expr = true, buffer = ev.buf })
+      map("i", "<C-u>", function()
+        return vim.fn.pumvisible() == 1 and "<C-p>" or "<C-u>"
+      end, { expr = true, buffer = ev.buf })
+      map("i", "<CR>", function()
+        return vim.fn.pumvisible() == 1 and "<C-y>" or "<CR>"
+      end, { expr = true, buffer = ev.buf })
 
       local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
       local methods = vim.lsp.protocol.Methods
@@ -143,10 +152,17 @@ local function setup_lsp()
 
     end,
   })
+
+  autocmd("BufWritePre", {
+    group = augroup,
+    callback = function()
+      vim.lsp.buf.format({ timeout_ms = 1000 })
+    end,
+  })
 end
 
 vim.pack.add({
-	-- 'https://github.com/saghen/blink.cmp',
+	-- color themes
 	'https://github.com/rebelot/kanagawa.nvim',
 	'https://github.com/catppuccin/nvim',
 	'https://github.com/neanias/everforest-nvim',
@@ -161,15 +177,13 @@ vim.pack.add({
 	'https://github.com/folke/tokyonight.nvim',
 	'https://github.com/projekt0n/github-nvim-theme',
 	'https://github.com/xero/miasma.nvim',
-	'https://github.com/stevearc/conform.nvim',
+
 	'https://github.com/sindrets/diffview.nvim',
 	'https://github.com/lewis6991/gitsigns.nvim',
 	'https://github.com/ray-x/go.nvim',
 	'https://github.com/neovim/nvim-lspconfig',
 	'https://github.com/echasnovski/mini.nvim',
 	'https://github.com/shortcuts/no-neck-pain.nvim',
-	'https://github.com/stevearc/oil.nvim',
-	'https://github.com/folke/snacks.nvim',
 	'https://github.com/nvim-telescope/telescope.nvim',
 	'https://github.com/xiyaowong/transparent.nvim',
 	'https://github.com/nvim-telescope/telescope-ui-select.nvim',
@@ -251,67 +265,117 @@ vim.lsp.config('emmet-language-server', {
 	filetypes = {"templ"}
 })
 
-require("go").setup({
-	max_line_len = 100, -- max line length in golines format, Target maximum line length for golines
-	lsp_inlay_hints = {
-		enabled = false,
-	},
-	gofmt = "golines",
-	tag_transform = "camelcase", -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
-	tag_options = "",
-	lsp_gofumpt = true,
-	lsp_document_formatting = false,
-})
+local function setup_go()
+	local go = require('go')
+	cfg = {
+		max_line_len = 100, -- max line length in golines format, Target maximum line length for golines
+		lsp_inlay_hints = {
+			enabled = false,
+		},
+		gofmt = "golines",
+		tag_transform = "camelcase", -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
+		tag_options = "",
+		lsp_gofumpt = true,
+		lsp_document_formatting = true,
+	}
+	go.setup(cfg)
 
-require("telescope").setup({
-	defaults = {
-		layout_strategy = 'vertical',
-		layout_config = {
-			vertical = {
-				mirror = false, -- This puts preview on top
-				preview_height = 0.65,
-				width = 0.60,
-				height = 0.80,
+	autocmd("BufWritePre", {
+		group = mbvcfg,
+		pattern = "*.go",
+		callback = function()
+			require('go.format').goimports()
+		end,
+	})
+end
+
+local function setup_telescope()
+	local telescope = require("telescope")
+	cfg = {
+		defaults = {
+			layout_strategy = 'vertical',
+			layout_config = {
+				vertical = {
+					mirror = false, -- This puts preview on top
+					preview_height = 0.65,
+					width = 0.60,
+					height = 0.80,
+				},
 			},
 		},
-	},
-	extensions = {
-		["ui-select"] = {
-			require("telescope.themes").get_dropdown(),
+		extensions = {
+			["ui-select"] = {
+				require("telescope.themes").get_dropdown(),
+			},
 		},
-	},
-})
+	}
+
+	telescope.setup(cfg)
+	pcall(telescope.load_extension, "ui-select")
+
+	local builtin = require("telescope.builtin")
+	map("n", "<leader>ff", builtin.find_files, { desc = "[S]earch [F]iles" })
+	map("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+	map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+	map("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+	map("n", "<leader>gc", builtin.git_bcommits, { desc = "[G]it [C]ommits" })
+	map("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+	map("n", "<leader>/", function()
+		-- You can pass additional configuration to telescope to change theme, layout, etc.
+		builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+			winblend = 10,
+			previewer = false,
+		}))
+	end, { desc = "[/] Fuzzily search in current buffer" })
+	map("n", "<leader>s/", function()
+		builtin.live_grep({
+			grep_open_files = true,
+			prompt_title = "Live Grep in Open Files",
+		})
+	end, { desc = "[S]earch [/] in Open Files" })
+	map("n", "<leader>sn", function()
+		builtin.find_files({ cwd = vim.fn.stdpath("config") })
+	end, { desc = "[S]earch [N]eovim files" })
+end
+
+local function setup_mini_statusline()
+	local statusline = require("mini.statusline")
+
+	statusline.setup({ use_icons = vim.g.have_nerd_font })
+	statusline.is_truncated = function()
+		return 1
+	end
+	statusline.section_filename = function()
+		return vim.fn.expand("%:~:.")
+	end
+	statusline.section_location = function()
+		return "%2l:%-2v"
+	end
+end
+
+require('gitsigns').setup()
+
+-- require("telescope").setup({
+-- 	defaults = {
+-- 		layout_strategy = 'vertical',
+-- 		layout_config = {
+-- 			vertical = {
+-- 				mirror = false, -- This puts preview on top
+-- 				preview_height = 0.65,
+-- 				width = 0.60,
+-- 				height = 0.80,
+-- 			},
+-- 		},
+-- 	},
+-- 	extensions = {
+-- 		["ui-select"] = {
+-- 			require("telescope.themes").get_dropdown(),
+-- 		},
+-- 	},
+-- })
 -- Enable telescope extensions, if they are installed
-pcall(require("telescope").load_extension, "ui-select")
 
 -- See `:help telescope.builtin`
-local builtin = require("telescope.builtin")
-map("n", "<leader>ff", builtin.find_files, { desc = "[S]earch [F]iles" })
-map("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-map("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-map("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-map("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-map("n", "<leader>gc", builtin.git_bcommits, { desc = "[G]it [C]ommits" })
-map("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-map("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-map("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-map("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-map("n", "<leader>/", function()
-	-- You can pass additional configuration to telescope to change theme, layout, etc.
-	builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
-end, { desc = "[/] Fuzzily search in current buffer" })
-map("n", "<leader>s/", function()
-	builtin.live_grep({
-		grep_open_files = true,
-		prompt_title = "Live Grep in Open Files",
-	})
-end, { desc = "[S]earch [/] in Open Files" })
-map("n", "<leader>sn", function()
-	builtin.find_files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "[S]earch [N]eovim files" })
 
 -- vim.cmd.colorscheme("catppuccin-latte")
 -- vim.cmd.colorscheme("catppuccin")
@@ -337,3 +401,6 @@ vim.api.nvim_set_hl(0, "PmenuExtraSel", { link = "Comment" })
 -- vim.cmd.colorscheme("github_dark_dimmed")
 -- vim.cmd.colorscheme("github_dark_default")
 setup_lsp()
+setup_telescope()
+setup_go()
+setup_mini_statusline()
