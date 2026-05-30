@@ -1,0 +1,10 @@
+#!/bin/bash
+
+entries="  Lock\n  Reboot\n  Power Off"
+selected=$(echo -e "$entries" | GDK_BACKEND=wayland wofi --dmenu --prompt "Power Menu" --cache-file /dev/null)
+
+case "$selected" in
+  "  Lock") hyprlock ;;
+  "  Reboot") systemctl reboot ;;
+  "  Power Off") systemctl poweroff ;;
+esac

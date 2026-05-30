@@ -1,0 +1,57 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 20,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-right": [
+    "network",
+    "battery",
+    "clock"
+   ],
+   "network": {
+    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-ethernet": "    {ipaddr}/{cidr}",
+    "format-disconnected": "⚠  Disconnected",
+    "tooltip-format": "{ifname} via {gwaddr}   ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "max-length": 50
+   },
+   "battery": {
+    "states": {
+        "good": 95,
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{icon}  {time}",
+    "format-icons": ["", "", "", "", ""]
+   },
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "default": "X",
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "0",
+      "active": "A"
+    },
+    "persistent-workspaces":{
+       "1": [],
+       "2": [],
+       "3": [],
+       "4": [],
+       "5": []
+    }
+  }
+}

@@ -1,0 +1,79 @@
+/* Reset and global bar styles */
+window#waybar {
+    background-color: transparent;
+    color: #ffffff;
+    font-family: "JetBrains Mono", "Inter", sans-serif;
+    font-size: 14px;
+}
+
+/* Base styles for all modules */
+#workspaces,
+#network,
+#battery,
+#clock {
+    background-color: rgba(30, 30, 46, 0.75); /* Dark translucent background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 4px 12px;
+    margin: 4px;
+}
+
+/* --- LEFT SIDE: Workspaces --- */
+#workspaces button {
+    padding: 0 8px;
+    color: rgba(255, 255, 255, 0.4);
+    background-color: transparent;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+#workspaces button:not(.empty) {
+    color: #cdd6f4; /* Light text for workspaces with windows */
+}
+
+#workspaces button.active {
+    color: #cba6f7; /* Pastel purple for active workspace */
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    color: #f38ba8; /* Red for urgent */
+}
+
+#workspaces button:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* --- RIGHT SIDE: Status Modules --- */
+/* Optional: Adds a little color to differentiate the icons */
+#network {
+    color: #89b4fa; /* Soft blue */
+}
+
+#battery {
+    color: #a6e3a1; /* Soft green */
+}
+
+#battery.critical {
+    color: #f38ba8;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#clock {
+    color: #cdd6f4; /* Light text */
+    font-weight: bold;
+}
+
+/* Smooth blinking for low battery */
+@keyframes blink {
+    to {
+        background-color: rgba(243, 139, 168, 0.4);
+        color: #ffffff;
+    }
+}

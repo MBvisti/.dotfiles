@@ -46,6 +46,7 @@ export PATH=$PATH:$GOROOT/bin
 export PATH=$PATH:$GOPATH/bin
 
 export PATH=$PATH:/home/mbv/.cache/.bun/bin:$PATH
+export PATH=$PATH:/home/mbv/.local/bin:$PATH
 
 # export PATH=$PATH:/home/mbv/.local/bin
 
@@ -107,5 +108,5 @@ alias lls='ls -l'                 # List
 
 alias g='lazygit'                 
 
-eval "$(starship init bash)"
+# eval "$(starship init bash)"
 eval "$(mise activate bash)"
