@@ -33,6 +33,8 @@ sudo pacman -S \
 | `Super + Shift + F` | Fullscreen |
 | `Super + H/J/K/L` | Move focus |
 | `Super + Shift + H/J/K/L` | Move window |
+| `Super + -` / `Super + =` | Decrease / Increase width |
+| `Super + Shift + -` / `Super + Shift + =` | Decrease / Increase height |
 | `Super + C` | Copy |
 | `Super + V` | Paste |
 | `Super + X` | Cut |
