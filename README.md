@@ -8,13 +8,14 @@
 sudo pacman -S \
   hyprland \
   waybar \
-  wofi \
   foot \
   grim slurp satty hyprpicker \
   wl-clipboard wl-clip-persist \
   mako \
   hyprlock \
   jq
+
+yay -S tofi
 ```
 
 ### Keybindings
@@ -27,7 +28,7 @@ sudo pacman -S \
 | `Super + M` | Exit Hyprland |
 | `Super + P` | Screenshot (smart mode) |
 | `Super + Escape` | Lock screen |
-| `Super + Space` | App launcher (wofi) |
+| `Super + Space` | App launcher (tofi) |
 | `Super + F` | File manager (yazi) |
 | `Super + T` | Toggle floating |
 | `Super + Shift + F` | Fullscreen |
@@ -38,8 +39,8 @@ sudo pacman -S \
 | `Super + C` | Copy |
 | `Super + V` | Paste |
 | `Super + X` | Cut |
-| `Super + 1-5` | Switch workspace |
-| `Super + Shift + 1-5` | Move window to workspace |
+| `Super + 1-0` | Switch workspace (1-10) |
+| `Super + Shift + 1-0` | Move window to workspace (1-10) |
 
 ### Screenshot modes
 

@@ -1,0 +1,26 @@
+font=JetBrainsMono Nerd Font 11
+
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#1e1e2e
+progress-color=#f38ba8
+
+width=350
+height=100
+margin=10,10
+padding=15
+border-radius=4
+border-size=0
+icons=1
+
+anchor=top-right
+default-timeout=5000
+ignore-timeout=false
+
+layer=overlay
+max-visible=5
+sort=-time
+
+icon-location=left
+max-icon-size=64
+icon-location=left
