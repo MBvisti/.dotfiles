@@ -9,6 +9,7 @@ window#waybar {
 /* Base styles for all modules */
 #workspaces,
 #network,
+#pulseaudio,
 #battery,
 #clock,
 #custom-powermenu {
@@ -51,6 +52,10 @@ window#waybar {
 /* Optional: Adds a little color to differentiate the icons */
 #network {
     color: #89b4fa; /* Soft blue */
+}
+
+#pulseaudio {
+    color: #f9e2af;
 }
 
 #battery {

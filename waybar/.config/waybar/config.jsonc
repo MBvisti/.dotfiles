@@ -3,19 +3,32 @@
   "position": "top",
   "height": 20,
   "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["clock"],
   "modules-right": [
     "network",
+    "pulseaudio",
     "battery",
-    "clock"
-   ],
+    "custom/powermenu"
+    ],
    "network": {
-    "format-wifi": "  {essid} ({signalStrength}%)",
+    "format-wifi": "W {essid} ({signalStrength}%)",
     "format-ethernet": "    {ipaddr}/{cidr}",
     "format-disconnected": "⚠  Disconnected",
     "tooltip-format": "{ifname} via {gwaddr}   ",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
     "tooltip-format-ethernet": "{ifname} ",
     "max-length": 50
+   },
+   "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": " Muted",
+    "format-icons": {
+      "default": ["", "", ""]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "tooltip": false
    },
    "battery": {
     "states": {
@@ -29,7 +42,17 @@
     "format-alt": "{icon}  {time}",
     "format-icons": ["", "", "", "", ""]
    },
-  "hyprland/workspaces": {
+   "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%A, %B %d, %Y (%R)}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+   },
+   "custom/powermenu": {
+    "format": "⏻",
+    "on-click": "/home/mbv/.local/bin/powermenu",
+    "tooltip": false
+   },
+   "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
@@ -51,7 +74,12 @@
        "2": [],
        "3": [],
        "4": [],
-       "5": []
+       "5": [],
+       "6": [],
+       "7": [],
+       "8": [],
+       "9": [],
+       "10": []
     }
   }
 }
