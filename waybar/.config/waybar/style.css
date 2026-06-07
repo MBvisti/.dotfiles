@@ -10,6 +10,7 @@ window#waybar {
 #workspaces,
 #network,
 #pulseaudio,
+#backlight,
 #battery,
 #clock,
 #custom-powermenu {
@@ -56,6 +57,10 @@ window#waybar {
 
 #pulseaudio {
     color: #f9e2af;
+}
+
+#backlight {
+    color: #fab387; /* Soft orange */
 }
 
 #battery {
