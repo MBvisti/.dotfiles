@@ -1,10 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-entries="  Lock\n  Reboot\n  Power Off"
-selected=$(echo -e "$entries" | GDK_BACKEND=wayland wofi --dmenu --prompt "Power Menu" --cache-file /dev/null)
+options=" Lock
+ Suspend
+ Reboot
+ Shutdown
+ Logout"
+
+selected=$(echo "$options" | tofi --prompt-text "Power: ")
 
 case "$selected" in
-  "  Lock") hyprlock ;;
-  "  Reboot") systemctl reboot ;;
-  "  Power Off") systemctl poweroff ;;
+    *Lock)      hyprlock ;;
+    *Suspend)   systemctl suspend ;;
+    *Reboot)    systemctl reboot ;;
+    *Shutdown)  systemctl poweroff ;;
+    *Logout)    hyprctl dispatch exit ;;
 esac

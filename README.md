@@ -13,9 +13,16 @@ sudo pacman -S \
   wl-clipboard wl-clip-persist \
   mako \
   hyprlock \
-  jq
+  jq \
+  yazi ffmpeg 7zip poppler fd ripgrep fzf zoxide resvg imagemagick \
+  neovim \
+  impala bluetui wiremix pamixer \
+  tofi \
+  brave-bin \
+  starship \
+  docker docker-compose lazydocker
 
-yay -S tofi
+yay -S 1password
 ```
 
 ### Keybindings
@@ -49,6 +56,29 @@ yay -S tofi
 - `screenshot windows` — pre-defined window rectangles
 - `screenshot fullscreen` — current monitor
 
-### Power menu
+### Waybar modules
 
-Click the ⏻ icon in Waybar or run `powermenu` for Lock/Reboot/Power Off.
+Click the icons in the bar to manage system settings (omarchy-style TUIs):
+
+| Icon | Click action | Program |
+|------|-------------|---------|
+| Network (WiFi/Ethernet) | Open network manager | `impala` |
+| Bluetooth | Open bluetooth manager | `bluetui` |
+| Sound | Open audio mixer | `wiremix` |
+| Brightness | Scroll to adjust | `brightnessctl` |
+| Battery | — | — |
+| Clock | — | — |
+| Power (⏻) | Open power menu | `tofi` (Lock/Suspend/Reboot/Shutdown/Logout) |
+
+### Local binaries (`local-bin/`)
+
+| Script | Purpose |
+|--------|---------|
+| `powermenu` | tofi-based power menu (lock, suspend, reboot, shutdown, logout) |
+| `launch-tui` | Launch a TUI in foot terminal, or focus existing window |
+| `launch-wifi` | Launch impala (wifi TUI) |
+| `launch-bluetooth` | Launch bluetui (bluetooth TUI) |
+| `launch-audio` | Launch wiremix (audio mixer TUI) |
+| `wifi-menu` | Quick tofi-based wifi network picker |
+| `bluetooth-menu` | Quick tofi-based bluetooth device picker |
+| `screenshot` | Screenshot tool (smart / region / windows / fullscreen) |

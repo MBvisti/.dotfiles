@@ -1,74 +1,82 @@
-/* Reset and global bar styles */
+/* Catppuccin Macchiato palette */
 window#waybar {
-    background-color: transparent;
-    color: #ffffff;
+    background-color: #181926; /* Crust */
+    color: #cad3f5;
     font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 /* Base styles for all modules */
 #workspaces,
 #network,
+#bluetooth,
 #pulseaudio,
 #backlight,
 #battery,
 #clock,
 #custom-powermenu {
-    background-color: rgba(30, 30, 46, 0.75); /* Dark translucent background */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
     padding: 4px 12px;
-    margin: 4px;
+    margin: 0 4px;
 }
 
 /* --- LEFT SIDE: Workspaces --- */
 #workspaces button {
-    padding: 0 8px;
-    color: rgba(255, 255, 255, 0.4);
+    padding: 0 4px;
+    color: rgba(110, 115, 141, 0.5); /* Overlay 0 #6e738d */
     background-color: transparent;
     border: none;
     transition: all 0.3s ease;
 }
 
 #workspaces button:not(.empty) {
-    color: #cdd6f4; /* Light text for workspaces with windows */
+    color: #b8c0e0; /* Subtext 1 */
 }
 
 #workspaces button.active {
-    color: #cba6f7; /* Pastel purple for active workspace */
+    color: #c6a0f6; /* Mauve */
     font-weight: bold;
 }
 
 #workspaces button.urgent {
-    color: #f38ba8; /* Red for urgent */
+    color: #ed8796; /* Red */
 }
 
 #workspaces button:hover {
-    color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
+    color: #cad3f5; /* Text */
+    background-color: rgba(54, 58, 79, 0.5); /* Surface 0 #363a4f */
     border-radius: 8px;
 }
 
 /* --- RIGHT SIDE: Status Modules --- */
-/* Optional: Adds a little color to differentiate the icons */
 #network {
-    color: #89b4fa; /* Soft blue */
+    color: #8aadf4; /* Blue */
+}
+
+#bluetooth {
+    color: #8aadf4; /* Blue */
+}
+
+#bluetooth.disabled {
+    color: rgba(110, 115, 141, 0.5); /* Overlay 0 #6e738d */
 }
 
 #pulseaudio {
-    color: #f9e2af;
+    color: #eed49f; /* Yellow */
 }
 
 #backlight {
-    color: #fab387; /* Soft orange */
+    color: #f5a97f; /* Peach */
 }
 
 #battery {
-    color: #a6e3a1; /* Soft green */
+    color: #a6da95; /* Green */
 }
 
 #battery.critical {
-    color: #f38ba8;
+    color: #ed8796; /* Red */
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -77,19 +85,19 @@ window#waybar {
 }
 
 #clock {
-    color: #cdd6f4; /* Light text */
+    color: #cad3f5; /* Text */
     font-weight: bold;
 }
 
 #custom-powermenu {
-    color: #f38ba8; /* Soft red */
-    font-size: 16px;
+    color: #ed8796; /* Red */
+    font-size: 14px;
 }
 
 /* Smooth blinking for low battery */
 @keyframes blink {
     to {
-        background-color: rgba(243, 139, 168, 0.4);
-        color: #ffffff;
+        background-color: rgba(237, 135, 150, 0.4); /* Red #ed8796 */
+        color: #cad3f5;
     }
 }

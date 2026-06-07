@@ -109,6 +109,7 @@ end)
 
 pcall(function() require("tokyonight").setup({ style = "moon" }) end)
 
+vim.cmd.packadd("mini.nvim")
 local statusline = require("mini.statusline")
 statusline.setup({ use_icons = vim.g.have_nerd_font })
 statusline.is_truncated = function() return 1 end
@@ -408,7 +409,7 @@ vim.keymap.set("n", "<D-S-j>", "<c-W>-")
 vim.keymap.set("i", "<C-c>", "<Esc>")
 vim.keymap.set("n", "<leader>re", "oif err != nil {<CR>}<ESC>Oreturn err")
 vim.keymap.set("n", "<leader>nn", vim.cmd.NoNeckPain, { noremap = true, silent = true, desc = "No Neck Pain" })
-vim.keymap.set("n", "<leader>pu", function() vim.pack.update() end, { desc = "Update all plugins" })
+vim.keymap.set("n", "<leader>up", function() vim.pack.update() end, { desc = "Update all plugins" })
 vim.keymap.set("n", "<leader>pc", function()
   local to_delete = vim.iter(vim.pack.get(nil, { info = false }))
     :filter(function(p) return not p.active end)

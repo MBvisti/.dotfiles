@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Launch a TUI in foot terminal, or focus existing window
+
+APP_ID="org.tui.$(basename "$1")"
+
+# Check if a window with this app-id is already running
+WINDOW_ADDR=$(hyprctl clients -j 2>/dev/null | jq -r --arg id "$APP_ID" '.[] | select(.class == $id) | .address' | head -1)
+
+if [[ -n "$WINDOW_ADDR" ]]; then
+    hyprctl dispatch focuswindow "address:$WINDOW_ADDR"
+else
+    exec setsid foot --app-id="$APP_ID" "$@" &
+fi

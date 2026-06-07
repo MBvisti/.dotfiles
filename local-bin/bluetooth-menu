@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Toggle bluetooth on/off
+if [ "$1" = "toggle" ]; then
+    powered=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
+    if [ "$powered" = "yes" ]; then
+        bluetoothctl power off
+    else
+        bluetoothctl power on
+    fi
+    exit 0
+fi
+
+# Show paired devices and connect/disconnect
+devices=$(bluetoothctl devices Paired | awk '{for(i=3;i<=NF;i++) printf "%s ", $i; print ""}')
+
+if [ -z "$devices" ]; then
+    notify-send "Bluetooth" "No paired devices" 2>/dev/null || true
+    exit 0
+fi
+
+selected=$(echo "$devices" | tofi --prompt-text "Bluetooth: ")
+
+if [ -n "$selected" ]; then
+    addr=$(bluetoothctl devices Paired | grep -F "$selected" | awk '{print $2}')
+    connected=$(bluetoothctl info "$addr" | grep "Connected:" | awk '{print $2}')
+    if [ "$connected" = "yes" ]; then
+        bluetoothctl disconnect "$addr"
+    else
+        bluetoothctl connect "$addr"
+    fi
+fi

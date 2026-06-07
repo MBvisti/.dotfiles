@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec /home/mbv/.local/bin/launch-tui wiremix

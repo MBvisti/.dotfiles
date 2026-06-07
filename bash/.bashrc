@@ -107,6 +107,8 @@ alias las='ls -A'                 # Hidden Files
 alias lls='ls -l'                 # List
 
 alias g='lazygit'                 
+alias d='lazydocker'
 
 # eval "$(starship init bash)"
 eval "$(mise activate bash)"
+eval "$(starship init bash)"

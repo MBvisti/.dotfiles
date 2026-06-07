@@ -1,66 +1,84 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 20,
+  "height": 26,
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [
     "network",
+    "bluetooth",
     "pulseaudio",
     "backlight",
     "battery",
     "custom/powermenu"
-    ],
-   "network": {
-    "format-wifi": "W {essid} ({signalStrength}%)",
-    "format-ethernet": "    {ipaddr}/{cidr}",
-    "format-disconnected": "⚠  Disconnected",
-    "tooltip-format": "{ifname} via {gwaddr}   ",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-    "tooltip-format-ethernet": "{ifname} ",
-    "max-length": 50
-   },
-   "pulseaudio": {
+  ],
+  "network": {
+    "format-wifi": "󰤨  {essid}",
+    "format-ethernet": "󰀂  {ipaddr}/{cidr}",
+    "format-disconnected": "󰤮  Off",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+    "tooltip-format-ethernet": "{ifname}",
+    "on-click": "/home/mbv/.local/bin/launch-wifi",
+    "max-length": 30
+  },
+  "bluetooth": {
+    "format": "{icon}",
+    "format-connected": "󰂱  {device_alias}",
+    "format-disabled": "󰂲",
+    "format-icons": {
+      "enabled": "",
+      "disabled": "󰂲",
+      "connected": "󰂱",
+      "disconnected": ""
+    },
+    "on-click": "/home/mbv/.local/bin/launch-bluetooth",
+    "tooltip": false
+  },
+  "pulseaudio": {
     "format": "{icon}  {volume}%",
-    "format-muted": " Muted",
+    "format-muted": "  Muted",
     "format-icons": {
       "default": ["", "", ""]
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
-    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "on-click": "/home/mbv/.local/bin/launch-audio",
+    "on-click-right": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
     "tooltip": false
-   },
-   "backlight": {
+  },
+  "backlight": {
     "format": "{icon}  {percent}%",
     "format-icons": ["󰃞", "󰃟", "󰃝", "󰃠"],
     "on-scroll-up": "brightnessctl set +5%",
     "on-scroll-down": "brightnessctl set 5%-",
     "tooltip": false
-   },
-   "battery": {
+  },
+  "battery": {
     "states": {
-        "good": 95,
-        "warning": 30,
-        "critical": 15
+      "good": 95,
+      "warning": 30,
+      "critical": 15
     },
     "format": "{icon}  {capacity}%",
-    "format-charging": "  {capacity}%",
+    "format-charging": "{icon}  {capacity}%",
     "format-plugged": "  {capacity}%",
     "format-alt": "{icon}  {time}",
-    "format-icons": ["", "", "", "", ""]
-   },
-   "clock": {
+    "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-icons-charging": ["󰢜", "󰂋", "󰂌", "󰂍", "󰂎", "󰂏", "󰂐", "󰂑", "󰂒", "󰂅"]
+  },
+  "clock": {
     "format": "{:%H:%M}",
     "format-alt": "{:%A, %B %d, %Y (%R)}",
     "tooltip-format": "<tt>{calendar}</tt>"
-   },
-   "custom/powermenu": {
+  },
+  "custom/powermenu": {
     "format": "⏻",
     "on-click": "/home/mbv/.local/bin/powermenu",
     "tooltip": false
-   },
-   "hyprland/workspaces": {
+  },
+  "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{icon}",
     "format-icons": {
@@ -70,24 +88,14 @@
       "3": "3",
       "4": "4",
       "5": "5",
-      "6": "6",
-      "7": "7",
-      "8": "8",
-      "9": "9",
-      "10": "0",
       "active": "A"
     },
-    "persistent-workspaces":{
-       "1": [],
-       "2": [],
-       "3": [],
-       "4": [],
-       "5": [],
-       "6": [],
-       "7": [],
-       "8": [],
-       "9": [],
-       "10": []
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
     }
   }
 }

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 MODE="${1:-smart}"
 OUTPUT_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}"
@@ -33,12 +33,12 @@ case "$MODE" in
     SELECTION=$(echo "$RECTS" | slurp 2>/dev/null)
     kill $PID 2>/dev/null
 
-    if [[ $SELECTION =~ ^([0-9]+),([0-9]+)[:space:]x([0-9]+)$ ]]; then
-      if ((${BASH_REMATCH[3]} * ${BASH_REMATCH[4]} < 20)); then
+    if [[ "$SELECTION" =~ ^([0-9]+),([0-9]+)\ ([0-9]+)x([0-9]+)$ ]]; then
+      if ((BASH_REMATCH[3] * BASH_REMATCH[4] < 20)); then
         click_x="${BASH_REMATCH[1]}"
         click_y="${BASH_REMATCH[2]}"
         while IFS= read -r rect; do
-          if [[ $rect =~ ^([0-9]+),([0-9]+)[:space:]x([0-9]+) ]]; then
+          if [[ "$rect" =~ ^([0-9]+),([0-9]+)\ ([0-9]+)x([0-9]+)$ ]]; then
             rx="${BASH_REMATCH[1]}"; ry="${BASH_REMATCH[2]}"; rw="${BASH_REMATCH[3]}"; rh="${BASH_REMATCH[4]}"
             if ((click_x >= rx && click_x < rx+rw && click_y >= ry && click_y < ry+rh)); then
               SELECTION="${rx},${ry} ${rw}x${rh}"
@@ -51,7 +51,7 @@ case "$MODE" in
     ;;
 esac
 
-[[ -z $SELECTION ]] && exit 0
+[[ -z "$SELECTION" ]] && exit 0
 
 FILEPATH="$OUTPUT_DIR/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png"
 grim -g "$SELECTION" "$FILEPATH" || exit 1
