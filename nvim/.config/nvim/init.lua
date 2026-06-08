@@ -52,10 +52,10 @@ vim.cmd([[
 vim.api.nvim_create_autocmd("PackChanged", {
   callback = function(ev)
     local name, kind = ev.data.spec.name, ev.data.kind
-    if name == "nvim-treesitter" and kind == "update" then
-      if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
-      vim.cmd("TSUpdate")
-    end
+    -- if name == "nvim-treesitter" and kind == "update" then
+    --   if not ev.data.active then vim.cmd.packadd("nvim-treesitter") end
+    --   vim.cmd("TSUpdate")
+    -- end
     if name == "telescope-fzf-native.nvim" and (kind == "install" or kind == "update") then
       if vim.fn.executable("make") == 1 then
         vim.fn.system("make -C " .. vim.fn.stdpath("data") .. "/site/pack/core/opt/telescope-fzf-native.nvim")
@@ -107,7 +107,38 @@ pcall(function()
   })
 end)
 
-pcall(function() require("tokyonight").setup({ style = "moon" }) end)
+-- require("nvim-treesitter").setup({
+--   ensure_installed = {
+--     "bash",
+--
+--     "go",
+--     "gomod",
+--     "gosum",
+--     "gowork",
+--     "templ",
+--
+--     "html",
+--     "css",
+--
+--     "javascript",
+--     "typescript",
+--
+--     "lua",
+--     "vim",
+--   },
+--
+--   auto_install = true,
+--
+--   highlight = {
+--     enable = true,
+--   },
+--
+--   indent = {
+--     enable = true,
+--   },
+-- })
+
+-- pcall(function() require("tokyonight").setup({ style = "moon" }) end)
 
 vim.cmd.packadd("mini.nvim")
 local statusline = require("mini.statusline")
@@ -256,11 +287,6 @@ vim.lsp.config("html", {
   filetypes = { "html", "templ" },
 })
 
--- vim.lsp.config("css_variables", {
---   cmd = { "npm", "run", "css-variables-language-server", "--stdio" },
---   filetypes = { "css" },
--- })
-
 vim.lsp.config("cssls", {
   cmd = { "vscode-css-language-server", "--stdio" },
   filetypes = { "css" },
@@ -356,7 +382,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "go",
   callback = function()
-    vim.treesitter.start()
+    
   end,
 })
 
