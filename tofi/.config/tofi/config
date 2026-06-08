@@ -14,6 +14,6 @@ fuzzy-match = true
 drun-launch = true
 require-match = false
 
-background-color = #000A
-text-color = #ebdbb2
-selection-color = #d79921
+background-color = #1e1e2eCC
+text-color = #cdd6f4
+selection-color = #cba6f7

@@ -1,7 +1,7 @@
-/* Catppuccin Macchiato palette */
+/* Catppuccin Mocha palette */
 window#waybar {
-    background-color: #181926; /* Crust */
-    color: #cad3f5;
+    background-color: #11111b; /* Crust */
+    color: #cdd6f4;
     font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
     font-size: 12px;
 }
@@ -25,58 +25,58 @@ window#waybar {
 /* --- LEFT SIDE: Workspaces --- */
 #workspaces button {
     padding: 0 4px;
-    color: rgba(110, 115, 141, 0.5); /* Overlay 0 #6e738d */
+    color: rgba(108, 112, 134, 0.5); /* Overlay 0 #6c7086 */
     background-color: transparent;
     border: none;
     transition: all 0.3s ease;
 }
 
 #workspaces button:not(.empty) {
-    color: #b8c0e0; /* Subtext 1 */
+    color: #bac2de; /* Subtext 1 */
 }
 
 #workspaces button.active {
-    color: #c6a0f6; /* Mauve */
+    color: #cba6f7; /* Mauve */
     font-weight: bold;
 }
 
 #workspaces button.urgent {
-    color: #ed8796; /* Red */
+    color: #f38ba8; /* Red */
 }
 
 #workspaces button:hover {
-    color: #cad3f5; /* Text */
-    background-color: rgba(54, 58, 79, 0.5); /* Surface 0 #363a4f */
+    color: #cdd6f4; /* Text */
+    background-color: rgba(49, 50, 68, 0.5); /* Surface 0 #313244 */
     border-radius: 8px;
 }
 
 /* --- RIGHT SIDE: Status Modules --- */
 #network {
-    color: #8aadf4; /* Blue */
+    color: #89b4fa; /* Blue */
 }
 
 #bluetooth {
-    color: #8aadf4; /* Blue */
+    color: #89b4fa; /* Blue */
 }
 
 #bluetooth.disabled {
-    color: rgba(110, 115, 141, 0.5); /* Overlay 0 #6e738d */
+    color: rgba(108, 112, 134, 0.5); /* Overlay 0 #6c7086 */
 }
 
 #pulseaudio {
-    color: #eed49f; /* Yellow */
+    color: #f9e2af; /* Yellow */
 }
 
 #backlight {
-    color: #f5a97f; /* Peach */
+    color: #fab387; /* Peach */
 }
 
 #battery {
-    color: #a6da95; /* Green */
+    color: #a6e3a1; /* Green */
 }
 
 #battery.critical {
-    color: #ed8796; /* Red */
+    color: #f38ba8; /* Red */
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -85,19 +85,19 @@ window#waybar {
 }
 
 #clock {
-    color: #cad3f5; /* Text */
+    color: #cdd6f4; /* Text */
     font-weight: bold;
 }
 
 #custom-powermenu {
-    color: #ed8796; /* Red */
+    color: #f38ba8; /* Red */
     font-size: 14px;
 }
 
 /* Smooth blinking for low battery */
 @keyframes blink {
     to {
-        background-color: rgba(237, 135, 150, 0.4); /* Red #ed8796 */
-        color: #cad3f5;
+        background-color: rgba(243, 139, 168, 0.4); /* Red #f38ba8 */
+        color: #cdd6f4;
     }
 }

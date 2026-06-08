@@ -464,4 +464,5 @@ vim.keymap.set("n", "<leader>sn", function()
   builtin.find_files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "[S]earch [N]eovim files" })
 
-vim.cmd.colorscheme("catppuccin")
+require("catppuccin").setup({ flavor = "mocha" })
+vim.cmd.colorscheme("catppuccin-nvim")

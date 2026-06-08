@@ -1,7 +1,7 @@
-# Catppuccin Macchiato
-background-color=#24273a
-text-color=#cad3f5
-border-color=#8aadf4
+# Catppuccin Mocha
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#89b4fa
 border-radius=8
 border-size=2
 font="JetBrainsMono Nerd Font" 10
