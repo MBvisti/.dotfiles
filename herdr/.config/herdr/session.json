@@ -1,0 +1,307 @@
+{
+  "version": 3,
+  "workspaces": [
+    {
+      "id": "w6",
+      "custom_name": null,
+      "identity_cwd": "/home/mbv/Work/deploycrate-ce",
+      "public_pane_numbers": {
+        "3": 12,
+        "2": 6,
+        "1": 13
+      },
+      "next_public_pane_number": 15,
+      "public_tab_numbers": [
+        2,
+        3,
+        7
+      ],
+      "next_public_tab_number": 9,
+      "tabs": [
+        {
+          "custom_name": "asian",
+          "layout": {
+            "Pane": 1
+          },
+          "panes": {
+            "1": {
+              "cwd": "/home/mbv/Work/deploycrate-ce"
+            }
+          },
+          "zoomed": false,
+          "focused": 1,
+          "root_pane": 1
+        },
+        {
+          "custom_name": "review",
+          "layout": {
+            "Pane": 2
+          },
+          "panes": {
+            "2": {
+              "cwd": "/home/mbv/Work/deploycrate-ce"
+            }
+          },
+          "zoomed": false,
+          "focused": 2,
+          "root_pane": 2
+        },
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 3
+          },
+          "panes": {
+            "3": {
+              "cwd": "/home/mbv"
+            }
+          },
+          "zoomed": false,
+          "focused": 3,
+          "root_pane": 3
+        }
+      ],
+      "active_tab": 2
+    },
+    {
+      "id": "w8",
+      "custom_name": null,
+      "identity_cwd": "/home/mbv/Work/andurel",
+      "public_pane_numbers": {
+        "6": 14,
+        "5": 2,
+        "4": 5
+      },
+      "next_public_pane_number": 16,
+      "public_tab_numbers": [
+        1,
+        2,
+        5
+      ],
+      "next_public_tab_number": 7,
+      "tabs": [
+        {
+          "custom_name": "asians",
+          "layout": {
+            "Pane": 4
+          },
+          "panes": {
+            "4": {
+              "cwd": "/home/mbv/Work/andurel"
+            }
+          },
+          "zoomed": false,
+          "focused": 4,
+          "root_pane": 4
+        },
+        {
+          "custom_name": "code",
+          "layout": {
+            "Pane": 5
+          },
+          "panes": {
+            "5": {
+              "cwd": "/home/mbv/Work"
+            }
+          },
+          "zoomed": false,
+          "focused": 5,
+          "root_pane": 5
+        },
+        {
+          "custom_name": "review",
+          "layout": {
+            "Pane": 6
+          },
+          "panes": {
+            "6": {
+              "cwd": "/home/mbv/Work/andurel"
+            }
+          },
+          "zoomed": false,
+          "focused": 6,
+          "root_pane": 6
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "w9",
+      "custom_name": "DeployCrate Pivot",
+      "identity_cwd": "/home/mbv/Work/deploycrate-pivot",
+      "public_pane_numbers": {
+        "7": 1,
+        "10": 15,
+        "8": 17,
+        "13": 9,
+        "11": 12,
+        "9": 8,
+        "12": 4,
+        "14": 11,
+        "15": 13
+      },
+      "next_public_pane_number": 24,
+      "public_tab_numbers": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "next_public_tab_number": 7,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 7
+          },
+          "panes": {
+            "7": {
+              "cwd": "/home/mbv/Work/deploycrate-pivot"
+            }
+          },
+          "zoomed": false,
+          "focused": 7,
+          "root_pane": 7
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.37630662,
+              "first": {
+                "Pane": 8
+              },
+              "second": {
+                "Split": {
+                  "direction": "Vertical",
+                  "ratio": 0.5,
+                  "first": {
+                    "Split": {
+                      "direction": "Horizontal",
+                      "ratio": 0.5,
+                      "first": {
+                        "Pane": 9
+                      },
+                      "second": {
+                        "Pane": 10
+                      }
+                    }
+                  },
+                  "second": {
+                    "Pane": 11
+                  }
+                }
+              }
+            }
+          },
+          "panes": {
+            "11": {
+              "cwd": "/home/mbv/Work/deploycrate-pivot/dashboard"
+            },
+            "10": {
+              "cwd": "/home/mbv/Work/deploycrate-pivot/dc-cli"
+            },
+            "9": {
+              "cwd": "/home/mbv/Work/mortenvistisen"
+            },
+            "8": {
+              "cwd": "/home/mbv/Work/deploycrate-pivot"
+            }
+          },
+          "zoomed": false,
+          "focused": 11,
+          "root_pane": 8
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Split": {
+              "direction": "Horizontal",
+              "ratio": 0.5,
+              "first": {
+                "Pane": 12
+              },
+              "second": {
+                "Split": {
+                  "direction": "Vertical",
+                  "ratio": 0.5,
+                  "first": {
+                    "Pane": 13
+                  },
+                  "second": {
+                    "Pane": 14
+                  }
+                }
+              }
+            }
+          },
+          "panes": {
+            "14": {
+              "cwd": "/home/mbv/Work/master-golang"
+            },
+            "13": {
+              "cwd": "/home/mbv/Work"
+            },
+            "12": {
+              "cwd": "/home/mbv"
+            }
+          },
+          "zoomed": false,
+          "focused": 14,
+          "root_pane": 12
+        },
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 15
+          },
+          "panes": {
+            "15": {
+              "cwd": "/home/mbv/Work/deploycrate-pivot/dashboard"
+            }
+          },
+          "zoomed": false,
+          "focused": 15,
+          "root_pane": 15
+        }
+      ],
+      "active_tab": 0
+    },
+    {
+      "id": "wA",
+      "custom_name": null,
+      "identity_cwd": "/home/mbv/Work/andurel",
+      "public_pane_numbers": {
+        "16": 1
+      },
+      "next_public_pane_number": 2,
+      "public_tab_numbers": [
+        1
+      ],
+      "next_public_tab_number": 2,
+      "tabs": [
+        {
+          "custom_name": null,
+          "layout": {
+            "Pane": 16
+          },
+          "panes": {
+            "16": {
+              "cwd": "/home/mbv/Work/andurel"
+            }
+          },
+          "zoomed": false,
+          "focused": 16,
+          "root_pane": 16
+        }
+      ],
+      "active_tab": 0
+    }
+  ],
+  "active": 3,
+  "selected": 3,
+  "sidebar_width": 26,
+  "sidebar_section_split": 0.5,
+  "collapsed_space_keys": []
+}
