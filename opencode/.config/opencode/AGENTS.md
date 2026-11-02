@@ -1,3 +1,7 @@
+# File changes
+
+Use the read, edit and write tools to read, create and change files. Don't use programming languages (Python, Perl, Ruby, PHP, Lua, inline Node/Bun/Deno) for file work or one-off scripts; they are blocked by policy. Standard shell tools such as `sed`, `awk`, `jq`, `grep`, `rm` and `mv` are fine.
+
 # Git conventions
 
 ## Commits

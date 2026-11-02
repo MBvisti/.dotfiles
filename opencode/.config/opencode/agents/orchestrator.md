@@ -4,108 +4,161 @@ mode: primary
 model: anthropic/claude-opus-5-5#medium
 color: "#f59e0b"
 permissions:
-  - action: edit
-    resource: "*"
-    effect: deny
+  # Like build: allow everything, then ask before dangerous or hard-to-undo commands
   - action: shell
     resource: "*"
+    effect: allow
+  - action: shell
+    resource: "git push *"
     effect: ask
-  # Read-only git inspection
   - action: shell
-    resource: "git status *"
+    resource: "git commit --amend*"
+    effect: ask
+  - action: shell
+    resource: "git reset --hard*"
+    effect: ask
+  - action: shell
+    resource: "git clean *"
+    effect: ask
+  - action: shell
+    resource: "git rebase *"
+    effect: ask
+  - action: shell
+    resource: "git filter-branch*"
+    effect: ask
+  - action: shell
+    resource: "git filter-repo*"
+    effect: ask
+  - action: shell
+    resource: "git branch -D*"
+    effect: ask
+  - action: shell
+    resource: "git branch -d*"
+    effect: ask
+  - action: shell
+    resource: "git tag -d*"
+    effect: ask
+  - action: shell
+    resource: "git stash drop*"
+    effect: ask
+  - action: shell
+    resource: "git stash clear*"
+    effect: ask
+  - action: shell
+    resource: "git checkout -- *"
+    effect: ask
+  - action: shell
+    resource: "git checkout . *"
+    effect: ask
+  - action: shell
+    resource: "git restore *"
+    effect: ask
+  - action: shell
+    resource: "git worktree remove*"
+    effect: ask
+  - action: shell
+    resource: "git update-ref *"
+    effect: ask
+  - action: shell
+    resource: "gh pr merge *"
+    effect: ask
+  - action: shell
+    resource: "gh * delete *"
+    effect: ask
+  - action: shell
+    resource: "gh repo archive *"
+    effect: ask
+  - action: shell
+    resource: "gh repo edit *"
+    effect: ask
+  - action: shell
+    resource: "gh secret *"
+    effect: ask
+  - action: shell
+    resource: "gh variable *"
+    effect: ask
+  - action: shell
+    resource: "rm -r*"
+    effect: ask
+  - action: shell
+    resource: "rm -fr*"
+    effect: ask
+  - action: shell
+    resource: "rm -f -r*"
+    effect: ask
+  - action: shell
+    resource: "rm -rf*"
+    effect: ask
+  - action: shell
+    resource: "rm * -r*"
+    effect: ask
+  - action: shell
+    resource: "find * -delete*"
+    effect: ask
+  - action: shell
+    resource: "shred *"
+    effect: ask
+  - action: shell
+    resource: "dd *"
+    effect: ask
+  - action: shell
+    resource: "mkfs*"
+    effect: ask
+  - action: shell
+    resource: "sudo *"
+    effect: ask
+  - action: shell
+    resource: "su *"
+    effect: ask
+  - action: shell
+    resource: "chmod -R *"
+    effect: ask
+  - action: shell
+    resource: "chown *"
+    effect: ask
+  - action: shell
+    resource: "shutdown*"
+    effect: ask
+  - action: shell
+    resource: "reboot*"
+    effect: ask
+  - action: shell
+    resource: "systemctl *"
+    effect: ask
+  - action: shell
+    resource: "docker system prune*"
+    effect: ask
+  - action: shell
+    resource: "docker volume rm*"
+    effect: ask
+  - action: shell
+    resource: "docker volume prune*"
+    effect: ask
+  # safe exceptions to the rules above
+  - action: shell
+    resource: "git restore --staged *"
     effect: allow
   - action: shell
-    resource: "git diff *"
+    resource: "systemctl status *"
     effect: allow
-  - action: shell
-    resource: "git log *"
-    effect: allow
-  - action: shell
-    resource: "git show *"
-    effect: allow
-  - action: shell
-    resource: "git blame *"
-    effect: allow
-  - action: shell
-    resource: "git shortlog *"
-    effect: allow
-  - action: shell
-    resource: "git describe *"
-    effect: allow
-  - action: shell
-    resource: "git rev-parse *"
-    effect: allow
-  - action: shell
-    resource: "git rev-list *"
-    effect: allow
-  - action: shell
-    resource: "git merge-base *"
-    effect: allow
-  - action: shell
-    resource: "git ls-files *"
-    effect: allow
-  - action: shell
-    resource: "git ls-tree *"
-    effect: allow
-  - action: shell
-    resource: "git cat-file *"
-    effect: allow
-  - action: shell
-    resource: "git grep *"
-    effect: allow
-  - action: shell
-    resource: "git branch"
-    effect: allow
-  - action: shell
-    resource: "git branch --list *"
-    effect: allow
-  - action: shell
-    resource: "git branch -a *"
-    effect: allow
-  - action: shell
-    resource: "git branch -r *"
-    effect: allow
-  - action: shell
-    resource: "git branch -v*"
-    effect: allow
-  - action: shell
-    resource: "git branch --show-current"
-    effect: allow
-  - action: shell
-    resource: "git branch --contains *"
-    effect: allow
-  - action: shell
-    resource: "git tag -l *"
-    effect: allow
-  - action: shell
-    resource: "git tag --list *"
-    effect: allow
-  - action: shell
-    resource: "git stash list *"
-    effect: allow
-  - action: shell
-    resource: "git stash show *"
-    effect: allow
-  - action: shell
-    resource: "git worktree list *"
-    effect: allow
+
   - action: subagent
     resource: "*"
     effect: deny
   - action: subagent
-    resource: scout
+    resource: "scout"
     effect: allow
   - action: subagent
-    resource: researcher
+    resource: "researcher"
     effect: allow
   - action: subagent
-    resource: oracle
+    resource: "oracle"
     effect: allow
   - action: subagent
-    resource: worker
+    resource: "worker"
     effect: allow
   - action: subagent
-    resource: reviewer
+    resource: "reviewer"
     effect: allow
 ---
 
@@ -117,4 +170,4 @@ You are an orchestrator. Break the user's request into steps and delegate them.
 - worker: make the actual code changes
 - reviewer: review the changes after the worker finishes
 
-Subagents start with no context, so include everything they need in each prompt. Run independent tasks in parallel. Don't edit files yourself. Summarize the results for the user.
+Subagents start with no context, so include everything they need in each prompt. Run independent tasks in parallel. Delegate substantial code changes to the worker; make small edits and run commands yourself when that's quicker. Summarize the results for the user.

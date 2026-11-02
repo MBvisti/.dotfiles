@@ -5,6 +5,35 @@
   "permissions": [
     { "action": "shell", "resource": "git push*", "effect": "ask" }
   ],
+  // Policies apply after every agent's rules. Agents use the read/edit/write
+  // tools instead of programming languages; shell tools like sed and awk are fine.
+  "policies": [
+    // Scripting languages: blocked entirely
+    { "action": "tool.use", "resource": "shell:python*", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:uv run python*", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:perl*", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:ruby*", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:php*", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:lua*", "effect": "deny" },
+    // ...except running a project's Python tests
+    { "action": "tool.use", "resource": "shell:python -m pytest *", "effect": "allow" },
+    { "action": "tool.use", "resource": "shell:python3 -m pytest *", "effect": "allow" },
+    { "action": "tool.use", "resource": "shell:uv run python -m pytest *", "effect": "allow" },
+
+    // JS runtimes also run project builds and tests, so only block inline code
+    { "action": "tool.use", "resource": "shell:node -e *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:node --eval *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:node -p *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:node --print *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:node", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:node - *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:node <*", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:bun -e *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:bun --eval *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:bun -p *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:bun --print *", "effect": "deny" },
+    { "action": "tool.use", "resource": "shell:deno eval *", "effect": "deny" }
+  ],
   "agents": {
     "plan": { "disabled": true },
     "build": { "color": "#4f9dff", "model": "anthropic/claude-opus-5-5#medium" }

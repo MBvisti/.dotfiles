@@ -8,155 +8,354 @@ permissions:
   - action: edit
     resource: "*"
     effect: deny
+  # Shell: allow by default, then block anything that changes the repo or system
   - action: shell
     resource: "*"
+    effect: allow
+
+  # git writes
+  - action: shell
+    resource: "git push *"
     effect: deny
-  # Read-only git inspection
   - action: shell
-    resource: "git status *"
-    effect: allow
+    resource: "git commit *"
+    effect: deny
   - action: shell
-    resource: "git diff *"
-    effect: allow
+    resource: "git add *"
+    effect: deny
   - action: shell
-    resource: "git log *"
-    effect: allow
+    resource: "git rm *"
+    effect: deny
   - action: shell
-    resource: "git show *"
-    effect: allow
+    resource: "git mv *"
+    effect: deny
   - action: shell
-    resource: "git blame *"
-    effect: allow
+    resource: "git reset *"
+    effect: deny
   - action: shell
-    resource: "git shortlog *"
-    effect: allow
+    resource: "git checkout *"
+    effect: deny
   - action: shell
-    resource: "git describe *"
-    effect: allow
+    resource: "git switch *"
+    effect: deny
   - action: shell
-    resource: "git rev-parse *"
-    effect: allow
+    resource: "git restore *"
+    effect: deny
   - action: shell
-    resource: "git rev-list *"
-    effect: allow
+    resource: "git clean *"
+    effect: deny
   - action: shell
-    resource: "git merge-base *"
-    effect: allow
+    resource: "git rebase *"
+    effect: deny
   - action: shell
-    resource: "git ls-files *"
-    effect: allow
+    resource: "git merge *"
+    effect: deny
   - action: shell
-    resource: "git ls-tree *"
-    effect: allow
+    resource: "git cherry-pick *"
+    effect: deny
   - action: shell
-    resource: "git cat-file *"
-    effect: allow
+    resource: "git revert *"
+    effect: deny
   - action: shell
-    resource: "git grep *"
-    effect: allow
+    resource: "git pull *"
+    effect: deny
   - action: shell
-    resource: "git branch"
-    effect: allow
+    resource: "git stash *"
+    effect: deny
   - action: shell
-    resource: "git branch --list *"
-    effect: allow
+    resource: "git am *"
+    effect: deny
   - action: shell
-    resource: "git branch -a *"
-    effect: allow
+    resource: "git apply *"
+    effect: deny
   - action: shell
-    resource: "git branch -r *"
-    effect: allow
+    resource: "git branch -d*"
+    effect: deny
   - action: shell
-    resource: "git branch -v*"
-    effect: allow
+    resource: "git branch -D*"
+    effect: deny
   - action: shell
-    resource: "git branch --show-current"
-    effect: allow
+    resource: "git branch -m*"
+    effect: deny
   - action: shell
-    resource: "git branch --contains *"
-    effect: allow
+    resource: "git branch -M*"
+    effect: deny
   - action: shell
-    resource: "git tag -l *"
-    effect: allow
+    resource: "git branch -f*"
+    effect: deny
   - action: shell
-    resource: "git tag --list *"
-    effect: allow
+    resource: "git tag -d*"
+    effect: deny
+  - action: shell
+    resource: "git tag -a*"
+    effect: deny
+  - action: shell
+    resource: "git tag -f*"
+    effect: deny
+  - action: shell
+    resource: "git worktree add*"
+    effect: deny
+  - action: shell
+    resource: "git worktree remove*"
+    effect: deny
+  - action: shell
+    resource: "git worktree prune*"
+    effect: deny
+  - action: shell
+    resource: "git update-ref*"
+    effect: deny
+  - action: shell
+    resource: "git gc*"
+    effect: deny
+  - action: shell
+    resource: "git prune*"
+    effect: deny
+  - action: shell
+    resource: "git filter-branch*"
+    effect: deny
+  - action: shell
+    resource: "git config --unset*"
+    effect: deny
+  - action: shell
+    resource: "git config --add*"
+    effect: deny
+  # read-only exceptions to the rules above
   - action: shell
     resource: "git stash list *"
     effect: allow
   - action: shell
     resource: "git stash show *"
     effect: allow
+
+  # GitHub writes
   - action: shell
-    resource: "git worktree list *"
-    effect: allow
-  # Read-only file viewing
+    resource: "gh api *"
+    effect: deny
   - action: shell
-    resource: "cd *"
-    effect: allow
+    resource: "gh * create *"
+    effect: deny
   - action: shell
-    resource: "pwd *"
-    effect: allow
+    resource: "gh * merge *"
+    effect: deny
   - action: shell
-    resource: "ls *"
-    effect: allow
+    resource: "gh * close *"
+    effect: deny
   - action: shell
-    resource: "tree *"
-    effect: allow
+    resource: "gh * reopen *"
+    effect: deny
   - action: shell
-    resource: "cat *"
-    effect: allow
+    resource: "gh * delete *"
+    effect: deny
   - action: shell
-    resource: "head *"
-    effect: allow
+    resource: "gh * edit *"
+    effect: deny
   - action: shell
-    resource: "tail *"
-    effect: allow
+    resource: "gh * comment *"
+    effect: deny
   - action: shell
-    resource: "wc *"
-    effect: allow
+    resource: "gh * review *"
+    effect: deny
   - action: shell
-    resource: "stat *"
-    effect: allow
+    resource: "gh * rerun *"
+    effect: deny
   - action: shell
-    resource: "file *"
-    effect: allow
+    resource: "gh * cancel *"
+    effect: deny
   - action: shell
-    resource: "rg *"
-    effect: allow
+    resource: "gh * upload *"
+    effect: deny
   - action: shell
-    resource: "grep *"
-    effect: allow
+    resource: "gh repo fork*"
+    effect: deny
   - action: shell
-    resource: "diff *"
-    effect: allow
+    resource: "gh repo clone*"
+    effect: deny
   - action: shell
-    resource: "sort *"
-    effect: allow
+    resource: "gh secret *"
+    effect: deny
   - action: shell
-    resource: "uniq *"
-    effect: allow
+    resource: "gh variable *"
+    effect: deny
+
+  # Destructive, privileged or file-changing commands
   - action: shell
-    resource: "cut *"
-    effect: allow
-  - action: shell
-    resource: "find *"
-    effect: allow
+    resource: "rm *"
+    effect: deny
   - action: shell
     resource: "find * -delete*"
     effect: deny
   - action: shell
-    resource: "find * -exec*"
+    resource: "rmdir *"
     effect: deny
   - action: shell
-    resource: "find * -execdir*"
+    resource: "mv *"
     effect: deny
   - action: shell
-    resource: "find * -ok*"
+    resource: "cp *"
     effect: deny
   - action: shell
-    resource: "find * -fprint*"
+    resource: "tee *"
     effect: deny
+  - action: shell
+    resource: "touch *"
+    effect: deny
+  - action: shell
+    resource: "ln *"
+    effect: deny
+  - action: shell
+    resource: "truncate *"
+    effect: deny
+  - action: shell
+    resource: "shred *"
+    effect: deny
+  - action: shell
+    resource: "sudo *"
+    effect: deny
+  - action: shell
+    resource: "su *"
+    effect: deny
+  - action: shell
+    resource: "chmod *"
+    effect: deny
+  - action: shell
+    resource: "chown *"
+    effect: deny
+  - action: shell
+    resource: "dd *"
+    effect: deny
+  - action: shell
+    resource: "mkfs*"
+    effect: deny
+  - action: shell
+    resource: "kill *"
+    effect: deny
+  - action: shell
+    resource: "pkill *"
+    effect: deny
+  - action: shell
+    resource: "killall *"
+    effect: deny
+  - action: shell
+    resource: "sed -i*"
+    effect: deny
+  - action: shell
+    resource: "sed * -i*"
+    effect: deny
+  - action: shell
+    resource: "sed --in-place*"
+    effect: deny
+  - action: shell
+    resource: "sed * --in-place*"
+    effect: deny
+  - action: shell
+    resource: "perl -i*"
+    effect: deny
+  - action: shell
+    resource: "perl -pi*"
+    effect: deny
+  - action: shell
+    resource: "gofmt -w*"
+    effect: deny
+  - action: shell
+    resource: "go fix *"
+    effect: deny
+  - action: shell
+    resource: "go mod tidy*"
+    effect: deny
+  - action: shell
+    resource: "go get *"
+    effect: deny
+  - action: shell
+    resource: "npm install*"
+    effect: deny
+  - action: shell
+    resource: "npm i *"
+    effect: deny
+  - action: shell
+    resource: "npm uninstall*"
+    effect: deny
+  - action: shell
+    resource: "pnpm add*"
+    effect: deny
+  - action: shell
+    resource: "pnpm install*"
+    effect: deny
+  - action: shell
+    resource: "pnpm remove*"
+    effect: deny
+  - action: shell
+    resource: "yarn add*"
+    effect: deny
+  - action: shell
+    resource: "bun add*"
+    effect: deny
+  - action: shell
+    resource: "bun install*"
+    effect: deny
+  - action: shell
+    resource: "pip install*"
+    effect: deny
+  - action: shell
+    resource: "uv add*"
+    effect: deny
+  - action: shell
+    resource: "uv pip install*"
+    effect: deny
+  - action: shell
+    resource: "cargo add*"
+    effect: deny
+  - action: shell
+    resource: "cargo install*"
+    effect: deny
+  - action: shell
+    resource: "docker rm*"
+    effect: deny
+  - action: shell
+    resource: "docker rmi*"
+    effect: deny
+  - action: shell
+    resource: "docker system prune*"
+    effect: deny
+  - action: shell
+    resource: "docker volume rm*"
+    effect: deny
+  - action: shell
+    resource: "docker compose down*"
+    effect: deny
+  - action: shell
+    resource: "systemctl *"
+    effect: deny
+  - action: shell
+    resource: "shutdown*"
+    effect: deny
+  - action: shell
+    resource: "reboot*"
+    effect: deny
+  - action: shell
+    resource: "crontab *"
+    effect: deny
+  - action: shell
+    resource: "curl * -o *"
+    effect: deny
+  - action: shell
+    resource: "curl * -O*"
+    effect: deny
+  - action: shell
+    resource: "curl * --output*"
+    effect: deny
+  - action: shell
+    resource: "wget *"
+    effect: deny
+  # read-only exceptions to the rules above
+  - action: shell
+    resource: "go fix -diff*"
+    effect: allow
+  - action: shell
+    resource: "systemctl status *"
+    effect: allow
+  - action: shell
+    resource: "crontab -l*"
+    effect: allow
   - action: subagent
     resource: "*"
     effect: deny
@@ -165,7 +364,7 @@ permissions:
 You are a scout. Quickly find what you were asked to find in the codebase.
 
 - Use glob, grep and read; run searches in parallel.
-- Shell is limited to read-only git (status, diff, log, show, blame, ...) and file viewing. Set the shell workdir instead of using `git -C`.
+- Shell is available for read-only commands (git log, blame, show, ...). Commands that change files, git state or the system are blocked.
 - Don't analyze deeply or propose changes.
 
 Reply with file paths and line numbers, plus a one-line note on each. Keep it short.
