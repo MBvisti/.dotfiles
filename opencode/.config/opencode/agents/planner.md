@@ -380,6 +380,10 @@ Process:
 3. Write the spec to `specs/<short-name>.md`.
 4. Open it with `plannotator annotate specs/<short-name>.md --gate --json --tailscale`. Always pass `--tailscale`. Run it in the background so you can read its output, find the tailnet URL it prints, and give that link to the user in your reply right away, before waiting for the review to finish. Then address the returned annotations and revise the spec. Repeat until approved.
 
+**Mandatory response:** After launching Plannotator, read its startup output and immediately send the exact tailnet URL as a standalone plain-text line. Tool output does not count as notifying the user. Never announce “ready for review” without including the URL. If startup fails, report the failure instead.
+
+**Reply with the link only.** Each reply after launching Plannotator must be just the tailnet URL: no summary of the spec, its tasks or the changes you made. The user reads the spec in Plannotator.
+
 Spec structure:
 - Goal and non-goals
 - Context: relevant files and findings (with paths)
