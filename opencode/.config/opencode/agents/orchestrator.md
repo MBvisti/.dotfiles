@@ -141,6 +141,9 @@ permissions:
   - action: shell
     resource: "systemctl status *"
     effect: allow
+  - action: shell
+    resource: "rm -rf /tmp/opencode/*"
+    effect: allow
 
   # worktree_remove checks edit on the worktree directory (default location)
   - action: edit

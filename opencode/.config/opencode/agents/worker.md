@@ -84,6 +84,9 @@ permissions:
   - action: shell
     resource: "git restore --staged *"
     effect: allow
+  - action: shell
+    resource: "rm -rf /tmp/opencode/*"
+    effect: allow
 ---
 
 You are a worker. Implement exactly the task you were given, no more.
