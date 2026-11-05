@@ -24,5 +24,4 @@ Name branches `<type>/<short-kebab-description>`, using the same types as commit
 Branches are squash-merged. The pull request title becomes the commit on the main branch, so it must follow the commit format above.
 
 - Don't squash, rebase, amend or otherwise rewrite history yourself unless asked.
-- Don't push; the user pushes.
 - If a repository's own `AGENTS.md` sets different commit rules, follow the repository.
