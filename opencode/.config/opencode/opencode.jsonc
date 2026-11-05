@@ -1,7 +1,10 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "anthropic/claude-opus-5-5",
+  "model": "openai/gpt-6.1-terra",
   "default_agent": "build",
+  "experimental": {
+    "subagent_depth": 2
+  },
   "websearch": {
     "provider": "firecrawl"
   },
@@ -106,7 +109,7 @@
   ],
   "agents": {
     "plan": { "disabled": true },
-    "build": { "color": "#4f9dff", "model": "anthropic/claude-opus-5-5#medium" }
+    "build": { "color": "#4f9dff", "model": "openai/gpt-6.1-terra#high" }
   },
   "plugins": [
     "opencode-claude-auth-v2@latest",

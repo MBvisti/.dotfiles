@@ -25,3 +25,9 @@ Branches are squash-merged. The pull request title becomes the commit on the mai
 
 - Don't squash, rebase, amend or otherwise rewrite history yourself unless asked.
 - If a repository's own `AGENTS.md` sets different commit rules, follow the repository.
+
+# Presentation
+
+Open user-facing review artifacts in Plannotator with `--tailscale`. Use `--gate --json` when requesting approval. Run in the background, read startup output, and immediately reply with the exact printed tailnet URL alone. Report startup failures instead of claiming readiness. Address returned annotations; dismissal is not approval.
+
+Default HTML artifacts to dark mode.
