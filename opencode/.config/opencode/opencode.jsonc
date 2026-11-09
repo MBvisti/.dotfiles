@@ -114,5 +114,19 @@
   "plugins": [
     "opencode-claude-auth-v2@latest",
     "@plannotator/opencode@latest"
-  ]
+  ],
+  "mcp": {
+    "servers": {
+      "browse": {
+        "type": "local",
+        "command": [
+          "/home/mbv/.local/bin/browse",
+          "mcp"
+        ],
+        "environment": {
+          "OPENCODE_BROWSER_RUNTIME": "auto-update"
+        }
+      }
+    }
+  }
 }
