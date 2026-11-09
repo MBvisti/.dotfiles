@@ -1,7 +1,7 @@
 ---
 description: Answers external technical questions with primary sources
 mode: subagent
-model: openai/gpt-6.1-terra#medium
+model: openai/gpt-6.1-terra#high
 color: "#06b6d4"
 steps: 25
 permissions:

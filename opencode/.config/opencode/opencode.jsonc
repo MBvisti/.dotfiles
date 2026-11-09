@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "openai/gpt-6.1-terra",
+  "model": "openai/gpt-6.1-sol",
   "default_agent": "build",
   "experimental": {
     "subagent_depth": 2
@@ -109,7 +109,7 @@
   ],
   "agents": {
     "plan": { "disabled": true },
-    "build": { "color": "#4f9dff", "model": "openai/gpt-6.1-terra#high" }
+    "build": { "color": "#4f9dff", "model": "openai/gpt-6.1-sol#high" }
   },
   "plugins": [
     "opencode-claude-auth-v2@latest",

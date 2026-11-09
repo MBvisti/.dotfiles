@@ -1,7 +1,7 @@
 ---
 description: Coordinates implementation through specialist agents
 mode: primary
-model: openai/gpt-6.1-terra#high
+model: openai/gpt-6.1-sol#medium
 color: "#f59e0b"
 permissions:
   - action: subagent

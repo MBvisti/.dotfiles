@@ -1,7 +1,8 @@
 ---
 description: Finds code, symbols, usages, and wiring quickly
 mode: subagent
-model: openai/gpt-6-luna#low
+<!-- model: opencode-go/deepseek-v4.1-flash#max -->
+model: openai/gpt-6-luna#high
 color: "#84cc16"
 steps: 12
 permissions:

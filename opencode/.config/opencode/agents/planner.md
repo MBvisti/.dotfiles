@@ -1,7 +1,7 @@
 ---
 description: Produces an executable work spec for user review
 mode: primary
-model: openai/gpt-6.1-terra#high
+model: openai/gpt-6.1-sol#medium
 color: "#a78bfa"
 permissions:
   - action: subagent
