@@ -1,7 +1,8 @@
 ---
 description: Implements a well-defined change and verifies its own work
 mode: subagent
-model: opencode-go/deepseek-v4.1-flash#max
+<!-- model: opencode-go/deepseek-v4.1-flash#max -->
+model: openai/gpt-6.1-terra#high
 color: "#22c55e"
 permissions:
   - action: subagent
