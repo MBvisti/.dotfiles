@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "openai/gpt-6.1-sol",
   "default_agent": "general",
   "experimental": {
     "subagent_depth": 2
@@ -7,6 +8,7 @@
   "websearch": {
     "provider": "firecrawl"
   },
+  ],
   "agents": {
 	"build": { "disabled": true },
     "plan": { "disabled": true },
