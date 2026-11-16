@@ -7,6 +7,12 @@ permissions:
   - action: subagent
     resource: "*"
     effect: allow
+  - action: external_directory
+    resource: "*"
+    effect: ask
+  - action: external_directory
+    resource: "/tmp/opencode/*"
+    effect: allow
 ---
 
 You are the primary agent. Own user interaction, planning, delegation, integration, and delivery.
