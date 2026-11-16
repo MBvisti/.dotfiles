@@ -8,6 +8,12 @@ permissions:
   - action: subagent
     resource: "*"
     effect: deny
+  - action: edit
+    resource: "*"
+    effect: deny
+  - action: shell
+    resource: "*"
+    effect: deny
   - action: webfetch
     resource: "*"
     effect: allow
