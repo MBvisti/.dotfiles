@@ -6,9 +6,6 @@ color: "#479f78"
 permissions:
   - action: subagent
     resource: "*"
-    effect: deny
-  - action: subagent
-    resource: "{scout,researcher,oracle,designer,worker,tester,reviewer}"
     effect: allow
 ---
 
