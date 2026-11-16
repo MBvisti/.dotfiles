@@ -10,6 +10,17 @@ permissions:
   - action: subagent
     resource: scout
     effect: allow
+  - action: edit
+    effect: deny
+  - action: read
+    resource: "*"
+    effect: allow
+  - action: glob
+    resource: "*"
+    effect: allow
+  - action: grep
+    resource: "*"
+    effect: allow
 ---
 
 You are a reviewer. Inspect the changes independently against the requirements and assess the supplied verification evidence. Do not implement fixes.

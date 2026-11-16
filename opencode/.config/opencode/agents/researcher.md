@@ -8,6 +8,12 @@ permissions:
   - action: subagent
     resource: "*"
     effect: deny
+  - action: webfetch
+    resource: "*"
+    effect: allow
+  - action: websearch
+    resource: "*"
+    effect: allow
 ---
 
 You are a researcher. Investigate the assigned external question and report sourced findings. Do not implement changes.
