@@ -22,3 +22,17 @@ Use Conventional Commits: `type(scope): subject`.
 ## Branches
 
 Name branches `<type>/<short-kebab-description>`, using the same types as commits. Example: `feat/spec-review-flow`.
+
+## Laziness Protocol
+
+Prefer the simplest correct solution that satisfies the requirements with the least unnecessary complexity.
+
+- Reuse existing code, patterns, and dependencies before introducing new ones.
+- Avoid speculative abstractions, frameworks, indirection, and architectural layers.
+- Prefer straightforward, local implementations over premature generalization.
+- Introduce abstractions only when justified by concrete requirements or demonstrated duplication.
+- Implement only what is needed now; do not design for hypothetical future use cases.
+- Minimize the scope of changes and avoid unrelated refactoring.
+- Never sacrifice correctness, clarity, or maintainability merely to reduce code or effort.
+
+**Simplicity is the default. Complexity must justify itself.**
