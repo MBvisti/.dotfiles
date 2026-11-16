@@ -8,7 +8,6 @@
   "websearch": {
     "provider": "firecrawl"
   },
-  ],
   "agents": {
 	"build": { "disabled": true },
     "plan": { "disabled": true },
