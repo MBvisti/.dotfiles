@@ -1,5 +1,7 @@
 {
   "global": {
+    "ctrl-shift-space": "running-overview.preview-toggle",
+    "ctrl-shift-i": "cockpit-preview.focus-toggle",
     "ctrl-a v": "pane.split:right",
     "ctrl-a h": "pane.split:down",
     "ctrl-a t": "tab.new",
@@ -64,6 +66,11 @@
   },
   "layout:thelab": {
     "ctrl-space": "layout.toggle:running-overview",
+    "ctrl-shift-h": "running-overview.left",
+    "ctrl-shift-j": "running-overview.down",
+    "ctrl-shift-k": "running-overview.up",
+    "ctrl-shift-l": "running-overview.right",
+    "ctrl-shift-enter": "running-overview.activate",
     "ctrl-shift-down": "running-overview.grow",
     "ctrl-shift-up": "running-overview.shrink"
   },

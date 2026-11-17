@@ -21,8 +21,8 @@
       "id": "running-overview",
       "type": "block",
       "hidden": true,
-      "size": { "px": 362 },
-      "min": 154,
+      "size": { "px": 440 },
+      "min": 260,
       "max": 784,
       "content": { "mod": "running-overview" }
     },
