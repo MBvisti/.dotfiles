@@ -4,7 +4,11 @@
 	  "background": {
 		  "base": "transparent"
 	  },
-    "name": "system"
+    "name": "system",
+    "mode": "system"
   },
-  "plugins": ["-opencode.sidebar.context"]
+  "plugins": ["-opencode.sidebar.context"],
+  "tabs": {
+    "mode": "off"
+  }
 }
