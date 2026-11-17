@@ -106,6 +106,19 @@ there. `--no-folding` keeps those generated files out of this repository.
 Machines and active sessions remain local; add remote machines on each computer.
 Desktop notifications respect the system's Do Not Disturb setting.
 
+Git and Stow both exclude Herdr's generated files. When adding a personal
+layout or mod, add its name to the allowlists in `herdr-app/.gitignore` and
+`herdr-app/.stow-local-ignore`. Personal themes are included automatically;
+the two bundled themes are excluded.
+
+If `~/.config/herdr-app` is already a symlink to this repository, the app
+will write runtime files here despite the ignore rules. Close Herdr before
+migrating that directory to a real directory. Back up its entire contents
+(including ignored files), remove only the directory symlink, restore the
+backup to `~/.config/herdr-app`, and move aside the tracked personal files
+there before running the `stow --no-folding` command above. Keep the backup
+until the app has reopened successfully. Do not delete the runtime files.
+
 OpenCode's terminal-derived theme and hidden tab bar are configured separately
 in `opencode/.config/opencode/cli.json`; install that package too for the same
 appearance.

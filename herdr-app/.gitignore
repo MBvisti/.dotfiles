@@ -2,3 +2,24 @@
 **/jsconfig.json
 **/*.error
 **/AGENTS.md
+
+# Only personal configuration belongs in dotfiles. Herdr regenerates the rest.
+/.config/herdr-app/*
+!/.config/herdr-app/keys.json
+!/.config/herdr-app/settings.json
+!/.config/herdr-app/programs.json
+!/.config/herdr-app/layouts/
+!/.config/herdr-app/mods/
+!/.config/herdr-app/themes/
+
+/.config/herdr-app/layouts/*
+!/.config/herdr-app/layouts/thelab.json
+
+/.config/herdr-app/mods/*
+!/.config/herdr-app/mods/machine-picker/
+!/.config/herdr-app/mods/machine-terminals-bar/
+!/.config/herdr-app/mods/machine-terminals-pane/
+
+# Bundled themes; personal themes can still be tracked.
+/.config/herdr-app/themes/atom-one-dark.json
+/.config/herdr-app/themes/win98.json
