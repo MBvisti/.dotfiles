@@ -1,14 +1,14 @@
 {
-  "zoom": 1,
+  "zoom": 1.0,
   "sounds": {
     "enabled": true
   },
-  "font_ligatures": false,
-  "terminal_line_height": 1,
-  "terminal_cell_width": 1,
-  "terminal_scroll_speed": 1,
-  "minimum_contrast": 1,
-  "font_size": 9,
+  "font": "JetBrainsMono Nerd Font",
+  "font_size": 9.0,
   "font_weight": 500,
-  "font": "JetBrainsMono Nerd Font"
+  "font_ligatures": false,
+  "terminal_line_height": 1.0,
+  "terminal_cell_width": 1.0,
+  "terminal_scroll_speed": 1.0,
+  "minimum_contrast": 1.0
 }
