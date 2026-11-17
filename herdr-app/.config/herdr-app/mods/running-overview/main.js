@@ -82,6 +82,9 @@ export default class RunningOverview extends View {
   init(_props, cx) {
     this.height = heightFor(DEFAULT_ROWS);
     this.gitStats = new Map();
+    this.positions = new Map();
+    this.arriving = new Set();
+    this.motionVersions = new Map();
     try {
       this.observed = JSON.parse(localStorage.getItem("observed") ?? "{}");
     } catch {
@@ -153,7 +156,7 @@ export default class RunningOverview extends View {
     setShared("thelab.overview.sort", id);
   }
 
-  render() {
+  render(cx) {
     const t = theme();
     const rows = Math.max(0, Math.floor((this.height - 82) / 92));
     const sort = sortSetting();
@@ -177,6 +180,30 @@ export default class RunningOverview extends View {
       ? (x, y) => (x.program?.name ?? "").localeCompare(y.program?.name ?? "") || x.address.localeCompare(y.address)
       : (x, y) => (y.seq ?? 0) - (x.seq ?? 0) || x.address.localeCompare(y.address);
     for (const items of groups.values()) items.sort(cmp);
+
+    const positions = new Map();
+    const moved = new Map();
+    for (const [status, items] of groups) {
+      items.forEach((agent, index) => {
+        const position = `${status}:${index}`;
+        positions.set(agent.address, position);
+        if (!this.positions.has(agent.address) || this.positions.get(agent.address) === position) return;
+        const version = (this.motionVersions.get(agent.address) ?? 0) + 1;
+        this.motionVersions.set(agent.address, version);
+        this.arriving.add(agent.address);
+        moved.set(agent.address, version);
+      });
+    }
+    this.positions = positions;
+    if (moved.size && !checking()) {
+      // Establish the arrival pose once; native transitions animate the settle.
+      cx.timer.after(24, (cx) => {
+        for (const [address, version] of moved) {
+          if (this.motionVersions.get(address) === version) this.arriving.delete(address);
+        }
+        cx.notify();
+      });
+    }
 
     const segment = (s) => div()
       .id(`ov-sort-${s.id}`)
@@ -214,8 +241,11 @@ export default class RunningOverview extends View {
       const context = gitContext(agent, allPanes, allSpaces);
       const stats = context ? this.gitStats.get(context.key) : null;
       return v_flex()
-        .id(`ov-card-${agent.address}`)
+        .id(`ov-card-${agent.address}-${this.motionVersions.get(agent.address) ?? 0}`)
         .relative()
+        .top(this.arriving.has(agent.address) ? 6 : 0)
+        .transition("top", { duration: 140, easing: "ease-out" })
+        .transition("opacity", { duration: 140, easing: "ease-out" })
         .flex_none()
         .w_full()
         .h(84)
@@ -226,7 +256,7 @@ export default class RunningOverview extends View {
         .bg(t.raised)
         .border(1)
         .border_color(t.border)
-        .opacity(all.some((item) => item.focused) && !agent.focused ? 0.55 : 1)
+        .opacity(this.arriving.has(agent.address) ? 0.2 : all.some((item) => item.focused) && !agent.focused ? 0.55 : 1)
         .cursor_pointer()
         .hover((h) => h.bg(t.hover).border_color(t.input).opacity(1))
         .on_click(() => run("agent.focus", { terminal: agent.address }))
