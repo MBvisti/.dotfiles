@@ -19,6 +19,8 @@
 !/.config/herdr-app/mods/machine-picker/
 !/.config/herdr-app/mods/machine-terminals-bar/
 !/.config/herdr-app/mods/machine-terminals-pane/
+!/.config/herdr-app/mods/thelab-bar/
+!/.config/herdr-app/mods/running-overview/
 
 # Bundled themes; personal themes can still be tracked.
 /.config/herdr-app/themes/atom-one-dark.json

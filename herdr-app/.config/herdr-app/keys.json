@@ -62,6 +62,11 @@
     "ctrl-f": "pane.zoom",
     "ctrl-shift-l": "layout.switch"
   },
+  "layout:thelab": {
+    "ctrl-space": "layout.toggle:running-overview",
+    "ctrl-shift-down": "running-overview.grow",
+    "ctrl-shift-up": "running-overview.shrink"
+  },
   "terminal": {
     "ctrl-backspace": "send:\u0017",
     "ctrl-left": "send:\u001bb",

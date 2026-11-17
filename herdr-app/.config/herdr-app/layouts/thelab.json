@@ -10,12 +10,21 @@
       "id": "tabs",
       "type": "block",
       "content": {
-        "mod": "machine-terminals-bar"
+        "mod": "thelab-bar"
       },
       "size": {
         "px": 38
       },
       "window_drag": true
+    },
+    {
+      "id": "running-overview",
+      "type": "block",
+      "hidden": true,
+      "size": { "px": 354 },
+      "min": 154,
+      "max": 784,
+      "content": { "mod": "running-overview" }
     },
     {
       "id": "main",
