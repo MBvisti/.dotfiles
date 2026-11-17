@@ -83,6 +83,33 @@ Click the icons in the bar to manage system settings (omarchy-style TUIs):
 | `bluetooth-menu` | Quick tofi-based bluetooth device picker |
 | `screenshot` | Screenshot tool (smart / region / windows / fullscreen) |
 
+## Herdr app
+
+The `herdr-app` Stow package contains the `thelab` layout, custom search
+palette, pane headers, desktop notifications, keybindings, and settings.
+Shipped mods/layouts, generated type files, screenshots, and machine/session
+state are intentionally not tracked.
+
+Install Herdr, GNU Stow, the JetBrainsMono Nerd Font, and `notify-send`
+(`libnotify` on Arch), with a running desktop notification service. Then:
+
+```sh
+cd ~/.dotfiles
+mkdir -p ~/.config/herdr-app
+stow --no-folding --target="$HOME" herdr-app
+herdr-app do layout.switch '{"name":"thelab"}'
+```
+
+Back up and move aside any existing files that Stow reports as conflicts.
+Do not replace the whole config directory: Herdr writes its own runtime files
+there. `--no-folding` keeps those generated files out of this repository.
+Machines and active sessions remain local; add remote machines on each computer.
+Desktop notifications respect the system's Do Not Disturb setting.
+
+OpenCode's terminal-derived theme and hidden tab bar are configured separately
+in `opencode/.config/opencode/cli.json`; install that package too for the same
+appearance.
+
 ## OpenCode
 
 Global config, agents and instructions live in `opencode/.config/opencode/`.
