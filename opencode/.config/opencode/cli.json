@@ -4,7 +4,7 @@
 	  "background": {
 		  "base": "transparent"
 	  },
-    "name": "catppuccin-macchiato"
+    "name": "system"
   },
   "plugins": ["-opencode.sidebar.context"]
 }

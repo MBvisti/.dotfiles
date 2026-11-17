@@ -11,7 +11,7 @@ permissions:
     resource: "*"
     effect: ask
   - action: external_directory
-    resource: "/tmp/opencode/*"
+    resource: "/tmp/opencode*"
     effect: allow
 ---
 
