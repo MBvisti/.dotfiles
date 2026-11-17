@@ -16,8 +16,14 @@ const SORTS = [
 ];
 const DEFAULT_ROWS = 3;
 const ROW_PX = 90;
-const BASE_PX = 84;
+const BASE_PX = 92;
 const FOOTER_PX = 18;
+const WORKING_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+
+function workingIndicator(id, color) {
+  return div().id(id).flex_none().w(12).h(16).text_size(13)
+    .text_color(color).frames(WORKING_FRAMES, 90);
+}
 
 // Run on the repo's machine; return only numstat, never file contents.
 const UNTRACKED_STATS = `
@@ -149,7 +155,7 @@ export default class RunningOverview extends View {
 
   render() {
     const t = theme();
-    const rows = Math.max(0, Math.floor((this.height - 74) / 92));
+    const rows = Math.max(0, Math.floor((this.height - 82) / 92));
     const sort = sortSetting();
     const all = agents();
     let changed = false;
@@ -262,9 +268,12 @@ export default class RunningOverview extends View {
         .child(h_flex()
           .flex_none()
           .h(24)
+          .mb(8)
           .gap(6)
           .items_center()
-          .child(div().size(7).flex_none().rounded(4).bg(t[c.key] ?? t.dim))
+          .child((c.key === "working" || c.key === "blocked") && items.length > 0
+            ? workingIndicator(`ov-${c.key}-header`, t[c.key])
+            : div().size(7).flex_none().rounded(4).bg(t[c.key] ?? t.dim))
           .child(div().flex_1().min_w(0).truncate().text_size(11).font_semibold().text_color(t.foreground).child(c.label))
           .child(div()
             .flex_none()
