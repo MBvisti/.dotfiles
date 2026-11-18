@@ -1,7 +1,7 @@
 ---
 description: Advises on hard reasoning, architecture, and trade-offs
 mode: subagent
-model: openai/gpt-6.1-sol#high
+model: openai/gpt-6.2-sol#high
 color: "#ec4899"
 permissions:
   - action: subagent

@@ -1,7 +1,7 @@
 ---
 description: Independently reviews changes for defects and missing coverage
 mode: subagent
-model: openai/gpt-6.1-sol#medium
+model: openai/gpt-6.2-sol#medium
 color: "#ef4444"
 permissions:
   - action: subagent

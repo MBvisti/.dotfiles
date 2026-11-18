@@ -1,7 +1,7 @@
 ---
 description: Primary engineering agent
 mode: primary
-model: openai/gpt-6.1-sol#medium
+model: openai/gpt-6.2-sol#medium
 color: "#479f78"
 permissions:
   - action: subagent

@@ -1,7 +1,7 @@
 ---
 description: Designs user interfaces, workflows, wireframes, and mockups using established UI/UX patterns
 mode: subagent
-model: openai/gpt-6.1-sol#medium
+model: openai/gpt-6.2-sol#medium
 color: "#14b8a6"
 permissions:
   - action: subagent
