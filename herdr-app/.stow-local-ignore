@@ -7,5 +7,5 @@ jsconfig\.json
 # Match the Git allowlist so generated files are never installed by Stow.
 ^/\.config/herdr-app/(?!(keys\.json|settings\.json|programs\.json|layouts|mods|themes)$)[^/]+$
 ^/\.config/herdr-app/layouts/(?!thelab\.json$)[^/]+$
-^/\.config/herdr-app/mods/(?!(machine-picker|machine-terminals-bar|machine-terminals-pane)$)[^/]+$
+^/\.config/herdr-app/mods/(?!(machine-picker|machine-terminals-bar|machine-terminals-pane|thelab-bar|running-overview|cockpit-preview)$)[^/]+$
 ^/\.config/herdr-app/themes/(atom-one-dark|win98)\.json$
