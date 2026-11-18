@@ -1,3 +1,7 @@
+# Response preferences
+
+- In chat, refer to local files with plain filenames or paths in backticks, not clickable Markdown links or `file://` URLs. Include the directory when needed. Don't make a file link the only way to get the answer.
+
 # Documentation/Specs/Plans/
 
 Don't save documents to /tmp for any documentation, plans, roadmaps or elements you need to keep track of work. All files should be stored in the directory you are operating within.
