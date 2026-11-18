@@ -15,12 +15,6 @@ export default class CockpitPreview extends View {
         const command = await nextCommand();
         if (command === "close") {
           this.closePreview();
-        } else if (command === "focus-toggle") {
-          if (this.handle.is_focused()) {
-            this.handle.release();
-            run("running-overview.preview-unfocus");
-          } else this.handle.focus();
-          cx.notify();
         }
       }
     });

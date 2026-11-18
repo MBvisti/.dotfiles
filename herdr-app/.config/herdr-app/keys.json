@@ -1,7 +1,6 @@
 {
   "global": {
     "ctrl-shift-space": "running-overview.preview-toggle",
-    "ctrl-shift-i": "cockpit-preview.focus-toggle",
     "ctrl-a v": "pane.split:right",
     "ctrl-a h": "pane.split:down",
     "ctrl-a t": "tab.new",

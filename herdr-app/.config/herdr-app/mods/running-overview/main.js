@@ -185,11 +185,6 @@ export default class RunningOverview extends View {
           this.activateSelected(cx);
           continue;
         }
-        if (command === "preview-unfocus") {
-          this.restoreFocus(this.previewReturn);
-          cx.notify();
-          continue;
-        }
         if (command === "focus") {
           this.enterKeyboard(cx);
           continue;
@@ -353,7 +348,6 @@ export default class RunningOverview extends View {
       const fallback = allPanes.find((pane) => pane.focused && pane.terminal)
         ?? allPanes.find((pane) => pane.terminal);
       if (fallback) run("pane.focus", { pane: fallback.pane });
-      else this.handle.release();
     }
   }
 
