@@ -36,3 +36,7 @@ Prefer the simplest correct solution that satisfies the requirements with the le
 - Never sacrifice correctness, clarity, or maintainability merely to reduce code or effort.
 
 **Simplicity is the default. Complexity must justify itself.**
+
+## Links/plans/files
+
+Always show the full link or filepath/filename and do not create something the user has to click.
