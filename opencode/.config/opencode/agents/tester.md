@@ -1,7 +1,8 @@
 ---
 description: Executes verification and reports failures without fixing source code
 mode: subagent
-model: opencode-go/deepseek-v4.1-flash#max
+model: openai/gpt-6.1-terra#high
+# model: opencode-go/deepseek-v4.1-flash#max
 color: "#38bdf8"
 permissions:
   - action: subagent
